@@ -26,25 +26,11 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Dash dash;
 
-    bool onSlope()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, (GetComponent<CapsuleCollider>().height / 2) + 0.3f, LayerMask.GetMask("Stairs")))
-        {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle <= maxSlopeAngle && angle != 0;
-        }
-
-        return false;
-    }
-    Vector3 slopeMovement()
-    {
-        return Vector3.ProjectOnPlane(playerMovement, slopeHit.normal).normalized;
-    }
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         dash = GetComponent<Dash>();
+        maxSpeed = StatsManager.Instance.movementSpeed;
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -65,28 +51,8 @@ public class PlayerMovement : MonoBehaviour
     void MoveCharacter()
     {
         playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
+        movement = playerMovement;
         Vector3 velocity = rb.velocity;
-
-        if (onSlope())
-        {
-            movement = slopeMovement();
-
-            if (!firstStepOnSlope)
-            {
-                rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
-                firstStepOnSlope = true;
-            }
-        }
-        else
-        {
-            if (firstStepOnSlope)
-            {
-                rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
-                firstStepOnSlope = false;
-            }
-
-            movement = playerMovement;
-        }
 
         if (rb.velocity.magnitude < maxSpeed)
             rb.AddForce(movement * force, ForceMode.Acceleration);
@@ -117,12 +83,5 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             rb.drag = moveDamping;
-
-        if (onSlope())
-        {
-            rb.useGravity = false;
-        }
-        else
-            rb.useGravity = true;
     }
 }
