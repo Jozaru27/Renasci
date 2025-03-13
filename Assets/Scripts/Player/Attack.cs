@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
 {
     [SerializeField] GameObject bulletPref;
 
+    bool canAttack = true;
     Vector2 mousePos;
     Collider trigger;
 
@@ -16,7 +17,7 @@ public class Attack : MonoBehaviour
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && canAttack)
             StartCoroutine(EnablingTrigger());
     }
 
@@ -57,10 +58,18 @@ public class Attack : MonoBehaviour
 
     IEnumerator EnablingTrigger()
     {
+        canAttack = false;
         trigger.enabled = true;
 
         yield return new WaitForSeconds(0.5f);
 
         trigger.enabled = false;
+        canAttack = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //if (other.gameObject.CompareTag("Enemy"))
+            //ChangeHealth
     }
 }

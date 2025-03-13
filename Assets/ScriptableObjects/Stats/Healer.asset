@@ -17,5 +17,5 @@ MonoBehaviour:
   mainDamage: 0
   secundaryDamage: 0
   heal: 3
-  movementSpeed: 0.8
+  movementSpeed: 0
   actionSpeed: 0.6

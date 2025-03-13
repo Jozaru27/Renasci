@@ -10,6 +10,7 @@ public class Dash : MonoBehaviour
     [SerializeField] float dashTime;
     [SerializeField] float maxDashSpeed;
 
+    bool canDash = true;
     Rigidbody rb;
     PlayerMovement pMov;
 
@@ -21,7 +22,7 @@ public class Dash : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && !dashing)
+        if (context.performed && !dashing && canDash)
         {
             rb.AddForce(pMov.movement * dashForce, ForceMode.Impulse);
 
@@ -29,6 +30,7 @@ public class Dash : MonoBehaviour
             if (rb.velocity.magnitude > maxDashSpeed)
                 rb.velocity = velocity.normalized * maxDashSpeed;
 
+            StartCoroutine(DashCooldown());
             StartCoroutine(Dashing());
         }
     }
@@ -40,5 +42,14 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
 
         dashing = false;
+    }
+
+    IEnumerator DashCooldown()
+    {
+        canDash = false;
+
+        yield return new WaitForSeconds(StatsManager.Instance.dashCooldown);
+
+        canDash = true;
     }
 }

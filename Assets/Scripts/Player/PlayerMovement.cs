@@ -19,10 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float slopeForce;
 
     float viewPos;
-    bool firstStepOnSlope;
     Vector2 inputMovement;
     Vector3 playerMovement;
-    RaycastHit slopeHit;
     Rigidbody rb;
     Dash dash;
 
@@ -30,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         dash = GetComponent<Dash>();
-        maxSpeed = StatsManager.Instance.movementSpeed;
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -40,43 +37,45 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MoveCharacter();
-        PhysicsControl();
-    }
-
-    private void Update()
-    {
         RotateCharacter();
+        PhysicsControl();
     }
 
     void MoveCharacter()
     {
-        playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
-        movement = playerMovement;
-        Vector3 velocity = rb.velocity;
+        if (inputMovement.magnitude >= 0.25f)
+        {
+            playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
 
-        if (rb.velocity.magnitude < maxSpeed)
-            rb.AddForce(movement * force, ForceMode.Acceleration);
-        else if (!dash.dashing)
-            rb.velocity = velocity.normalized * maxSpeed;
+            movement = playerMovement;
+            Vector3 velocity = rb.velocity;
+
+            if (rb.velocity.magnitude < StatsManager.Instance.movementSpeed)
+                rb.AddForce(movement * force, ForceMode.Acceleration);
+            else if (!dash.dashing)
+                rb.velocity = velocity.normalized * StatsManager.Instance.movementSpeed;
+        }
 
         if (rb.velocity.magnitude <= 0.1f)
-            rb.velocity = new Vector3(0, 0, 0);
+            rb.velocity = Vector3.zero;
     }
 
     void RotateCharacter()
     {
-        if (inputMovement.magnitude >= 0.75f)
+        if (inputMovement.magnitude >= 0.25f)
+        {
             viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
+            viewPos = Mathf.Round(viewPos * 100) / 100;
+        }
 
         Quaternion target = Quaternion.Euler(0, viewPos, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+
+        if (Quaternion.Angle(rb.rotation, target) > 0.15f)
+            rb.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
     }
 
     void PhysicsControl()
     {
-        //if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, (GetComponent<CapsuleCollider>().height / 2) + 0.3f))
-        //    pivot.transform.position = slopeHit.point;
-
         if (inputMovement == new Vector2(0, 0))
         {
             rb.drag = stayDamping;
