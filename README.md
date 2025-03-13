@@ -9,6 +9,12 @@ Integrantes:
 * Francesc Duart Baldovi
 * Jose Zafrilla Ruiz
 
+<br><br>
+
+Notas de los Desarrolladores:
+Rama Main: La que tiene todos los cambios aprobados por el momento en cada release
+Rama Producción: Rama en la que se trabaja por el momento mientras no sean cambios significativos
+
 <br><br><br>
 
 ## Actualizaciones
