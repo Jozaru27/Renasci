@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] GameObject victoryMenu;
 
+    [Header("SettingsAreas")]
+    [SerializeField] GameObject audioArea;
+    [SerializeField] GameObject videoArea;
+
     public static UIManager Instance { get; private set; }
 
     private void Awake()
@@ -51,6 +55,8 @@ public class UIManager : MonoBehaviour
     {
         settingsMenu.SetActive(true);
         pauseMenu.SetActive(false);
+        audioArea.SetActive(true);
+        videoArea.SetActive(false);
     }
 
     public void DisableSettingsMenu()
@@ -63,5 +69,17 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneLoader.Instance.LoadMainMenu();
+    }
+
+    public void EnableAudioArea()
+    {
+        audioArea.SetActive(true);
+        videoArea.SetActive(false);
+    }
+
+    public void EnableVideoArea()
+    {
+        audioArea.SetActive(false);
+        videoArea.SetActive(true);
     }
 }
