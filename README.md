@@ -1,6 +1,7 @@
 # Renasci
 Repositorio del Videojuego Renasci <br>
-Versión del Proyecto: 0.0.1
+Versión del Proyecto: 0.1.0 <br>
+(1.X.X Para la Build Final / X.1.X Para cada Release o Actualización Grande / X.X.1 Parches y Hotfixes)
 
 <br><br>
 
@@ -18,7 +19,7 @@ Rama Producción: Rama en la que se trabaja por el momento mientras no sean camb
 <br><br><br>
 
 ## Actualizaciones
-### Inicio del Proyecto (0.0.1)
+### Inicio del Proyecto (0.1.0)
 * Creación del Repositorio en Github
 * Creación del Proyecto en Unity (2022.3.20f1)
 * Creación del Readme
