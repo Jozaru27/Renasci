@@ -1,9 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public bool gamePaused;
     public bool gameOver;
+    public bool gameWin;
     public bool interacting;
     public bool dashing;
 

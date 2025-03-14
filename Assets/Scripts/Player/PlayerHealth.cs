@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviour
         StatsManager.Instance.life += amount;
 
         if (StatsManager.Instance.life < 0)
+        {
+            GameManager.Instance.gameOver = true;
             StatsManager.Instance.life = 0;
+        }
     }
 }
