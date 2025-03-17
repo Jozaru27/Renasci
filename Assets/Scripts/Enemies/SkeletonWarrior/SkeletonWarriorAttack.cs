@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SkeletonWarriorAttack : SkeletonWarriorStates
 {
-    public SkeletonWarriorAttack(SkeletonWarrior skeletonWarrior) : base()
+    public SkeletonWarriorAttack(SkeletonWarrior _skeletonWarrior) : base()
     {
+        Debug.Log("ATTACKING");
         name = STATES.ATTACK;
-        iniateVariables(skeletonWarrior);
     }
 
     public override void Entry()
@@ -17,11 +18,18 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Updating()
     {
-
+        if(blocking())
+        {
+            nextState=new SkeletonWarriorBlock();
+            actualPhase=EVENTS.EXIT;
+        }
     }
 
     public override void Exit()
     {
         base.Exit();
+    }
+    public bool blocking(){
+        return false;
     }
 }

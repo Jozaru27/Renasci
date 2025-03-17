@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkeletonWarriorFollow : SkeletonWarriorStates
 {
-    public SkeletonWarriorFollow(SkeletonWarrior skeletonWarrior) : base()
+    public SkeletonWarriorFollow(SkeletonWarrior _skeletonWarrior) : base()
     {
+        Debug.Log("FOLLOWING");
         name = STATES.FOLLOW;
-        iniateVariables(skeletonWarrior);
     }
 
     public override void Entry()
@@ -18,20 +17,17 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 
     public override void Updating()
     {
-        if (PlayerIsNear())
-        {
-            nextState = new SkeletonWarriorAttack(skeletonWarrior);
-            actualPhase = EVENTS.EXIT;
+        if(BeginAttack()){
+            nextState=new SkeletonWarriorAttack(skeletonWarrior);
+            actualPhase=EVENTS.EXIT;
         }
     }
-
     public override void Exit()
     {
         base.Exit();
     }
 
-    public bool PlayerIsNear()
-    {
+    public bool BeginAttack(){
         return false;
     }
 }
