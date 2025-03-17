@@ -10,7 +10,6 @@ public class SkeletonWarrior : MonoBehaviour
     void Start()
     {
        FSM = new SkeletonWarriorFollow(this);
-       FSM.iniateVariables(this);
     }
 
     void Update()

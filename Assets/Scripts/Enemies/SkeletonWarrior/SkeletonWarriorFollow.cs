@@ -6,8 +6,8 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 {
     public SkeletonWarriorFollow(SkeletonWarrior _skeletonWarrior) : base()
     {
-        Debug.Log("FOLLOWING");
         name = STATES.FOLLOW;
+        iniateVariables(skeletonWarrior);
     }
 
     public override void Entry()

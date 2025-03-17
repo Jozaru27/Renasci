@@ -7,8 +7,8 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 {
     public SkeletonWarriorAttack(SkeletonWarrior _skeletonWarrior) : base()
     {
-        Debug.Log("ATTACKING");
         name = STATES.ATTACK;
+        iniateVariables(skeletonWarrior);
     }
 
     public override void Entry()
@@ -20,7 +20,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
     {
         if(blocking())
         {
-            nextState=new SkeletonWarriorBlock();
+            nextState=new SkeletonWarriorBlock(skeletonWarrior);
             actualPhase=EVENTS.EXIT;
         }
     }

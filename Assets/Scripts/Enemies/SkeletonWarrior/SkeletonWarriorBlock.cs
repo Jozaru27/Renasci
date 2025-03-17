@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class SkeletonWarriorBlock : SkeletonWarriorStates
 {
-    public SkeletonWarriorBlock() : base()
+    public SkeletonWarriorBlock(SkeletonWarrior _skeletonWarrior) : base()
     {
-        Debug.Log("BLOCKING");
         name = STATES.BLOCK;
-
+        iniateVariables(skeletonWarrior);
     }
 
     public override void Entry()
