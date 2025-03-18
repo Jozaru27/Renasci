@@ -5,8 +5,13 @@ using UnityEngine.AI;
 
 public class SkeletonWarriorAttack : SkeletonWarriorStates
 {
+    GameObject skeletonWarriorObject=GameObject.Find("SkeletonWarrior");
+    GameObject playerObject=GameObject.Find("Player");
+    
+    bool warriorFarPlayer=false;
     public SkeletonWarriorAttack(SkeletonWarrior _skeletonWarrior) : base()
     {
+        Debug.Log("ATTACKING");
         name = STATES.ATTACK;
         iniateVariables(skeletonWarrior);
     }
@@ -18,9 +23,22 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Updating()
     {
+        float distanceToPlayer=Vector3.Distance(skeletonWarriorObject.transform.position,playerObject.transform.position);
+
+        if(distanceToPlayer>2){
+            warriorFarPlayer=true;
+        }else{
+            warriorFarPlayer=false;
+        }
+
         if(blocking())
         {
             nextState=new SkeletonWarriorBlock(skeletonWarrior);
+            actualPhase=EVENTS.EXIT;
+        }
+
+        if(playerFar()){
+            nextState=new SkeletonWarriorFollow(skeletonWarrior);
             actualPhase=EVENTS.EXIT;
         }
     }
@@ -31,5 +49,12 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
     }
     public bool blocking(){
         return false;
+    }
+    public bool playerFar(){
+    if(warriorFarPlayer==true){
+        return true;
+    }else{
+        return false;
+    }
     }
 }
