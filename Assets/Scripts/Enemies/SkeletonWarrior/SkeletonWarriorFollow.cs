@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class SkeletonWarriorFollow : SkeletonWarriorStates
 {
-    SkeletonWarrior skeletonWarrior;
+    //SkeletonWarrior skeletonWarrior;
 
     GameObject skeletonWarriorObject=GameObject.Find("SkeletonWarrior");
     GameObject playerObject=GameObject.Find("Player");
@@ -16,8 +16,6 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
         Debug.Log("FOLLOWING");
         name = STATES.FOLLOW;
         iniateVariables(skeletonWarrior);
-
-        
     }
 
     public override void Entry()
