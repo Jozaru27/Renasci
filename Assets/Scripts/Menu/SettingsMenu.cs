@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-
     public GameObject panelAudio;
     public GameObject panelVideo;
 
