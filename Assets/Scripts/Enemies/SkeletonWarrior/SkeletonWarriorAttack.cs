@@ -18,13 +18,17 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Entry()
     {
+        skeletonWarrior.skeletonWarriorAnimator.SetBool("Run",false);
+        skeletonWarrior.skeletonWarriorAnimator.SetBool("Idle",true);
+
         base.Entry();
     }
 
     public override void Updating()
     {
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
-
+        
+        
         if(distanceToPlayer>2){
             warriorFarPlayer=true;
         }else{

@@ -17,6 +17,8 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 
     public override void Entry()
     {
+        skeletonWarrior.skeletonWarriorAnimator.SetBool("Run",true);
+        skeletonWarrior.skeletonWarriorAnimator.SetBool("Idle",false);
         base.Entry();
     }
 
@@ -28,6 +30,8 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
 
         skeletonWarriorNav.destination=skeletonWarrior.playerObject.transform.position;
+
+       
 
         if(distanceToPlayer<=2){
             warriorNearPlayer=true;
