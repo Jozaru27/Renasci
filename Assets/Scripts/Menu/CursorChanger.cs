@@ -10,37 +10,37 @@ public class CursorChanger : MonoBehaviour
 {
 
     public Texture2D cursorPointer;
-    public List<Button> buttonsList; 
+    public List<GameObject> uiElementsList; 
 
     void Start()
     {
-        AssignCursorEvents();
+        foreach (GameObject uiElement in uiElementsList)
+        {
+            AddEventTriggers(uiElement);
+        }
     }
 
-    private void AssignCursorEvents(){
+    private void AddEventTriggers(GameObject uiElement)
+    {
+        EventTrigger trigger = uiElement.gameObject.AddComponent<EventTrigger>();
 
-        foreach (Button button in buttonsList)
-        {
-            EventTrigger trigger = button.gameObject.AddComponent<EventTrigger>();
+        // Event OnPointerEnter
+        EventTrigger.Entry entryEnter = new EventTrigger.Entry();
+        entryEnter.eventID = EventTriggerType.PointerEnter;
+        entryEnter.callback.AddListener((data) => { OnPointerEnter(); });
+        trigger.triggers.Add(entryEnter);
 
-            // Event OnPointerEnter
-            EventTrigger.Entry entryEnter = new EventTrigger.Entry();
-            entryEnter.eventID = EventTriggerType.PointerEnter;
-            entryEnter.callback.AddListener((data) => { OnPointerEnter(); });
-            trigger.triggers.Add(entryEnter);
+        // Event OnPointerExit
+        EventTrigger.Entry entryExit = new EventTrigger.Entry();
+        entryExit.eventID = EventTriggerType.PointerExit;
+        entryExit.callback.AddListener((data) => { OnPointerExit(); });
+        trigger.triggers.Add(entryExit);
 
-            // Event OnPointerExit
-            EventTrigger.Entry entryExit = new EventTrigger.Entry();
-            entryExit.eventID = EventTriggerType.PointerExit;
-            entryExit.callback.AddListener((data) => { OnPointerExit(); });
-            trigger.triggers.Add(entryExit);
-
-            // Evento OnPointerClick
-            EventTrigger.Entry entryClick = new EventTrigger.Entry();
-            entryClick.eventID = EventTriggerType.PointerClick;
-            entryClick.callback.AddListener((data) => { OnPointerExit(); });
-            trigger.triggers.Add(entryClick);
-        }
+        // Evento OnPointerClick
+        EventTrigger.Entry entryClick = new EventTrigger.Entry();
+        entryClick.eventID = EventTriggerType.PointerClick;
+        entryClick.callback.AddListener((data) => { OnPointerExit(); });
+        trigger.triggers.Add(entryClick);
     }
 
 
