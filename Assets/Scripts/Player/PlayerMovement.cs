@@ -11,13 +11,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Movement and Camera")]
     [SerializeField] float force;
-    [SerializeField] float maxSpeed;
-    [SerializeField] float maxSlopeAngle;
     [SerializeField] float rotationSpeed;
     [Header("Physics Control")]
-    [SerializeField] float stayDamping;
-    [SerializeField] float moveDamping;
-    [SerializeField] float slopeForce;
+    [SerializeField] float stayDrag;
+    [SerializeField] float moveDrag;
 
     float viewPos;
     bool inIdle;
@@ -87,10 +84,8 @@ public class PlayerMovement : MonoBehaviour
     void PhysicsControl()
     {
         if (inputMovement == new Vector2(0, 0))
-        {
-            rb.drag = stayDamping;
-        }
+            rb.drag = stayDrag;
         else
-            rb.drag = moveDamping;
+            rb.drag = moveDrag;
     }
 }
