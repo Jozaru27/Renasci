@@ -10,8 +10,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (StatsManager.Instance.life < 0)
         {
+            GetComponent<PlayerAnimation>().Death();
             GameManager.Instance.gameOver = true;
             StatsManager.Instance.life = 0;
         }
+        else
+            GetComponent<PlayerAnimation>().Hit();
     }
 }
