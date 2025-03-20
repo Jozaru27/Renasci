@@ -2366,12 +2366,9 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   inputMovement: {x: 0, y: 0}
   force: 50
-  maxSpeed: 5
-  maxSlopeAngle: 60
   rotationSpeed: 15
-  stayDamping: 10
-  moveDamping: 0
-  slopeForce: 10
+  stayDrag: 0
+  moveDrag: 0
 --- !u!114 &871043508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3323,7 +3320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashing: 0
-  dashForce: 20
+  dashForce: 35
   dashTime: 0.125
   maxDashSpeed: 5
 --- !u!114 &1148507166
@@ -3341,12 +3338,9 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   inputMovement: {x: 0, y: 0}
   force: 50
-  maxSpeed: 5
-  maxSlopeAngle: 60
   rotationSpeed: 15
-  stayDamping: 10
-  moveDamping: 0
-  slopeForce: 10
+  stayDrag: 10
+  moveDrag: 7.5
 --- !u!114 &1148507167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4786,6 +4780,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581914357}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1589501289
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_Name
+      value: Knight Warrior
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
 --- !u!1 &1598227511
 GameObject:
   m_ObjectHideFlags: 0
@@ -10265,7 +10327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3116287246589315031}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.69965553, y: 0.0013017551, z: -0.052687213, w: 0.71253383}
+  m_LocalRotation: {x: 0.69965553, y: 0.0013017552, z: -0.052687213, w: 0.7125339}
   m_LocalPosition: {x: -0.281386, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10354,10 +10416,10 @@ Animator:
   m_GameObject: {fileID: 3116287246589315005}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9035850883732af4daf57c888e1fefce, type: 3}
-  m_Controller: {fileID: 9100000, guid: 92efc5a6051953a4db45a52f72df44cc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 99369c0d26802584fa9b13a98dea1299, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -10648,7 +10710,7 @@ Animator:
   m_GameObject: {fileID: 3596748219824563610}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9035850883732af4daf57c888e1fefce, type: 3}
-  m_Controller: {fileID: 9100000, guid: 92efc5a6051953a4db45a52f72df44cc, type: 2}
+  m_Controller: {fileID: 9100000, guid: cf1cb293df3b27a41a4a4e60e7642040, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -10775,3 +10837,4 @@ SceneRoots:
   - {fileID: 44587887}
   - {fileID: 1136994914494505127}
   - {fileID: 3116287246589680221}
+  - {fileID: 1589501289}
