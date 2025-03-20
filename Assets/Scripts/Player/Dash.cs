@@ -38,10 +38,12 @@ public class Dash : MonoBehaviour
 
     IEnumerator Dashing()
     {
+        GetComponent<PlayerAnimation>().Dash();
         dashing = true;
 
         yield return new WaitForSeconds(dashTime);
 
+        GetComponent<PlayerAnimation>().Idle();
         dashing = false;
     }
 

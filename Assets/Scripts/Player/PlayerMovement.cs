@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float slopeForce;
 
     float viewPos;
+    bool inIdle;
     Vector3 playerMovement;
     Rigidbody rb;
     Dash dash;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputMovement.magnitude >= 0.25f)
         {
+            GetComponent<PlayerAnimation>().Run();
             playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
 
             movement = playerMovement;
@@ -55,8 +57,15 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(movement * force, ForceMode.Acceleration);
             else if (!dash.dashing)
                 rb.velocity = velocity.normalized * StatsManager.Instance.movementSpeed;
-        }
 
+            inIdle = false;
+        }
+        else if (!inIdle)
+        {
+            GetComponent<PlayerAnimation>().Idle();
+            inIdle = true;
+        }
+            
         if (rb.velocity.magnitude <= 0.1f)
             rb.velocity = Vector3.zero;
     }

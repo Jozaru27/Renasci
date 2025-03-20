@@ -8,17 +8,11 @@ public class Attack : MonoBehaviour
 
     bool canAttack = true;
     Vector2 mousePos;
-    Collider trigger;
-
-    private void Start()
-    {
-        trigger = GetComponent<Collider>();
-    }
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
         if (context.started && canAttack)
-            StartCoroutine(EnablingTrigger());
+            GetComponent<PlayerAnimation>().Attack();
     }
 
     public void DistanceAttack(InputAction.CallbackContext context)
@@ -54,17 +48,6 @@ public class Attack : MonoBehaviour
     public void ChangeRelic(InputAction.CallbackContext context)
     {
 
-    }
-
-    IEnumerator EnablingTrigger()
-    {
-        canAttack = false;
-        trigger.enabled = true;
-
-        yield return new WaitForSeconds(0.5f);
-
-        trigger.enabled = false;
-        canAttack = true;
     }
 
     private void OnTriggerEnter(Collider other)
