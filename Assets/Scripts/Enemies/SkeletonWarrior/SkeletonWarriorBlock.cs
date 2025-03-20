@@ -7,6 +7,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
     public SkeletonWarriorBlock(SkeletonWarrior _skeletonWarrior) : base()
     {
         name = STATES.BLOCK;
+        skeletonWarrior=_skeletonWarrior;
         iniateVariables(skeletonWarrior);
     }
 

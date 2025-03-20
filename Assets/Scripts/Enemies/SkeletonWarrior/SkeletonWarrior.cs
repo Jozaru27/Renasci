@@ -12,7 +12,7 @@ public class SkeletonWarrior : MonoBehaviour
     void Start()
     {
        playerObject = GameObject.Find("Player");
-        skeletonWarriorObject = GameObject.Find("SkeletonWarrior");
+        skeletonWarriorObject = this.gameObject;
       
        FSM = new SkeletonWarriorFollow(this);
     }

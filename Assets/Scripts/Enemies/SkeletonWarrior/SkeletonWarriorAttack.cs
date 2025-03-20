@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class SkeletonWarriorAttack : SkeletonWarriorStates
 {
-    //GameObject skeletonWarriorObject=GameObject.Find("SkeletonWarrior");
-    //GameObject playerObject=GameObject.Find("Player");
+    
     
     bool warriorFarPlayer=false;
     public SkeletonWarriorAttack(SkeletonWarrior _skeletonWarrior) : base()
     {
         Debug.Log("ATTACKING");
         name = STATES.ATTACK;
+        skeletonWarrior=_skeletonWarrior;
         iniateVariables(skeletonWarrior);
     }
 

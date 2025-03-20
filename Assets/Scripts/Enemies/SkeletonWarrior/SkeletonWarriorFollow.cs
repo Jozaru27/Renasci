@@ -5,12 +5,13 @@ using UnityEngine.AI;
 
 public class SkeletonWarriorFollow : SkeletonWarriorStates
 {
-       
+    
     bool warriorNearPlayer=false;
     public SkeletonWarriorFollow(SkeletonWarrior _skeletonWarrior) : base()
     {
         Debug.Log("FOLLOWING");
         name = STATES.FOLLOW;
+        skeletonWarrior=_skeletonWarrior;
         iniateVariables(skeletonWarrior);
     }
 
