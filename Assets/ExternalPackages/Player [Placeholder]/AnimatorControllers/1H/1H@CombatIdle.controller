@@ -227,7 +227,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   - m_Name: Death
     m_Type: 4
     m_DefaultFloat: 0
@@ -246,8 +245,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   - m_Name: Run
@@ -263,10 +260,7 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 =======
-=======
->>>>>>> Stashed changes
   - m_Name: Attack
     m_Type: 4
     m_DefaultFloat: 0
@@ -285,9 +279,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
   m_AnimatorLayers:
   - serializedVersion: 5
