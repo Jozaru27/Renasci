@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class SkeletonWarriorAttack : SkeletonWarriorStates
 {
-    GameObject skeletonWarriorObject=GameObject.Find("SkeletonWarrior");
-    GameObject playerObject=GameObject.Find("Player");
+    //GameObject skeletonWarriorObject=GameObject.Find("SkeletonWarrior");
+    //GameObject playerObject=GameObject.Find("Player");
     
     bool warriorFarPlayer=false;
     public SkeletonWarriorAttack(SkeletonWarrior _skeletonWarrior) : base()
@@ -23,7 +23,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Updating()
     {
-        float distanceToPlayer=Vector3.Distance(skeletonWarriorObject.transform.position,playerObject.transform.position);
+        float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
 
         if(distanceToPlayer>2){
             warriorFarPlayer=true;

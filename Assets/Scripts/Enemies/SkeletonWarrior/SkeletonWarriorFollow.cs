@@ -5,11 +5,7 @@ using UnityEngine.AI;
 
 public class SkeletonWarriorFollow : SkeletonWarriorStates
 {
-    //SkeletonWarrior skeletonWarrior;
-
-    GameObject skeletonWarriorObject=GameObject.Find("SkeletonWarrior");
-    GameObject playerObject=GameObject.Find("Player");
-    
+       
     bool warriorNearPlayer=false;
     public SkeletonWarriorFollow(SkeletonWarrior _skeletonWarrior) : base()
     {
@@ -25,11 +21,12 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 
     public override void Updating()
     {
-        NavMeshAgent skeletonWarriorNav=skeletonWarriorObject.GetComponent<NavMeshAgent>();
+        //NavMeshAgent skeletonWarriorNav=skeletonWarrior.skeletonWarriorObject.GetComponent<NavMeshAgent>();
+        NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
 
-        float distanceToPlayer=Vector3.Distance(skeletonWarriorObject.transform.position,playerObject.transform.position);
+        float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
 
-        skeletonWarriorNav.destination=playerObject.transform.position;
+        skeletonWarriorNav.destination=skeletonWarrior.playerObject.transform.position;
 
         if(distanceToPlayer<=2){
             warriorNearPlayer=true;
