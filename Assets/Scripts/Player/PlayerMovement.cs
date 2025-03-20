@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [HideInInspector] public Vector3 movement;
+    [HideInInspector] public Vector2 inputMovement;
 
     [Header("Player Movement and Camera")]
     [SerializeField] float force;
@@ -19,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float slopeForce;
 
     float viewPos;
-    Vector2 inputMovement;
     Vector3 playerMovement;
     Rigidbody rb;
     Dash dash;

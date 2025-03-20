@@ -24,7 +24,8 @@ public class Dash : MonoBehaviour
     {
         if (context.performed && !dashing && canDash)
         {
-            rb.AddForce(pMov.movement * dashForce, ForceMode.Impulse);
+            if (pMov.inputMovement.magnitude > 0)
+                rb.AddForce(pMov.movement * dashForce, ForceMode.Impulse);
 
             Vector3 velocity = rb.velocity;
             if (rb.velocity.magnitude > maxDashSpeed)
