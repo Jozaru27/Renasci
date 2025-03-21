@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Physics Control")]
     [SerializeField] float stayDrag;
     [SerializeField] float moveDrag;
+    [SerializeField] GameObject groundChecker;
 
     float viewPos;
     bool inIdle;
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
-        if (!GameManager.Instance.cannotMove)
+        if (!GameManager.Instance.playerCannotMove)
         {
             if (inputMovement.magnitude >= 0.25f)
             {
@@ -72,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateCharacter()
     {
-        if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.cannotMove)
+        if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.playerCannotMove)
         {
             viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
             viewPos = Mathf.Round(viewPos * 100) / 100;
@@ -86,9 +87,14 @@ public class PlayerMovement : MonoBehaviour
 
     void PhysicsControl()
     {
-        if (inputMovement == new Vector2(0, 0))
-            rb.drag = stayDrag;
+        if (groundChecker.GetComponent<GroundCheck>().grounded)
+        {
+            if (inputMovement == new Vector2(0, 0))
+                rb.drag = stayDrag;
+            else
+                rb.drag = moveDrag;
+        }
         else
-            rb.drag = moveDrag;
+            rb.drag = 0;
     }
 }

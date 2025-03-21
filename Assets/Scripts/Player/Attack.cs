@@ -12,29 +12,29 @@ public class Attack : MonoBehaviour
     {
         if (context.started && !GameManager.Instance.gamePaused)
         {
-            GameManager.Instance.cannotMove = true;
+            GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
         }
     }
 
     public void DistanceAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            GameObject bullet = Instantiate(bulletPref, transform.position, Quaternion.identity);
+        //if (context.started)
+        //{
+        //    GameObject bullet = Instantiate(bulletPref, transform.position, Quaternion.identity);
 
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mousePos.x, mousePos.y, 0));
-            Vector3 shotPosition = new Vector3(mouseWorld.x, transform.position.y, mouseWorld.y);
+        //    Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mousePos.x, mousePos.y, 0));
+        //    Vector3 shotPosition = new Vector3(mouseWorld.x, transform.position.y, mouseWorld.y);
 
-            Vector3 shootDirection = shotPosition - transform.position;
+        //    Vector3 shootDirection = shotPosition - transform.position;
 
-            //
-            Vector3 eo = new Vector3(mousePos.x, 0, mousePos.y);
-            //shootDirection = eo - transform.position;
-            //
+        //    //
+        //    Vector3 eo = new Vector3(mousePos.x, 0, mousePos.y);
+        //    //shootDirection = eo - transform.position;
+        //    //
 
-            bullet.GetComponent<Bullet>().GetMousePosition(shootDirection);
-        }
+        //    bullet.GetComponent<Bullet>().GetMousePosition(shootDirection);
+        //}
     }
 
     public void RelicAttack(InputAction.CallbackContext context)
@@ -54,7 +54,13 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.CompareTag("Enemy"))
-            //ChangeHealth
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Vector3 impulseDirection = other.gameObject.transform.position - transform.position;
+            impulseDirection = new Vector3(impulseDirection.x, 0, impulseDirection.y);
+
+            other.gameObject.GetComponent<EnemyTest>().ChangeHealthAmount(-1);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 10, ForceMode.Impulse);
+        }
     }
 }

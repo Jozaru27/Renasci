@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public bool gameWin;
     public bool interacting;
     public bool dashing;
-    public bool cannotMove;
+    public bool playerCannotMove;
 
     public static GameManager Instance { get; private set; }
 
@@ -33,6 +33,6 @@ public class GameManager : MonoBehaviour
         gameWin = false;
         interacting = false;
         dashing = false;
-        cannotMove = false;
+        playerCannotMove = false;
 }
 }

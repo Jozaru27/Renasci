@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("UI Elements")]
+    [SerializeField] TMP_Text lifeText;
+    [SerializeField] TMP_Text enemyCountText;
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
@@ -19,6 +23,16 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void ChangeLife()
+    {
+        lifeText.text = $"Life: {StatsManager.Instance.life}";
+    }
+
+    public void ChangeEnemyCount()
+    {
+        enemyCountText.text = $"Enemies left: ";
     }
 
     public void EnablePauseMenu()
@@ -48,6 +62,7 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
+        GameManager.Instance.ResetProperties();
         SceneLoader.Instance.LoadCurrentScene();
     }
 
@@ -67,6 +82,7 @@ public class UIManager : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1f;
+        GameManager.Instance.ResetProperties();
         SceneLoader.Instance.LoadMainMenu();
     }
 

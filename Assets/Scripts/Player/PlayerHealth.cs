@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public void ChangeHealth(int amount)
+    public void ChangeHealthAmount(int amount)
     {
         StatsManager.Instance.life += amount;
 
         if (StatsManager.Instance.life < 0)
         {
             GetComponent<PlayerAnimation>().Death();
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().freezeRotation = true;
             GameManager.Instance.gameOver = true;
             UIManager.Instance.EnableGameOverMenu();
             StatsManager.Instance.life = 0;
@@ -18,6 +20,6 @@ public class PlayerHealth : MonoBehaviour
         else
             GetComponent<PlayerAnimation>().Hit(); 
 
-        GameManager.Instance.cannotMove = true;
+        GameManager.Instance.playerCannotMove = true;
     }
 }

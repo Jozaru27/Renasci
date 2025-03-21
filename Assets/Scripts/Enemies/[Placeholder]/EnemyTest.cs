@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyTest : MonoBehaviour
 {
+    int life = 3;
+
     bool follow;
     bool canFollow = true;
     NavMeshAgent agent;
@@ -34,6 +36,19 @@ public class EnemyTest : MonoBehaviour
         agent.SetDestination(playerObj.transform.position);
     }
 
+    public void ChangeHealthAmount(int amount)
+    {
+        life += amount;
+
+        if (life <= 0)
+        {
+            life = 0;
+            Destroy(this.gameObject);
+        }
+
+        StartCoroutine(AttackWait());
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -41,7 +56,7 @@ public class EnemyTest : MonoBehaviour
             Vector3 impulseDirection = collision.gameObject.transform.position - transform.position;
             impulseDirection = new Vector3(impulseDirection.x, 0, impulseDirection.z);
 
-            collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-4);
+            collision.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-4);
             collision.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 25, ForceMode.Impulse);
 
             StartCoroutine(AttackWait());
