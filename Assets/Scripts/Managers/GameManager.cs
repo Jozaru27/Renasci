@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public bool gameWin;
     public bool interacting;
     public bool dashing;
-    public bool attacking;
+    public bool cannotMove;
 
     public static GameManager Instance { get; private set; }
 
@@ -23,4 +23,16 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
+
+    public void ResetProperties()
+    {
+        gamePaused = false;
+        gameOver = false;
+        gamePaused = false;
+        gameOver = false;
+        gameWin = false;
+        interacting = false;
+        dashing = false;
+        cannotMove = false;
+}
 }

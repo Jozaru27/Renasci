@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
-        if (!GameManager.Instance.attacking)
+        if (!GameManager.Instance.cannotMove)
         {
             if (inputMovement.magnitude >= 0.25f)
             {
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateCharacter()
     {
-        if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.attacking)
+        if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.cannotMove)
         {
             viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
             viewPos = Mathf.Round(viewPos * 100) / 100;

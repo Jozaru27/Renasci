@@ -55,8 +55,7 @@ public class UIManager : MonoBehaviour
     {
         settingsMenu.SetActive(true);
         pauseMenu.SetActive(false);
-        audioArea.SetActive(true);
-        videoArea.SetActive(false);
+        EnableAudioArea();
     }
 
     public void DisableSettingsMenu()
