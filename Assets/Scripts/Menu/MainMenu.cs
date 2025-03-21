@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] GameObject mainMenu, settingsMenu;
+    [Header("Menus")]
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject settingsMenu;
+    [Header("Setting Areas")]
+    [SerializeField] GameObject audioArea;
+    [SerializeField] GameObject videoArea;
 
     public void Play()
     {
@@ -13,6 +18,7 @@ public class MainMenu : MonoBehaviour
     {
         settingsMenu.SetActive(true);
         mainMenu.SetActive(false);
+        EnableAudioArea();
     }
 
     public void Exit()
@@ -24,5 +30,17 @@ public class MainMenu : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         mainMenu.SetActive(true);
+    }
+
+    public void EnableAudioArea()
+    {
+        audioArea.SetActive(true);
+        videoArea.SetActive(false);
+    }
+
+    public void EnableVideoArea()
+    {
+        audioArea.SetActive(false);
+        videoArea.SetActive(true);
     }
 }

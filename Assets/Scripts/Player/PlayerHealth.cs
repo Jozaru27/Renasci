@@ -12,9 +12,12 @@ public class PlayerHealth : MonoBehaviour
         {
             GetComponent<PlayerAnimation>().Death();
             GameManager.Instance.gameOver = true;
+            UIManager.Instance.EnableGameOverMenu();
             StatsManager.Instance.life = 0;
         }
         else
-            GetComponent<PlayerAnimation>().Hit();
+            GetComponent<PlayerAnimation>().Hit(); 
+
+        GameManager.Instance.cannotMove = true;
     }
 }

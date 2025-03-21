@@ -9,7 +9,7 @@ public class Pause : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
         {
             if (!paused)
             {
@@ -22,6 +22,5 @@ public class Pause : MonoBehaviour
                 paused = false;
             }
         }
-            
     }
 }

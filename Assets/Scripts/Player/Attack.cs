@@ -6,14 +6,13 @@ public class Attack : MonoBehaviour
 {
     [SerializeField] GameObject bulletPref;
 
-    bool canAttack = true;
     Vector2 mousePos;
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started && canAttack)
+        if (context.started && !GameManager.Instance.gamePaused)
         {
-            GameManager.Instance.attacking = true;
+            GameManager.Instance.cannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
         }
     }
