@@ -18,6 +18,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Run", false);
         playerAnim.SetBool("Hit", false);
         playerAnim.SetBool("Dash", false);
+        GameManager.Instance.attacking = false;
     }
 
     public void Attack()

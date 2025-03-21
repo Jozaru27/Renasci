@@ -42,25 +42,28 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
-        if (inputMovement.magnitude >= 0.25f)
+        if (!GameManager.Instance.attacking)
         {
-            GetComponent<PlayerAnimation>().Run();
-            playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
+            if (inputMovement.magnitude >= 0.25f)
+            {
+                GetComponent<PlayerAnimation>().Run();
+                playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
 
-            movement = playerMovement;
-            Vector3 velocity = rb.velocity;
+                movement = playerMovement;
+                Vector3 velocity = rb.velocity;
 
-            if (rb.velocity.magnitude < StatsManager.Instance.movementSpeed)
-                rb.AddForce(movement * force, ForceMode.Acceleration);
-            else if (!dash.dashing)
-                rb.velocity = velocity.normalized * StatsManager.Instance.movementSpeed;
+                if (rb.velocity.magnitude < StatsManager.Instance.movementSpeed)
+                    rb.AddForce(movement * force, ForceMode.Acceleration);
+                else if (!dash.dashing)
+                    rb.velocity = velocity.normalized * StatsManager.Instance.movementSpeed;
 
-            inIdle = false;
-        }
-        else if (!inIdle)
-        {
-            GetComponent<PlayerAnimation>().Idle();
-            inIdle = true;
+                inIdle = false;
+            }
+            else if (!inIdle)
+            {
+                GetComponent<PlayerAnimation>().Idle();
+                inIdle = true;
+            }
         }
             
         if (rb.velocity.magnitude <= 0.1f)
@@ -69,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateCharacter()
     {
-        if (inputMovement.magnitude >= 0.25f)
+        if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.attacking)
         {
             viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
             viewPos = Mathf.Round(viewPos * 100) / 100;

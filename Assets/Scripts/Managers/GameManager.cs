@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool gameWin;
     public bool interacting;
     public bool dashing;
+    public bool attacking;
 
     public static GameManager Instance { get; private set; }
 

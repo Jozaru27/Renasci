@@ -12,7 +12,10 @@ public class Attack : MonoBehaviour
     public void NormalAttack(InputAction.CallbackContext context)
     {
         if (context.started && canAttack)
+        {
+            GameManager.Instance.attacking = true;
             GetComponent<PlayerAnimation>().Attack();
+        }
     }
 
     public void DistanceAttack(InputAction.CallbackContext context)
