@@ -1710,6 +1710,7 @@ MonoBehaviour:
   gameWin: 0
   interacting: 0
   dashing: 0
+  attacking: 0
 --- !u!4 &546743516
 Transform:
   m_ObjectHideFlags: 0
@@ -4878,7 +4879,7 @@ PrefabInstance:
     - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.46
+      value: -20.37
       objectReference: {fileID: 0}
     - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}

@@ -13,7 +13,7 @@ public class SkeletonWarriorStates
 
     public enum STATES
     {
-        FOLLOW, ATTACK, BLOCK
+        IDLE, FOLLOW, ATTACK, BLOCK
     }
 
     public enum EVENTS

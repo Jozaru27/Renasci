@@ -39,7 +39,7 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
             warriorNearPlayer=false;
         }
         if(BeginAttack()){
-            nextState=new SkeletonWarriorAttack(skeletonWarrior);
+            nextState=new SkeletonWarriorBlock(skeletonWarrior);
             actualPhase=EVENTS.EXIT;
         }
     }
