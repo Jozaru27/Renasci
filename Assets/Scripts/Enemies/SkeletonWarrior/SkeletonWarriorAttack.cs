@@ -26,9 +26,10 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
     public override void Updating()
     {
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
-        
-        
-        if(distanceToPlayer>2){
+
+        skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
+
+        if (distanceToPlayer>2){
             warriorFarPlayer=true;
         }else{
             warriorFarPlayer=false;

@@ -14,18 +14,42 @@ public class SkeletonWarriorAnimation : MonoBehaviour
     // Update is called once per frame
     public void Idle()
     {
-
+        SkeletonWarriorAnim.SetBool("Idle", true);
+        SkeletonWarriorAnim.SetBool("Run", false);
+        SkeletonWarriorAnim.SetBool("Attack", false);
+        SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Death", false);
+    }
+    public void Run()
+    {
+        SkeletonWarriorAnim.SetBool("Idle", false);
+        SkeletonWarriorAnim.SetBool("Run", true);
+        SkeletonWarriorAnim.SetBool("Attack", false);
+        SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Death", false);
     }
     public void Attack()
     {
-
+        SkeletonWarriorAnim.SetBool("Idle", false);
+        SkeletonWarriorAnim.SetBool("Run", false);
+        SkeletonWarriorAnim.SetBool("Attack", true);
+        SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Death", false);
     }
     public void Hit()
     {
-
+        SkeletonWarriorAnim.SetBool("Idle", false);
+        SkeletonWarriorAnim.SetBool("Run", false);
+        SkeletonWarriorAnim.SetBool("Attack", false);
+        SkeletonWarriorAnim.SetBool("Hit", true);
+        SkeletonWarriorAnim.SetBool("Death", false);
     }
     public void Death()
     {
-
+        SkeletonWarriorAnim.SetBool("Idle", false);
+        SkeletonWarriorAnim.SetBool("Run", false);
+        SkeletonWarriorAnim.SetBool("Attack", false);
+        SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Death", true);
     }
 }

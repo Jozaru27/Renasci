@@ -30,6 +30,7 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 
         skeletonWarriorNav.destination=skeletonWarrior.playerObject.transform.position;
 
+        skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Run();
        
 
         if(distanceToPlayer<=2){
