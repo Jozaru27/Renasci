@@ -18,8 +18,9 @@ public class PlayerHealth : MonoBehaviour
             StatsManager.Instance.life = 0;
         }
         else
-            GetComponent<PlayerAnimation>().Hit(); 
+            GetComponent<PlayerAnimation>().Hit();
 
+        UIManager.Instance.ChangeLife();
         GameManager.Instance.playerCannotMove = true;
     }
 }
