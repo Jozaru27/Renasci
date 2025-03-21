@@ -216,7 +216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SFX
+  m_text: Sfx
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AJUSTES
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
@@ -2180,7 +2180,7 @@ GameObject:
   - component: {fileID: 718830109}
   - component: {fileID: 718830108}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: AudioText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AUDIO
+  m_text: Audio
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
@@ -3344,7 +3344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESOLUTION
+  m_text: Resolution
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
@@ -3649,7 +3649,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SALIR
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
@@ -5296,7 +5296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: JUGAR
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
@@ -6220,7 +6220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MUSIC
+  m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
@@ -6569,7 +6569,7 @@ GameObject:
   - component: {fileID: 2023692512}
   - component: {fileID: 2023692511}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: VideoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6614,7 +6614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VIDEO
+  m_text: Video
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02b8aa2d44d7bae4db3e5e91ae45d687, type: 2}
   m_sharedMaterial: {fileID: -4692101657640815546, guid: 02b8aa2d44d7bae4db3e5e91ae45d687,
