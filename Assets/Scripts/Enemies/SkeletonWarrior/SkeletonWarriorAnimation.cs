@@ -18,6 +18,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Run", false);
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Block", false);
         SkeletonWarriorAnim.SetBool("Death", false);
     }
     public void Run()
@@ -26,6 +27,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Run", true);
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Block", false);
         SkeletonWarriorAnim.SetBool("Death", false);
     }
     public void Attack()
@@ -34,6 +36,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Run", false);
         SkeletonWarriorAnim.SetBool("Attack", true);
         SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Block", false);
         SkeletonWarriorAnim.SetBool("Death", false);
     }
     public void Hit()
@@ -42,6 +45,16 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Run", false);
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", true);
+        SkeletonWarriorAnim.SetBool("Block", false);
+        SkeletonWarriorAnim.SetBool("Death", false);
+    }
+    public void Block()
+    {
+        SkeletonWarriorAnim.SetBool("Idle", false);
+        SkeletonWarriorAnim.SetBool("Run", false);
+        SkeletonWarriorAnim.SetBool("Attack", false);
+        SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Block", true);
         SkeletonWarriorAnim.SetBool("Death", false);
     }
     public void Death()
@@ -50,6 +63,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Run", false);
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", false);
+        SkeletonWarriorAnim.SetBool("Block", false);
         SkeletonWarriorAnim.SetBool("Death", true);
     }
 }

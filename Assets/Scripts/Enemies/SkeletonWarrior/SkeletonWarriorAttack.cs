@@ -8,6 +8,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
     
     
     bool warriorFarPlayer=false;
+    bool startBlock = false;
     public SkeletonWarriorAttack(SkeletonWarrior _skeletonWarrior) : base()
     {
         Debug.Log("ATTACKING");
@@ -25,6 +26,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Updating()
     {
+        
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
@@ -35,16 +37,21 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
             warriorFarPlayer=false;
         }
 
+        if (playerFar())
+        {
+            nextState = new SkeletonWarriorFollow(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
+        }
+
+        
         if(blocking())
         {
             nextState=new SkeletonWarriorBlock(skeletonWarrior);
             actualPhase=EVENTS.EXIT;
         }
+        
 
-        if(playerFar()){
-            nextState=new SkeletonWarriorFollow(skeletonWarrior);
-            actualPhase=EVENTS.EXIT;
-        }
+
     }
 
     public override void Exit()
@@ -53,6 +60,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
     }
     public bool blocking(){
         return false;
+        
     }
     public bool playerFar(){
     if(warriorFarPlayer==true){
@@ -61,4 +69,6 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
         return false;
     }
     }
+
+    
 }

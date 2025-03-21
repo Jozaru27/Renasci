@@ -16,11 +16,13 @@ public class SkeletonWarrior : MonoBehaviour
         skeletonWarriorObject = this.gameObject;
         skeletonWarriorAnimator=skeletonWarriorObject.GetComponent<Animator>();
       
-       FSM = new SkeletonWarriorFollow(this);
+       FSM = new SkeletonWarriorIdle(this);
     }
 
     void Update()
     {
         FSM = FSM.Process();
     }
+
+    
 }
