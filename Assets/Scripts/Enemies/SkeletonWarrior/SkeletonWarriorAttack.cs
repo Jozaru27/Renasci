@@ -18,8 +18,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Entry()
     {
-        skeletonWarrior.skeletonWarriorAnimator.SetBool("Run",false);
-        skeletonWarrior.skeletonWarriorAnimator.SetBool("Idle",true);
+    
 
         base.Entry();
     }

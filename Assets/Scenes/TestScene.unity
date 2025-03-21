@@ -3052,6 +3052,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017314385}
   m_CullTransparentMesh: 1
+--- !u!1 &1039212387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1589501289}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1039212388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039212387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4c4bc7f088af44fa59d381f387b6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  skeletonWarriorObject: {fileID: 0}
+  skeletonWarriorAnimator: {fileID: 0}
+--- !u!95 &1039212392
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039212387}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 417a287abb2cab94889f1f1ddd91f928, type: 3}
+  m_Controller: {fileID: 9100000, guid: 99369c0d26802584fa9b13a98dea1299, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &1039212393
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039212387}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1069601800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4841,12 +4905,29 @@ PrefabInstance:
     - target: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
       propertyPath: m_Name
-      value: Knight Warrior
+      value: SkeletonWarrior
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8996054383050675149, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
+    - {fileID: 7439713988500215785, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
+    - {fileID: 7439713988500215787, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
+    - {fileID: 7439713988500215784, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
+    - {fileID: 3276053267084655111, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1039212388}
+    - targetCorrespondingSourceObject: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1039212392}
+    - targetCorrespondingSourceObject: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1039212393}
   m_SourcePrefab: {fileID: 100100000, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
 --- !u!1 &1598227511
 GameObject:
@@ -8854,7 +8935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3116287246589315009
 GameObject:
   m_ObjectHideFlags: 0
