@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyTest : MonoBehaviour
 {
+    [SerializeField] GameObject heal;
+
     int life = 3;
 
     bool follow;
@@ -43,6 +45,7 @@ public class EnemyTest : MonoBehaviour
         if (life <= 0)
         {
             life = 0;
+            Instantiate(heal, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 

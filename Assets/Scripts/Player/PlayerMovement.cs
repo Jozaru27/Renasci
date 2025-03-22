@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     float viewPos;
     bool inIdle;
     Vector3 playerMovement;
+    Vector3 inputAngle;
+    Quaternion rotationTarget = Quaternion.identity;
     Rigidbody rb;
     Dash dash;
 
@@ -75,14 +78,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.playerCannotMove)
         {
-            viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
-            viewPos = Mathf.Round(viewPos * 100) / 100;
+            //viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
+            //viewPos = Mathf.Round(viewPos * 100) / 100;
+
+            inputAngle = new Vector3(inputMovement.x, 0, inputMovement.y);
+
+            if (inputAngle != Vector3.zero)
+                rotationTarget = Quaternion.LookRotation(inputAngle);
         }
 
-        Quaternion target = Quaternion.Euler(0, viewPos, 0);
+        //Quaternion target = Quaternion.Euler(0, viewPos, 0);
 
-        if (Quaternion.Angle(rb.rotation, target) > 0.15f)
-            rb.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+        if (Quaternion.Angle(rb.rotation, rotationTarget) > 0.15f)
+        {
+            //rb.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+            rb.rotation = Quaternion.Slerp(rb.rotation, rotationTarget, rotationSpeed * Time.deltaTime);
+
+            if (Math.Abs(rb.rotation.y - rotationTarget.y) <= 0.01f)
+                rb.rotation = rotationTarget;
+        }
     }
 
     void PhysicsControl()

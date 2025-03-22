@@ -1704,6 +1704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27209764a9099149a02e55930446e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material1: {fileID: 0}
+  material2: {fileID: 0}
 --- !u!136 &871043515
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1932,6 +1934,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27209764a9099149a02e55930446e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material1: {fileID: 2100000, guid: 63e8c3d8ce75eae4ebaa4935bd776825, type: 2}
+  material2: {fileID: 2100000, guid: ea453f0e3ea4e0c4aa9db8399444b5b6, type: 2}
 --- !u!114 &1148507164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2203,7 +2207,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 100
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2217,7 +2221,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!114 &1148507170
@@ -2568,6 +2572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ae6342336448341a49f5d34d00a2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heal: {fileID: 5636547287251562878, guid: a825d2dcd85fb2e44add7c3f8435a318, type: 3}
 --- !u!195 &1332329730
 NavMeshAgent:
   m_ObjectHideFlags: 0
