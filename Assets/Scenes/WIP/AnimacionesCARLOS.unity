@@ -2051,6 +2051,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690789968}
   m_CullTransparentMesh: 1
+--- !u!1 &720922906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1516535378261325006, guid: 7778632bf67024a46b1f78e3c03c216e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1589501289}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &720922909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720922906}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5355517, y: 0.14105736, z: 1.555433}
+  m_Center: {x: -0.29001403, y: -0.005523887, z: 0.58778524}
 --- !u!1 &820533253
 GameObject:
   m_ObjectHideFlags: 0
@@ -4962,6 +4989,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1039212393}
+    - targetCorrespondingSourceObject: {fileID: 1516535378261325006, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 720922909}
   m_SourcePrefab: {fileID: 100100000, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
 --- !u!1 &1598227511
 GameObject:
@@ -10747,7 +10778,7 @@ GameObject:
   - component: {fileID: 1148507161}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
