@@ -1381,6 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abde0c86778861f42b40e5f4f4e249d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: 0
   movement: {x: 0, y: 0, z: 0}
   inputMovement: {x: 0, y: 0}
   force: 50
@@ -1980,6 +1981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abde0c86778861f42b40e5f4f4e249d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: 1
   movement: {x: 0, y: 0, z: 0}
   inputMovement: {x: 0, y: 0}
   force: 50
