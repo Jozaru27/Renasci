@@ -24,5 +24,10 @@ public class SkeletonWarrior : MonoBehaviour
         FSM = FSM.Process();
     }
 
+    public void OnTriggerEnter(Collider other){
+        if(other.gameObject.CompareTag("Player")){
+            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-2,skeletonWarriorObject.transform.position,15);
+        }
+    }
     
 }
