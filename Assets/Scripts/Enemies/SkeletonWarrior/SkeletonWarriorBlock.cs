@@ -24,7 +24,8 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
 
     public override void Updating()
     {
-     
+        skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Block();
 
         float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
