@@ -56,12 +56,8 @@ public class EnemyTest : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Vector3 impulseDirection = collision.gameObject.transform.position - transform.position;
-            impulseDirection = new Vector3(impulseDirection.x, 0, impulseDirection.z);
-
-            collision.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-4);
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 25, ForceMode.Impulse);
-
+            collision.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-4, transform.position, 25);
+            
             StartCoroutine(AttackWait());
         }
     }

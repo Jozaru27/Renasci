@@ -10,7 +10,7 @@ public class HealPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(heal);
+            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(heal, transform.position, 0);
             Destroy(this.gameObject);
         }
     }

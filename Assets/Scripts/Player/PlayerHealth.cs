@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] Material material1, material2;
 
-    public void ChangeHealthAmount(int amount)
+    public void ChangeHealthAmount(int amount, Vector3 enemyPosition, float pushForce)
     {
         StatsManager.Instance.life += amount;
 
@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
             else
                 GetComponent<PlayerAnimation>().Hit();
 
+            PushCharacter(enemyPosition, pushForce);
             StartCoroutine(ChangingColor());
             GameManager.Instance.playerCannotMove = true;
         }
@@ -34,6 +35,14 @@ public class PlayerHealth : MonoBehaviour
         GameManager.Instance.gameOver = true;
         UIManager.Instance.EnableGameOverMenu();
         StatsManager.Instance.life = 0;
+    }
+
+    void PushCharacter(Vector3 enemyPosition, float pushForce)
+    {
+        Vector3 impulseDirection = gameObject.transform.position - enemyPosition;
+        impulseDirection = new Vector3(impulseDirection.x, 0, impulseDirection.z);
+
+        GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * pushForce, ForceMode.Impulse);
     }
 
     IEnumerator ChangingColor()
