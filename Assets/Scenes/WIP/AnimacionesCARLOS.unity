@@ -1710,7 +1710,7 @@ MonoBehaviour:
   gameWin: 0
   interacting: 0
   dashing: 0
-  attacking: 0
+  playerCannotMove: 0
 --- !u!4 &546743516
 Transform:
   m_ObjectHideFlags: 0
@@ -1878,6 +1878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95395acacdfaf6549a6b1caf730df270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeText: {fileID: 0}
+  enemyCountText: {fileID: 0}
   pauseMenu: {fileID: 64113354}
   settingsMenu: {fileID: 984245061}
   gameOverMenu: {fileID: 1904741518}
@@ -2364,12 +2366,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abde0c86778861f42b40e5f4f4e249d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: 0
   movement: {x: 0, y: 0, z: 0}
   inputMovement: {x: 0, y: 0}
   force: 50
   rotationSpeed: 15
   stayDrag: 0
   moveDrag: 0
+  groundChecker: {fileID: 0}
 --- !u!114 &871043508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2686,6 +2690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27209764a9099149a02e55930446e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material1: {fileID: 0}
+  material2: {fileID: 0}
 --- !u!136 &871043515
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3369,6 +3375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27209764a9099149a02e55930446e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material1: {fileID: 0}
+  material2: {fileID: 0}
 --- !u!114 &1148507164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3413,12 +3421,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abde0c86778861f42b40e5f4f4e249d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: 0
   movement: {x: 0, y: 0, z: 0}
   inputMovement: {x: 0, y: 0}
   force: 50
   rotationSpeed: 15
   stayDrag: 10
   moveDrag: 7.5
+  groundChecker: {fileID: 0}
 --- !u!114 &1148507167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4869,7 +4879,7 @@ PrefabInstance:
     - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.38
       objectReference: {fileID: 0}
     - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
@@ -4879,7 +4889,7 @@ PrefabInstance:
     - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.37
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}

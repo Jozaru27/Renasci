@@ -59,8 +59,9 @@ public class Attack : MonoBehaviour
             Vector3 impulseDirection = other.gameObject.transform.position - transform.position;
             impulseDirection = new Vector3(impulseDirection.x, 0, impulseDirection.y);
 
-            other.gameObject.GetComponent<EnemyTest>().ChangeHealthAmount(-1);
-            other.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 10, ForceMode.Impulse);
+            //other.gameObject.GetComponent<EnemyTest>().ChangeHealthAmount(-1);
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(-1);
+            //other.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 10, ForceMode.Impulse);
         }
     }
 }

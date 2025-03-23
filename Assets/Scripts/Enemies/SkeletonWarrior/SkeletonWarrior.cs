@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SkeletonWarrior : MonoBehaviour
+public class SkeletonWarrior : MonoBehaviour, IDamageable
 {
+    public float life = 3;
+
     SkeletonWarriorStates FSM;
     public GameObject playerObject;
     public GameObject skeletonWarriorObject;
@@ -12,11 +14,11 @@ public class SkeletonWarrior : MonoBehaviour
 
     void Start()
     {
-       playerObject = GameObject.Find("Player");
+        playerObject = GameObject.Find("Player");
         skeletonWarriorObject = this.gameObject;
         skeletonWarriorAnimator=skeletonWarriorObject.GetComponent<Animator>();
       
-       FSM = new SkeletonWarriorIdle(this);
+        FSM = new SkeletonWarriorIdle(this);
     }
 
     void Update()
@@ -30,4 +32,14 @@ public class SkeletonWarrior : MonoBehaviour
         }
     }
     
+    public void TakeDamage(int amount)
+    {
+        life += amount;
+
+        if (life <= 0)
+        {
+            life = 0;
+            Destroy(this.gameObject);
+        }
+    }
 }
