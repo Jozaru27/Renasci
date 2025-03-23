@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Dash))]
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] bool groundCheck;//
+
     [HideInInspector] public Vector3 movement;
     [HideInInspector] public Vector2 inputMovement;
 
@@ -101,14 +103,24 @@ public class PlayerMovement : MonoBehaviour
 
     void PhysicsControl()
     {
-        if (groundChecker.GetComponent<GroundCheck>().grounded)
+        if (groundCheck)
+        {
+            if (groundChecker.GetComponent<GroundCheck>().grounded)
+            {
+                if (inputMovement == new Vector2(0, 0))
+                    rb.drag = stayDrag;
+                else
+                    rb.drag = moveDrag;
+            }
+            else
+                rb.drag = 0;
+        }
+        else
         {
             if (inputMovement == new Vector2(0, 0))
                 rb.drag = stayDrag;
             else
                 rb.drag = moveDrag;
         }
-        else
-            rb.drag = 0;
     }
 }
