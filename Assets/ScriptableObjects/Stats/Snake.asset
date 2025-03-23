@@ -15,7 +15,9 @@ MonoBehaviour:
   enemyName: Snake
   life: 4
   mainDamage: 2
-  secundaryDamage: 0.25
+  secondaryDamage: 0.25
   heal: 0
-  movementSpeed: 0
+  movementSpeed: 3.5
   actionSpeed: 1.3
+  pushForce: 15
+  detectionDistance: 7

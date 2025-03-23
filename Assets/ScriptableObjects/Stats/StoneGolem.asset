@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3506d66c965663245b7194a926dc1a27, type: 3}
   m_Name: StoneGolem
   m_EditorClassIdentifier: 
-  enemyName: Stone Golem
+  enemyName: StoneGolem
   life: 25
   mainDamage: 5
-  secundaryDamage: 2
+  secondaryDamage: 2
   heal: 0
-  movementSpeed: 0
+  movementSpeed: 3.5
   actionSpeed: 0.3
+  pushForce: 15
+  detectionDistance: 7

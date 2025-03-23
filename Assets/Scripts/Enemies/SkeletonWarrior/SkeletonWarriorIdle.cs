@@ -25,7 +25,7 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
         float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Idle();
-        if (distanceToPlayer <= 7)
+        if (distanceToPlayer <= skeletonWarrior.stats.detectionDistance)
         {
             playerNearEnemy = true;
         }

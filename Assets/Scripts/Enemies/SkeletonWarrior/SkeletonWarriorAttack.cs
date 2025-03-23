@@ -19,7 +19,6 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Entry()
     {
-    
         skeletonWarrior.StartCoroutine(GoingToBlock());
         skeletonWarrior.isBlocking=false;
         base.Entry();

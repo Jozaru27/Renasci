@@ -5,9 +5,10 @@ using UnityEngine.AI;
 
 public class SkeletonWarrior : MonoBehaviour, IDamageable
 {
-    public float life = 3;
-
+    NavMeshAgent agent;
     SkeletonWarriorStates FSM;
+
+    public EnemyStats stats;
     public GameObject playerObject;
     public GameObject skeletonWarriorObject;
     public Animator skeletonWarriorAnimator;
@@ -16,9 +17,13 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     void Start()
     {
+        stats = GetComponent<EnemyStats>();
+        agent = GetComponent<NavMeshAgent>();
         playerObject = GameObject.Find("Player");
         skeletonWarriorObject = this.gameObject;
         skeletonWarriorAnimator=skeletonWarriorObject.GetComponent<Animator>();
+
+        agent.speed = stats.movementSpeed;
       
         FSM = new SkeletonWarriorIdle(this);
     }
@@ -30,22 +35,22 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
-            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-2,skeletonWarriorObject.transform.position,15);
+            Debug.Log("A");
+            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.mainDamage, skeletonWarriorObject.transform.position, stats.pushForce);
         }
     }
     
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if(isBlocking==false){
-            life += amount;
+            stats.life += amount;
         }else{
             Debug.Log("Blocked");
         }
-        
 
-        if (life <= 0)
+        if (stats.life <= 0)
         {
-            life = 0;
+            stats.life = 0;
             Destroy(this.gameObject);
         }
     }

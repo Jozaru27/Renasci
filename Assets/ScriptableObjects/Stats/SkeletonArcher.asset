@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3506d66c965663245b7194a926dc1a27, type: 3}
-  m_Name: MageSkeleton
+  m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
-  enemyName: Mage Skeleton
-  life: 4
-  mainDamage: 3
-  secundaryDamage: 0
+  enemyName: SkeletonArcher
+  life: 6
+  mainDamage: 2
+  secondaryDamage: 0
   heal: 0
-  movementSpeed: 0
-  actionSpeed: 0.4
+  movementSpeed: 3.5
+  actionSpeed: 1
+  pushForce: 15
+  detectionDistance: 7

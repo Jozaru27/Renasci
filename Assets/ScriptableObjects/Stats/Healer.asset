@@ -15,7 +15,9 @@ MonoBehaviour:
   enemyName: Healer
   life: 6
   mainDamage: 0
-  secundaryDamage: 0
+  secondaryDamage: 0
   heal: 3
-  movementSpeed: 0
+  movementSpeed: 3.5
   actionSpeed: 0.6
+  pushForce: 15
+  detectionDistance: 7

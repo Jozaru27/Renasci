@@ -3108,6 +3108,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   skeletonWarriorObject: {fileID: 0}
   skeletonWarriorAnimator: {fileID: 0}
+  isBlocking: 0
 --- !u!95 &1039212392
 Animator:
   serializedVersion: 5
@@ -3164,6 +3165,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkeletonWarriorAnim: {fileID: 0}
+--- !u!114 &1039212398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039212387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c930f40d78874e14f865d97aed93f9f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: 
+  enemy: 3
+  life: 0
+  mainDamage: 0
+  secondaryDamage: 0
+  heal: 0
+  movementSpeed: 0
+  actionSpeed: 0
 --- !u!1 &1069601800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3403,8 +3424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27209764a9099149a02e55930446e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material1: {fileID: 0}
-  material2: {fileID: 0}
+  material1: {fileID: 2100000, guid: 63e8c3d8ce75eae4ebaa4935bd776825, type: 2}
+  material2: {fileID: 2100000, guid: ea453f0e3ea4e0c4aa9db8399444b5b6, type: 2}
 --- !u!114 &1148507164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4984,6 +5005,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1039212398}
+    - targetCorrespondingSourceObject: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1039212392}
     - targetCorrespondingSourceObject: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
@@ -5590,6 +5615,50 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1798661083}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1733597313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733597315}
+  - component: {fileID: 1733597314}
+  m_Layer: 0
+  m_Name: -EnemyManager-
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1733597314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733597313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e559111201cda454697ad18bc9d01d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1733597315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733597313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.7226973, y: 17.28182, z: -19.026884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743201819
 GameObject:
@@ -10589,6 +10658,7 @@ MonoBehaviour:
   playerObject: {fileID: 3596748219824563610}
   skeletonWarriorObject: {fileID: 3116287246589315005}
   skeletonWarriorAnimator: {fileID: 0}
+  isBlocking: 0
 --- !u!195 &3116287246598682051
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10975,6 +11045,7 @@ SceneRoots:
   - {fileID: 546743516}
   - {fileID: 321097049}
   - {fileID: 1354741217}
+  - {fileID: 1733597315}
   - {fileID: 231725725}
   - {fileID: 646130060}
   - {fileID: 1798661083}

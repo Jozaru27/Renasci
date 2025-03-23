@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeLife()
     {
-        lifeText.text = $"Life: {StatsManager.Instance.life}";
+        //lifeText.text = $"Life: {StatsManager.Instance.life}";
     }
 
     public void ChangeEnemyCount()
