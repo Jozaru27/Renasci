@@ -3077,6 +3077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4c4bc7f088af44fa59d381f387b6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 3
   playerObject: {fileID: 0}
   skeletonWarriorObject: {fileID: 0}
   skeletonWarriorAnimator: {fileID: 0}
@@ -3649,7 +3650,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 100
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4930,6 +4931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkeletonWarrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455139829038195398, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8996054383050675149, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
@@ -10548,6 +10554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4c4bc7f088af44fa59d381f387b6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 3
   playerObject: {fileID: 3596748219824563610}
   skeletonWarriorObject: {fileID: 3116287246589315005}
   skeletonWarriorAnimator: {fileID: 0}
