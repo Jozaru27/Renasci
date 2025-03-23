@@ -8,6 +8,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
     bool warriorFarPlayer = false;
     bool blockStop = false;
 
+   
     public SkeletonWarriorBlock(SkeletonWarrior _skeletonWarrior) : base()
     {
         Debug.Log("BLOCKING");
@@ -19,6 +20,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
     public override void Entry()
     {
         skeletonWarrior.StartCoroutine(GoingToBlock());
+        skeletonWarrior.isBlocking=true;
         base.Entry();
     }
 

@@ -21,6 +21,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
     {
     
         skeletonWarrior.StartCoroutine(GoingToBlock());
+        skeletonWarrior.isBlocking=false;
         base.Entry();
     }
 

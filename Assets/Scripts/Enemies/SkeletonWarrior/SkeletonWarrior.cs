@@ -12,6 +12,8 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public GameObject skeletonWarriorObject;
     public Animator skeletonWarriorAnimator;
 
+    public bool isBlocking=false;
+
     void Start()
     {
         playerObject = GameObject.Find("Player");
@@ -34,7 +36,12 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     
     public void TakeDamage(int amount)
     {
-        life += amount;
+        if(isBlocking==false){
+            life += amount;
+        }else{
+            Debug.Log("Blocked");
+        }
+        
 
         if (life <= 0)
         {
