@@ -24,7 +24,8 @@ public class EnemyManager : MonoBehaviour
                     enemy.GetComponent<EnemyStats>().movementSpeed = stat.movementSpeed;
                     enemy.GetComponent<EnemyStats>().actionSpeed = stat.actionSpeed;
                     enemy.GetComponent<EnemyStats>().pushForce = stat.pushForce;
-                    enemy.GetComponent<EnemyStats>().detectionDistance = stat.detectionDistance; ;
+                    enemy.GetComponent<EnemyStats>().detectionDistance = stat.detectionDistance;
+                    enemy.GetComponent<EnemyStats>().pushedForce = stat.pushedForce;
                 }
             }
         }

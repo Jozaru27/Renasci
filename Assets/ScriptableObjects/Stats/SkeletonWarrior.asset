@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonWarrior
   m_EditorClassIdentifier: 
   enemyName: SkeletonWarrior
-  life: 12
+  life: 2
   mainDamage: 1.5
   secondaryDamage: 0
   heal: 0
@@ -21,3 +21,4 @@ MonoBehaviour:
   actionSpeed: 0.8
   pushForce: 15
   detectionDistance: 7
+  pushedForce: 5

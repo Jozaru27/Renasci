@@ -27,4 +27,5 @@ public class EnemyStats : MonoBehaviour
     public float actionSpeed;
     public float pushForce;
     public float detectionDistance;
+    public float pushedForce;
 }

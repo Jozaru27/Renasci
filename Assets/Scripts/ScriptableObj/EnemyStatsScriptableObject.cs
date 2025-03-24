@@ -15,4 +15,5 @@ public class EnemyStatsScriptableObject : ScriptableObject
     public float actionSpeed;
     public float pushForce;
     public float detectionDistance;
+    public float pushedForce;
 }

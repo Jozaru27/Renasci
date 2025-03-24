@@ -24,11 +24,14 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        enemyCountText.text = $"Enemies left: {enemyCount}";
-        ChangeLife();
-
         Instance = this;
+    }
+
+    private void Start()
+    {
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        //enemyCountText.text = $"Enemies left: {enemyCount}";
+        ChangeLife();
     }
 
     public void ChangeLife()

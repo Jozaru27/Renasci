@@ -21,3 +21,4 @@ MonoBehaviour:
   actionSpeed: 0.6
   pushForce: 15
   detectionDistance: 7
+  pushedForce: 5

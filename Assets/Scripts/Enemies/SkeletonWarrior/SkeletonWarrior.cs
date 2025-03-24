@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class SkeletonWarrior : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonWarriorAgent;
+    public Renderer rend1, rend2, rend3;
     SkeletonWarriorStates FSM;
+    Rigidbody rb;
 
     public EnemyStats stats;
     public GameObject playerObject;
@@ -19,6 +21,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         stats = GetComponent<EnemyStats>();
         skeletonWarriorAgent = GetComponent<NavMeshAgent>();
         playerObject = GameObject.Find("Player");
@@ -56,16 +59,49 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     
     public void TakeDamage(float amount)
     {
+        Debug.Log("ABCDEF");
+        float pushedForce = stats.pushedForce;
+
         if(isBlocking==false){
             stats.life += amount;
-        }else{
+            StartCoroutine(ChangingColor());
+        }
+        else{
             Debug.Log("Blocked");
+            pushedForce *= 0.5f;
         }
 
         if (stats.life <= 0)
         {
+            Debug.Log("GHIJK");
             stats.life = 0;
-            Destroy(this.gameObject);
+            GetComponent<SkeletonWarriorAnimation>().Death();
+            GetComponent<CapsuleCollider>().enabled = false;
+            rb.velocity = Vector3.zero;
+            rb.freezeRotation = true;
         }
+
+        Vector3 pushDirection = transform.position - playerObject.transform.position;
+        pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
+        rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.Impulse);
+    }
+
+    IEnumerator ChangingColor()
+    {
+        //Placeholder
+        rend1.material.color = Color.red;
+        rend2.material.color = Color.red;
+        rend3.material.color = Color.red;
+
+        yield return new WaitForSeconds(0.125f);
+
+        rend1.material.color = Color.white;
+        rend2.material.color = Color.white;
+        rend3.material.color = Color.white;
+    }
+
+    public void DestroyThisObject()
+    {
+        Destroy(this.gameObject);
     }
 }

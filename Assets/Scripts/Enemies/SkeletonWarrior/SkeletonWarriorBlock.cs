@@ -33,7 +33,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
         //skeletonWarriorNav.isStopped = true;
         Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.transform.position;
         Quaternion lookAngle = Quaternion.LookRotation(playerDirection.normalized);
-        skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Slerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, lookAngle, 1.5f * Time.deltaTime);
+        skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Slerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, lookAngle, 0.5f * Time.deltaTime);
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Block();
 
