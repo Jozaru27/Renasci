@@ -48094,7 +48094,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.4
+        time: 0.36666667
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -48103,7 +48103,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6
+        time: 0.6333333
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -48124,7 +48124,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Mesh-Knight-Weapon
+    path: Motion/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/GameObject
     classID: 65
     script: {fileID: 0}
     flags: 0
@@ -48137,7 +48137,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2514652187
+      path: 3178644953
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 65
@@ -97414,7 +97414,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.4
+        time: 0.36666667
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -97423,7 +97423,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6
+        time: 0.6333333
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -97444,7 +97444,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Mesh-Knight-Weapon
+    path: Motion/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/GameObject
     classID: 65
     script: {fileID: 0}
     flags: 0
