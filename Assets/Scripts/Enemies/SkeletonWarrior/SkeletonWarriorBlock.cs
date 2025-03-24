@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class SkeletonWarriorBlock : SkeletonWarriorStates
 {
    
@@ -21,12 +21,19 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
     {
         skeletonWarrior.StartCoroutine(GoingToBlock());
         skeletonWarrior.isBlocking=true;
+        skeletonWarrior.skeletonWarriorAgent.isStopped = true;
+        //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         base.Entry();
     }
 
     public override void Updating()
     {
-        skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+        //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+        //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
+        //skeletonWarriorNav.isStopped = true;
+        Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.transform.position;
+        Quaternion lookAngle = Quaternion.LookRotation(playerDirection.normalized);
+        skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Slerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, lookAngle, 1.5f * Time.deltaTime);
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Block();
 
@@ -63,7 +70,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
 
     public bool stopBlocking()
     {
-        if (blockStop == true)
+        if (blockStop == true && skeletonWarrior.lookingAtPlayer==true)
         {
             return true;
         }

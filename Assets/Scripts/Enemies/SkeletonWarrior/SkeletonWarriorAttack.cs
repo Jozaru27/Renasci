@@ -21,13 +21,19 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
     {
         skeletonWarrior.StartCoroutine(GoingToBlock());
         skeletonWarrior.isBlocking=false;
+        skeletonWarrior.skeletonWarriorAgent.isStopped = true;
+        //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         base.Entry();
     }
 
     public override void Updating()
     {
-        skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+        //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
+        //skeletonWarriorNav.isStopped = true;
+        //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
+
+        //skeletonWarrior.skeletonWarriorObject.transform.position = Vector3.Slerp(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position, 2 * Time.deltaTime);
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
 

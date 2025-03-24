@@ -17,23 +17,27 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 
     public override void Entry()
     {
-       
+        //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
+        //skeletonWarriorNav.isStopped = false;
+        skeletonWarrior.skeletonWarriorAgent.isStopped = false;
         base.Entry();
     }
 
     public override void Updating()
     {
         //NavMeshAgent skeletonWarriorNav=skeletonWarrior.skeletonWarriorObject.GetComponent<NavMeshAgent>();
-        NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
+        
+       
 
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
 
-        skeletonWarriorNav.destination=skeletonWarrior.playerObject.transform.position;
+        //skeletonWarrior.skeletonWarriorAgent.destination=skeletonWarrior.playerObject.transform.position;
+        skeletonWarrior.skeletonWarriorAgent.destination = skeletonWarrior.playerObject.transform.position;
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Run();
        
 
-        if(distanceToPlayer<=2){
+        if(distanceToPlayer<=4){
             warriorNearPlayer=true;
         }else{
             warriorNearPlayer=false;
