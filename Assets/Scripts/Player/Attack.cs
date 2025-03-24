@@ -56,12 +56,20 @@ public class Attack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            if (other.gameObject.name == "Enemigo [Placeholder]")
+                other.gameObject.GetComponent<EnemyTest>().TakeDamage(-1);
+            else
+            {
+                
+
+                //other.gameObject.GetComponent<EnemyTest>().ChangeHealthAmount(-1);
+                other.gameObject.GetComponent<IDamageable>().TakeDamage(-1);
+                //other.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 10, ForceMode.Impulse);
+            }
+
             Vector3 impulseDirection = other.gameObject.transform.position - transform.position;
             impulseDirection = new Vector3(impulseDirection.x, 0, impulseDirection.y);
-
-            //other.gameObject.GetComponent<EnemyTest>().ChangeHealthAmount(-1);
-            other.gameObject.GetComponent<IDamageable>().TakeDamage(-1);
-            //other.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 10, ForceMode.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(impulseDirection.normalized * 10, ForceMode.Impulse);
         }
     }
 }

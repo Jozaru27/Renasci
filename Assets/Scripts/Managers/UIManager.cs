@@ -18,21 +18,34 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject audioArea;
     [SerializeField] GameObject videoArea;
 
+    int enemyCount;
+
     public static UIManager Instance { get; private set; }
 
     private void Awake()
     {
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemyCountText.text = $"Enemies left: {enemyCount}";
+        ChangeLife();
+
         Instance = this;
     }
 
     public void ChangeLife()
     {
-        //lifeText.text = $"Life: {StatsManager.Instance.life}";
+        lifeText.text = $"Life: {StatsManager.Instance.life}";
     }
 
     public void ChangeEnemyCount()
     {
-        enemyCountText.text = $"Enemies left: ";
+        enemyCount--;
+        enemyCountText.text = $"Enemies left: {enemyCount}";
+
+        if (enemyCount <= 0)
+        {
+            GameManager.Instance.gameWin = true;
+            EnableVictoryMenu();
+        }
     }
 
     public void EnablePauseMenu()

@@ -38,7 +38,7 @@ public class EnemyTest : MonoBehaviour
         agent.SetDestination(playerObj.transform.position);
     }
 
-    public void ChangeHealthAmount(int amount)
+    public void TakeDamage(int amount)
     {
         life += amount;
 
@@ -46,6 +46,7 @@ public class EnemyTest : MonoBehaviour
         {
             life = 0;
             Instantiate(heal, transform.position, Quaternion.identity);
+            UIManager.Instance.ChangeEnemyCount();
             Destroy(this.gameObject);
         }
 

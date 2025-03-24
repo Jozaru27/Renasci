@@ -8,12 +8,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeHealthAmount(float amount, Vector3 enemyPosition, float pushForce)
     {
-        Debug.Log("B");
         StatsManager.Instance.life += amount;
 
         if (amount < 0)
         {
-            Debug.Log("C");
             if (StatsManager.Instance.life < 0)
                 PlayerDeath();
             else
