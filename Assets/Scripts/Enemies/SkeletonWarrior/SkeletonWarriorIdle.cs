@@ -8,7 +8,7 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
     bool playerNearEnemy = false;
     public SkeletonWarriorIdle(SkeletonWarrior _skeletonWarrior) : base()
     {
-        Debug.Log("IDLING");
+        //Debug.Log("IDLING");
         name = STATES.IDLE;
         skeletonWarrior = _skeletonWarrior;
         iniateVariables(skeletonWarrior);

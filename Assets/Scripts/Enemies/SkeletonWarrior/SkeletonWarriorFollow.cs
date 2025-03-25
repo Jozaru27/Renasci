@@ -9,7 +9,7 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
     bool warriorNearPlayer=false;
     public SkeletonWarriorFollow(SkeletonWarrior _skeletonWarrior) : base()
     {
-        Debug.Log("FOLLOWING");
+        //Debug.Log("FOLLOWING");
         name = STATES.FOLLOW;
         skeletonWarrior=_skeletonWarrior;
         iniateVariables(skeletonWarrior);
@@ -20,6 +20,7 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
         //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
         //skeletonWarriorNav.isStopped = false;
         skeletonWarrior.skeletonWarriorAgent.isStopped = false;
+        skeletonWarrior.startBlock = false;
         base.Entry();
     }
 

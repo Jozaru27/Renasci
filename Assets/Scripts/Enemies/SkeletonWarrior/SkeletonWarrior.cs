@@ -19,7 +19,10 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public bool isBlocking=false;
     public bool lookingAtPlayer = false;
+    public bool startBlock = false;
+    public bool warriorAttackFinish = false;
 
+    float distanceToPLayer;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,6 +41,8 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     void Update()
     {
         FSM = FSM.Process();
+
+        distanceToPLayer = Vector3.Distance(skeletonWarriorObject.transform.position, playerObject.transform.position);
 
         RaycastHit hit;
         if (Physics.Raycast(skeletonWarriorObject.transform.position,transform.TransformDirection(Vector3.forward),out hit,5,playerMask))
@@ -107,8 +112,51 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         Destroy(this.gameObject);
     }
 
-    public void ToggleAttackTrigger()
+    public void EnableAttackTrigger()
     {
-        attackTrigger.enabled = !attackTrigger.enabled;
+        attackTrigger.enabled = true;
+    }
+
+    public void DisableAttackTrigger()
+    {
+        attackTrigger.enabled = false;
+    }
+    /*
+    public void GoingToBlock()
+    {
+        startBlock = true;
+    }
+    */
+
+    public void FinishAttack()
+    {
+       
+        if (distanceToPLayer >= 3)
+        {
+            StartCoroutine(FinishingAttack());
+        }
+       
+    }
+    IEnumerator FinishingAttack()
+    {
+        yield return new WaitForSeconds(1.5f);
+            warriorAttackFinish = true;
+            Debug.Log("Llega 1");
+    }
+
+    public void AttackToBlock()
+    {
+      
+        if (distanceToPLayer < 3)
+        {
+            StartCoroutine(AttackingToBlock());
+        }
+    }
+
+    IEnumerator AttackingToBlock()
+    {
+        yield return new WaitForSeconds(1.5f);
+        startBlock = true;
+        Debug.Log("Llega 2");
     }
 }
