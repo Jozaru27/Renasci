@@ -7,6 +7,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonWarriorAgent;
     public Renderer rend1, rend2, rend3;
+    public Collider attackTrigger;
     SkeletonWarriorStates FSM;
     Rigidbody rb;
 
@@ -54,6 +55,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         if(other.gameObject.CompareTag("Player")){
             Debug.Log("A");
             other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.mainDamage, skeletonWarriorObject.transform.position, stats.pushForce);
+            attackTrigger.enabled = false;
         }
     }
     
@@ -103,5 +105,10 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public void DestroyThisObject()
     {
         Destroy(this.gameObject);
+    }
+
+    public void ToggleAttackTrigger()
+    {
+        attackTrigger.enabled = !attackTrigger.enabled;
     }
 }

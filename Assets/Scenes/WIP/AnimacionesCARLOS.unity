@@ -2038,7 +2038,7 @@ GameObject:
   - component: {fileID: 649240459}
   - component: {fileID: 649240460}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AttackTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3275,6 +3275,7 @@ MonoBehaviour:
   rend1: {fileID: 2071053937}
   rend2: {fileID: 1137928857}
   rend3: {fileID: 561337024}
+  attackTrigger: {fileID: 649240460}
   stats: {fileID: 0}
   playerObject: {fileID: 0}
   skeletonWarriorObject: {fileID: 0}
@@ -5109,6 +5110,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4681256521129565185, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681256521129565185, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681256521129565185, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 6455139829038169830, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5200,6 +5216,7 @@ PrefabInstance:
     - {fileID: 7439713988500215787, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
     - {fileID: 7439713988500215784, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
     - {fileID: 3276053267084655111, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
+    - {fileID: 4681256521139385223, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4681256521129565245, guid: 7778632bf67024a46b1f78e3c03c216e,
@@ -10883,6 +10900,7 @@ MonoBehaviour:
   rend1: {fileID: 0}
   rend2: {fileID: 0}
   rend3: {fileID: 0}
+  attackTrigger: {fileID: 0}
   stats: {fileID: 0}
   playerObject: {fileID: 3596748219824563610}
   skeletonWarriorObject: {fileID: 3116287246589315005}
