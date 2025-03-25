@@ -9627,7 +9627,7 @@ PrefabInstance:
     - target: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
         type: 3}
       propertyPath: m_Name
-      value: SkeletonWarrior (1)
+      value: SkeletonWarrior
       objectReference: {fileID: 0}
     - target: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
         type: 3}
