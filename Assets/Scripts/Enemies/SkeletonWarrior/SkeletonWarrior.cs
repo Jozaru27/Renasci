@@ -48,7 +48,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         if (Physics.Raycast(skeletonWarriorObject.transform.position,transform.TransformDirection(Vector3.forward),out hit,5,playerMask))
         {
             lookingAtPlayer = true;
-            Debug.Log("Ve al jugador");
         }
         else
         {
@@ -58,7 +57,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
-            Debug.Log("A");
             other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.mainDamage, skeletonWarriorObject.transform.position, stats.pushForce);
             attackTrigger.enabled = false;
         }
@@ -66,7 +64,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     
     public void TakeDamage(float amount)
     {
-        Debug.Log("ABCDEF");
         float pushedForce = stats.pushedForce;
 
         if(isBlocking==false){
@@ -74,19 +71,19 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
             StartCoroutine(ChangingColor());
         }
         else{
-            Debug.Log("Blocked");
             pushedForce *= 0.5f;
         }
 
         if (stats.life <= 0)
         {
-            Debug.Log("GHIJK");
             stats.life = 0;
             GetComponent<SkeletonWarriorAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             rb.velocity = Vector3.zero;
             rb.freezeRotation = true;
         }
+
+        //GetComponent<SkeletonWarriorAnimation>().Hit();
 
         Vector3 pushDirection = transform.position - playerObject.transform.position;
         pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
@@ -130,23 +127,23 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void FinishAttack()
     {
-       
+        Debug.Log("A");
         if (distanceToPLayer >= 3)
         {
+            Debug.Log("B");
             StartCoroutine(FinishingAttack());
-        }
-       
+        }  
     }
+
     IEnumerator FinishingAttack()
     {
         yield return new WaitForSeconds(1.5f);
-            warriorAttackFinish = true;
-            Debug.Log("Llega 1");
+        warriorAttackFinish = true;
+        Debug.Log("Termina ataque");
     }
 
     public void AttackToBlock()
     {
-      
         if (distanceToPLayer < 3)
         {
             StartCoroutine(AttackingToBlock());
@@ -157,6 +154,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(1.5f);
         startBlock = true;
-        Debug.Log("Llega 2");
+        Debug.Log("EmpiezaBloqueo");
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonWarrior
   m_EditorClassIdentifier: 
   enemyName: SkeletonWarrior
-  life: 2
+  life: 10
   mainDamage: 1.5
   secondaryDamage: 0
   heal: 0

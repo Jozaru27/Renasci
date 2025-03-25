@@ -21,6 +21,7 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
         //skeletonWarriorNav.isStopped = false;
         skeletonWarrior.skeletonWarriorAgent.isStopped = false;
         skeletonWarrior.startBlock = false;
+        skeletonWarrior.warriorAttackFinish = false;
         base.Entry();
     }
 
