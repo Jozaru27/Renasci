@@ -6,6 +6,8 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
 {
 
     bool playerNearEnemy = false;
+    float waitTime; // Wait time before patrolling [EXPERIMENTAL, PATRULLA]
+
     public SkeletonWarriorIdle(SkeletonWarrior _skeletonWarrior) : base()
     {
         //Debug.Log("IDLING");
@@ -16,8 +18,10 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
 
     public override void Entry()
     {
-
         base.Entry();
+        skeletonWarrior.skeletonWarriorAnimator.SetBool("Idle", true); // [EXPERIMENTAL, PATRULLA]
+        waitTime = Random.Range(1f, 10f); // [EXPERIMENTAL, PATRULLA]
+        skeletonWarrior.StartCoroutine(WaitAndPatrol()); // [EXPERIMENTAL, PATRULLA]
     }
 
     public override void Updating()
@@ -44,6 +48,7 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
     public override void Exit()
     {
         base.Exit();
+        skeletonWarrior.skeletonWarriorAnimator.SetBool("Idle", false); // [EXPERIMENTAL, PATRULLA]
     }
 
     public bool playerNear()
@@ -56,6 +61,16 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
         {
             return false;
         }
-        
+    }
+
+    // Patrols if the enemy isn't nearby [EXPERIMENTAL, PATRULLA]
+    IEnumerator WaitAndPatrol()
+    {
+        yield return new WaitForSeconds(waitTime);
+        if (!skeletonWarrior.lookingAtPlayer)
+        {
+            nextState = new SkeletonWarriorPatrol(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
+        }
     }
 }
