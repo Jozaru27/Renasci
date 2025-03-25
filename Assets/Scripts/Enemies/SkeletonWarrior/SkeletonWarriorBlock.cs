@@ -29,6 +29,17 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
 
     public override void Updating()
     {
+        RaycastHit hit;
+        if (Physics.Raycast(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.transform.TransformDirection(Vector3.back),out hit,5,skeletonWarrior.playerMask))
+        {
+            skeletonWarrior.isBlocking = false;
+        }
+        else
+        {
+            skeletonWarrior.isBlocking = true;
+        }
+           
+
         //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
         //skeletonWarriorNav.isStopped = true;

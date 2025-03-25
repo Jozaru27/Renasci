@@ -736,6 +736,12 @@ Transform:
   - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &266142211 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4681256521129565269, guid: 7778632bf67024a46b1f78e3c03c216e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1589501289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281445538
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,6 +3293,7 @@ MonoBehaviour:
   lookingAtPlayer: 0
   startBlock: 0
   warriorAttackFinish: 0
+  isDamageable: 0
 --- !u!95 &1039212392
 Animator:
   serializedVersion: 5
@@ -5221,6 +5228,10 @@ PrefabInstance:
     - {fileID: 4681256521139385223, guid: 7778632bf67024a46b1f78e3c03c216e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4681256521129565269, guid: 7778632bf67024a46b1f78e3c03c216e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1645163983}
     - targetCorrespondingSourceObject: {fileID: 4681256521129565245, guid: 7778632bf67024a46b1f78e3c03c216e,
         type: 3}
       insertIndex: -1
@@ -5412,6 +5423,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626699984}
   m_CullTransparentMesh: 1
+--- !u!1 &1645163982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1645163983}
+  - component: {fileID: 1645163984}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1645163983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645163982}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5000011, y: 0.50000036, z: 0.49999964, w: 0.49999896}
+  m_LocalPosition: {x: -0.04, y: -0.236, z: -0.002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 266142211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1645163984
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645163982}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.30988503, y: 1.9654341, z: 0.7878604}
+  m_Center: {x: -0.07127093, y: -0.17103685, z: -0.39278007}
 --- !u!1 &1660684529
 GameObject:
   m_ObjectHideFlags: 0
@@ -10914,6 +10978,7 @@ MonoBehaviour:
   lookingAtPlayer: 0
   startBlock: 0
   warriorAttackFinish: 0
+  isDamageable: 0
 --- !u!195 &3116287246598682051
 NavMeshAgent:
   m_ObjectHideFlags: 0

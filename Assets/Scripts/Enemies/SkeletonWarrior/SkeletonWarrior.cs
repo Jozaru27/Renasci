@@ -21,6 +21,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public bool lookingAtPlayer = false;
     public bool startBlock = false;
     public bool warriorAttackFinish = false;
+    public bool isDamageable = false;
 
     float distanceToPLayer;
     void Start()
@@ -56,17 +57,28 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     }
 
     public void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
+        if(other.gameObject.CompareTag("Player") && isBlocking==false){
             other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.mainDamage, skeletonWarriorObject.transform.position, stats.pushForce);
             attackTrigger.enabled = false;
+        }else if (other.gameObject.CompareTag("Player") && isBlocking == true)
+        {
+            isDamageable = true;
         }
     }
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && isBlocking == true)
+        {
+            isDamageable = false;
+        }
+    }
+
     public void TakeDamage(float amount)
     {
         float pushedForce = stats.pushedForce;
 
-        if(isBlocking==false){
+        if(isBlocking==false || isDamageable == true){
             stats.life += amount;
             StartCoroutine(ChangingColor());
         }
