@@ -38,8 +38,13 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Run();
        
+        if (distanceToPlayer >= skeletonWarrior.stats.detectionDistance)
+        {
+            nextState = new SkeletonWarriorIdle(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
+        }
 
-        if(distanceToPlayer<=skeletonWarrior.stats.detectionDistance-5){
+        if(distanceToPlayer<=skeletonWarrior.stats.detectionDistance-4){
             warriorNearPlayer=true;
         }else{
             warriorNearPlayer=false;
@@ -47,6 +52,12 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
         if(BeginAttack()){
             nextState=new SkeletonWarriorBlock(skeletonWarrior);
             actualPhase=EVENTS.EXIT;
+        }
+
+        if (skeletonWarrior.goToIdle)
+        {
+            nextState = new SkeletonWarriorIdle(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
         }
     }
     public override void Exit()

@@ -2150,6 +2150,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Banner (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8743,6 +8748,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Banner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9276,6 +9286,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Banner (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9444,6 +9459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Banner (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9527,6 +9547,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall_Banner (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11164,7 +11189,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1864427834}
   m_Father: {fileID: 1798661083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1693612170
@@ -11323,6 +11349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall_Banner (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12327,6 +12358,71 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1856316254}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1864427833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1864427834}
+  - component: {fileID: 1864427835}
+  - component: {fileID: 1864427836}
+  m_Layer: 0
+  m_Name: ModifierVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1864427834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864427833}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1693612169}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1864427835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864427833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 5.1026607, y: 4.077943, z: 1.2167096}
+  m_Center: {x: 1.1914132, y: -0.2904272, z: -1.1979697}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &1864427836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864427833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 5.1026607, y: 4.077943, z: 1.2397747}
+  m_Center: {x: 1.1914132, y: -0.2904272, z: 11.463716}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1868882850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12720,6 +12816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall_Banner
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13622,6 +13723,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Banner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13705,6 +13811,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall_Banner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13868,6 +13979,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall_Banner (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 299779856c61aeb479f421d598da02e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

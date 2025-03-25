@@ -16,6 +16,7 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
     public override void Entry()
     {
         base.Entry();
+        skeletonWarrior.skeletonWarriorAgent.isStopped = false;
         skeletonWarrior.skeletonWarriorAnimator.SetBool("Run", true);
         skeletonWarrior.skeletonWarriorAgent.speed *= 0.5f;
         skeletonWarrior.skeletonWarriorAnimator.speed = 0.5f;
@@ -47,6 +48,12 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
             nextState = new SkeletonWarriorIdle(skeletonWarrior);
             actualPhase = EVENTS.EXIT;
         }
+
+        if (skeletonWarrior.goToIdle)
+        {
+            nextState = new SkeletonWarriorIdle(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
+        }
     }
 
     public override void Exit()
@@ -59,7 +66,8 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
 
     void SetPatrolDestination()
     {
-        Vector3 randomPoint = skeletonWarrior.transform.position + Random.insideUnitSphere * 5f;
+        int randomDistance = Random.Range(5, 10);
+        Vector3 randomPoint = skeletonWarrior.transform.position + Random.insideUnitSphere * randomDistance;
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 5f, NavMesh.AllAreas))
         {

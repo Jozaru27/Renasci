@@ -16,12 +16,18 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public GameObject skeletonWarriorObject;
     public Animator skeletonWarriorAnimator;
     public LayerMask playerMask;
+    public Quaternion blockTarget = Quaternion.identity;
 
+    public float angularVelocityOnBlock;
     public bool isBlocking=false;
     public bool lookingAtPlayer = false;
     public bool startBlock = false;
     public bool warriorAttackFinish = false;
     public bool isDamageable = false;
+    public bool dead;
+    public bool goToIdle;
+    public bool damaged;
+    public bool playerDirectionTaken;
 
     float distanceToPLayer;
     void Start()
@@ -81,6 +87,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         if(isBlocking==false || isDamageable == true){
             stats.life += amount;
             StartCoroutine(ChangingColor());
+            damaged = true;
         }
         else{
             pushedForce *= 0.5f;
@@ -93,13 +100,17 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
             GetComponent<CapsuleCollider>().enabled = false;
             rb.velocity = Vector3.zero;
             rb.freezeRotation = true;
+            dead = true;
         }
 
-        //GetComponent<SkeletonWarriorAnimation>().Hit();
+        GetComponent<SkeletonWarriorAnimation>().Hit();
+        //GetComponent<SkeletonWarriorAnimation>().Idle();
 
         Vector3 pushDirection = transform.position - playerObject.transform.position;
         pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
-        rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.Impulse);
+        rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+
+        damaged = true;////
     }
 
     IEnumerator ChangingColor()
@@ -139,18 +150,18 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void FinishAttack()
     {
-        Debug.Log("A");
         if (distanceToPLayer >= 3)
         {
-            Debug.Log("B");
             StartCoroutine(FinishingAttack());
         }  
     }
 
     IEnumerator FinishingAttack()
     {
-        yield return new WaitForSeconds(1.5f);
+        //yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0);
         warriorAttackFinish = true;
+        GetComponent<SkeletonWarriorAnimation>().Idle();
         Debug.Log("Termina ataque");
     }
 
@@ -164,7 +175,8 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     IEnumerator AttackingToBlock()
     {
-        yield return new WaitForSeconds(1.5f);
+        //yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0f);
         startBlock = true;
         Debug.Log("EmpiezaBloqueo");
     }

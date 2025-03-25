@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 public class SkeletonWarriorBlock : SkeletonWarriorStates
 {
-   
     bool warriorFarPlayer = false;
     bool blockStop = false;
 
-   
     public SkeletonWarriorBlock(SkeletonWarrior _skeletonWarrior) : base()
     {
         //Debug.Log("BLOCKING");
@@ -38,14 +37,39 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
         {
             skeletonWarrior.isBlocking = true;
         }
-           
 
         //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
         //skeletonWarriorNav.isStopped = true;
-        Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.transform.position;
-        Quaternion lookAngle = Quaternion.LookRotation(playerDirection.normalized);
-        skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Slerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, lookAngle, 0.5f * Time.deltaTime);
+
+        if (!skeletonWarrior.damaged)
+        {
+            Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.skeletonWarriorObject.transform.position;
+            skeletonWarrior.blockTarget = Quaternion.LookRotation(playerDirection.normalized);
+            skeletonWarrior.angularVelocityOnBlock = 1f;
+        }
+        else if (!skeletonWarrior.playerDirectionTaken)
+        {
+            Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.skeletonWarriorObject.transform.position;
+            skeletonWarrior.blockTarget = Quaternion.LookRotation(playerDirection.normalized);
+            skeletonWarrior.angularVelocityOnBlock = 15f;
+            skeletonWarrior.playerDirectionTaken = true;
+        }
+
+        if (!skeletonWarrior.dead)
+        {
+            skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Lerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget, skeletonWarrior.angularVelocityOnBlock * Time.deltaTime);
+
+            if (Quaternion.Angle(skeletonWarrior.transform.rotation, skeletonWarrior.blockTarget) <= 2.5f && !skeletonWarrior.damaged)
+                skeletonWarrior.skeletonWarriorObject.transform.rotation = skeletonWarrior.blockTarget;
+
+            if (Quaternion.Angle(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget) <= 35f && skeletonWarrior.damaged)
+            {
+                skeletonWarrior.skeletonWarriorObject.transform.rotation = skeletonWarrior.blockTarget;
+                skeletonWarrior.damaged = false;
+                skeletonWarrior.playerDirectionTaken = false;
+            }
+        }
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Block();
 
@@ -71,6 +95,12 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
         if (stopBlocking())
         {
             nextState = new SkeletonWarriorAttack(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
+        }
+
+        if (skeletonWarrior.goToIdle)
+        {
+            nextState = new SkeletonWarriorIdle(skeletonWarrior);
             actualPhase = EVENTS.EXIT;
         }
     }

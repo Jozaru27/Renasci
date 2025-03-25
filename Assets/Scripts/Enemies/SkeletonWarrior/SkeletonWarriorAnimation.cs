@@ -43,6 +43,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", true);
         SkeletonWarriorAnim.SetBool("Block", false);
+        GetComponent<SkeletonWarrior>().goToIdle = true;
     }
     public void Block()
     {

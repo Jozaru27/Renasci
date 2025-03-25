@@ -22,6 +22,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
         //skeletonWarrior.StartCoroutine(GoingToBlock());
         skeletonWarrior.isBlocking=false;
         skeletonWarrior.skeletonWarriorAgent.isStopped = true;
+        skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
         //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         base.Entry();
     }
@@ -35,7 +36,7 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
         //skeletonWarrior.skeletonWarriorObject.transform.position = Vector3.Slerp(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position, 2 * Time.deltaTime);
 
-        skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
+        //skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
         /*
         if (distanceToPlayer>2){
             warriorFarPlayer=true;
@@ -55,6 +56,12 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
         {
             nextState=new SkeletonWarriorBlock(skeletonWarrior);
             actualPhase=EVENTS.EXIT;
+        }
+
+        if (skeletonWarrior.goToIdle)
+        {
+            nextState = new SkeletonWarriorIdle(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
         }
         
 
