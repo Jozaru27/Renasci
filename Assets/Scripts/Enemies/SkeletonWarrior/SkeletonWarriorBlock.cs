@@ -11,7 +11,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
    
     public SkeletonWarriorBlock(SkeletonWarrior _skeletonWarrior) : base()
     {
-        Debug.Log("BLOCKING");
+        //Debug.Log("BLOCKING");
         name = STATES.BLOCK;
         skeletonWarrior=_skeletonWarrior;
         iniateVariables(skeletonWarrior);
@@ -22,6 +22,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
         skeletonWarrior.StartCoroutine(GoingToBlock());
         skeletonWarrior.isBlocking=true;
         skeletonWarrior.skeletonWarriorAgent.isStopped = true;
+        skeletonWarrior.startBlock = false;
         //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         base.Entry();
     }
