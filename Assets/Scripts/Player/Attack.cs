@@ -63,7 +63,7 @@ public class Attack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-            other.gameObject.GetComponent<IDamageable>().TakeDamage(StatsManager.Instance.damage);
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(-StatsManager.Instance.damage);
     }
 
     IEnumerator ShootCooldown()
