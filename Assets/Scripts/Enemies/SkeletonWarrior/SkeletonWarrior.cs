@@ -66,17 +66,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         if(other.gameObject.CompareTag("Player") && isBlocking==false){
             other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.mainDamage, skeletonWarriorObject.transform.position, stats.pushForce);
             attackTrigger.enabled = false;
-        }else if (other.gameObject.CompareTag("Player") && isBlocking == true)
-        {
-            isDamageable = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && isBlocking == true)
-        {
-            isDamageable = false;
         }
     }
 
@@ -84,7 +73,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     {
         float pushedForce = stats.pushedForce;
 
-        if(isBlocking==false || isDamageable == true){
+        if(isBlocking==false){
             stats.life += amount;
             StartCoroutine(ChangingColor());
             damaged = true;

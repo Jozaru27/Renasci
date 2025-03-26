@@ -1592,7 +1592,8 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8958735079526820815, guid: 6dc4920f6f2123f4ebdafab37fac20ac, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
@@ -2892,7 +2893,8 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8958735079526820815, guid: 6dc4920f6f2123f4ebdafab37fac20ac, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
@@ -5020,7 +5022,8 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8958735079526820815, guid: 6dc4920f6f2123f4ebdafab37fac20ac, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
@@ -10850,7 +10853,8 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8958735079526820815, guid: 6dc4920f6f2123f4ebdafab37fac20ac, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
@@ -14966,7 +14970,8 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8958735079526820815, guid: 6dc4920f6f2123f4ebdafab37fac20ac, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
