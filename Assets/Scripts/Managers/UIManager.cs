@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        //enemyCountText.text = $"Enemies left: {enemyCount}";
+        enemyCountText.text = $"Enemies left: {enemyCount}";
         ChangeLife();
     }
 

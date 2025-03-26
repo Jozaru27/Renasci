@@ -8361,6 +8361,7 @@ GameObject:
   - component: {fileID: 1121935524}
   - component: {fileID: 1121935523}
   - component: {fileID: 1121935526}
+  - component: {fileID: 1121935527}
   m_Layer: 0
   m_Name: Room_08
   m_TagString: Ground
@@ -8515,8 +8516,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25418282, y: 0.012686433, z: 0.044999998}
-  m_Center: {x: 0, y: -0.123944566, z: -0.0025}
+  m_Size: {x: 0.101640925, y: 0.012686424, z: 0.044999998}
+  m_Center: {x: -0.076270826, y: -0.123944566, z: -0.0025}
+--- !u!65 &1121935527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121935519}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.10164903, y: 0.012605505, z: 0.044999998}
+  m_Center: {x: 0.076266795, y: -0.12392677, z: -0.0025}
 --- !u!1001 &1123805821
 PrefabInstance:
   m_ObjectHideFlags: 0
