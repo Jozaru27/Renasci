@@ -5693,10 +5693,6 @@ MonoBehaviour:
     m_ActionId: e0225c9a-416b-44b2-baf8-66042e7fd75b
     m_ActionName: Player/Dash[/Keyboard/leftShift]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1a9b7101-e796-4a7e-bef0-cb5dd4a775c3
-    m_ActionName: Player/Jump
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 871043517}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
@@ -11411,7 +11407,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 80fa46c555fa36b459fcb173163225db, type: 2}
   m_BuildHeightMesh: 0
