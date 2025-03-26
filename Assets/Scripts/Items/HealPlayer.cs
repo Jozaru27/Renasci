@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealPlayer : MonoBehaviour
 {
-    [SerializeField] int heal;
+    [SerializeField] float heal;
 
     private void OnTriggerEnter(Collider other)
     {

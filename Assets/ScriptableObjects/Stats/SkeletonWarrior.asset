@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SkeletonWarrior
   life: 3
-  mainDamage: 1.5
+  mainDamage: 3
   secondaryDamage: 0
   heal: 0
   movementSpeed: 3.5
