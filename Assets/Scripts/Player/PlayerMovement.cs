@@ -123,4 +123,9 @@ public class PlayerMovement : MonoBehaviour
                 rb.drag = moveDrag;
         }
     }
+
+    public void ChangeRotation(Quaternion newTarget)
+    {
+        rotationTarget = newTarget;
+    }
 }

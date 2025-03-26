@@ -53,6 +53,15 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Dash", true);
     }
 
+    public void Shoot() //PlaceHolder
+    {
+        playerAnim.SetBool("Idle", true);
+        playerAnim.SetBool("Attack", false);
+        playerAnim.SetBool("Run", false);
+        playerAnim.SetBool("Hit", false);
+        playerAnim.SetBool("Dash", false);
+    }
+
     public void Death()
     {
         playerAnim.SetBool("Death", true);

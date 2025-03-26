@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
         transform.Translate(shotDirection * speed * Time.deltaTime, Space.World);
     }
 
-    public void GetMousePosition(Vector3 worldShotDirection)
+    public void GetShotDirection(Vector3 worldShotDirection)
     {
         shotDirection = worldShotDirection.normalized;
     }
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
             other.gameObject.GetComponent<IDamageable>().TakeDamage(-0.5f);
-
-        Destroy(gameObject);
+        if (!other.gameObject.CompareTag("Player"))
+            Destroy(gameObject);
     }
 }
