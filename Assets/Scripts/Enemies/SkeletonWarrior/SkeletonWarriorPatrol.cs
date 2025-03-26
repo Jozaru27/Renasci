@@ -66,12 +66,12 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
 
     void SetPatrolDestination()
     {
-        int maxAttempts = 20;
+        //int maxAttempts = 20;
         int randomDistance = Random.Range(5, 10);
         Vector3 bestPoint = skeletonWarrior.transform.position;
 
-        for (int i = 0; i < maxAttempts; i++)
-        {
+        //for (int i = 0; i < maxAttempts; i++)
+        //{
             Vector3 randomDirection = Random.insideUnitSphere * randomDistance;
             randomDirection.y = 0;
             Vector3 randomPoint = skeletonWarrior.transform.position + randomDirection;
@@ -83,10 +83,10 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
                 if (skeletonWarrior.skeletonWarriorAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
                 {
                     bestPoint = hit.position;
-                    break;
+                    //break;
                 }
             }
-        }
+        //}
 
         if (bestPoint != skeletonWarrior.transform.position)
         {
