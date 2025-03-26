@@ -98,6 +98,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
             stats.life = 0;
             GetComponent<SkeletonWarriorAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
+            UIManager.Instance.ChangeEnemyCount();
             rb.velocity = Vector3.zero;
             rb.freezeRotation = true;
             dead = true;
@@ -129,6 +130,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void DestroyThisObject()
     {
+        GetComponent<LootSpawn>().SpawnHeal();
         Destroy(this.gameObject);
     }
 
