@@ -4,23 +4,23 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
 
-    Vector3 shootDirection;
+    Vector3 shotDirection;
 
     private void Update()
     {
-        transform.Translate(shootDirection * speed * Time.deltaTime, Space.World);
+        transform.Translate(shotDirection * speed * Time.deltaTime, Space.World);
     }
 
-    public void GetMousePosition(Vector3 mousePosition)
+    public void GetMousePosition(Vector3 worldShotDirection)
     {
-        shootDirection = mousePosition.normalized;
+        shotDirection = worldShotDirection.normalized;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-        {
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(-0.5f);
 
-        }
+        Destroy(gameObject);
     }
 }

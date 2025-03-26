@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
 {
     [SerializeField] float rechargeTime;
     [SerializeField] GameObject bulletPref;
+    [SerializeField] Transform shotPoint;
     [SerializeField] LayerMask rayMask;
 
     int shots;
@@ -34,8 +35,7 @@ public class Attack : MonoBehaviour
             if (Physics.Raycast(screenRay,out RaycastHit hit, Mathf.Infinity, rayMask))
                 collidePosition = hit.point;
 
-            Vector3 bulletPosition = transform.position;
-            bulletPosition = new Vector3(bulletPosition.x, bulletPosition.y + 1.5f, bulletPosition.z);
+            Vector3 bulletPosition = shotPoint.position;
             Vector3 shotPosition = new Vector3(collidePosition.x, bulletPosition.y, collidePosition.z);
             Vector3 shotDirection = shotPosition - bulletPosition;
 
