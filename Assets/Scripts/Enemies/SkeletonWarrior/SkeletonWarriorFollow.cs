@@ -29,31 +29,36 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
     {
         //NavMeshAgent skeletonWarriorNav=skeletonWarrior.skeletonWarriorObject.GetComponent<NavMeshAgent>();
         
-       
-
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
+
+        NavMeshPath path = new NavMeshPath();
+        bool pathExists = skeletonWarrior.skeletonWarriorAgent.CalculatePath(skeletonWarrior.playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete;
+
+        if (!pathExists || distanceToPlayer >= skeletonWarrior.stats.detectionDistance)
+        {
+            nextState = new SkeletonWarriorIdle(skeletonWarrior);
+            actualPhase = EVENTS.EXIT;
+            return;
+        }
 
         //skeletonWarrior.skeletonWarriorAgent.destination=skeletonWarrior.playerObject.transform.position;
         skeletonWarrior.skeletonWarriorAgent.destination = skeletonWarrior.playerObject.transform.position;
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Run();
-       
-        if (distanceToPlayer >= skeletonWarrior.stats.detectionDistance)
+
+        if (distanceToPlayer <= skeletonWarrior.stats.detectionDistance - 4)
         {
-            nextState = new SkeletonWarriorIdle(skeletonWarrior);
+            warriorNearPlayer = true;
+        }
+        else
+        {
+            warriorNearPlayer = false;
+        }
+
+        if (warriorNearPlayer)
+        {
+            nextState = new SkeletonWarriorBlock(skeletonWarrior);
             actualPhase = EVENTS.EXIT;
-        }
-
-        if(distanceToPlayer<=skeletonWarrior.stats.detectionDistance-4){
-            warriorNearPlayer=true;
-        }else{
-            warriorNearPlayer=false;
-        }
-
-        if(warriorNearPlayer)
-        {
-            nextState=new SkeletonWarriorBlock(skeletonWarrior);
-            actualPhase=EVENTS.EXIT;
         }
 
         if (skeletonWarrior.goToIdle)

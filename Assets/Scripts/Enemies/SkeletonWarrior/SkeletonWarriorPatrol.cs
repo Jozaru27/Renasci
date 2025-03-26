@@ -25,9 +25,20 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
 
     public override void Updating()
     {
-        if (Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position) <= skeletonWarrior.stats.detectionDistance)
+        float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
+
+        if (distanceToPlayer <= skeletonWarrior.stats.detectionDistance)
         {
-            playerNearEnemy = true;
+            NavMeshPath path = new NavMeshPath();
+            if (skeletonWarrior.skeletonWarriorAgent.CalculatePath(skeletonWarrior.playerObject.transform.position, path) &&
+                path.status == NavMeshPathStatus.PathComplete)
+            {
+                playerNearEnemy = true;
+            }
+            else
+            {
+                playerNearEnemy = false;
+            }
         }
         else
         {
@@ -67,7 +78,7 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
     void SetPatrolDestination()
     {
         //int maxAttempts = 20;
-        int randomDistance = Random.Range(5, 10);
+        float randomDistance = Random.Range(5, 10);
         Vector3 bestPoint = skeletonWarrior.transform.position;
 
         //for (int i = 0; i < maxAttempts; i++)
