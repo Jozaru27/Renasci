@@ -1,4 +1,0 @@
-- Se desliza y te empuja cuando va a atacar
-- Quitar LookAt
-- Cuando empiece el ataque, tiene que terminarlo (si te alejas no debe reinciar al estado de perseguir)
-- Solo te detecta cuando estás delante a no ser que estés muy cerca
