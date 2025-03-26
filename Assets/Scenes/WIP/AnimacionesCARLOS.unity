@@ -1676,6 +1676,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486449185}
   m_CullTransparentMesh: 1
+--- !u!1001 &499666999
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1746488536161095525, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_Name
+      value: DanceOfTheShadows
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962204472543571939, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be5f18b9a76eed64b9329079a7d6f63a, type: 3}
 --- !u!1 &507750371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,8 +3425,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c4961324e481b47bcc68cb2534072a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rechargeTime: 0
   bulletPref: {fileID: 3568841431210816937, guid: e8a3a5b294a53c74ba8103d5dab21a8d,
     type: 3}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1078971447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3407,8 +3479,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c4961324e481b47bcc68cb2534072a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rechargeTime: 0
   bulletPref: {fileID: 3568841431210816937, guid: e8a3a5b294a53c74ba8103d5dab21a8d,
     type: 3}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1148507162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3561,10 +3637,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e0225c9a-416b-44b2-baf8-66042e7fd75b
     m_ActionName: Player/Dash[/Keyboard/leftShift]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1a9b7101-e796-4a7e-bef0-cb5dd4a775c3
-    m_ActionName: Player/Jump
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1148507162}
@@ -5897,7 +5969,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 3dfd3d902cb70da4ca4b1282a5e9b02e, type: 2}
   m_BuildHeightMesh: 0
@@ -11053,3 +11125,4 @@ SceneRoots:
   - {fileID: 1136994914494505127}
   - {fileID: 3116287246589680221}
   - {fileID: 8666690366584086497}
+  - {fileID: 499666999}
