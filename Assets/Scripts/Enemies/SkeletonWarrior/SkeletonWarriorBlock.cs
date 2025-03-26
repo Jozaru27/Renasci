@@ -46,7 +46,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
         {
             Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.skeletonWarriorObject.transform.position;
             skeletonWarrior.blockTarget = Quaternion.LookRotation(playerDirection.normalized);
-            skeletonWarrior.angularVelocityOnBlock = 1f;
+            skeletonWarrior.angularVelocityOnBlock = 15f;
         }
         else if (!skeletonWarrior.playerDirectionTaken)
         {
@@ -59,9 +59,6 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
         if (!skeletonWarrior.dead)
         {
             skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Lerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget, skeletonWarrior.angularVelocityOnBlock * Time.deltaTime);
-
-            if (Quaternion.Angle(skeletonWarrior.transform.rotation, skeletonWarrior.blockTarget) <= 2.5f && !skeletonWarrior.damaged)
-                skeletonWarrior.skeletonWarriorObject.transform.rotation = skeletonWarrior.blockTarget;
 
             if (Quaternion.Angle(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget) <= 35f && skeletonWarrior.damaged)
             {

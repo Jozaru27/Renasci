@@ -9627,7 +9627,7 @@ PrefabInstance:
     - target: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
         type: 3}
       propertyPath: m_Name
-      value: SkeletonWarrior (1)
+      value: SkeletonWarrior
       objectReference: {fileID: 0}
     - target: {fileID: 4678579111985504808, guid: 6dc4920f6f2123f4ebdafab37fac20ac,
         type: 3}
@@ -20637,7 +20637,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   - {fileID: 2100000, guid: 2e2f9137082dc5949ae18bb49ccc0211, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -21635,7 +21634,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   - {fileID: 2100000, guid: 2e2f9137082dc5949ae18bb49ccc0211, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

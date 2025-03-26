@@ -49,7 +49,9 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
         }else{
             warriorNearPlayer=false;
         }
-        if(BeginAttack()){
+
+        if(warriorNearPlayer)
+        {
             nextState=new SkeletonWarriorBlock(skeletonWarrior);
             actualPhase=EVENTS.EXIT;
         }
@@ -65,11 +67,11 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
         base.Exit();
     }
 
-    public bool BeginAttack(){
-    if(warriorNearPlayer==true){
-        return true;
-    }else{
-        return false;
-    }
-    }
+    //public bool BeginAttack(){
+    //if(warriorNearPlayer==true){
+    //    return true;
+    //}else{
+    //    return false;
+    //}
+    //}
 }
