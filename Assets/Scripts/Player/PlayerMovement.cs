@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,40 +7,26 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Dash))]
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] bool groundCheck;//
+
     [HideInInspector] public Vector3 movement;
+    [HideInInspector] public Vector2 inputMovement;
 
     [Header("Player Movement and Camera")]
     [SerializeField] float force;
-    [SerializeField] float maxSpeed;
-    [SerializeField] float maxSlopeAngle;
     [SerializeField] float rotationSpeed;
     [Header("Physics Control")]
-    [SerializeField] float stayDamping;
-    [SerializeField] float moveDamping;
-    [SerializeField] float slopeForce;
+    [SerializeField] float stayDrag;
+    [SerializeField] float moveDrag;
+    [SerializeField] GameObject groundChecker;
 
     float viewPos;
-    bool firstStepOnSlope;
-    Vector2 inputMovement;
+    bool inIdle;
     Vector3 playerMovement;
-    RaycastHit slopeHit;
+    Vector3 inputAngle;
+    Quaternion rotationTarget = Quaternion.identity;
     Rigidbody rb;
     Dash dash;
-
-    bool onSlope()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, (GetComponent<CapsuleCollider>().height / 2) + 0.3f, LayerMask.GetMask("Stairs")))
-        {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle <= maxSlopeAngle && angle != 0;
-        }
-
-        return false;
-    }
-    Vector3 slopeMovement()
-    {
-        return Vector3.ProjectOnPlane(playerMovement, slopeHit.normal).normalized;
-    }
 
     private void Start()
     {
@@ -48,81 +35,92 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        inputMovement = context.ReadValue<Vector2>();
+        if (!GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
+            inputMovement = context.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
     {
         MoveCharacter();
-        PhysicsControl();
-    }
-
-    private void Update()
-    {
         RotateCharacter();
+        PhysicsControl();
     }
 
     void MoveCharacter()
     {
-        playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
-        Vector3 velocity = rb.velocity;
-
-        if (onSlope())
+        if (!GameManager.Instance.playerCannotMove)
         {
-            movement = slopeMovement();
-
-            if (!firstStepOnSlope)
+            if (inputMovement.magnitude >= 0.25f)
             {
-                rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
-                firstStepOnSlope = true;
+                GetComponent<PlayerAnimation>().Run();
+                playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
+
+                movement = playerMovement;
+                Vector3 velocity = rb.velocity;
+
+                if (rb.velocity.magnitude < StatsManager.Instance.movementSpeed)
+                    rb.AddForce(movement * force, ForceMode.Acceleration);
+                else if (!dash.dashing)
+                    rb.velocity = velocity.normalized * StatsManager.Instance.movementSpeed;
+
+                inIdle = false;
+            }
+            else if (!inIdle)
+            {
+                GetComponent<PlayerAnimation>().Idle();
+                inIdle = true;
             }
         }
-        else
-        {
-            if (firstStepOnSlope)
-            {
-                rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
-                firstStepOnSlope = false;
-            }
-
-            movement = playerMovement;
-        }
-
-        if (rb.velocity.magnitude < maxSpeed)
-            rb.AddForce(movement * force, ForceMode.Acceleration);
-        else if (!dash.dashing)
-            rb.velocity = velocity.normalized * maxSpeed;
-
+            
         if (rb.velocity.magnitude <= 0.1f)
-            rb.velocity = new Vector3(0, 0, 0);
+            rb.velocity = Vector3.zero;
     }
 
     void RotateCharacter()
     {
-        if (inputMovement.magnitude >= 0.75f)
-            viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
+        if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.playerCannotMove)
+        {
+            //viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
+            //viewPos = Mathf.Round(viewPos * 100) / 100;
 
-        Quaternion target = Quaternion.Euler(0, viewPos, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+            inputAngle = new Vector3(inputMovement.x, 0, inputMovement.y);
+
+            if (inputAngle != Vector3.zero)
+                rotationTarget = Quaternion.LookRotation(inputAngle);
+        }
+
+        //Quaternion target = Quaternion.Euler(0, viewPos, 0);
+
+        if (Quaternion.Angle(rb.rotation, rotationTarget) > 0.15f)
+        {
+            //rb.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+            rb.rotation = Quaternion.Slerp(rb.rotation, rotationTarget, rotationSpeed * Time.deltaTime);
+
+            if (Math.Abs(rb.rotation.y - rotationTarget.y) <= 0.01f)
+                rb.rotation = rotationTarget;
+        }
     }
 
     void PhysicsControl()
     {
-        //if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, (GetComponent<CapsuleCollider>().height / 2) + 0.3f))
-        //    pivot.transform.position = slopeHit.point;
-
-        if (inputMovement == new Vector2(0, 0))
+        if (groundCheck)
         {
-            rb.drag = stayDamping;
+            if (groundChecker.GetComponent<GroundCheck>().grounded)
+            {
+                if (inputMovement == new Vector2(0, 0))
+                    rb.drag = stayDrag;
+                else
+                    rb.drag = moveDrag;
+            }
+            else
+                rb.drag = 0;
         }
         else
-            rb.drag = moveDamping;
-
-        if (onSlope())
         {
-            rb.useGravity = false;
+            if (inputMovement == new Vector2(0, 0))
+                rb.drag = stayDrag;
+            else
+                rb.drag = moveDrag;
         }
-        else
-            rb.useGravity = true;
     }
 }

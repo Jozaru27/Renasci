@@ -2,5 +2,5 @@ using UnityEngine;
 
 interface IDamageable
 {
-    void TakeDamage();
+    void TakeDamage(float amount);
 }

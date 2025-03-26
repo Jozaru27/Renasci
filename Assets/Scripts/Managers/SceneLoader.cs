@@ -46,12 +46,12 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    public void ReloadCurrentScene()
+    public void LoadCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ReloadCurrentSceneAsync()
+    public void LoadCurrentSceneAsync()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }

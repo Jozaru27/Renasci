@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealPlayer : MonoBehaviour
+{
+    [SerializeField] float heal;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(heal, transform.position, 0);
+            Destroy(this.gameObject);
+        }
+    }
+}

@@ -1,11 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public bool gamePaused;
     public bool gameOver;
+    public bool gameWin;
     public bool interacting;
     public bool dashing;
+    public bool playerCannotMove;
 
     public static GameManager Instance { get; private set; }
 
@@ -19,4 +23,16 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
+
+    public void ResetProperties()
+    {
+        gamePaused = false;
+        gameOver = false;
+        gamePaused = false;
+        gameOver = false;
+        gameWin = false;
+        interacting = false;
+        dashing = false;
+        playerCannotMove = false;
+}
 }

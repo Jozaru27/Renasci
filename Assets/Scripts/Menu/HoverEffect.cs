@@ -1,0 +1,85 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+public class HoverEffect : MonoBehaviour
+{
+    public List<GameObject> uiElementsList;
+    public Color glowColor = new Color(1f, 1f, 0.5f, 1f);
+    private Dictionary<GameObject, Color> originalColors = new Dictionary<GameObject, Color>();
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        foreach (GameObject uiElement in uiElementsList)
+        {
+            AddEventTriggers(uiElement);
+        }
+    } 
+    
+
+    private void AddEventTriggers(GameObject uiElement)
+    {
+        EventTrigger trigger = uiElement.gameObject.AddComponent<EventTrigger>();
+
+        if (trigger == null)
+        {
+            trigger = uiElement.AddComponent<EventTrigger>();
+        }
+
+        Image panelImage = uiElement.GetComponentInChildren<Image>(); 
+        
+        if (panelImage != null && !originalColors.ContainsKey(uiElement))
+        {
+            originalColors[uiElement] = panelImage.color;
+        }
+
+        // Event OnPointerEnter
+        EventTrigger.Entry entryEnter = new EventTrigger.Entry();
+        entryEnter.eventID = EventTriggerType.PointerEnter;
+        entryEnter.callback.AddListener((data) => { OnPointerEnter(uiElement); });
+        trigger.triggers.Add(entryEnter);
+
+        // Event OnPointerExit
+        EventTrigger.Entry entryExit = new EventTrigger.Entry();
+        entryExit.eventID = EventTriggerType.PointerExit;
+        entryExit.callback.AddListener((data) => { OnPointerExit(uiElement); });
+        trigger.triggers.Add(entryExit);
+
+        // Event OnPointerClick
+        EventTrigger.Entry entryClick = new EventTrigger.Entry();
+        entryClick.eventID = EventTriggerType.PointerClick;
+        entryClick.callback.AddListener((data) => { OnPointerClick(uiElement); });
+        trigger.triggers.Add(entryClick);
+    }
+
+
+    public void OnPointerEnter(GameObject uiElement)
+    {
+        Image panelImage = uiElement.GetComponentInChildren<Image>();
+
+        if (panelImage != null)
+        {
+            panelImage.color = glowColor; 
+        }
+    }
+
+    public void OnPointerExit(GameObject uiElement)
+    {
+        if (originalColors.ContainsKey(uiElement))
+        {
+            Image panelImage = uiElement.GetComponentInChildren<Image>();
+            if (panelImage != null)
+            {
+                panelImage.color = originalColors[uiElement]; 
+            }
+        }
+    }
+
+    public void OnPointerClick(GameObject uiElement)
+    {
+        OnPointerExit(uiElement); 
+    }
+}

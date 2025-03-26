@@ -4,39 +4,44 @@ using UnityEngine.InputSystem;
 
 public class Attack : MonoBehaviour
 {
+    [SerializeField] float rechargeTime;
     [SerializeField] GameObject bulletPref;
+    [SerializeField] Transform shotPoint;
+    [SerializeField] LayerMask rayMask;
 
+    int shots;
+    bool shotable = true;
     Vector2 mousePos;
-    Collider trigger;
-
-    private void Start()
-    {
-        trigger = GetComponent<Collider>();
-    }
+    Vector3 collidePosition;
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
-            StartCoroutine(EnablingTrigger());
+        if (context.started && !GameManager.Instance.gamePaused)
+        {
+            GameManager.Instance.playerCannotMove = true;
+            GetComponent<PlayerAnimation>().Attack();
+        }
     }
 
     public void DistanceAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && shotable)
         {
+            shots++;
             GameObject bullet = Instantiate(bulletPref, transform.position, Quaternion.identity);
 
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mousePos.x, mousePos.y, 0));
-            Vector3 shotPosition = new Vector3(mouseWorld.x, transform.position.y, mouseWorld.y);
+            Ray screenRay = Camera.main.ScreenPointToRay(mousePos);
 
-            Vector3 shootDirection = shotPosition - transform.position;
+            if (Physics.Raycast(screenRay,out RaycastHit hit, Mathf.Infinity, rayMask))
+                collidePosition = hit.point;
 
-            //
-            Vector3 eo = new Vector3(mousePos.x, 0, mousePos.y);
-            //shootDirection = eo - transform.position;
-            //
+            Vector3 bulletPosition = shotPoint.position;
+            Vector3 shotPosition = new Vector3(collidePosition.x, bulletPosition.y, collidePosition.z);
+            Vector3 shotDirection = shotPosition - bulletPosition;
 
-            bullet.GetComponent<Bullet>().GetMousePosition(shootDirection);
+            bullet.GetComponent<Bullet>().GetMousePosition(shotDirection);
+
+            StartCoroutine(ShootCooldown());
         }
     }
 
@@ -55,12 +60,24 @@ public class Attack : MonoBehaviour
 
     }
 
-    IEnumerator EnablingTrigger()
+    private void OnTriggerEnter(Collider other)
     {
-        trigger.enabled = true;
+        if (other.gameObject.CompareTag("Enemy"))
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(-StatsManager.Instance.damage);
+    }
 
-        yield return new WaitForSeconds(0.5f);
+    IEnumerator ShootCooldown()
+    {
+        shotable = false;
 
-        trigger.enabled = false;
+        if (shots < 6)
+            yield return new WaitForSeconds(StatsManager.Instance.shootCadence);
+        if (shots >= 6)
+        {
+            yield return new WaitForSeconds(rechargeTime);
+            shots = 0;
+        }
+
+        shotable = true;
     }
 }
