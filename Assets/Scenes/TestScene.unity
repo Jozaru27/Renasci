@@ -16623,8 +16623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ec7e5b16e0ced48a3d767ce9ee3afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootProbability: 90
-  healProbability: 30
+  lootProbability: 80
+  healProbability: 65
   heal: {fileID: 5636547287251562878, guid: a825d2dcd85fb2e44add7c3f8435a318, type: 3}
   relics:
   - {fileID: 1746488536161095525, guid: 9932b44aa109649498689fb3470293cf, type: 3}

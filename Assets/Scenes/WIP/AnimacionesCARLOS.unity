@@ -1742,7 +1742,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1746488536161095525, guid: be5f18b9a76eed64b9329079a7d6f63a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1699645688}
   m_SourcePrefab: {fileID: 100100000, guid: be5f18b9a76eed64b9329079a7d6f63a, type: 3}
 --- !u!1 &507750371
 GameObject:
@@ -3426,8 +3430,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rechargeTime: 0
+  recoilForce: 0
   bulletPref: {fileID: 3568841431210816937, guid: e8a3a5b294a53c74ba8103d5dab21a8d,
     type: 3}
+  shotPoint: {fileID: 0}
   rayMask:
     serializedVersion: 2
     m_Bits: 0
@@ -3480,8 +3486,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rechargeTime: 0
+  recoilForce: 0
   bulletPref: {fileID: 3568841431210816937, guid: e8a3a5b294a53c74ba8103d5dab21a8d,
     type: 3}
+  shotPoint: {fileID: 0}
   rayMask:
     serializedVersion: 2
     m_Bits: 0
@@ -5595,6 +5603,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1798661083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1699645687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1746488536161095525, guid: be5f18b9a76eed64b9329079a7d6f63a,
+    type: 3}
+  m_PrefabInstance: {fileID: 499666999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1699645688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699645687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f22acf6157a40b4eb5c8fc321aafb80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1733597313
 GameObject:
   m_ObjectHideFlags: 0
