@@ -119,7 +119,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void DestroyThisObject()
     {
-        GetComponent<LootSpawn>().SpawnHeal();
+        LootSpawnManager.Instance.LootProbability(transform.position);
         Destroy(this.gameObject);
     }
 
