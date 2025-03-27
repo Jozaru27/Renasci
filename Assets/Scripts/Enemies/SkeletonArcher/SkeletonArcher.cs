@@ -14,7 +14,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     public EnemyStats stats;
     public GameObject playerObject;
     public GameObject skeletonArcherObject;
-    public Animator skeletonArcherAnimator;
+    //public Animator skeletonArcherAnimator;
     public LayerMask playerMask;
     public Quaternion blockTarget = Quaternion.identity;
 
@@ -37,7 +37,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         skeletonArcherAgent = GetComponent<NavMeshAgent>();
         playerObject = GameObject.Find("Player");
         skeletonArcherObject = this.gameObject;
-        skeletonArcherAnimator=skeletonArcherObject.GetComponent<Animator>();
+        //skeletonArcherAnimator=skeletonArcherObject.GetComponent<Animator>();
         playerMask = LayerMask.GetMask("Player");
 
         skeletonArcherAgent.speed = stats.movementSpeed;
@@ -85,7 +85,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         if (stats.life <= 0)
         {
             stats.life = 0;
-            GetComponent<SkeletonArcherAnimation>().Death();
+            //GetComponent<SkeletonArcherAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();
             rb.velocity = Vector3.zero;
@@ -93,7 +93,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
             dead = true;
         }
 
-        GetComponent<SkeletonArcherAnimation>().Hit();
+        //GetComponent<SkeletonArcherAnimation>().Hit();
         //GetComponent<SkeletonArcherAnimation>().Idle();
 
         Vector3 pushDirection = transform.position - playerObject.transform.position;
@@ -152,7 +152,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         //yield return new WaitForSeconds(0.25f);
         yield return new WaitForSeconds(0);
         warriorAttackFinish = true;
-        GetComponent<SkeletonArcherAnimation>().Idle();
+        //GetComponent<SkeletonArcherAnimation>().Idle();
         Debug.Log("Termina ataque");
     }
 

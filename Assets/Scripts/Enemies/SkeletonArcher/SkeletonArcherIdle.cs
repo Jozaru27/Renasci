@@ -22,7 +22,7 @@ public class SkeletonArcherIdle : SkeletonArcherStates
         base.Entry();
         skeletonArcher.skeletonArcherAgent.isStopped = true;
         skeletonArcher.goToIdle = false;
-        skeletonArcher.skeletonArcherAnimator.SetBool("Idle", true);
+        //skeletonArcher.skeletonArcherAnimator.SetBool("Idle", true);
         waitTime = Random.Range(1f, 10f);
         skeletonArcher.StartCoroutine(WaitAndPatrol());
     }
@@ -61,7 +61,7 @@ public class SkeletonArcherIdle : SkeletonArcherStates
     public override void Exit()
     {
         base.Exit();
-        skeletonArcher.skeletonArcherAnimator.SetBool("Idle", false);
+        //skeletonArcher.skeletonArcherAnimator.SetBool("Idle", false);
     }
 
     public bool playerNear()

@@ -44,7 +44,7 @@ public class SkeletonArcherFollow : SkeletonArcherStates
         //skeletonArcher.skeletonArcherAgent.destination=skeletonArcher.playerObject.transform.position;
         skeletonArcher.skeletonArcherAgent.destination = skeletonArcher.playerObject.transform.position;
 
-        skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
+        //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
 
         if (distanceToPlayer <= skeletonArcher.stats.detectionDistance - 4)
         {
@@ -53,12 +53,6 @@ public class SkeletonArcherFollow : SkeletonArcherStates
         else
         {
             warriorNearPlayer = false;
-        }
-
-        if (warriorNearPlayer)
-        {
-            nextState = new SkeletonArcherBlock(skeletonArcher);
-            actualPhase = EVENTS.EXIT;
         }
 
         if (skeletonArcher.goToIdle)

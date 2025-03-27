@@ -22,7 +22,7 @@ public class SkeletonArcherAttack : SkeletonArcherStates
         //skeletonArcher.StartCoroutine(GoingToBlock());
         skeletonArcher.isBlocking=false;
         skeletonArcher.skeletonArcherAgent.isStopped = true;
-        skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Attack();
+        //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Attack();
         //skeletonArcher.skeletonArcherObject.transform.LookAt(skeletonArcher.playerObject.transform.position);
         base.Entry();
     }
@@ -49,13 +49,6 @@ public class SkeletonArcherAttack : SkeletonArcherStates
         {
             nextState = new SkeletonArcherFollow(skeletonArcher);
             actualPhase = EVENTS.EXIT;
-        }
-
-        
-        if(blocking())
-        {
-            nextState=new SkeletonArcherBlock(skeletonArcher);
-            actualPhase=EVENTS.EXIT;
         }
 
         if (skeletonArcher.goToIdle)
