@@ -11187,6 +11187,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.012328753, y: 0.012328751, z: 0.039968044}
   m_Center: {x: 0, y: 0.000000030267977, z: 0.019984026}
+--- !u!4 &1328436302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7771549028658808080, guid: a485210318ae32045b3ace08bda5cc98,
+    type: 3}
+  m_PrefabInstance: {fileID: 4582482485794887014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1331475511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24116,8 +24122,13 @@ PrefabInstance:
     - target: {fileID: 2501191460029249637, guid: a485210318ae32045b3ace08bda5cc98,
         type: 3}
       propertyPath: m_Name
-      value: Archer Warrior
+      value: SkeletonArcher
       objectReference: {fileID: 0}
+    - target: {fileID: 6037488271099117723, guid: a485210318ae32045b3ace08bda5cc98,
+        type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1328436302}
     - target: {fileID: 8381940841753391808, guid: a485210318ae32045b3ace08bda5cc98,
         type: 3}
       propertyPath: m_LocalPosition.x
