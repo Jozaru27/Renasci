@@ -7,9 +7,9 @@ public class SkeletonArcherFollow : SkeletonArcherStates
 {
     
     bool warriorNearPlayer=false;
+
     public SkeletonArcherFollow(SkeletonArcher _skeletonArcher) : base()
     {
-        //Debug.Log("FOLLOWING");
         name = STATES.FOLLOW;
         skeletonArcher=_skeletonArcher;
         iniateVariables(skeletonArcher);
@@ -20,7 +20,6 @@ public class SkeletonArcherFollow : SkeletonArcherStates
         //NavMeshAgent skeletonArcherNav = skeletonArcher.gameObject.GetComponent<NavMeshAgent>();
         //skeletonArcherNav.isStopped = false;
         skeletonArcher.skeletonArcherAgent.isStopped = false;
-        skeletonArcher.startBlock = false;
         skeletonArcher.warriorAttackFinish = false;
         base.Entry();
     }
@@ -34,14 +33,33 @@ public class SkeletonArcherFollow : SkeletonArcherStates
         NavMeshPath path = new NavMeshPath();
         bool pathExists = skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete;
 
-        if (!pathExists || distanceToPlayer >= skeletonArcher.stats.detectionDistance)
+        if (!pathExists || distanceToPlayer >= skeletonArcher.stats.detectionDistance * 2f)
         {
             nextState = new SkeletonArcherIdle(skeletonArcher);
             actualPhase = EVENTS.EXIT;
             return;
         }
 
-        //skeletonArcher.skeletonArcherAgent.destination=skeletonArcher.playerObject.transform.position;
+        // Si está muy cerca, se aleja
+        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance * 0.6f)
+        {
+            Vector3 dirToPlayer = (skeletonArcher.skeletonArcherObject.transform.position - skeletonArcher.playerObject.transform.position).normalized;
+            Vector3 newPos = skeletonArcher.skeletonArcherObject.transform.position + dirToPlayer * 3f; // Se aleja 3 unidades
+            skeletonArcher.skeletonArcherAgent.SetDestination(newPos);
+        }
+        else
+        {
+            skeletonArcher.skeletonArcherAgent.destination = skeletonArcher.playerObject.transform.position;
+        }
+
+        // Si está en una distancia óptima, pasa a ataque
+        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance * 0.8f &&
+            distanceToPlayer >= skeletonArcher.stats.detectionDistance * 0.6f)
+        {
+            nextState = new SkeletonArcherAttack(skeletonArcher);
+            actualPhase = EVENTS.EXIT;
+        }
+
         skeletonArcher.skeletonArcherAgent.destination = skeletonArcher.playerObject.transform.position;
 
         //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();

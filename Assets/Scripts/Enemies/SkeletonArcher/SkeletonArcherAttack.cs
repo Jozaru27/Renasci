@@ -6,9 +6,8 @@ using UnityEngine.AI;
 public class SkeletonArcherAttack : SkeletonArcherStates
 {
     
-    
     //bool warriorFarPlayer=false;
-    //bool startBlock = false;
+
     public SkeletonArcherAttack(SkeletonArcher _skeletonArcher) : base()
     {
         //Debug.Log("ATTACKING");
@@ -19,8 +18,6 @@ public class SkeletonArcherAttack : SkeletonArcherStates
 
     public override void Entry()
     {
-        //skeletonArcher.StartCoroutine(GoingToBlock());
-        skeletonArcher.isBlocking=false;
         skeletonArcher.skeletonArcherAgent.isStopped = true;
         //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Attack();
         //skeletonArcher.skeletonArcherObject.transform.LookAt(skeletonArcher.playerObject.transform.position);
@@ -56,40 +53,19 @@ public class SkeletonArcherAttack : SkeletonArcherStates
             nextState = new SkeletonArcherIdle(skeletonArcher);
             actualPhase = EVENTS.EXIT;
         }
-        
-
-
     }
 
     public override void Exit()
     {
         base.Exit();
     }
-    public bool blocking(){
-        if(skeletonArcher.startBlock==true){
+
+    public bool playerFar(){
+        if(skeletonArcher.warriorAttackFinish==true)
+        {
             return true;
         }else{
             return false;
         }
-        
-        
-    }
-    public bool playerFar(){
-    if(skeletonArcher.warriorAttackFinish==true){
-        return true;
-    }else{
-        return false;
-    }
-    }
-    /*
-    IEnumerator GoingToBlock()
-    {
-        yield return new WaitForSeconds(1f);
-        startBlock = true;
-        
-    }
-    */
-    
-
-    
+    }   
 }

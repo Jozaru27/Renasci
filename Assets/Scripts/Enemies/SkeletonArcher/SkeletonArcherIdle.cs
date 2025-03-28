@@ -11,7 +11,6 @@ public class SkeletonArcherIdle : SkeletonArcherStates
 
     public SkeletonArcherIdle(SkeletonArcher _skeletonArcher) : base()
     {
-        //Debug.Log("IDLING");
         name = STATES.IDLE;
         skeletonArcher = _skeletonArcher;
         iniateVariables(skeletonArcher);
@@ -22,8 +21,7 @@ public class SkeletonArcherIdle : SkeletonArcherStates
         base.Entry();
         skeletonArcher.skeletonArcherAgent.isStopped = true;
         skeletonArcher.goToIdle = false;
-        //skeletonArcher.skeletonArcherAnimator.SetBool("Idle", true);
-        waitTime = Random.Range(1f, 10f);
+        waitTime = Random.Range(3f, 6f);
         skeletonArcher.StartCoroutine(WaitAndPatrol());
     }
 
@@ -31,9 +29,9 @@ public class SkeletonArcherIdle : SkeletonArcherStates
     {
         float distanceToPlayer = Vector3.Distance(skeletonArcher.skeletonArcherObject.transform.position, skeletonArcher.playerObject.transform.position);
 
-        skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
+        //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
 
-        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance)
+        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance * 2f)
         {
             NavMeshPath path = new NavMeshPath();
             if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&

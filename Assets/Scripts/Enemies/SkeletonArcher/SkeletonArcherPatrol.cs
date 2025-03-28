@@ -28,7 +28,7 @@ public class SkeletonArcherPatrol : SkeletonArcherStates
     {
         float distanceToPlayer = Vector3.Distance(skeletonArcher.skeletonArcherObject.transform.position, skeletonArcher.playerObject.transform.position);
 
-        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance)
+        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance * 2.0)
         {
             NavMeshPath path = new NavMeshPath();
             if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&

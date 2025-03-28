@@ -52,7 +52,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         distanceToPLayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
 
         RaycastHit hit;
-        if (Physics.Raycast(skeletonArcherObject.transform.position,transform.TransformDirection(Vector3.forward),out hit,5,playerMask))
+        if (Physics.Raycast(skeletonArcherObject.transform.position,transform.TransformDirection(Vector3.forward), out hit, 5 ,playerMask))
         {
             lookingAtPlayer = true;
         }
