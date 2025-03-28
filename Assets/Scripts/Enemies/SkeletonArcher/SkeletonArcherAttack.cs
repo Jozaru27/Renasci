@@ -21,6 +21,7 @@ public class SkeletonArcherAttack : SkeletonArcherStates
         skeletonArcher.skeletonArcherAgent.isStopped = true;
         //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Attack();
         //skeletonArcher.skeletonArcherObject.transform.LookAt(skeletonArcher.playerObject.transform.position);
+        skeletonArcher.StartCoroutine(AttackCoroutine());
         base.Entry();
     }
 
@@ -42,10 +43,23 @@ public class SkeletonArcherAttack : SkeletonArcherStates
         }
         */
 
-        if (playerFar())
+        //if (playerFar())
+        //{
+        //    nextState = new SkeletonArcherFollow(skeletonArcher);
+        //    actualPhase = EVENTS.EXIT;
+        //}
+
+        if (distanceToPlayer > 6.5f)
         {
             nextState = new SkeletonArcherFollow(skeletonArcher);
             actualPhase = EVENTS.EXIT;
+        }
+
+        if (distanceToPlayer < 3f)
+        {
+            nextState = new SkeletonArcherFollow(skeletonArcher);
+            actualPhase = EVENTS.EXIT;
+            return;
         }
 
         if (skeletonArcher.goToIdle)
@@ -60,12 +74,38 @@ public class SkeletonArcherAttack : SkeletonArcherStates
         base.Exit();
     }
 
-    public bool playerFar(){
-        if(skeletonArcher.warriorAttackFinish==true)
+    //public bool playerFar(){
+    //    if(skeletonArcher.archerAttackFinish==true)
+    //    {
+    //        return true;
+    //    }else{
+    //        return false;
+    //    }
+    //}
+
+    IEnumerator AttackCoroutine() // A REVISAR SEGÚN ANIMACIONES
+    {
+        yield return new WaitForSeconds(1f); // Espera 1 segundo antes de disparar
+
+        FireArrow(); // Dispara la flecha
+
+        yield return new WaitForSeconds(0.5f); // Pequeño retraso entre ataques
+
+        skeletonArcher.archerAttackFinish = true; // Marca que terminó el ataque
+    }
+
+    void FireArrow()
+    {
+        if (skeletonArcher.arrowPrefab != null && skeletonArcher.firePoint != null)
         {
-            return true;
-        }else{
-            return false;
+            GameObject arrow = GameObject.Instantiate(skeletonArcher.arrowPrefab, skeletonArcher.firePoint.position, Quaternion.identity);
+            Rigidbody rb = arrow.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                Vector3 direction = (skeletonArcher.playerObject.transform.position - skeletonArcher.firePoint.position).normalized;
+                rb.velocity = direction * 15f;
+            }
         }
-    }   
+    }
 }

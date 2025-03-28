@@ -31,7 +31,7 @@ public class SkeletonArcherIdle : SkeletonArcherStates
 
         //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
 
-        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance * 2f)
+        if (distanceToPlayer <= 7.5f)
         {
             NavMeshPath path = new NavMeshPath();
             if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&

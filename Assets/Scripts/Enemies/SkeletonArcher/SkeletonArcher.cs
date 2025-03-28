@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class SkeletonArcher : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonArcherAgent;
-    public Renderer rend1, rend2, rend3;
+    //public Renderer rend1, rend2, rend3;
     public Collider attackTrigger;
     SkeletonArcherStates FSM;
     Rigidbody rb;
@@ -16,20 +16,23 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     public GameObject skeletonArcherObject;
     //public Animator skeletonArcherAnimator;
     public LayerMask playerMask;
-    public Quaternion blockTarget = Quaternion.identity;
 
-    public float angularVelocityOnBlock;
-    public bool isBlocking=false;
+    //public float angularVelocityOnBlock;
+    //public bool isBlocking=false;
     public bool lookingAtPlayer = false;
-    public bool startBlock = false;
-    public bool warriorAttackFinish = false;
+    //public bool startBlock = false;
+    public bool archerAttackFinish = false;
     public bool isDamageable = false;
     public bool dead;
     public bool goToIdle;
     public bool damaged;
     public bool playerDirectionTaken;
 
+    public GameObject arrowPrefab;
+    public Transform firePoint;
+
     float distanceToPLayer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,7 +55,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         distanceToPLayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
 
         RaycastHit hit;
-        if (Physics.Raycast(skeletonArcherObject.transform.position,transform.TransformDirection(Vector3.forward), out hit, 5 ,playerMask))
+        if (Physics.Raycast(skeletonArcherObject.transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, playerMask))
         {
             lookingAtPlayer = true;
         }
@@ -63,7 +66,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     }
 
     public void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player") && isBlocking==false){
+        if(other.gameObject.CompareTag("Player")){
             other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.mainDamage, skeletonArcherObject.transform.position, stats.pushForce);
             attackTrigger.enabled = false;
         }
@@ -73,14 +76,9 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     {
         float pushedForce = stats.pushedForce;
 
-        if(isBlocking==false){
-            stats.life += amount;
-            StartCoroutine(ChangingColor());
-            damaged = true;
-        }
-        else{
-            pushedForce *= 0.5f;
-        }
+        stats.life += amount;
+        StartCoroutine(ChangingColor());
+        damaged = true;
 
         if (stats.life <= 0)
         {
@@ -106,15 +104,15 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     IEnumerator ChangingColor()
     {
         //Placeholder
-        rend1.material.color = Color.red;
-        rend2.material.color = Color.red;
-        rend3.material.color = Color.red;
+        //rend1.material.color = Color.red;
+        //rend2.material.color = Color.red;
+        //rend3.material.color = Color.red;
 
         yield return new WaitForSeconds(0.125f);
 
-        rend1.material.color = Color.white;
-        rend2.material.color = Color.white;
-        rend3.material.color = Color.white;
+        //rend1.material.color = Color.white;
+        //rend2.material.color = Color.white;
+        //rend3.material.color = Color.white;
     }
 
     public void DestroyThisObject()
@@ -141,7 +139,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
 
     public void FinishAttack()
     {
-        if (distanceToPLayer >= 3)
+        if (distanceToPLayer >= 9)
         {
             StartCoroutine(FinishingAttack());
         }  
@@ -151,24 +149,8 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     {
         //yield return new WaitForSeconds(0.25f);
         yield return new WaitForSeconds(0);
-        warriorAttackFinish = true;
+        archerAttackFinish = true;
         //GetComponent<SkeletonArcherAnimation>().Idle();
         Debug.Log("Termina ataque");
-    }
-
-    public void AttackToBlock()
-    {
-        if (distanceToPLayer < 3)
-        {
-            StartCoroutine(AttackingToBlock());
-        }
-    }
-
-    IEnumerator AttackingToBlock()
-    {
-        //yield return new WaitForSeconds(1.5f);
-        yield return new WaitForSeconds(0f);
-        startBlock = true;
-        Debug.Log("EmpiezaBloqueo");
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2255686556749011516}
   - component: {fileID: 8884410640195658765}
   m_Layer: 9
-  m_Name: Archer Warrior
+  m_Name: SkeletonArcher
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,9 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonArcherAgent: {fileID: 0}
-  rend1: {fileID: 0}
-  rend2: {fileID: 0}
-  rend3: {fileID: 0}
   attackTrigger: {fileID: 0}
   stats: {fileID: 0}
   playerObject: {fileID: 0}
@@ -110,17 +107,15 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 0
-  blockTarget: {x: 0, y: 0, z: 0, w: 1}
-  angularVelocityOnBlock: 0
-  isBlocking: 0
   lookingAtPlayer: 0
-  startBlock: 0
-  warriorAttackFinish: 0
+  archerAttackFinish: 0
   isDamageable: 0
   dead: 0
   goToIdle: 0
   damaged: 0
   playerDirectionTaken: 0
+  arrowPrefab: {fileID: 100000, guid: c6af5e23fcf2553468150818eb94ef7f, type: 3}
+  firePoint: {fileID: 0}
 --- !u!114 &2255686556749011516
 MonoBehaviour:
   m_ObjectHideFlags: 0
