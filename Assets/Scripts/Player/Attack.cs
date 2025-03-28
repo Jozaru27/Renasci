@@ -27,7 +27,7 @@ public class Attack : MonoBehaviour
         if (context.started && !GameManager.Instance.gamePaused && !shoting)
         {
             GameManager.Instance.playerCannotMove = true;
-            //GetComponent<PlayerAnimation>().Attack();
+            GetComponent<PlayerAnimation>().Attack();
         }
     }
 
@@ -80,7 +80,7 @@ public class Attack : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(playerShotDirection);
 
         GetComponent<PlayerMovement>().ChangeRotation(targetRotation);
-        //GetComponent<PlayerAnimation>().Shoot();
+        GetComponent<PlayerAnimation>().Shoot();
 
         while (rb.rotation != targetRotation)
         {
