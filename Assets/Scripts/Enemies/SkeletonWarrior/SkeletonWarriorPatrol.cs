@@ -16,11 +16,15 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
     public override void Entry()
     {
         base.Entry();
-        skeletonWarrior.skeletonWarriorAgent.isStopped = false;
-        skeletonWarrior.skeletonWarriorAnimator.SetBool("Run", true);
-        skeletonWarrior.skeletonWarriorAgent.speed *= 0.5f;
-        skeletonWarrior.skeletonWarriorAnimator.speed = 0.5f;
-        SetPatrolDestination();
+
+        if (!skeletonWarrior.dead)
+        {
+            skeletonWarrior.skeletonWarriorAgent.isStopped = false;
+            skeletonWarrior.skeletonWarriorAnimator.SetBool("Run", true);
+            skeletonWarrior.skeletonWarriorAgent.speed *= 0.5f;
+            skeletonWarrior.skeletonWarriorAnimator.speed = 0.5f;
+            SetPatrolDestination();
+        }
     }
 
     public override void Updating()

@@ -8,22 +8,34 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeHealthAmount(float amount, Vector3 enemyPosition, float pushForce)
     {
-        StatsManager.Instance.life += amount;
+        float randomNum = Random.Range(0, 100);
 
         if (amount < 0)
         {
-            if (StatsManager.Instance.life < 0)
-                PlayerDeath();
-            else
-                GetComponent<PlayerAnimation>().Hit();
+            if (randomNum > StatsManager.Instance.evasion)
+            {
+                StatsManager.Instance.life += amount;
 
-            PushCharacter(enemyPosition, pushForce);
-            StartCoroutine(ChangingColor());
-            GameManager.Instance.playerCannotMove = true;
+                if (StatsManager.Instance.life < 0)
+                    PlayerDeath();
+                else
+                {
+                    GetComponent<PlayerAnimation>().Hit();
+                    StopAllCoroutines();
+                    StartCoroutine(LifeRegeneration());
+                }
+
+                PushCharacter(enemyPosition, pushForce);
+                StartCoroutine(ChangingColor());
+                GameManager.Instance.playerCannotMove = true;
+            }
         }
-        else if (StatsManager.Instance.life > 10)
+        else
+            StatsManager.Instance.life += amount;
+
+        if (StatsManager.Instance.life > 10)
             StatsManager.Instance.life = 10;
-        
+
         UIManager.Instance.ChangeLife();
     }
 
@@ -54,5 +66,15 @@ public class PlayerHealth : MonoBehaviour
 
 ;       //GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+    }
+
+    IEnumerator LifeRegeneration()
+    {
+        while (StatsManager.Instance.life < 10)
+        {
+            yield return new WaitForSeconds(1f);
+
+            StatsManager.Instance.life += StatsManager.Instance.lifeRegeneration;
+        }
     }
 }

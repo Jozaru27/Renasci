@@ -69,17 +69,23 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool stateDamage)
     {
         float pushedForce = stats.pushedForce;
 
-        if(isBlocking==false){
+        if(isBlocking==false && !stateDamage){
             stats.life += amount;
             StartCoroutine(ChangingColor());
             damaged = true;
         }
         else{
             pushedForce *= 0.5f;
+        }
+        
+        if (stateDamage)
+        {
+            stats.life += amount;
+            StartCoroutine(ChangingColor());
         }
 
         if (stats.life <= 0)
@@ -91,16 +97,20 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
             rb.velocity = Vector3.zero;
             rb.freezeRotation = true;
             dead = true;
+            skeletonWarriorAgent.isStopped = true;
         }
 
         GetComponent<SkeletonWarriorAnimation>().Hit();
         //GetComponent<SkeletonWarriorAnimation>().Idle();
 
-        Vector3 pushDirection = transform.position - playerObject.transform.position;
-        pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
-        rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+        if (!stateDamage)
+        {
+            Vector3 pushDirection = transform.position - playerObject.transform.position;
+            pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
+            rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+        }
 
-        damaged = true;////
+        //damaged = true;////
     }
 
     IEnumerator ChangingColor()

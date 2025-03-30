@@ -19,7 +19,15 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-            other.gameObject.GetComponent<IDamageable>().TakeDamage(-0.5f);
+        {
+            float randomNum = Random.Range(0, 100);
+
+            if (randomNum <= StatsManager.Instance.criticalChance)
+                other.gameObject.GetComponent<IDamageable>().TakeDamage((-0.5f * StatsManager.Instance.damageMultiplyer), false);
+            else
+                other.gameObject.GetComponent<IDamageable>().TakeDamage(-0.5f, false);
+        }
+            
         if (!other.gameObject.CompareTag("Player"))
             Destroy(gameObject);
     }

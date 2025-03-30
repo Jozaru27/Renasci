@@ -19,9 +19,14 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
     {
         //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
         //skeletonWarriorNav.isStopped = false;
-        skeletonWarrior.skeletonWarriorAgent.isStopped = false;
-        skeletonWarrior.startBlock = false;
-        skeletonWarrior.warriorAttackFinish = false;
+
+        if (!skeletonWarrior.dead)
+        {
+            skeletonWarrior.skeletonWarriorAgent.isStopped = false;
+            skeletonWarrior.startBlock = false;
+            skeletonWarrior.warriorAttackFinish = false;
+        }
+        
         base.Entry();
     }
 

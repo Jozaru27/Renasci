@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int currentRelicSlots;
     public bool gamePaused;
     public bool gameOver;
     public bool gameWin;
     public bool interacting;
     public bool dashing;
     public bool playerCannotMove;
+    public bool onInventory;
+    public GameObject[] enemies;
 
     public static GameManager Instance { get; private set; }
 
@@ -22,6 +25,11 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+    }
+
+    private void Start()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     public void ResetProperties()

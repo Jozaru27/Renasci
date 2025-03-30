@@ -72,7 +72,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool stateDamage)
     {
         float pushedForce = stats.pushedForce;
 
@@ -94,9 +94,12 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         //GetComponent<SkeletonArcherAnimation>().Hit();
         //GetComponent<SkeletonArcherAnimation>().Idle();
 
-        Vector3 pushDirection = transform.position - playerObject.transform.position;
-        pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
-        rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+        if (!stateDamage)
+        {
+            Vector3 pushDirection = transform.position - playerObject.transform.position;
+            pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
+            rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+        }
 
         damaged = true;////
     }

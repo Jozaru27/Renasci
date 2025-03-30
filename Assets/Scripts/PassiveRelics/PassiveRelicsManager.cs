@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveRelicsManager : MonoBehaviour
+public class PassiveRelicsManager : MonoBehaviour, ITakeable
 {
     StatsManager stats;
 
@@ -32,17 +32,23 @@ public class PassiveRelicsManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            stats.life += life;
-            stats.lifeRegeneration += lifeRegeneration;
-            stats.damage += damage;
-            stats.damageMultiplyer += damageMultiplyer;
-            stats.criticalChance += criticalChance;
-            stats.movementSpeed += movementSpeed;
-            stats.attackSpeed += attackSpeed;
-            stats.shootCadence += shootCadence;
-            stats.dashCooldown += dashCooldown;
-            stats.evasion += evasion;
+            OnPlayerTake();
         }
+    }
+
+    public void OnPlayerTake()
+    {
+        stats.life += life;
+        stats.lifeRegeneration += lifeRegeneration;
+        stats.damage += damage;
+        stats.damageMultiplyer += damageMultiplyer;
+        stats.criticalChance += criticalChance;
+        stats.movementSpeed += movementSpeed;
+        stats.attackSpeed += attackSpeed;
+        stats.shootCadence += shootCadence;
+        stats.dashCooldown += dashCooldown;
+        stats.evasion += evasion;
+
         Destroy(this.gameObject);
     }
 }

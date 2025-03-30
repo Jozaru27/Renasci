@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] GameObject victoryMenu;
+    [SerializeField] GameObject inventoryMenu;
 
     [Header("SettingsAreas")]
     [SerializeField] GameObject audioArea;
@@ -53,9 +54,15 @@ public class UIManager : MonoBehaviour
 
     public void EnablePauseMenu()
     {
-        pauseMenu.SetActive(true);
-        GameManager.Instance.gamePaused = true;
-        Time.timeScale = 0f;
+        if (!GameManager.Instance.gameWin && !GameManager.Instance.gameOver && !GameManager.Instance.onInventory)
+        {
+            pauseMenu.SetActive(true);
+            GameManager.Instance.gamePaused = true;
+            Time.timeScale = 0f;
+        }
+
+        if (GameManager.Instance.onInventory)
+            DisableInventoryMenu();
     }
 
     public void DisablePauseMenu()
@@ -64,6 +71,9 @@ public class UIManager : MonoBehaviour
         settingsMenu.SetActive(false);
         GameManager.Instance.gamePaused = false;
         Time.timeScale = 1f;
+
+        if (GameManager.Instance.onInventory)
+            DisableInventoryMenu();
     }
 
     public void EnableGameOverMenu()
@@ -112,5 +122,17 @@ public class UIManager : MonoBehaviour
     {
         audioArea.SetActive(false);
         videoArea.SetActive(true);
+    }
+
+    public void EnableInventoryMenu()
+    {
+        Time.timeScale = 0f;
+        inventoryMenu.SetActive(true);
+    }
+
+    public void DisableInventoryMenu()
+    {
+        Time.timeScale = 1f;
+        inventoryMenu.SetActive(false);
     }
 }
