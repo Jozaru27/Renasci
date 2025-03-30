@@ -5,6 +5,7 @@ using UnityEngine;
 public class StatsManager : MonoBehaviour
 {
     [Header("PlayerCurrentStats")]
+    public float maxLife;
     public float life;
     public float lifeRegeneration;
     public float damage;

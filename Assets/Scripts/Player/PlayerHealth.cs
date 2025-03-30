@@ -33,8 +33,8 @@ public class PlayerHealth : MonoBehaviour
         else
             StatsManager.Instance.life += amount;
 
-        if (StatsManager.Instance.life > 10)
-            StatsManager.Instance.life = 10;
+        if (StatsManager.Instance.life > StatsManager.Instance.maxLife)
+            StatsManager.Instance.life = StatsManager.Instance.maxLife;
 
         UIManager.Instance.ChangeLife();
     }
@@ -70,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator LifeRegeneration()
     {
-        while (StatsManager.Instance.life < 10)
+        while (StatsManager.Instance.life < StatsManager.Instance.maxLife)
         {
             yield return new WaitForSeconds(1f);
 

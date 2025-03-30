@@ -38,7 +38,7 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
 
     public void OnPlayerTake()
     {
-        stats.life += life;
+        stats.maxLife += life;
         stats.lifeRegeneration += lifeRegeneration;
         stats.damage += damage;
         stats.damageMultiplyer += damageMultiplyer;
