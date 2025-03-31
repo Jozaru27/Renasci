@@ -2457,7 +2457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7115f7d601b3c854f87eb959847b425b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 0
+  maxLife: 10
   life: 10
   lifeRegeneration: 0
   damage: 1
