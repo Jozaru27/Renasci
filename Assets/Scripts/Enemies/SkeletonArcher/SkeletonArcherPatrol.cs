@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,11 +16,15 @@ public class SkeletonArcherPatrol : SkeletonArcherStates
     public override void Entry()
     {
         base.Entry();
-        skeletonArcher.skeletonArcherAgent.isStopped = false;
-        //skeletonArcher.skeletonArcherAnimator.SetBool("Run", true);
-        skeletonArcher.skeletonArcherAgent.speed *= 0.5f;
-        //skeletonArcher.skeletonArcherAnimator.speed = 0.5f;
-        SetPatrolDestination();
+        if (!skeletonArcher.dead)
+        {
+            skeletonArcher.skeletonArcherAgent.isStopped = false;
+            //skeletonArcher.skeletonArcherAnimator.SetBool("Run", true);
+            skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
+            skeletonArcher.skeletonArcherAgent.speed *= 0.5f;
+            skeletonArcher.skeletonArcherAnimator.speed = 0.5f;
+            SetPatrolDestination();
+        }
     }
 
     public override void Updating()
@@ -73,7 +76,7 @@ public class SkeletonArcherPatrol : SkeletonArcherStates
         base.Exit();
         //skeletonArcher.skeletonArcherAnimator.SetBool("Run", false);
         skeletonArcher.skeletonArcherAgent.speed *= 2f;
-        //skeletonArcher.skeletonArcherAnimator.speed = 1f;
+        skeletonArcher.skeletonArcherAnimator.speed = 1f;
     }
 
     void SetPatrolDestination()

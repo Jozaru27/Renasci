@@ -23,6 +23,7 @@ public class SkeletonArcherIdle : SkeletonArcherStates
         skeletonArcher.goToIdle = false;
         waitTime = Random.Range(3f, 6f);
         skeletonArcher.StartCoroutine(WaitAndPatrol());
+        skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
     }
 
     public override void Updating()
@@ -62,17 +63,17 @@ public class SkeletonArcherIdle : SkeletonArcherStates
         //skeletonArcher.skeletonArcherAnimator.SetBool("Idle", false);
     }
 
-    public bool playerNear()
-    {
-        if (playerNearEnemy == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //public bool playerNear()
+    //{
+    //    if (playerNearEnemy == true)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
     IEnumerator WaitAndPatrol()
     {

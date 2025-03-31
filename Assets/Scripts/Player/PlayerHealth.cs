@@ -8,15 +8,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeHealthAmount(float amount, Vector3 enemyPosition, float pushForce)
     {
+        Debug.Log("A");
         float randomNum = Random.Range(0, 100);
 
         if (amount < 0)
         {
+            Debug.Log("B");
             if (randomNum > StatsManager.Instance.evasion)
             {
+                Debug.Log("C");
                 StatsManager.Instance.life += amount;
 
-                if (StatsManager.Instance.life < 0)
+                if (StatsManager.Instance.life <= 0)
                     PlayerDeath();
                 else
                 {
@@ -41,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerDeath()
     {
+        Debug.Log("D");
         GetComponent<PlayerAnimation>().Death();
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().freezeRotation = true;

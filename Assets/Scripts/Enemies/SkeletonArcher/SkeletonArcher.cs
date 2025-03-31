@@ -6,15 +6,14 @@ using UnityEngine.AI;
 public class SkeletonArcher : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonArcherAgent;
-    //public Renderer rend1, rend2, rend3;
-    public Collider attackTrigger;
+    public Renderer rend1, rend2;
     SkeletonArcherStates FSM;
     Rigidbody rb;
 
     public EnemyStats stats;
     public GameObject playerObject;
     public GameObject skeletonArcherObject;
-    //public Animator skeletonArcherAnimator;
+    public Animator skeletonArcherAnimator;
     public LayerMask playerMask;
 
     //public float angularVelocityOnBlock;
@@ -40,7 +39,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         skeletonArcherAgent = GetComponent<NavMeshAgent>();
         playerObject = GameObject.Find("Player");
         skeletonArcherObject = this.gameObject;
-        //skeletonArcherAnimator=skeletonArcherObject.GetComponent<Animator>();
+        skeletonArcherAnimator = skeletonArcherObject.GetComponent<Animator>();
         playerMask = LayerMask.GetMask("Player");
 
         skeletonArcherAgent.speed = stats.movementSpeed;
@@ -65,13 +64,6 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         }
     }
 
-    public void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
-            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.mainDamage, skeletonArcherObject.transform.position, stats.pushForce);
-            attackTrigger.enabled = false;
-        }
-    }
-
     public void TakeDamage(float amount, bool stateDamage)
     {
         float pushedForce = stats.pushedForce;
@@ -83,12 +75,13 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         if (stats.life <= 0)
         {
             stats.life = 0;
-            //GetComponent<SkeletonArcherAnimation>().Death();
+            GetComponent<SkeletonArcherAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();
             rb.velocity = Vector3.zero;
             rb.freezeRotation = true;
             dead = true;
+            skeletonArcherAgent.isStopped = true;
         }
 
         //GetComponent<SkeletonArcherAnimation>().Hit();
@@ -106,16 +99,13 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
 
     IEnumerator ChangingColor()
     {
-        //Placeholder
-        //rend1.material.color = Color.red;
-        //rend2.material.color = Color.red;
-        //rend3.material.color = Color.red;
+        rend1.material.color = Color.red;
+        rend2.material.color = Color.red;
 
         yield return new WaitForSeconds(0.125f);
 
-        //rend1.material.color = Color.white;
-        //rend2.material.color = Color.white;
-        //rend3.material.color = Color.white;
+        rend1.material.color = Color.white;
+        rend2.material.color = Color.white;
     }
 
     public void DestroyThisObject()
@@ -124,36 +114,27 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         Destroy(this.gameObject);
     }
 
-    public void EnableAttackTrigger()
-    {
-        attackTrigger.enabled = true;
-    }
-
-    public void DisableAttackTrigger()
-    {
-        attackTrigger.enabled = false;
-    }
-    /*
-    public void GoingToBlock()
-    {
-        startBlock = true;
-    }
-    */
-
     public void FinishAttack()
     {
-        if (distanceToPLayer >= 9)
-        {
-            StartCoroutine(FinishingAttack());
-        }  
+        archerAttackFinish = true;
+        goToIdle = true;
+        GetComponent<SkeletonArcherAnimation>().Idle();
     }
 
-    IEnumerator FinishingAttack()
+    public void AttackPlayer()
     {
-        //yield return new WaitForSeconds(0.25f);
-        yield return new WaitForSeconds(0);
-        archerAttackFinish = true;
-        //GetComponent<SkeletonArcherAnimation>().Idle();
-        Debug.Log("Termina ataque");
+        if (arrowPrefab != null && firePoint != null)
+        {
+            GameObject arrow = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
+            Rigidbody ArrowRb = arrow.GetComponent<Rigidbody>();
+            arrow.GetComponent<Arrow>().damage = stats.mainDamage;
+            arrow.GetComponent<Arrow>().pushForce = stats.pushForce;
+
+            if (rb != null)
+            {
+                Vector3 direction = (playerObject.transform.position - firePoint.position).normalized;
+                ArrowRb.AddForce(direction * 15f, ForceMode.Impulse);
+            }
+        }
     }
 }

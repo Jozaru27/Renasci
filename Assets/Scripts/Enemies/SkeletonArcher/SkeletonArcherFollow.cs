@@ -17,10 +17,14 @@ public class SkeletonArcherFollow : SkeletonArcherStates
 
     public override void Entry()
     {
-        //NavMeshAgent skeletonArcherNav = skeletonArcher.gameObject.GetComponent<NavMeshAgent>();
-        //skeletonArcherNav.isStopped = false;
-        skeletonArcher.skeletonArcherAgent.isStopped = false;
-        skeletonArcher.archerAttackFinish = false;
+        if (!skeletonArcher.dead)
+        {
+            //NavMeshAgent skeletonArcherNav = skeletonArcher.gameObject.GetComponent<NavMeshAgent>();
+            //skeletonArcherNav.isStopped = false;
+            skeletonArcher.skeletonArcherAgent.isStopped = false;
+            skeletonArcher.archerAttackFinish = false;
+            skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
+        }
         base.Entry();
     }
 
