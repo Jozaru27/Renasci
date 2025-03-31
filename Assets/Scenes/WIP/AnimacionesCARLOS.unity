@@ -1017,6 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7115f7d601b3c854f87eb959847b425b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLife: 0
   life: 10
   lifeRegeneration: 0
   damage: 2
@@ -1839,12 +1840,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37187e7f962b5714da8f737598b6924e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentRelicSlots: 0
   gamePaused: 0
   gameOver: 0
   gameWin: 0
   interacting: 0
   dashing: 0
   playerCannotMove: 0
+  onInventory: 0
+  enemies: []
 --- !u!4 &546743516
 Transform:
   m_ObjectHideFlags: 0
@@ -2019,6 +2023,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 984245061}
   gameOverMenu: {fileID: 1904741518}
   victoryMenu: {fileID: 1248694160}
+  inventoryMenu: {fileID: 0}
   audioArea: {fileID: 595266439}
   videoArea: {fileID: 8248024}
 --- !u!1 &651440448
@@ -3365,6 +3370,7 @@ MonoBehaviour:
   rayMask:
     serializedVersion: 2
     m_Bits: 0
+  fireDistance: 0
 --- !u!65 &1078971447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3421,6 +3427,7 @@ MonoBehaviour:
   rayMask:
     serializedVersion: 2
     m_Bits: 0
+  fireDistance: 0
 --- !u!114 &1148507162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10854,6 +10861,74 @@ Transform:
   - {fileID: 654791226654077373}
   m_Father: {fileID: 22631580986774452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6331731479464916517
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.823
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.185
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747382752908845418, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560651563357371344, guid: 4270c298f230caa4ba526cad8dcffefc,
+        type: 3}
+      propertyPath: m_Name
+      value: TreeOfEternity
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4270c298f230caa4ba526cad8dcffefc, type: 3}
 --- !u!95 &7033455319284062761
 Animator:
   serializedVersion: 5
@@ -11130,3 +11205,4 @@ SceneRoots:
   - {fileID: 3116287246589680221}
   - {fileID: 8666690366584086497}
   - {fileID: 7520674882138452777}
+  - {fileID: 6331731479464916517}
