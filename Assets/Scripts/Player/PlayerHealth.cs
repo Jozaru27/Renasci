@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] float invencibleTime;
     [SerializeField] Material material1, material2;
+
+    bool invencible;
 
     public void ChangeHealthAmount(float amount, Vector3 enemyPosition, float pushForce)
     {
         float randomNum = Random.Range(0, 100);
 
-        if (amount < 0)
+        if (amount < 0 && !invencible)
         {
             if (randomNum > StatsManager.Instance.evasion)
             {
@@ -22,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     GetComponent<PlayerAnimation>().Hit();
                     StopAllCoroutines();
-                    StartCoroutine(LifeRegeneration());
+                    StartCoroutine(MakePlayerVencible());
                 }
 
                 PushCharacter(enemyPosition, pushForce);
@@ -41,7 +44,6 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerDeath()
     {
-        Debug.Log("D");
         GetComponent<PlayerAnimation>().Death();
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().freezeRotation = true;
@@ -69,6 +71,16 @@ public class PlayerHealth : MonoBehaviour
         GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
     }
 
+    IEnumerator MakePlayerVencible()
+    {
+        invencible = true;
+
+        yield return new WaitForSeconds(invencibleTime);
+
+        invencible = false;
+        StartCoroutine(LifeRegeneration());
+    }
+
     IEnumerator LifeRegeneration()
     {
         while (StatsManager.Instance.life < StatsManager.Instance.maxLife)
@@ -78,4 +90,6 @@ public class PlayerHealth : MonoBehaviour
             StatsManager.Instance.life += StatsManager.Instance.lifeRegeneration;
         }
     }
+
+    
 }

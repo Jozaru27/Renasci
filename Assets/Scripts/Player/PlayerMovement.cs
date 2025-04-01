@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] bool groundCheck;//
 
+    [HideInInspector] public float inputFactor;
     [HideInInspector] public Vector3 movement;
     [HideInInspector] public Vector2 inputMovement;
 
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         dash = GetComponent<Dash>();
+        inputFactor = 1;
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             if (inputMovement.magnitude >= 0.25f)
             {
                 GetComponent<PlayerAnimation>().Run();
-                playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
+                playerMovement = new Vector3(inputMovement.x * inputFactor , 0, inputMovement.y * inputFactor);
 
                 movement = playerMovement;
                 Vector3 velocity = rb.velocity;
@@ -83,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             //viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
             //viewPos = Mathf.Round(viewPos * 100) / 100;
 
-            inputAngle = new Vector3(inputMovement.x, 0, inputMovement.y);
+            inputAngle = new Vector3(inputMovement.x * inputFactor, 0, inputMovement.y * inputFactor);
 
             if (inputAngle != Vector3.zero)
                 rotationTarget = Quaternion.LookRotation(inputAngle);
