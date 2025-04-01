@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// * Arquero atascarse esquina
+// * Flecha arquero
+// * Arquero esperar antes de huir
+// * Animación de Walk que no sea run
+// * Multiples Hits, No
+// * Comentar Código
+
 public class SkeletonArcher : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonArcherAgent;
@@ -130,9 +137,12 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
             arrow.GetComponent<Arrow>().damage = stats.mainDamage;
             arrow.GetComponent<Arrow>().pushForce = stats.pushForce;
 
-            if (rb != null)
+            if (ArrowRb != null)
             {
                 Vector3 direction = (playerObject.transform.position - firePoint.position).normalized;
+
+                arrow.transform.rotation = Quaternion.LookRotation(direction);
+
                 ArrowRb.AddForce(direction * 15f, ForceMode.Impulse);
             }
         }
