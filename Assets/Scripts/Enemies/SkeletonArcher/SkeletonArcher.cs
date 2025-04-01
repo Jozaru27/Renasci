@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// * Arquero atascarse esquina
-// * Flecha arquero
-// * Arquero esperar antes de huir
-// * Animación de Walk que no sea run
-// * Multiples Hits, No
+// * Navmesh - Que el Arquero no huya a una esquina quedándose artapado
+// * Flecha arquero (Crear nueva flecha prefab - Eliminar flechas tras 3 segundos - Vigilar la rotación de la flecha al caer al suelo que se mantenga en Y)
+// * Arquero - Esperar 1 sec antes de huir, Arreglas rangos de detección
+// * Animación de Walk diferente a Run, Animación de Ataque
+// * Animación de Ataque
 // * Comentar Código
+// * Stats Esqueleto
 
 public class SkeletonArcher : MonoBehaviour, IDamageable
 {
@@ -130,21 +131,22 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
 
     public void AttackPlayer()
     {
-        if (arrowPrefab != null && firePoint != null)
+
+        GameObject arrow = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
+        Rigidbody ArrowRb = arrow.GetComponent<Rigidbody>();
+        arrow.GetComponent<Arrow>().damage = stats.mainDamage;
+        arrow.GetComponent<Arrow>().pushForce = stats.pushForce;
+
+        if (ArrowRb != null)
         {
-            GameObject arrow = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
-            Rigidbody ArrowRb = arrow.GetComponent<Rigidbody>();
-            arrow.GetComponent<Arrow>().damage = stats.mainDamage;
-            arrow.GetComponent<Arrow>().pushForce = stats.pushForce;
+            Vector3 adjustedPlayerPosition = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y + 1f, playerObject.transform.position.z);
 
-            if (ArrowRb != null)
-            {
-                Vector3 direction = (playerObject.transform.position - firePoint.position).normalized;
+            Vector3 direction = (adjustedPlayerPosition - firePoint.position).normalized;
 
-                arrow.transform.rotation = Quaternion.LookRotation(direction);
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            arrow.transform.rotation = rotation * Quaternion.Euler(90f, 0f, 0f);
 
-                ArrowRb.AddForce(direction * 15f, ForceMode.Impulse);
-            }
+            ArrowRb.AddForce(direction * 15f, ForceMode.Impulse);
         }
     }
 }
