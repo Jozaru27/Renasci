@@ -8,7 +8,7 @@ public class Interact : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
         {
             Ray cameraRay = new Ray(transform.position, transform.forward);
 

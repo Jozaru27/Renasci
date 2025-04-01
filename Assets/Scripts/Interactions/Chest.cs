@@ -7,17 +7,29 @@ public class Chest : MonoBehaviour, IInteractable
     [SerializeField] GameObject[] loot;
 
     bool opened;
+    Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     public void Interact()
     {
         if (!opened)
         {
-            int randomNum = Random.Range(0, loot.Length);
-
-            GameObject generatedLoot = Instantiate(loot[randomNum], transform.position, Quaternion.identity);
-            generatedLoot.GetComponent<ITakeable>().OnPlayerTake();
-
+            anim.Play("ChestOpen");
+            GameManager.Instance.playerCannotMove = true;
             opened = true;
         }
+    }
+
+    public void OnChestOpened()
+    {
+        GameManager.Instance.playerCannotMove = false;
+
+        int randomNum = Random.Range(0, loot.Length);
+        GameObject generatedLoot = Instantiate(loot[randomNum], transform.position, Quaternion.identity);
+        generatedLoot.GetComponent<ITakeable>().OnPlayerTake();
     }
 }
