@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// * Comentar Código
-
 public class SkeletonArcher : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonArcherAgent;
@@ -125,6 +123,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         GetComponent<SkeletonArcherAnimation>().Idle();
     }
 
+    // Crea una flecha que sale dispara en dirección al jugador y le daña
     public void AttackPlayer()
     {
         GameObject arrow = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
@@ -145,35 +144,32 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         }
     }
 
+    // Hace que el arquero se reposicione cuando el jugador se acerca demasiado. Busca un camino válido, si lo encuentra huye, si no, ataca. Si se reposiciona, valora la distancia para decidir su próximo estado.
     public IEnumerator WaitAndReposition()
     {
-        yield return new WaitForSeconds(0.5f); // Espera antes de moverse
+        yield return new WaitForSeconds(0.5f);
 
         Vector3 dirToPlayer = (skeletonArcherObject.transform.position - playerObject.transform.position).normalized;
         Vector3 targetPosition = playerObject.transform.position + dirToPlayer * 6f;
 
         NavMeshPath path = new NavMeshPath();
 
-        // 🛑 Si no encuentra un camino válido, ataca en vez de quedarse quieto
         if (!(skeletonArcherAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
         {
             FSM = new SkeletonArcherAttack(this);
             isRepositioning = false;
-            yield break; // Sale de la corrutina inmediatamente
+            yield break; 
         }
 
-        // ✅ Si hay camino, sigue con la reposición
         skeletonArcherAgent.isStopped = false;
         skeletonArcherAgent.SetDestination(targetPosition);
         skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
 
-        // Espera hasta que llegue al destino antes de cambiar de estado
         while (skeletonArcherAgent.pathPending || skeletonArcherAgent.remainingDistance > 0.5f)
         {
             yield return null;
         }
 
-        // 📌 Evalúa el siguiente estado después de moverse
         float distanceToPlayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
         if (distanceToPlayer >= 5f && distanceToPlayer <= 7f)
         {
@@ -188,7 +184,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(2f);
         }
 
-        isRepositioning = false; // Permite que se vuelva a reposicionar más adelante
+        isRepositioning = false; 
     }
 
 }

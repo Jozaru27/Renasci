@@ -36,6 +36,7 @@ public class Arrow : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-damage, transform.position, pushForce);
             hasHitPlayer = true;
+            Destroy(gameObject);
         }
         else
         {
