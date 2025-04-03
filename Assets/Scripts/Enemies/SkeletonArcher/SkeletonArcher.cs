@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// * Navmesh - Que el Arquero no huya a una esquina quedándose artapado
 // * Flecha arquero (Eliminar flechas tras 3 segundos - [PLAYTEST] Vigilar la rotación de la flecha al caer al suelo que se mantenga en Y)
-// * Arquero - Esperar 1 sec antes de huir, Arreglas rangos de detección
 // * Animación de Walk diferente a Run, Animación de Ataque
 // * Animación de Ataque
 // * Comentar Código
-// * Stats Esqueleto
 
 public class SkeletonArcher : MonoBehaviour, IDamageable
 {
