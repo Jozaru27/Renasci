@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 // * Navmesh - Que el Arquero no huya a una esquina quedándose artapado
-// * Flecha arquero (Crear nueva flecha prefab - Eliminar flechas tras 3 segundos - Vigilar la rotación de la flecha al caer al suelo que se mantenga en Y)
+// * Flecha arquero (Eliminar flechas tras 3 segundos - [PLAYTEST] Vigilar la rotación de la flecha al caer al suelo que se mantenga en Y)
 // * Arquero - Esperar 1 sec antes de huir, Arreglas rangos de detección
 // * Animación de Walk diferente a Run, Animación de Ataque
 // * Animación de Ataque
@@ -39,6 +39,8 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     public Transform firePoint;
 
     float distanceToPLayer;
+
+    public bool isRepositioning = false;
 
     void Start()
     {
@@ -102,7 +104,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
             rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
         }
 
-        damaged = true;////
+        damaged = true;
     }
 
     IEnumerator ChangingColor()
@@ -131,7 +133,6 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
 
     public void AttackPlayer()
     {
-
         GameObject arrow = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
         Rigidbody ArrowRb = arrow.GetComponent<Rigidbody>();
         arrow.GetComponent<Arrow>().damage = stats.mainDamage;
@@ -149,4 +150,51 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
             ArrowRb.AddForce(direction * 15f, ForceMode.Impulse);
         }
     }
+
+    public IEnumerator WaitAndReposition()
+    {
+        yield return new WaitForSeconds(0.5f); // Espera antes de moverse
+
+        Vector3 dirToPlayer = (skeletonArcherObject.transform.position - playerObject.transform.position).normalized;
+        Vector3 targetPosition = playerObject.transform.position + dirToPlayer * 6f;
+
+        NavMeshPath path = new NavMeshPath();
+
+        // 🛑 Si no encuentra un camino válido, ataca en vez de quedarse quieto
+        if (!(skeletonArcherAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
+        {
+            FSM = new SkeletonArcherAttack(this);
+            isRepositioning = false;
+            yield break; // Sale de la corrutina inmediatamente
+        }
+
+        // ✅ Si hay camino, sigue con la reposición
+        skeletonArcherAgent.isStopped = false;
+        skeletonArcherAgent.SetDestination(targetPosition);
+        skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
+
+        // Espera hasta que llegue al destino antes de cambiar de estado
+        while (skeletonArcherAgent.pathPending || skeletonArcherAgent.remainingDistance > 0.5f)
+        {
+            yield return null;
+        }
+
+        // 📌 Evalúa el siguiente estado después de moverse
+        float distanceToPlayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
+        if (distanceToPlayer >= 5f && distanceToPlayer <= 7f)
+        {
+            FSM = new SkeletonArcherAttack(this);
+        }
+        else if (distanceToPlayer > 7f)
+        {
+            FSM = new SkeletonArcherFollow(this);
+        }
+        else
+        {
+            yield return new WaitForSeconds(2f);
+        }
+
+        isRepositioning = false; // Permite que se vuelva a reposicionar más adelante
+    }
+
 }

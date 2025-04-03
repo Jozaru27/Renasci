@@ -31,32 +31,34 @@ public class SkeletonArcherPatrol : SkeletonArcherStates
     {
         float distanceToPlayer = Vector3.Distance(skeletonArcher.skeletonArcherObject.transform.position, skeletonArcher.playerObject.transform.position);
 
-        if (distanceToPlayer <= 7.5f)
-        {
-            NavMeshPath path = new NavMeshPath();
-            if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&
-                path.status == NavMeshPathStatus.PathComplete)
-            {
-                playerNearEnemy = true;
-            }
-            else
-            {
-                playerNearEnemy = false;
-            }
-        }
-        else
-        {
-            playerNearEnemy = false;
-        }
+        //if (distanceToPlayer <= skeletonArcher.stats.detectionDistance)
+        //{
+        //    NavMeshPath path = new NavMeshPath();
+        //    if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&
+        //        path.status == NavMeshPathStatus.PathComplete)
+        //    {
+        //        playerNearEnemy = true;
+        //    }
+        //    else
+        //    {
+        //        playerNearEnemy = false;
+        //    }
+        //}
+        //else
+        //{
+        //    playerNearEnemy = false;
+        //}
 
-        if (playerNearEnemy) 
-        {
-            nextState = new SkeletonArcherFollow(skeletonArcher);
-            actualPhase = EVENTS.EXIT;
-            return;
-        }
+        //if (playerNearEnemy) 
+        //{
+        //    nextState = new SkeletonArcherFollow(skeletonArcher);
+        //    actualPhase = EVENTS.EXIT;
+        //    return;
+        //}
 
-        // Destination / Stuck Checker [! A Revisar]
+        playerNearEnemy = distanceToPlayer <= skeletonArcher.stats.detectionDistance && skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, new NavMeshPath());
+
+
         if (!skeletonArcher.skeletonArcherAgent.pathPending &&
             skeletonArcher.skeletonArcherAgent.remainingDistance <= skeletonArcher.skeletonArcherAgent.stoppingDistance)
         {
@@ -81,27 +83,23 @@ public class SkeletonArcherPatrol : SkeletonArcherStates
 
     void SetPatrolDestination()
     {
-        //int maxAttempts = 20;
         float randomDistance = Random.Range(5, 10);
         Vector3 bestPoint = skeletonArcher.transform.position;
 
-        //for (int i = 0; i < maxAttempts; i++)
-        //{
-            Vector3 randomDirection = Random.insideUnitSphere * randomDistance;
-            randomDirection.y = 0;
-            Vector3 randomPoint = skeletonArcher.transform.position + randomDirection;
+        Vector3 randomDirection = Random.insideUnitSphere * randomDistance;
+        randomDirection.y = 0;
+        Vector3 randomPoint = skeletonArcher.transform.position + randomDirection;
 
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 10f, NavMesh.AllAreas))
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPoint, out hit, 10f, NavMesh.AllAreas))
+        {
+            NavMeshPath path = new NavMeshPath();
+            if (skeletonArcher.skeletonArcherAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
             {
-                NavMeshPath path = new NavMeshPath();
-                if (skeletonArcher.skeletonArcherAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
-                {
-                    bestPoint = hit.position;
-                    //break;
-                }
+                bestPoint = hit.position;
+                    
             }
-        //}
+        }
 
         if (bestPoint != skeletonArcher.transform.position)
         {

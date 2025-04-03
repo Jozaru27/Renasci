@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,6 @@ using UnityEngine.AI;
 
 public class SkeletonArcherFollow : SkeletonArcherStates
 {
-    
-    bool warriorNearPlayer=false;
 
     public SkeletonArcherFollow(SkeletonArcher _skeletonArcher) : base()
     {
@@ -19,8 +18,6 @@ public class SkeletonArcherFollow : SkeletonArcherStates
     {
         if (!skeletonArcher.dead)
         {
-            //NavMeshAgent skeletonArcherNav = skeletonArcher.gameObject.GetComponent<NavMeshAgent>();
-            //skeletonArcherNav.isStopped = false;
             skeletonArcher.skeletonArcherAgent.isStopped = false;
             skeletonArcher.archerAttackFinish = false;
             skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
@@ -28,10 +25,8 @@ public class SkeletonArcherFollow : SkeletonArcherStates
         base.Entry();
     }
 
-    public override void Updating()
-    {
-        //NavMeshAgent skeletonArcherNav=skeletonArcher.skeletonArcherObject.GetComponent<NavMeshAgent>();
-        
+     public override void Updating()
+    {        
         float distanceToPlayer=Vector3.Distance(skeletonArcher.skeletonArcherObject.transform.position,skeletonArcher.playerObject.transform.position);
 
         NavMeshPath path = new NavMeshPath();
@@ -45,41 +40,22 @@ public class SkeletonArcherFollow : SkeletonArcherStates
         }
 
         
-        if (distanceToPlayer > 6f)
+        if (distanceToPlayer > 7f)
         {
             skeletonArcher.skeletonArcherAgent.destination = skeletonArcher.playerObject.transform.position;
         }
-        else if (distanceToPlayer < 3f) 
+        else if (distanceToPlayer < 5f) 
         {
-            Vector3 dirToPlayer = (skeletonArcher.skeletonArcherObject.transform.position - skeletonArcher.playerObject.transform.position).normalized;
-            Vector3 desiredPos = skeletonArcher.skeletonArcherObject.transform.position + dirToPlayer * 3f;
-
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(desiredPos, out hit, 10f, NavMesh.AllAreas))
-            {
-                skeletonArcher.skeletonArcherAgent.SetDestination(hit.position);
-            }
+            skeletonArcher.isRepositioning = true;
+            skeletonArcher.skeletonArcherAgent.isStopped = true;
+            skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
+            skeletonArcher.StartCoroutine(skeletonArcher.WaitAndReposition());
         }
-
-        
-        if (distanceToPlayer <= 6.5f && distanceToPlayer >= 3f)
+        else if (distanceToPlayer <= 7f && distanceToPlayer >= 5f)
         {
             nextState = new SkeletonArcherAttack(skeletonArcher);
             actualPhase = EVENTS.EXIT;
         }
-
-        //skeletonArcher.skeletonArcherAgent.destination = skeletonArcher.playerObject.transform.position;
-
-        //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
-
-        //if (distanceToPlayer <= skeletonArcher.stats.detectionDistance - 4)
-        //{
-        //    warriorNearPlayer = true;
-        //}
-        //else
-        //{
-        //    warriorNearPlayer = false;
-        //}
 
         if (skeletonArcher.goToIdle)
         {
@@ -87,16 +63,9 @@ public class SkeletonArcherFollow : SkeletonArcherStates
             actualPhase = EVENTS.EXIT;
         }
     }
+
     public override void Exit()
     {
         base.Exit();
     }
-
-    //public bool BeginAttack(){
-    //if(warriorNearPlayer==true){
-    //    return true;
-    //}else{
-    //    return false;
-    //}
-    //}
 }

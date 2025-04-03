@@ -32,7 +32,7 @@ public class SkeletonArcherIdle : SkeletonArcherStates
 
         //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
 
-        if (distanceToPlayer <= 7.5f)
+        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance)
         {
             NavMeshPath path = new NavMeshPath();
             if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&
@@ -62,18 +62,6 @@ public class SkeletonArcherIdle : SkeletonArcherStates
         base.Exit();
         //skeletonArcher.skeletonArcherAnimator.SetBool("Idle", false);
     }
-
-    //public bool playerNear()
-    //{
-    //    if (playerNearEnemy == true)
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
 
     IEnumerator WaitAndPatrol()
     {
