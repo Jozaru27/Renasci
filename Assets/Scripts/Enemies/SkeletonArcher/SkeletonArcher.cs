@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// * Flecha arquero (Eliminar flechas tras 3 segundos - [PLAYTEST] Vigilar la rotación de la flecha al caer al suelo que se mantenga en Y)
-// * Animación de Walk diferente a Run, Animación de Ataque
-// * Animación de Ataque
 // * Comentar Código
 
 public class SkeletonArcher : MonoBehaviour, IDamageable

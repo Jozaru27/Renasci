@@ -37,16 +37,17 @@ public class Arrow : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-damage, transform.position, pushForce);
             hasHitPlayer = true;
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
+        else
         {
             hasHitSomethingElse = true;
+            StartCoroutine(DestroyAfterDelay(3f));
         }
-        else if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Prop"))
-        {
-            // arrowRb.isKinematic = true;
-            // arrowCollider.enabled = false;
-            hasHitSomethingElse = true;
-        }
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     // Desactiva la colisión entre la flecha y el SkeletonArcher durante un tiempo (para evitar la colisión inicial)
