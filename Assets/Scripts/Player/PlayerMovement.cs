@@ -29,8 +29,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Dash dash;
 
+    //AudioSource audioSource;
+    //public AudioClip walkSound;
+
     private void Start()
     {
+        //audioSource = this.gameObject.GetComponent<AudioSource>();
+
         rb = GetComponent<Rigidbody>();
         dash = GetComponent<Dash>();
         inputFactor = 1;
@@ -57,14 +62,20 @@ public class PlayerMovement : MonoBehaviour
                 GetComponent<PlayerAnimation>().Run();
                 playerMovement = new Vector3(inputMovement.x * inputFactor , 0, inputMovement.y * inputFactor);
 
+                //audioSource.clip = walkSound;
+                //audioSource.Play();
+
                 movement = playerMovement;
                 Vector3 velocity = rb.velocity;
 
                 if (rb.velocity.magnitude < StatsManager.Instance.movementSpeed)
+                {
                     rb.AddForce(movement * force, ForceMode.Acceleration);
+                }
                 else if (!dash.dashing)
+                {
                     rb.velocity = velocity.normalized * StatsManager.Instance.movementSpeed;
-
+                }
                 inIdle = false;
             }
             else if (!inIdle)
