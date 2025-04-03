@@ -26,7 +26,9 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
             skeletonWarrior.startBlock = false;
             skeletonWarrior.warriorAttackFinish = false;
         }
-        
+
+        skeletonWarrior.isBlocking = false;
+
         base.Entry();
     }
 

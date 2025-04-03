@@ -25,6 +25,7 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
         skeletonWarrior.skeletonWarriorAnimator.SetBool("Idle", true);
         waitTime = Random.Range(1f, 10f);
         skeletonWarrior.StartCoroutine(WaitAndPatrol());
+        skeletonWarrior.isBlocking = false;
     }
 
     public override void Updating()

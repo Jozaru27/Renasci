@@ -19,13 +19,13 @@ public class PlayerSounds : MonoBehaviour
     {
         
     }
-    void Step1Sound()
+    public void Step1Sound()
     {
         //audioSource.clip = step1;
         audioSource.PlayOneShot(step1);
     }
 
-    void Step2Sound()
+    public void Step2Sound()
     {
         //audioSource.clip = step2;
         audioSource.PlayOneShot(step2);

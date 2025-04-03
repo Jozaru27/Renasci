@@ -25,6 +25,8 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
             skeletonWarrior.skeletonWarriorAnimator.speed = 0.5f;
             SetPatrolDestination();
         }
+
+        skeletonWarrior.isBlocking = false;
     }
 
     public override void Updating()
