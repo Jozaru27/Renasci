@@ -10970,6 +10970,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   step1: {fileID: 8300000, guid: 66c88e2b59a6e6c45adb84d959e97049, type: 3}
   step2: {fileID: 8300000, guid: 7e607359514b7a64094a09c3c826c993, type: 3}
+  dash: {fileID: 8300000, guid: ad0700baf3c9dd544be3bae7747dcce5, type: 3}
+  attack: {fileID: 8300000, guid: 91355da815be384458abfe616b40684b, type: 3}
+  death: {fileID: 8300000, guid: 2fbbef17a58ca7d49990e00499625583, type: 3}
 --- !u!82 &7033455319284062763
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11027,7 +11030,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
