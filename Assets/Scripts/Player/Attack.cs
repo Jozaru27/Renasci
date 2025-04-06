@@ -26,14 +26,14 @@ public class Attack : MonoBehaviour
 
     List<GameObject> inRangeEnemies = new List<GameObject>();
 
-    enum Relics
+    public enum Relics
     {
         Fire,
         Ice,
         Wind,
         none
     }
-    Relics currentRelic = Relics.none;
+    public static Relics currentRelic = Relics.none;
 
     private void Start()
     {
