@@ -19,6 +19,6 @@ MonoBehaviour:
   heal: 0
   movementSpeed: 3.5
   actionSpeed: 0.4
-  pushForce: 15
-  detectionDistance: 7
+  pushForce: 10
+  detectionDistance: 15
   pushedForce: 5

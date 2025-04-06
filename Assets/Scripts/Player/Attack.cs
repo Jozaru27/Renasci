@@ -14,6 +14,7 @@ public class Attack : MonoBehaviour
 
     [Header("Relic Behaviour")]
     [SerializeField] float fireDistance;
+    [SerializeField] LayerMask burnableMask;
 
     int shots;
     int relicSlot = 0;
@@ -185,10 +186,9 @@ public class Attack : MonoBehaviour
 
         GameManager.Instance.playerCannotMove = false;
 
-        foreach (GameObject enemy in GameManager.Instance.enemies)
+        foreach (Collider burnableCollider in Physics.OverlapSphere(transform.position, fireDistance, burnableMask))
         {
-            if (Vector3.Distance(transform.position, enemy.transform.position) <= fireDistance)
-                inRangeEnemies.Add(enemy);
+            inRangeEnemies.Add(burnableCollider.gameObject);
         }
 
         StartCoroutine(RelicCoolDown());
@@ -209,10 +209,11 @@ public class Attack : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            foreach (GameObject enemy in inRangeEnemies)
+            foreach (GameObject burnableObj in inRangeEnemies)
             {
-                enemy.GetComponent<IDamageable>().TakeDamage(-0.25f, true);
+                burnableObj.GetComponent<IDamageable>().TakeDamage(-0.25f, true);
             }
+
             yield return new WaitForSeconds(1f);
         }
     }
