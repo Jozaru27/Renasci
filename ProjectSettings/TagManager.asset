@@ -8,6 +8,7 @@ TagManager:
   - Stairs
   - Enemy
   - Prop
+  - Obstacle
   layers:
   - Default
   - TransparentFX
