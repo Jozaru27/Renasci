@@ -145,7 +145,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(duration);
 
         Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
-        Vector3 targetPosition = playerObject.transform.position + (dirToPlayer * stats.detectionDistance);
+        Vector3 targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
         Vector3 firstVector = dirToPlayer;
 
         bool exitLoop = false;
@@ -155,27 +155,39 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         int iterations = 0;
 
-        while (!skeletonMageAgent.CalculatePath(targetPosition, path) && !exitLoop)
-        {
-            Debug.Log("B");
-            dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
+        NavMeshHit hit;
 
-            targetPosition = playerObject.transform.position + (dirToPlayer * stats.detectionDistance);
+        //while (!skeletonMageAgent.CalculatePath(targetPosition, path) && !exitLoop)
+        //{
+        //    Debug.Log("B");
+        //    //dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
+        //    dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
 
-            iterations++;
+        //    targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
 
-            if (path.status == NavMeshPathStatus.PathComplete)
-            {
-                Debug.Log("C");
-                exitLoop = true;
-                successfullLoop = true;
-            }
-            else if (iterations >= 36 || dirToPlayer == firstVector)
-            {
-                Debug.Log("D");
-                exitLoop = true;
-            }
-        }
+        //    iterations++;
+
+        //    Debug.Log(path.status);
+
+        //    if (NavMesh.SamplePosition(playerObject.transform.position, out hit, 10f, NavMesh.AllAreas))
+        //    {
+        //        Debug.Log("JOZARU");
+        //    }
+        //    else
+        //        Debug.Log("MARICON");
+
+        //    if (path.status == NavMeshPathStatus.PathComplete /*&& */)
+        //    {
+        //        Debug.Log("C");
+        //        exitLoop = true;
+        //        successfullLoop = true;
+        //    }
+        //    else if (iterations >= 36 || dirToPlayer == firstVector)
+        //    {
+        //        Debug.Log("D");
+        //        exitLoop = true;
+        //    }
+        //}
 
         //if (!(skeletonMageAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
         //{

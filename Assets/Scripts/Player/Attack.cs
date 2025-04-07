@@ -162,6 +162,9 @@ public class Attack : MonoBehaviour
         yield return new WaitForSeconds(0.125f);
 
         GameObject bullet = Instantiate(bulletPref, shotPoint.position, Quaternion.identity);
+
+        UIManager.Instance.ChangeBulletCount(6 - shots);
+
         bullet.GetComponent<Bullet>().GetShotDirection(shotDirection);
 
         StartCoroutine(ShootCooldown());
@@ -226,6 +229,7 @@ public class Attack : MonoBehaviour
         {
             yield return new WaitForSeconds(rechargeTime);
             shots = 0;
+            UIManager.Instance.ChangeBulletCount(6 - shots);
         }
 
         shotable = true;
