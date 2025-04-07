@@ -31649,7 +31649,7 @@ MonoBehaviour:
   goToIdle: 0
   damaged: 0
   playerDirectionTaken: 0
-  arrowPrefab: {fileID: 6719897257099830832, guid: 17e6901c6e81a63478ecdcac51078ff6,
+  bulletPrefab: {fileID: 7141126841207442651, guid: 87579248b7c7c584e95ea55fa1e5e549,
     type: 3}
   firePoint: {fileID: 1292788235}
   isRepositioning: 0

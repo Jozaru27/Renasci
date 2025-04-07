@@ -27,7 +27,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public bool damaged;
     public bool playerDirectionTaken;
 
-    public GameObject arrowPrefab;
+    public GameObject bulletPrefab;
     public Transform firePoint;
 
     public bool isRepositioning = false;
@@ -117,27 +117,29 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     // Crea una flecha que sale dispara en dirección al jugador y le daña
     public void AttackPlayer()
     {
-        GameObject arrow = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
-        Rigidbody ArrowRb = arrow.GetComponent<Rigidbody>();
-        arrow.GetComponent<Arrow>().damage = stats.mainDamage;
-        arrow.GetComponent<Arrow>().pushForce = stats.pushForce;
+        GameObject magicBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        Rigidbody bulletRb = magicBullet.GetComponent<Rigidbody>();
+        magicBullet.GetComponent<MagicBullet>().damage = stats.mainDamage;
+        magicBullet.GetComponent<MagicBullet>().pushForce = stats.pushForce;
 
-        if (ArrowRb != null)
+        if (bulletRb != null)
         {
             Vector3 adjustedPlayerPosition = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y + 1f, playerObject.transform.position.z);
 
             Vector3 direction = (adjustedPlayerPosition - firePoint.position).normalized;
 
             Quaternion rotation = Quaternion.LookRotation(direction);
-            arrow.transform.rotation = rotation * Quaternion.Euler(90f, 0f, 0f);
+            magicBullet.transform.rotation = rotation * Quaternion.Euler(90f, 0f, 0f);
 
-            ArrowRb.AddForce(direction * 15f, ForceMode.Impulse);
+            bulletRb.AddForce(direction * 15f, ForceMode.Impulse);
         }
     }
 
     // Hace que el mago se teletransporte cuando el jugador se acerca demasiado. Busca un sitio válido en la sala, si lo encuentra se teletransporta
     public IEnumerator Teleporting(float duration)
     {
+        Debug.Log("A");
+
         damaged = false;
 
         yield return new WaitForSeconds(duration);
@@ -147,17 +149,32 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         Vector3 firstVector = dirToPlayer;
 
         bool exitLoop = false;
+        bool successfullLoop = false;
 
         NavMeshPath path = new NavMeshPath();
 
+        int iterations = 0;
+
         while (!skeletonMageAgent.CalculatePath(targetPosition, path) && !exitLoop)
         {
+            Debug.Log("B");
             dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
 
             targetPosition = playerObject.transform.position + (dirToPlayer * stats.detectionDistance);
 
-            if (dirToPlayer == firstVector && path.status == NavMeshPathStatus.PathComplete)
+            iterations++;
+
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                Debug.Log("C");
                 exitLoop = true;
+                successfullLoop = true;
+            }
+            else if (iterations >= 36 || dirToPlayer == firstVector)
+            {
+                Debug.Log("D");
+                exitLoop = true;
+            }
         }
 
         //if (!(skeletonMageAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
@@ -170,8 +187,11 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         skeletonMageAgent.isStopped = false;
         //skeletonMageAgent.SetDestination(targetPosition);
 
-        if (!dead)
+        if (!dead && successfullLoop)
+        {
+            Debug.Log("E");
             transform.position = targetPosition;
+        }
         //skeletonMageObject.GetComponent<SkeletonMageAnimation>().Run();
 
         while (skeletonMageAgent.pathPending || skeletonMageAgent.remainingDistance > 0.5f)
