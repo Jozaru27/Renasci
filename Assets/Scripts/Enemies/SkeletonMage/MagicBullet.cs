@@ -14,7 +14,6 @@ public class MagicBullet : MonoBehaviour
     {
         playerObj = GameObject.Find("Player");
         StartCoroutine(Disappearing());
-        Destroy(this.gameObject);
     }
 
     private void Update()
