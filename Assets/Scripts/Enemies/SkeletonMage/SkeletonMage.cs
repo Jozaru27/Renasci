@@ -114,7 +114,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         GetComponent<SkeletonMageAnimation>().Idle();
     }
 
-    // Crea una flecha que sale dispara en dirección al jugador y le daña
+    // Crea una flecha que sale dispara en direcciï¿½n al jugador y le daï¿½a
     public void AttackPlayer()
     {
         GameObject magicBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
@@ -135,80 +135,131 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         }
     }
 
-    // Hace que el mago se teletransporte cuando el jugador se acerca demasiado. Busca un sitio válido en la sala, si lo encuentra se teletransporta
+    // Hace que el mago se teletransporte cuando el jugador se acerca demasiado. Busca un sitio vï¿½lido en la sala, si lo encuentra se teletransporta
+    // public IEnumerator Teleporting(float duration)
+    // {
+    //     Debug.Log("A");
+
+    //     damaged = false;
+
+    //     yield return new WaitForSeconds(duration);
+
+    //     Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
+    //     Vector3 targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
+    //     Vector3 firstVector = dirToPlayer;
+
+    //     bool exitLoop = false;
+    //     bool successfullLoop = false;
+
+    //     NavMeshPath path = new NavMeshPath();
+
+    //     int iterations = 0;
+
+    //     NavMeshHit hit;
+
+    //     //while (!skeletonMageAgent.CalculatePath(targetPosition, path) && !exitLoop)
+    //     //{
+    //     //    Debug.Log("B");
+    //     //    //dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
+    //     //    dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
+
+    //     //    targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
+
+    //     //    iterations++;
+
+    //     //    Debug.Log(path.status);
+
+    //     //    if (NavMesh.SamplePosition(playerObject.transform.position, out hit, 10f, NavMesh.AllAreas))
+    //     //    {
+    //     //        Debug.Log("JOZARU");
+    //     //    }
+    //     //    else
+    //     //        Debug.Log("MARICON");
+
+    //     //    if (path.status == NavMeshPathStatus.PathComplete /*&& */)
+    //     //    {
+    //     //        Debug.Log("C");
+    //     //        exitLoop = true;
+    //     //        successfullLoop = true;
+    //     //    }
+    //     //    else if (iterations >= 36 || dirToPlayer == firstVector)
+    //     //    {
+    //     //        Debug.Log("D");
+    //     //        exitLoop = true;
+    //     //    }
+    //     //}
+
+    //     //if (!(skeletonMageAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
+    //     //{
+    //     //    FSM = new SkeletonMageAttack(this);
+    //     //    isRepositioning = false;
+    //     //    yield break;
+    //     //}
+
+    //     skeletonMageAgent.isStopped = false;
+    //     //skeletonMageAgent.SetDestination(targetPosition);
+
+    //     if (!dead && successfullLoop)
+    //     {
+    //         Debug.Log("E");
+    //         transform.position = targetPosition;
+    //     }
+    //     //skeletonMageObject.GetComponent<SkeletonMageAnimation>().Run();
+
+    //     while (skeletonMageAgent.pathPending || skeletonMageAgent.remainingDistance > 0.5f)
+    //     {
+    //         yield return null;
+    //     }
+
+    //     float distanceToPlayer = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
+
+    //     if (distanceToPlayer >= 5f && distanceToPlayer <= stats.detectionDistance)
+    //         FSM = new SkeletonMageAttack(this);
+    //     else
+    //         yield return new WaitForSeconds(2f);
+
+    //     isRepositioning = false;
+    // }
+
     public IEnumerator Teleporting(float duration)
     {
-        Debug.Log("A");
-
         damaged = false;
-
         yield return new WaitForSeconds(duration);
 
         Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
-        Vector3 targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
-        Vector3 firstVector = dirToPlayer;
+        Vector3 originalDir = dirToPlayer;
+        float radius = stats.detectionDistance;
+        Vector3 targetPosition = playerObject.transform.position - dirToPlayer * radius;
 
-        bool exitLoop = false;
-        bool successfullLoop = false;
+        bool foundValidSpot = false;
+        int maxAttempts = 36;
+        int attempts = 0;
 
-        NavMeshPath path = new NavMeshPath();
+        NavMeshHit hit = new NavMeshHit();
 
-        int iterations = 0;
-
-        NavMeshHit hit;
-
-        //while (!skeletonMageAgent.CalculatePath(targetPosition, path) && !exitLoop)
-        //{
-        //    Debug.Log("B");
-        //    //dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
-        //    dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
-
-        //    targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
-
-        //    iterations++;
-
-        //    Debug.Log(path.status);
-
-        //    if (NavMesh.SamplePosition(playerObject.transform.position, out hit, 10f, NavMesh.AllAreas))
-        //    {
-        //        Debug.Log("JOZARU");
-        //    }
-        //    else
-        //        Debug.Log("MARICON");
-
-        //    if (path.status == NavMeshPathStatus.PathComplete /*&& */)
-        //    {
-        //        Debug.Log("C");
-        //        exitLoop = true;
-        //        successfullLoop = true;
-        //    }
-        //    else if (iterations >= 36 || dirToPlayer == firstVector)
-        //    {
-        //        Debug.Log("D");
-        //        exitLoop = true;
-        //    }
-        //}
-
-        //if (!(skeletonMageAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
-        //{
-        //    FSM = new SkeletonMageAttack(this);
-        //    isRepositioning = false;
-        //    yield break;
-        //}
-
-        skeletonMageAgent.isStopped = false;
-        //skeletonMageAgent.SetDestination(targetPosition);
-
-        if (!dead && successfullLoop)
+        while (attempts < maxAttempts)
         {
-            Debug.Log("E");
-            transform.position = targetPosition;
+            Quaternion rotation = Quaternion.AngleAxis(10f, Vector3.up);
+            dirToPlayer = rotation * dirToPlayer;
+            targetPosition = playerObject.transform.position - dirToPlayer.normalized * radius;
+
+            if (NavMesh.SamplePosition(targetPosition, out hit, 1f, NavMesh.AllAreas))
+            {
+                foundValidSpot = true;
+                break;
+            }
+
+            attempts++;
         }
-        //skeletonMageObject.GetComponent<SkeletonMageAnimation>().Run();
 
-        while (skeletonMageAgent.pathPending || skeletonMageAgent.remainingDistance > 0.5f)
+        if (foundValidSpot && !dead)
         {
-            yield return null;
+            skeletonMageAgent.Warp(hit.position);
+            Debug.Log("Teleported to: " + hit.position);
+        }
+        else
+        {
+            Debug.Log("No valid teleport point found.");
         }
 
         float distanceToPlayer = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
@@ -220,4 +271,5 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         isRepositioning = false;
     }
+
 }
