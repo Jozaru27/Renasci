@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     [Header("Setting Areas")]
     [SerializeField] GameObject audioArea;
     [SerializeField] GameObject videoArea;
-
+    
     public void Play()
     {
         SceneLoader.Instance.LoadNextScene();
