@@ -12,6 +12,7 @@ public class PlayerSounds : MonoBehaviour
     public AudioClip attack;
     public AudioClip death;
     public AudioClip hit;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class PlayerSounds : MonoBehaviour
     {
         
     }
+
     /*
     public void Step1Sound()
     {
