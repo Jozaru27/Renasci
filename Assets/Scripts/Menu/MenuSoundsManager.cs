@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class MenuSoundsManager : MonoBehaviour
 {
+    public AudioClip click;
+    public AudioClip hover;
+
+    public AudioSource audioSource;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
+        audioSource=this.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void playClickSound(){
+        Debug.Log(click);
+        audioSource.PlayOneShot(click,2f);
+    }
+
+    public void PlayHoverSound()
     {
-        
+        audioSource.Stop();
+        audioSource.PlayOneShot(hover,2f);
     }
 }

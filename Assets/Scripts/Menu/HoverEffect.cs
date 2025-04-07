@@ -10,9 +10,11 @@ public class HoverEffect : MonoBehaviour
     public Color glowColor = new Color(1f, 1f, 0.5f, 1f);
     private Dictionary<GameObject, Color> originalColors = new Dictionary<GameObject, Color>();
 
+    MenuSoundsManager soundsManager;
     // Start is called before the first frame update
     void Start()
     {
+        soundsManager=FindObjectOfType<MenuSoundsManager>();
         foreach (GameObject uiElement in uiElementsList)
         {
             AddEventTriggers(uiElement);
@@ -62,6 +64,7 @@ public class HoverEffect : MonoBehaviour
 
         if (panelImage != null)
         {
+            soundsManager.PlayHoverSound();
             panelImage.color = glowColor; 
         }
     }
