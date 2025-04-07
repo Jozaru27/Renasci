@@ -11,6 +11,7 @@ public class PlayerSounds : MonoBehaviour
     public AudioClip dash;
     public AudioClip attack;
     public AudioClip death;
+    public AudioClip hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,5 +66,10 @@ public class PlayerSounds : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.PlayOneShot(death, 5f);
+    }
+
+    public void playHitSound()
+    {
+        audioSource.PlayOneShot(hit,5f);
     }
 }

@@ -3373,6 +3373,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   fireDistance: 0
+  burnableMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1078971447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3429,7 +3432,10 @@ MonoBehaviour:
   rayMask:
     serializedVersion: 2
     m_Bits: 0
-  fireDistance: 0
+  fireDistance: 5
+  burnableMask:
+    serializedVersion: 2
+    m_Bits: 4608
 --- !u!114 &1148507162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6440,6 +6446,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DestructibleObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 332065254201953206, guid: 25e4149e59fa30d4cb3bf9c4e176f7de,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 332065254201953206, guid: 25e4149e59fa30d4cb3bf9c4e176f7de,
         type: 3}
@@ -11046,6 +11057,7 @@ MonoBehaviour:
   dash: {fileID: 8300000, guid: ad0700baf3c9dd544be3bae7747dcce5, type: 3}
   attack: {fileID: 8300000, guid: 91355da815be384458abfe616b40684b, type: 3}
   death: {fileID: 8300000, guid: 2fbbef17a58ca7d49990e00499625583, type: 3}
+  hit: {fileID: 8300000, guid: 0dbccc2096f0bf648bf90f9d081158cc, type: 3}
 --- !u!82 &7033455319284062763
 AudioSource:
   m_ObjectHideFlags: 0
