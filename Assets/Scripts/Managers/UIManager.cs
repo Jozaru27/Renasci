@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] TMP_Text lifeText;
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TMP_Text bulletCountText;
+    [SerializeField] TMP_Text relicText;
+
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
@@ -32,6 +35,8 @@ public class UIManager : MonoBehaviour
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyCountText.text = $"Enemies left: {enemyCount}";
+        bulletCountText.text = $"Bullets: 6";
+        relicText.text = $"Relic: Fire";
         ChangeLife();
     }
 
@@ -50,6 +55,14 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.gameWin = true;
             EnableVictoryMenu();
         }
+    }
+
+    public void ChangeBulletCount(int amount)
+    {
+        if (amount <= 0)
+            bulletCountText.text = $"Bullet: RECHARGING...";
+        else
+            bulletCountText.text = $"Bullets: {amount}";
     }
 
     public void EnablePauseMenu()
