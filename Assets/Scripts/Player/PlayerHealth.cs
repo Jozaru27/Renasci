@@ -75,7 +75,15 @@ public class PlayerHealth : MonoBehaviour
     {
         invencible = true;
 
+        //GetComponent<Renderer>().material.color = Color.blue;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material2;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.blue;
+
         yield return new WaitForSeconds(invencibleTime);
+
+        //GetComponent<Renderer>().material.color = Color.white;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
 
         invencible = false;
         StartCoroutine(LifeRegeneration());
@@ -88,8 +96,7 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             StatsManager.Instance.life += StatsManager.Instance.lifeRegeneration;
+            UIManager.Instance.ChangeLife();
         }
     }
-
-    
 }

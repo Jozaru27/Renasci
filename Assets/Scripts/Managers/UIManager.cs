@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("RelicsUI")]
+    public GameObject relicsUI;
+    public TMP_Text relicsText;
+
     [Header("UI Elements")]
     [SerializeField] TMP_Text lifeText;
     [SerializeField] TMP_Text enemyCountText;

@@ -46,18 +46,21 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
         stats.dashCooldown += dashCooldown;
         stats.evasion += evasion;
 
+        //FRAN
+        UIManager.Instance.relicsUI.transform.position = transform.position + new Vector3(0, 2, 0);////
+
         if (floatingTextManager != null)
         {
-            if (life != 0) floatingTextManager.ShowFloatingText("Life + " + life, transform.position);
-            if (lifeRegeneration != 0) floatingTextManager.ShowFloatingText("Life Regen + " + lifeRegeneration, transform.position);
-            if (damage != 0) floatingTextManager.ShowFloatingText("Damage + " + damage, transform.position);
-            if (damageMultiplyer != 0) floatingTextManager.ShowFloatingText("Damage Multiplier + " + damageMultiplyer, transform.position);
-            if (criticalChance != 0) floatingTextManager.ShowFloatingText("Critical Chance + " + criticalChance, transform.position);
-            if (movementSpeed != 0) floatingTextManager.ShowFloatingText("Movement Speed + " + movementSpeed, transform.position);
-            if (attackSpeed != 0) floatingTextManager.ShowFloatingText("Attack Speed + " + attackSpeed, transform.position);
-            if (shootCadence != 0) floatingTextManager.ShowFloatingText("Shoot Cadence + " + shootCadence, transform.position);
-            if (dashCooldown != 0) floatingTextManager.ShowFloatingText("Dash Cooldown + " + dashCooldown, transform.position);
-            if (evasion != 0) floatingTextManager.ShowFloatingText("Evasion + " + evasion, transform.position);
+            if (life != 0) floatingTextManager.ShowFloatingText("Life + " + life);//, transform.position);
+            if (lifeRegeneration != 0) floatingTextManager.ShowFloatingText("Life Regen + " + lifeRegeneration);//, transform.position);
+            if (damage != 0) floatingTextManager.ShowFloatingText("Damage + " + damage);//, transform.position);
+            if (damageMultiplyer != 0) floatingTextManager.ShowFloatingText("Damage Multiplier + " + damageMultiplyer);//, transform.position);
+            if (criticalChance != 0) floatingTextManager.ShowFloatingText("Critical Chance + " + criticalChance);//, transform.position);
+            if (movementSpeed != 0) floatingTextManager.ShowFloatingText("Movement Speed + " + movementSpeed);//, transform.position);
+            if (attackSpeed != 0) floatingTextManager.ShowFloatingText("Attack Speed + " + attackSpeed);//, transform.position);
+            if (shootCadence != 0) floatingTextManager.ShowFloatingText("Shoot Cadence + " + shootCadence);//, transform.position);
+            if (dashCooldown != 0) floatingTextManager.ShowFloatingText("Dash Cooldown + " + dashCooldown);//, transform.position);
+            if (evasion != 0) floatingTextManager.ShowFloatingText("Evasion + " + evasion);//, transform.position);
         }
 
         Destroy(this.gameObject);
