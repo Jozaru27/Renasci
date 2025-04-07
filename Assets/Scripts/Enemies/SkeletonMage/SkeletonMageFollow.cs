@@ -22,6 +22,8 @@ public class SkeletonMageFollow : SkeletonMageStates
             skeletonMage.skeletonMageAgent.isStopped = false;
             skeletonMage.archerAttackFinish = false;
             gotTP = false;
+
+            skeletonMage.hasTeleported = false; // JOSE: HE AÑADIDO EL BOOL DE HAS TELEPORTED
         }
         base.Entry();
     }
@@ -41,7 +43,7 @@ public class SkeletonMageFollow : SkeletonMageStates
             return;
         }
 
-        if (distanceToPlayer < 5f && !gotTP)
+        if (distanceToPlayer < 5f && !gotTP && !skeletonMage.hasTeleported) // JOSE: HE AÑADIDO EL COMPROBADOR DE HAS TELEPORTER
         {
             skeletonMage.isRepositioning = true;
             skeletonMage.skeletonMageAgent.isStopped = true;
