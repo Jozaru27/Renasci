@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyCountText.text = $"Enemies left: {enemyCount}";
         bulletCountText.text = $"Bullets: 6";
-        relicText.text = $"Relic: Fire";
+        relicText.text = $"Relic: None";
         ChangeLife();
     }
 
@@ -67,6 +67,12 @@ public class UIManager : MonoBehaviour
             bulletCountText.text = $"Bullet: RECHARGING...";
         else
             bulletCountText.text = $"Bullets: {amount}";
+    }
+
+    public void ChangeRelicInfo(string relic)
+    {
+        if (GameManager.Instance.currentRelicSlots >= 0)
+            relicsText.text = $"Relic: {relic}";
     }
 
     public void EnablePauseMenu()
