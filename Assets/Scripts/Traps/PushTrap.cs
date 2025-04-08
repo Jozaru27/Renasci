@@ -13,8 +13,10 @@ public class PushTrap : MonoBehaviour
 
     private bool isPushing = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collider other)
     {
+        Debug.Log("Trigger entered by: " + other.name);
+
         if (!isPushing && other.CompareTag("Player"))
         {
             StartCoroutine(ActivateTrap(other));
@@ -24,11 +26,13 @@ public class PushTrap : MonoBehaviour
     private IEnumerator ActivateTrap(Collider playerCollider)
     {
         isPushing = true;
+        Debug.Log("Trap activated!");
 
         animator.SetBool("push", true);
 
         yield return new WaitForSeconds(delayBeforePush);
 
+        Debug.Log("PushZone activated");
         pushZone.SetActive(true);
 
         Rigidbody playerRb = playerCollider.GetComponent<Rigidbody>();
