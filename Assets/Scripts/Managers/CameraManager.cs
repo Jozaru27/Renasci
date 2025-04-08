@@ -6,9 +6,10 @@ using Cinemachine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera playerCamera;
-    [SerializeField] CinemachineVirtualCamera[] roomCameras;
+    [SerializeField] CinemachineVirtualCamera firstRoomCamera;
 
     CinemachineVirtualCamera currentCamera;
+    CinemachineVirtualCamera nextCamera;
 
     public static CameraManager Instance { get; private set; }
 
@@ -19,20 +20,21 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        currentCamera = roomCameras[0];
+        currentCamera = firstRoomCamera;
     }
 
-    public void ChangeToPlayerCamera()
+    public void ChangeCamerasReferences(CinemachineVirtualCamera newCamera)
     {
-        currentCamera.Priority--;
-        playerCamera.Priority++;
-        currentCamera = playerCamera;
+        if (newCamera == null)
+            newCamera = playerCamera;
+
+        nextCamera = newCamera;
     }
 
-    public void ChangeToRoomCamera(CinemachineVirtualCamera newCamera)
+    public void ChangeRoomCamera()
     {
         currentCamera.Priority--;
-        newCamera.Priority++;
-        currentCamera = newCamera;
+        nextCamera.Priority++;
+        currentCamera = nextCamera;
     }
 }

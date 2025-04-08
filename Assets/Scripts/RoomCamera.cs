@@ -6,22 +6,27 @@ using Cinemachine;
 public class RoomCamera : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera roomCamera;
-
-    public enum RoomType
-    {
-        FreeCamera,
-        StaticCamera
-    }
-    public RoomType room;
+    [SerializeField] Collider trigger;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (room == RoomType.FreeCamera)
-                CameraManager.Instance.ChangeToPlayerCamera();
+            if (roomCamera == null)
+                CameraManager.Instance.ChangeCamerasReferences(null);
             else
-                CameraManager.Instance.ChangeToRoomCamera(roomCamera);
+                CameraManager.Instance.ChangeCamerasReferences(roomCamera);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            CameraManager.Instance.ChangeRoomCamera();
+
+            trigger.enabled = false;
+            trigger.enabled = true;
         }
     }
 }
