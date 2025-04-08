@@ -11099,7 +11099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 0}
   trigger: {fileID: 1121935529}
-  room: 0
 --- !u!65 &1121935529
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17041,8 +17040,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1795212894}
-  - component: {fileID: 1795212893}
   - component: {fileID: 1795212892}
+  - component: {fileID: 1795212895}
   m_Layer: 0
   m_Name: AmbientSound
   m_TagString: Untagged
@@ -17062,7 +17061,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.638
+  m_Volume: 0.366
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17146,19 +17145,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1795212893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795212891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cbdc2d4c1a9800409f224b0fc5e7fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  folder: Assets/Sounds/AmbientSounds
 --- !u!4 &1795212894
 Transform:
   m_ObjectHideFlags: 0
@@ -17174,6 +17160,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795212895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795212891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf576c7f6961ff54eb90c308db556371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientSoundsClips:
+  - {fileID: 8300000, guid: 0d3d5c01d93445e419cc55eda23d57b3, type: 3}
+  - {fileID: 8300000, guid: 16ca6986fb4cbe94098ee93d1f730a81, type: 3}
+  - {fileID: 8300000, guid: ffd2fec5e65d5dc4cb4cf2740959d8bd, type: 3}
 --- !u!1001 &1795259608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30527,7 +30529,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 1948150461}
   trigger: {fileID: 7466817278562490414}
-  room: 1
 --- !u!65 &7466817278562490414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30757,7 +30758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 0}
   trigger: {fileID: 7572384171758097196}
-  room: 0
 --- !u!65 &7572384171758097196
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31023,7 +31023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 0}
   trigger: {fileID: 7769027834571062991}
-  room: 0
 --- !u!65 &7769027834571062991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31558,7 +31557,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 0}
   trigger: {fileID: 8001206567278626748}
-  room: 0
 --- !u!65 &8001206567278626748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31891,7 +31889,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 328496862}
   trigger: {fileID: 8466729664181243911}
-  room: 1
 --- !u!65 &8466729664181243911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32660,7 +32657,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 0}
   trigger: {fileID: 9012595330363116879}
-  room: 0
 --- !u!65 &9012595330363116879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32907,7 +32903,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 0}
   trigger: {fileID: 9196450109050407793}
-  room: 0
 --- !u!65 &9196450109050407793
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33021,7 +33016,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 63866358}
   trigger: {fileID: 9204370674050084914}
-  room: 1
 --- !u!65 &9204370674050084914
 BoxCollider:
   m_ObjectHideFlags: 0
