@@ -143,8 +143,9 @@ public class Attack : MonoBehaviour
         Vector3 bulletPosition = shotPoint.position;
         Vector3 shotPosition = new Vector3(collidePosition.x, bulletPosition.y, collidePosition.z);
         Vector3 shotDirection = shotPosition - bulletPosition;
+        Vector3 collideInPlayerFoot = new Vector3(collidePosition.x, transform.position.y, collidePosition.z);
 
-        Vector3 playerShotDirection = collidePosition - transform.position;
+        Vector3 playerShotDirection = collideInPlayerFoot - transform.position;
 
         Quaternion targetRotation = Quaternion.LookRotation(playerShotDirection);
 

@@ -16,19 +16,19 @@ public class Bullet : MonoBehaviour
         shotDirection = worldShotDirection.normalized;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             float randomNum = Random.Range(0, 100);
 
             if (randomNum <= StatsManager.Instance.criticalChance)
-                other.gameObject.GetComponent<IDamageable>().TakeDamage((-0.5f * StatsManager.Instance.damageMultiplyer), false);
+                collision.gameObject.GetComponent<IDamageable>().TakeDamage((-0.5f * StatsManager.Instance.damageMultiplyer), false);
             else
-                other.gameObject.GetComponent<IDamageable>().TakeDamage(-0.5f, false);
+                collision.gameObject.GetComponent<IDamageable>().TakeDamage(-0.5f, false);
         }
-            
-        if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Trap"))
+
+        if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Trap"))
             Destroy(gameObject);
     }
 }

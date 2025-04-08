@@ -5,6 +5,9 @@ using Cinemachine;
 
 public class RoomCamera : MonoBehaviour
 {
+    public bool entered;
+    public bool comeOut;
+
     [SerializeField] CinemachineVirtualCamera roomCamera;
     [SerializeField] Collider trigger;
 
@@ -12,10 +15,18 @@ public class RoomCamera : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (roomCamera == null)
-                CameraManager.Instance.ChangeCamerasReferences(null);
-            else
-                CameraManager.Instance.ChangeCamerasReferences(roomCamera);
+            if (!comeOut && !CameraManager.Instance.firstTime)
+            {
+                entered = true;
+
+                if (roomCamera == null)
+                    CameraManager.Instance.ChangeCamerasReferences(null, this);
+                else
+                    CameraManager.Instance.ChangeCamerasReferences(roomCamera, this);
+            }
+
+            comeOut = false;
+            CameraManager.Instance.firstTime = false;
         }
     }
 
@@ -23,10 +34,18 @@ public class RoomCamera : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            CameraManager.Instance.ChangeRoomCamera();
+            if (!entered && !CameraManager.Instance.firstTime)
+            {
+                comeOut = true;
 
-            trigger.enabled = false;
-            trigger.enabled = true;
+                CameraManager.Instance.ChangeRoomCamera(this);
+
+                trigger.enabled = false;
+                trigger.enabled = true;
+            }
+
+            entered = false;
+            CameraManager.Instance.firstTime = false;
         }
     }
 }

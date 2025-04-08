@@ -18,8 +18,6 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("SALE");
-
         if (other.gameObject.CompareTag("Ground"))
         {
             GameManager.Instance.playerCannotMove = true;

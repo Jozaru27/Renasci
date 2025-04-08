@@ -25,7 +25,7 @@ TagManager:
   - Damageable
   - Burnable
   - EnemyBullet
-  - 
+  - BulletCollision
   - 
   - 
   - 
