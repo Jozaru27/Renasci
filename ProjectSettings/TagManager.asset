@@ -9,7 +9,6 @@ TagManager:
   - Enemy
   - Prop
   - Obstacle
-  - Trap
   layers:
   - Default
   - TransparentFX
