@@ -22,7 +22,7 @@ public class SkeletonMageAttack : SkeletonMageStates
 
     public override void Updating()
     {
-        Debug.Log("ATTACK");
+        //Debug.Log("ATTACK");
         Vector3 playerDirection = skeletonMage.playerObject.transform.position - skeletonMage.skeletonMageObject.transform.position;
         Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
 

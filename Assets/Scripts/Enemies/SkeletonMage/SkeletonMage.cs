@@ -30,7 +30,6 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    public bool isRepositioning = false;
     public bool hasTeleported = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
 
 
@@ -228,41 +227,39 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public IEnumerator Teleporting(float duration)
     {
         damaged = false;
+
         yield return new WaitForSeconds(duration);
 
-        if (hasTeleported) yield break;
+        //if (hasTeleported) yield break;
 
         Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
         float minDistance = 5f;
         float maxDistance = 10f;
         Vector3 targetPosition;
-        bool foundValidSpot = false;
 
         NavMeshPath path = new NavMeshPath();
 
         float randomDistance = Random.Range(minDistance, maxDistance);
-        Vector3 rotatedDir = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f) * dirToPlayer;
+        //Vector3 rotatedDir = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f) * dirToPlayer;
+        Vector3 rotatedDir = Quaternion.AngleAxis(Random.Range(0, 360f), Vector3.up) * dirToPlayer;
         targetPosition = playerObject.transform.position - rotatedDir * randomDistance;
 
         if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 1f, NavMesh.AllAreas))
         {
             if (skeletonMageAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
-            {
                 skeletonMageAgent.Warp(hit.position);
-                foundValidSpot = true;
-            }
         }
 
-        hasTeleported = true;
-
         float distanceToPlayerFinal = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
+
+        transform.rotation = Quaternion.LookRotation(dirToPlayer * -1);
 
         if (distanceToPlayerFinal <= stats.detectionDistance)
             FSM = new SkeletonMageAttack(this);
         else
             yield return new WaitForSeconds(0.1f);
 
-        isRepositioning = false;
+        hasTeleported = false;
     }
 
     // public IEnumerator Teleporting(float duration)

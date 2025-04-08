@@ -6,8 +6,6 @@ using UnityEngine.AI;
 
 public class SkeletonMageFollow : SkeletonMageStates
 {
-    bool gotTP;
-
     public SkeletonMageFollow(SkeletonMage _skeletonMage) : base()
     {
         name = STATES.FOLLOW;
@@ -21,16 +19,23 @@ public class SkeletonMageFollow : SkeletonMageStates
         {
             skeletonMage.skeletonMageAgent.isStopped = false;
             skeletonMage.archerAttackFinish = false;
-            gotTP = false;
 
-            skeletonMage.hasTeleported = false; // JOSE: HE AÑADIDO EL BOOL DE HAS TELEPORTED
+            //skeletonMage.hasTeleported = false; // JOSE: HE AÑADIDO EL BOOL DE HAS TELEPORTED
         }
         base.Entry();
     }
 
     public override void Updating()
     {
-        Debug.Log("FOLLOW");
+        Vector3 playerDirection = skeletonMage.playerObject.transform.position - skeletonMage.skeletonMageObject.transform.position;
+        Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
+
+        skeletonMage.skeletonMageObject.transform.rotation = Quaternion.Lerp(skeletonMage.skeletonMageObject.transform.rotation, playerRotation, 5 * Time.deltaTime);
+
+        if (Quaternion.Angle(skeletonMage.skeletonMageObject.transform.rotation, playerRotation) <= 15f && skeletonMage.damaged)
+            skeletonMage.skeletonMageObject.transform.rotation = playerRotation;
+
+        //Debug.Log("FOLLOW");
         float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
 
         NavMeshPath path = new NavMeshPath();
@@ -43,13 +48,13 @@ public class SkeletonMageFollow : SkeletonMageStates
             return;
         }
 
-        if (distanceToPlayer < 5f && !gotTP && !skeletonMage.hasTeleported) // JOSE: HE AÑADIDO EL COMPROBADOR DE HAS TELEPORTER
+        if (distanceToPlayer < 5f && !skeletonMage.hasTeleported) // JOSE: HE AÑADIDO EL COMPROBADOR DE HAS TELEPORTER
         {
-            skeletonMage.isRepositioning = true;
+            Debug.Log("A");
             skeletonMage.skeletonMageAgent.isStopped = true;
             //skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Idle();
-            gotTP = true;
             skeletonMage.StartCoroutine(skeletonMage.Teleporting(1f));
+            skeletonMage.hasTeleported = true;
         }
         else if (distanceToPlayer >= 5f)
         {

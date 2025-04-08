@@ -30,7 +30,7 @@ public class SkeletonMagePatrol : SkeletonMageStates
 
     public override void Updating()
     {
-        Debug.Log("PATROL");
+        //Debug.Log("PATROL");
         float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
 
         //if (distanceToPlayer <= skeletonArcher.stats.detectionDistance)
