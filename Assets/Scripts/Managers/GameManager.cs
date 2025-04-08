@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetProperties()
     {
+        currentRelicSlots = -1;
         gamePaused = false;
         gameOver = false;
         gamePaused = false;
@@ -42,5 +43,6 @@ public class GameManager : MonoBehaviour
         interacting = false;
         dashing = false;
         playerCannotMove = false;
-}
+        onInventory = false;
+    }
 }
