@@ -21,10 +21,15 @@ public class SkeletonMageAttack : SkeletonMageStates
 
         attackRandomizer = Random.Range(0, 1);
 
-        if (attackRandomizer < 2)
-            skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Attack();
-        else
-            skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().SecondAttack();
+        if (!skeletonMage.teleporting)
+        {
+            if (attackRandomizer < 2)
+                skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Attack();
+            else
+                skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().SecondAttack();
+
+            skeletonMage.attacking = true;
+        }
         base.Entry();
     }
 

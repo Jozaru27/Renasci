@@ -22,6 +22,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     //public bool startBlock = false;
     public bool archerAttackFinish = false;
     public bool isDamageable = false;
+    public bool attacking = false;
     public bool dead;
     public bool goToIdle;
     public bool damaged;
@@ -30,7 +31,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    public bool hasTeleported = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
+    public bool teleporting = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
 
 
     void Start()
@@ -134,6 +135,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
             bulletRb.AddForce(direction * 15f, ForceMode.Impulse);
         }
+
+        attacking = false;
     }
 
     // Hace que el mago se teletransporte cuando el jugador se acerca demasiado. Busca un sitio v�lido en la sala, si lo encuentra se teletransporta
@@ -226,6 +229,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     //JOSE: TRAS MARCAR UNA DISTANCIA, CALCULA EL PATH. SI PUEDE LLEGAR (ES DECIR, EL NAVMESH ESTÁ CONECTADO, HACE UN WARP [TELETRANSPORTE INSTANTÁNEO]).
     public IEnumerator Teleporting(float duration)
     {
+        GetComponent<SkeletonMageAnimation>().Teleport();
+
         damaged = false;
 
         yield return new WaitForSeconds(duration);
@@ -259,7 +264,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         else
             yield return new WaitForSeconds(0.1f);
 
-        hasTeleported = false;
+        teleporting = false;
     }
 
     // public IEnumerator Teleporting(float duration)

@@ -18,6 +18,7 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Attack", false);
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
+        skeletonMageAnim.SetBool("Teleport", false);
     }
     public void Run()
     {
@@ -26,6 +27,7 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Attack", false);
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
+        skeletonMageAnim.SetBool("Teleport", false);
     }
     public void Attack()
     {
@@ -34,6 +36,7 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Attack", true);
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
+        skeletonMageAnim.SetBool("Teleport", false);
     }
     public void SecondAttack()
     {
@@ -42,6 +45,7 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Attack", false);
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", true);
+        skeletonMageAnim.SetBool("Teleport", false);
     }
     public void Hit()
     {
@@ -50,9 +54,18 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Attack", false);
         skeletonMageAnim.SetBool("Hit", true);
         skeletonMageAnim.SetBool("SecondAttack", false);
+        skeletonMageAnim.SetBool("Teleport", false);
         GetComponent<SkeletonMage>().goToIdle = true;
     }
-
+    public void Teleport()
+    {
+        skeletonMageAnim.SetBool("Idle", false);
+        skeletonMageAnim.SetBool("Run", false);
+        skeletonMageAnim.SetBool("Attack", false);
+        skeletonMageAnim.SetBool("Hit", false);
+        skeletonMageAnim.SetBool("SecondAttack", false);
+        skeletonMageAnim.SetBool("Teleport", true);
+    }
     public void Death()
     {
         skeletonMageAnim.SetBool("Idle", false);
@@ -60,6 +73,7 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Attack", false);
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
+        skeletonMageAnim.SetBool("Teleport", false);
         skeletonMageAnim.SetBool("Death", true);
     }
 }

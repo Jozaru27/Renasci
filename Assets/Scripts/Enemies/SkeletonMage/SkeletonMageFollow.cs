@@ -48,13 +48,13 @@ public class SkeletonMageFollow : SkeletonMageStates
             return;
         }
 
-        if (distanceToPlayer < 5f && !skeletonMage.hasTeleported) // JOSE: HE AÑADIDO EL COMPROBADOR DE HAS TELEPORTER
+        if (distanceToPlayer < 5f && !skeletonMage.teleporting && !skeletonMage.attacking) // JOSE: HE AÑADIDO EL COMPROBADOR DE HAS TELEPORTER
         {
             Debug.Log("A");
             skeletonMage.skeletonMageAgent.isStopped = true;
             //skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Idle();
             skeletonMage.StartCoroutine(skeletonMage.Teleporting(1f));
-            skeletonMage.hasTeleported = true;
+            skeletonMage.teleporting = true;
         }
         else if (distanceToPlayer >= 5f)
         {
