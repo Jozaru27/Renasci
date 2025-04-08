@@ -34,12 +34,11 @@ public class Attack : MonoBehaviour
         Wind,
         none
     }
-    public static Relics currentRelic = Relics.none;
+    public Relics currentRelic = Relics.none;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentRelic = Relics.Fire;
     }
 
     public void NormalAttack(InputAction.CallbackContext context)
@@ -83,7 +82,7 @@ public class Attack : MonoBehaviour
 
     public void ChangeRelic(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && GameManager.Instance.currentRelicSlots >= 0)
         {
             float input = context.ReadValue<float>();
 
@@ -101,12 +100,15 @@ public class Attack : MonoBehaviour
             {
                 case 0:
                     currentRelic = Relics.Fire;
+                    UIManager.Instance.ChangeRelicInfo("Fire");
                     break;
                 case 1:
                     currentRelic = Relics.Ice;
+                    UIManager.Instance.ChangeRelicInfo("Ice");
                     break;
                 case 2:
                     currentRelic = Relics.Wind;
+                    UIManager.Instance.ChangeRelicInfo("Wind");
                     break;
             }
         }
