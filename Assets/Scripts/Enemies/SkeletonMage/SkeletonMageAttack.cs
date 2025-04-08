@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class SkeletonMageAttack : SkeletonMageStates
 {
+    float attackRandomizer;
+
     public SkeletonMageAttack(SkeletonMage _skeletonMage) : base()
     {
         name = STATES.ATTACK;
@@ -16,7 +18,13 @@ public class SkeletonMageAttack : SkeletonMageStates
     public override void Entry()
     {
         skeletonMage.skeletonMageAgent.isStopped = true;
-        skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Attack();
+
+        attackRandomizer = Random.Range(0, 1);
+
+        if (attackRandomizer < 2)
+            skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Attack();
+        else
+            skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().SecondAttack();
         base.Entry();
     }
 
