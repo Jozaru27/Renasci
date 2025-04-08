@@ -63,5 +63,9 @@ public class AmbientSoundManager : MonoBehaviour
             Debug.Log("ERROR: AMBIENT SOUND COULDNT BE LOADED");
         }
     }
-    
+        //AudioType audioType = AudioType.MPEG; 
+        //if (archivePath.EndsWith(".wav"))
+        //{
+            //audioType = AudioType.WAV; 
+        //}
 }
