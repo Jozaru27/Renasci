@@ -11,7 +11,7 @@ public class MenuSoundsManager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         audioSource=this.gameObject.GetComponent<AudioSource>();
     }
 

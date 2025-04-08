@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
     public void ChangeRelicInfo(string relic)
     {
         if (GameManager.Instance.currentRelicSlots >= 0)
-            relicsText.text = $"Relic: {relic}";
+            relicText.text = $"Relic: {relic}";
     }
 
     public void EnablePauseMenu()
