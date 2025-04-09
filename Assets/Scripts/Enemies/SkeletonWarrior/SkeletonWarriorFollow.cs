@@ -19,6 +19,7 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
     {
         //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
         //skeletonWarriorNav.isStopped = false;
+        AmbientSoundManager.Instance.enableCombatMusic = true;
 
         if (!skeletonWarrior.dead)
         {
