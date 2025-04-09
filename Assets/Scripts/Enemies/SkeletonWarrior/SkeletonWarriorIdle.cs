@@ -19,6 +19,8 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
 
     public override void Entry()
     {
+ 
+
         base.Entry();
         skeletonWarrior.skeletonWarriorAgent.isStopped = true;
         skeletonWarrior.goToIdle = false;
@@ -26,6 +28,8 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
         waitTime = Random.Range(1f, 10f);
         skeletonWarrior.StartCoroutine(WaitAndPatrol());
         skeletonWarrior.isBlocking = false;
+
+       
     }
 
     public override void Updating()
@@ -82,8 +86,11 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
         yield return new WaitForSeconds(waitTime);
         if (!skeletonWarrior.lookingAtPlayer)
         {
+            
             nextState = new SkeletonWarriorPatrol(skeletonWarrior);
             actualPhase = EVENTS.EXIT;
         }
     }
+
+
 }

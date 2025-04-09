@@ -18,6 +18,7 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
 
     public override void Entry()
     {
+       
         if (!skeletonWarrior.dead)
         {
             skeletonWarrior.StartCoroutine(GoingToBlock());

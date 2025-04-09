@@ -15,6 +15,7 @@ public class SkeletonWarriorPatrol : SkeletonWarriorStates
 
     public override void Entry()
     {
+
         base.Entry();
 
         if (!skeletonWarrior.dead)
