@@ -68,9 +68,15 @@ public class SkeletonMageAttack : SkeletonMageStates
         {
             Vector3 rotation = Vector3.zero;
 
-            //rotation
+            rotation = playerRotation.eulerAngles;
 
-            skeletonMage.skeletonMageObject.transform.rotation = Quaternion.Euler(rotation);
+            Debug.Log(playerRotation);
+            Debug.Log(rotation);
+
+            //.skeletonMageObject.transform.eulerAngles = Vector3.MoveTowards(skeletonMage.skeletonMageObject.transform.eulerAngles, rotation, 1.5f * Time.deltaTime);
+
+            skeletonMageObj
+            //skeletonMage.skeletonMageObject.transform.rotation = Quaternion.Euler(rotation);
         }
 
         float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
