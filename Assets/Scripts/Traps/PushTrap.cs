@@ -11,13 +11,18 @@ public class PushTrap : MonoBehaviour
 
     private bool isPushing = false;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (isPushing) return;
-        if (!collision.gameObject.CompareTag("Player")) return;
+        if (!other.gameObject.CompareTag("Player")) return;
 
         Debug.Log("Player collided with DetectionZone");
-        StartCoroutine(ActivateTrap(collision.collider));
+        StartCoroutine(ActivateTrap(other.GetComponent<Collider>()));
     }
 
     private IEnumerator ActivateTrap(Collider playerCollider)
