@@ -75,7 +75,7 @@ public class SkeletonMageAttack : SkeletonMageStates
 
             //.skeletonMageObject.transform.eulerAngles = Vector3.MoveTowards(skeletonMage.skeletonMageObject.transform.eulerAngles, rotation, 1.5f * Time.deltaTime);
 
-            skeletonMageObj
+            //skeletonMageObj
             //skeletonMage.skeletonMageObject.transform.rotation = Quaternion.Euler(rotation);
         }
 
