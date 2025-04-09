@@ -182,7 +182,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         Debug.Log("EmpiezaBloqueo");
     }
 
-    public void EnableAmbient(){
-        AmbientSoundManager.Instance.enableCombatMusic = false;
-    }
+    //public void EnableAmbient(){
+    //    AmbientSoundManager.Instance.enableCombatMusic = false;
+    //}
 }

@@ -41,6 +41,9 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
         //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
 
+        if (distanceToPlayer > skeletonWarrior.stats.detectionDistance)
+            AmbientSoundManager.Instance.enableCombatMusic = false;
+
         //skeletonWarrior.skeletonWarriorObject.transform.position = Vector3.Slerp(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position, 2 * Time.deltaTime);
 
         //skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();

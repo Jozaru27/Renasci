@@ -11425,7 +11425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27209764a9099149a02e55930446e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invencibleTime: 1.5
+  invencibleTime: 3
   material1: {fileID: 2100000, guid: 63e8c3d8ce75eae4ebaa4935bd776825, type: 2}
   material2: {fileID: 2100000, guid: ea453f0e3ea4e0c4aa9db8399444b5b6, type: 2}
 --- !u!114 &1148507164
@@ -18302,6 +18302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf576c7f6961ff54eb90c308db556371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: []
   ambientSoundsClips:
   - {fileID: 8300000, guid: 0d3d5c01d93445e419cc55eda23d57b3, type: 3}
   - {fileID: 8300000, guid: 16ca6986fb4cbe94098ee93d1f730a81, type: 3}
@@ -31108,6 +31109,7 @@ MonoBehaviour:
   archerAttackFinish: 0
   isDamageable: 0
   attacking: 0
+  secondAttack: 0
   dead: 0
   goToIdle: 0
   damaged: 0

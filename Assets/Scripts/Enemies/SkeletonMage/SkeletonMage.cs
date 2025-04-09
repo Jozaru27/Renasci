@@ -24,6 +24,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public bool archerAttackFinish = false;
     public bool isDamageable = false;
     public bool attacking = false;
+    public bool secondAttack = false;
     public bool dead;
     public bool goToIdle;
     public bool damaged;
@@ -126,18 +127,52 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         magicBullet.GetComponent<MagicBullet>().damage = stats.mainDamage;
         magicBullet.GetComponent<MagicBullet>().pushForce = stats.pushForce;
 
-        if (bulletRb != null)
+        //if (bulletRb != null)
+        //{
+        //    Vector3 adjustedPlayerPosition = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y + 1f, playerObject.transform.position.z);
+
+        //    Vector3 direction = (adjustedPlayerPosition - firePoint.position).normalized;
+
+        //    Quaternion rotation = Quaternion.LookRotation(direction);
+        //    magicBullet.transform.rotation = rotation * Quaternion.Euler(90f, 0f, 0f);
+
+        //    bulletRb.AddForce(direction * 15f, ForceMode.Impulse);
+        //}
+
+        attacking = false;
+    }
+
+    public IEnumerator SecondAttack()
+    {
+        secondAttack = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        float timer = 0;
+
+        GetComponent<SkeletonMageAnimation>().SecondAttack();
+
+        while (timer < 3.5f)
         {
-            Vector3 adjustedPlayerPosition = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y + 1f, playerObject.transform.position.z);
+            Vector3 playerDirection = playerObject.transform.position - skeletonMageObject.transform.position;
+            Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, 30 * Time.deltaTime);
 
-            Vector3 direction = (adjustedPlayerPosition - firePoint.position).normalized;
+            Ray attackRay = new Ray(secondFirePoint.transform.position, transform.forward);
+            Debug.DrawRay(secondFirePoint.transform.position, transform.forward * 100, Color.red);
 
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            magicBullet.transform.rotation = rotation * Quaternion.Euler(90f, 0f, 0f);
+            if (Physics.Raycast(attackRay, out RaycastHit hit, Mathf.Infinity, secondAttackMask))
+            {
+                if (hit.collider.gameObject.CompareTag("Player"))
+                    hit.collider.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.secondaryDamage, hit.point, stats.pushForce);
+            }
 
-            bulletRb.AddForce(direction * 15f, ForceMode.Impulse);
+            timer += Time.deltaTime;
+
+            yield return null;
         }
 
+        secondAttack = false;
         attacking = false;
     }
 

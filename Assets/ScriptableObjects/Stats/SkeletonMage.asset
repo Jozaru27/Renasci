@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SkeletonMage
   life: 4
-  mainDamage: 3
-  secondaryDamage: 0
+  mainDamage: 1.5
+  secondaryDamage: 3
   heal: 0
   movementSpeed: 3.5
   actionSpeed: 0.4

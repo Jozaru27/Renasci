@@ -21,7 +21,7 @@ public class PushTrap : MonoBehaviour
         if (isPushing) return;
         if (!other.gameObject.CompareTag("Player")) return;
 
-        Debug.Log("Player collided with DetectionZone");
+        //Debug.Log("Player collided with DetectionZone");
         StartCoroutine(ActivateTrap(other.GetComponent<Collider>()));
     }
 
@@ -34,19 +34,19 @@ public class PushTrap : MonoBehaviour
         yield return new WaitForSeconds(delayBeforePush);
 
         pushZone.SetActive(true);
-        Debug.Log("PushZone ON");
+        //Debug.Log("PushZone ON");
 
         Rigidbody rb = playerCollider.GetComponent<Rigidbody>();
         if (rb != null && IsInsidePushZone(playerCollider))
         {
             Vector3 dir = (playerCollider.transform.position - transform.position).normalized;
             rb.AddForce(dir * pushForce, ForceMode.Impulse);
-            Debug.Log("Player pushed");
+            //Debug.Log("Player pushed");
         }
 
         yield return new WaitForSeconds(zoneActiveTime);
         pushZone.SetActive(false);
-        Debug.Log("PushZone OFF");
+        //Debug.Log("PushZone OFF");
 
         isPushing = false;
     }

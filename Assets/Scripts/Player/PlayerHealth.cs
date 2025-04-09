@@ -13,24 +13,27 @@ public class PlayerHealth : MonoBehaviour
     {
         float randomNum = Random.Range(0, 100);
 
-        if (amount < 0 && !invencible)
+        if (amount < 0)
         {
-            if (randomNum > StatsManager.Instance.evasion)
+            if (!invencible)
             {
-                StatsManager.Instance.life += amount;
-
-                if (StatsManager.Instance.life <= 0)
-                    PlayerDeath();
-                else
+                if (randomNum > StatsManager.Instance.evasion)
                 {
-                    GetComponent<PlayerAnimation>().Hit();
-                    StopAllCoroutines();
-                    StartCoroutine(MakePlayerVencible());
-                }
+                    StatsManager.Instance.life += amount;
 
-                PushCharacter(enemyPosition, pushForce);
-                StartCoroutine(ChangingColor());
-                GameManager.Instance.playerCannotMove = true;
+                    if (StatsManager.Instance.life <= 0)
+                        PlayerDeath();
+                    else
+                    {
+                        GetComponent<PlayerAnimation>().Hit();
+                        StopAllCoroutines();
+                        StartCoroutine(MakePlayerVencible());
+                    }
+
+                    PushCharacter(enemyPosition, pushForce);
+                    StartCoroutine(ChangingColor());
+                    GameManager.Instance.playerCannotMove = true;
+                }
             }
         }
         else
@@ -69,15 +72,13 @@ public class PlayerHealth : MonoBehaviour
 
 ;       //GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+
+        ChangeVencibleColor();
     }
 
     IEnumerator MakePlayerVencible()
     {
         invencible = true;
-
-        //GetComponent<Renderer>().material.color = Color.blue;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material2;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.blue;
 
         yield return new WaitForSeconds(invencibleTime);
 
@@ -87,6 +88,13 @@ public class PlayerHealth : MonoBehaviour
 
         invencible = false;
         StartCoroutine(LifeRegeneration());
+    }
+
+    void ChangeVencibleColor()
+    {
+        //GetComponent<Renderer>().material.color = Color.blue;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material2;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.blue;
     }
 
     IEnumerator LifeRegeneration()

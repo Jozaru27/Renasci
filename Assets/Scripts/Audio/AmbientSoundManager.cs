@@ -7,7 +7,6 @@ using UnityEngine.Networking;
 public class AmbientSoundManager : MonoBehaviour
 {
     public AudioSource[] audioSource;
-   
 
     public List<AudioClip> ambientSoundsClips = new List<AudioClip>();
 
@@ -18,17 +17,16 @@ public class AmbientSoundManager : MonoBehaviour
 
     public AudioClip combatMusic;
 
+    int enemiesInCombat = 0;
     float startVolume = 1;
-    bool isPlaying=false;
+    bool audioOnePlaying = false;
+    bool audioTwoPlaying = false;
 
     public static AmbientSoundManager Instance { get; private set; }
     
-    // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
-
-        //audioSource = this.gameObject.GetComponents<AudioSource>();
 
         ambientSound=Random.Range(0,ambientSoundsClips.Count);
 
@@ -36,56 +34,65 @@ public class AmbientSoundManager : MonoBehaviour
         audioSource[0].Play();
 
         audioSource[1].clip = combatMusic;
-        
-
+        audioSource[1].Play();
     }
 
     void Update()
     {
-        Debug.Log(enableCombatMusic);
-        if(!audioSource[0].isPlaying && enableCombatMusic==false){
-            ambientSound=Random.Range(0,ambientSoundsClips.Count);
-
-            audioSource[0].clip=ambientSoundsClips[ambientSound];
-             audioSource[0].Play();
-        }else if(enableCombatMusic==true && !isPlaying){
+        if(enableCombatMusic == true && !audioTwoPlaying)
+        {
             StopAllCoroutines();
-
-            audioSource[0].Stop();
-
             StartCoroutine(FadeUp());
 
-            isPlaying=true;
-        }else if(enableCombatMusic==false && isPlaying){
+            audioOnePlaying = false;
+            audioTwoPlaying = true;
+        }
+        else if(enableCombatMusic == false && !audioOnePlaying)
+        {
             StopAllCoroutines();
-
-            audioSource[1].Stop();
-
             StartCoroutine(FadeLow());
 
-            isPlaying=false;
+            audioOnePlaying = true;
+            audioTwoPlaying = false;
         }
     }
 
-    IEnumerator FadeUp(){
-        audioSource[1].Play();
-        while(audioSource[1].volume<1){
-            audioSource[0].volume -=0.1f;
-            audioSource[1].volume +=0.1f;
-            yield return new WaitForSeconds(0.25f);
+    IEnumerator FadeUp()
+    {
+        while(audioSource[1].volume < 1)
+        {
+            audioSource[0].volume -= (0.25f * Time.deltaTime);
+            audioSource[1].volume += (0.25f * Time.deltaTime);
+            yield return null;
         }
     }
 
-    IEnumerator FadeLow(){
-        audioSource[0].Play();
-        while(audioSource[0].volume<1){
-            audioSource[1].volume -=0.1f;
-            audioSource[0].volume +=0.1f;
-            yield return new WaitForSeconds(0.25f);
+    IEnumerator FadeLow()
+    {
+        while(audioSource[0].volume < 1)
+        {
+            audioSource[1].volume -= (0.25f * Time.deltaTime);
+            audioSource[0].volume += (0.25f * Time.deltaTime);
+            yield return null;
         }
     }
 
-   
+    public void EnterCombatMode()
+    {
+        enemiesInCombat++;
 
-  
+        if (enemiesInCombat > 0)
+            enableCombatMusic = true;
+    }
+
+    public void ExitCombatMode()
+    {
+        enemiesInCombat--;
+
+        if (enemiesInCombat <= 0)
+        {
+            enemiesInCombat = 0;
+            enableCombatMusic = false;
+        }
+    }
 }
