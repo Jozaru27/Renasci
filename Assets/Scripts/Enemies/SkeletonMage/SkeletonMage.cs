@@ -15,6 +15,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public GameObject skeletonMageObject;
     public Animator skeletonMageAnimator;
     public LayerMask playerMask;
+    public LayerMask secondAttackMask;
 
     //public float angularVelocityOnBlock;
     //public bool isBlocking=false;
@@ -30,6 +31,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     public GameObject bulletPrefab;
     public Transform firePoint;
+    public Transform secondFirePoint;
 
     public bool teleporting = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
 

@@ -8,7 +8,7 @@ public class AmbientSoundManager : MonoBehaviour
 {
     AudioSource audioSource;
 
-   public List<AudioClip> ambientSoundsClips = new List<AudioClip>();
+    public List<AudioClip> ambientSoundsClips = new List<AudioClip>();
 
     int ambientSound;
     int length=3;
@@ -18,6 +18,7 @@ public class AmbientSoundManager : MonoBehaviour
     public AudioClip combatMusic;
 
     float startVolume = 1;
+    bool isPlaying;
 
     public static AmbientSoundManager Instance { get; private set; }
     
@@ -43,16 +44,16 @@ public class AmbientSoundManager : MonoBehaviour
 
             audioSource.clip=ambientSoundsClips[ambientSound];
              audioSource.Play();
-        }else if (enableCombatMusic == true)
+        }else if (enableCombatMusic == true && !isPlaying)
         {
             
             StartCoroutine(volumeFadeLow());
-            StopCoroutine(volumeFadeLow());
-            audioSource.clip = combatMusic;
-            audioSource.Play();
-            StartCoroutine(volumeFadeUp());
-            StopCoroutine(volumeFadeUp());
+            //StopCoroutine(volumeFadeLow());
+            
+            //audioSource.Play();
+            //StopCoroutine(volumeFadeUp());
 
+            isPlaying = true;
         }
     }
 
@@ -64,8 +65,9 @@ public class AmbientSoundManager : MonoBehaviour
             audioSource.volume -= 0.5f;
             yield return new WaitForSeconds(1f);
         }
-        
-        
+
+        audioSource.clip = combatMusic;
+        StartCoroutine(volumeFadeUp());
     }
 
     IEnumerator volumeFadeUp()
