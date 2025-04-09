@@ -18420,6 +18420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf576c7f6961ff54eb90c308db556371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource:
+  - {fileID: 1933440431}
+  - {fileID: 1933440429}
   ambientSoundsClips:
   - {fileID: 8300000, guid: 0d3d5c01d93445e419cc55eda23d57b3, type: 3}
   - {fileID: 8300000, guid: 16ca6986fb4cbe94098ee93d1f730a81, type: 3}
@@ -18438,8 +18441,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3449543477249431510, guid: 2fcd719f7b366c14b93d53009a5a503b,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18551,7 +18554,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 
 public class AmbientSoundManager : MonoBehaviour
 {
-    AudioSource audioSource;
+    public AudioSource[] audioSource;
+   
 
     public List<AudioClip> ambientSoundsClips = new List<AudioClip>();
 
@@ -18,7 +19,7 @@ public class AmbientSoundManager : MonoBehaviour
     public AudioClip combatMusic;
 
     float startVolume = 1;
-    bool isPlaying;
+    bool isPlaying=false;
 
     public static AmbientSoundManager Instance { get; private set; }
     
@@ -27,61 +28,48 @@ public class AmbientSoundManager : MonoBehaviour
     {
         Instance = this;
 
-        audioSource = this.gameObject.GetComponent<AudioSource>();
+        //audioSource = this.gameObject.GetComponents<AudioSource>();
 
         ambientSound=Random.Range(0,ambientSoundsClips.Count);
 
-        audioSource.clip=ambientSoundsClips[ambientSound];
-        audioSource.Play();
+        audioSource[0].clip=ambientSoundsClips[ambientSound];
+        audioSource[0].Play();
+
+        audioSource[1].clip = combatMusic;
 
     }
 
     void Update()
     {
         Debug.Log(enableCombatMusic);
-        if(!audioSource.isPlaying && enableCombatMusic==false){
+        if(!audioSource[0].isPlaying && enableCombatMusic==false){
             ambientSound=Random.Range(0,ambientSoundsClips.Count);
 
-            audioSource.clip=ambientSoundsClips[ambientSound];
-             audioSource.Play();
+            audioSource[0].clip=ambientSoundsClips[ambientSound];
+             audioSource[0].Play();
         }else if (enableCombatMusic == true && !isPlaying)
         {
-            
-            StartCoroutine(volumeFadeLow());
-            //StopCoroutine(volumeFadeLow());
-            
-            //audioSource.Play();
-            //StopCoroutine(volumeFadeUp());
+            StartCoroutine(Fade());
 
             isPlaying = true;
         }
     }
 
-    IEnumerator volumeFadeLow()
-    {
-        Debug.Log("se baja el volumen");
-        while (audioSource.volume > 0)
-        {
-            audioSource.volume -= 0.5f;
-            yield return new WaitForSeconds(1f);
-        }
-
-        audioSource.clip = combatMusic;
-        StartCoroutine(volumeFadeUp());
-    }
-
-    IEnumerator volumeFadeUp()
-    {
-        Debug.Log("se sube el volumen");
-        while (audioSource.volume != startVolume)
-        {
-            audioSource.volume += 0.5f;
-            yield return new WaitForSeconds(1f);
-        }
-    }
+   
 
    public void EnableCombatMusic()
     {
         enableCombatMusic = true;
+    }
+
+    IEnumerator Fade()
+    {
+        audioSource[0].volume -= 0.25f;
+        audioSource[1].volume += 0.25f;
+        if (audioSource[0].volume == 0)
+        {
+            StopCoroutine(Fade());
+        }
+        yield return new WaitForSeconds(0.5f);
     }
 }
