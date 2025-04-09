@@ -87,6 +87,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
             skeletonMageAgent.isStopped = true;
         }
 
+        GetComponent<SkeletonMageAnimation>().Hit();
+
         if (!stateDamage)
         {
             Vector3 pushDirection = transform.position - playerObject.transform.position;
@@ -142,7 +144,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         attacking = false;
     }
 
-    public IEnumerator SecondAttack()
+    public IEnumerator MakingSecondAttack()
     {
         secondAttack = true;
 
@@ -156,7 +158,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         {
             Vector3 playerDirection = playerObject.transform.position - skeletonMageObject.transform.position;
             Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, 30 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, 20 * Time.deltaTime);
 
             Ray attackRay = new Ray(secondFirePoint.transform.position, transform.forward);
             Debug.DrawRay(secondFirePoint.transform.position, transform.forward * 100, Color.red);
@@ -174,6 +176,10 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         secondAttack = false;
         attacking = false;
+
+        archerAttackFinish = true;
+        goToIdle = true;
+        GetComponent<SkeletonMageAnimation>().Idle();
     }
 
     // Hace que el mago se teletransporte cuando el jugador se acerca demasiado. Busca un sitio v�lido en la sala, si lo encuentra se teletransporta

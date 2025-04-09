@@ -50,9 +50,7 @@ public class SkeletonMageFollow : SkeletonMageStates
 
         if (distanceToPlayer < 5f && !skeletonMage.teleporting && !skeletonMage.attacking) // JOSE: HE AÑADIDO EL COMPROBADOR DE HAS TELEPORTER
         {
-            Debug.Log("A");
             skeletonMage.skeletonMageAgent.isStopped = true;
-            //skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Idle();
             skeletonMage.StartCoroutine(skeletonMage.Teleporting(1f));
             skeletonMage.teleporting = true;
         }
