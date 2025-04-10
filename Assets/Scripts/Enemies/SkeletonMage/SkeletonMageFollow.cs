@@ -18,7 +18,7 @@ public class SkeletonMageFollow : SkeletonMageStates
         if (!skeletonMage.dead)
         {
             skeletonMage.skeletonMageAgent.isStopped = false;
-            skeletonMage.archerAttackFinish = false;
+            skeletonMage.mageAttackFinish = false;
 
             //skeletonMage.hasTeleported = false; // JOSE: HE AÑADIDO EL BOOL DE HAS TELEPORTED
         }
@@ -35,7 +35,7 @@ public class SkeletonMageFollow : SkeletonMageStates
         if (Quaternion.Angle(skeletonMage.skeletonMageObject.transform.rotation, playerRotation) <= 15f && skeletonMage.damaged)
             skeletonMage.skeletonMageObject.transform.rotation = playerRotation;
 
-        Debug.Log("FOLLOW");
+        //Debug.Log("FOLLOW");
         float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
 
         NavMeshPath path = new NavMeshPath();
@@ -56,6 +56,7 @@ public class SkeletonMageFollow : SkeletonMageStates
         }
         else if (distanceToPlayer >= 5f && !skeletonMage.teleporting)
         {
+            Debug.Log("A");
             nextState = new SkeletonMageAttack(skeletonMage);
             actualPhase = EVENTS.EXIT;
         }
@@ -69,6 +70,7 @@ public class SkeletonMageFollow : SkeletonMageStates
 
     public override void Exit()
     {
+       // Debug.Log("EXIT");
         base.Exit();
     }
 }

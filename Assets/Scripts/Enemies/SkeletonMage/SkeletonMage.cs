@@ -21,7 +21,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     //public bool isBlocking=false;
     public bool lookingAtPlayer = false;
     //public bool startBlock = false;
-    public bool archerAttackFinish = false;
+    public bool mageAttackFinish = false;
     public bool isDamageable = false;
     public bool attacking = false;
     public bool secondAttack = false;
@@ -121,7 +121,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     public void FinishAttack()
     {
-        archerAttackFinish = true;
+        mageAttackFinish = true;
         goToIdle = true;
         GetComponent<SkeletonMageAnimation>().Idle();
     }
@@ -159,7 +159,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         GetComponent<SkeletonMageAnimation>().SecondAttack();
 
-        while (timer < 3.5f)
+        while (timer < 3.5f && !teleporting)
         {
             Vector3 playerDirection = playerObject.transform.position - skeletonMageObject.transform.position;
             Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
@@ -182,7 +182,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         secondAttack = false;
         attacking = false;
 
-        archerAttackFinish = true;
+        mageAttackFinish = true;
         goToIdle = true;
         GetComponent<SkeletonMageAnimation>().Idle();
     }
@@ -307,10 +307,10 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         transform.rotation = Quaternion.LookRotation(dirToPlayer * -1);
 
-        if (distanceToPlayerFinal <= stats.detectionDistance)
-            FSM = new SkeletonMageAttack(this);
-        else
-            yield return new WaitForSeconds(0.1f);
+        //if (distanceToPlayerFinal <= stats.detectionDistance)
+        //    FSM = new SkeletonMageAttack(this);
+        //else
+        //    yield return new WaitForSeconds(0.1f);
 
         teleporting = false;
     }

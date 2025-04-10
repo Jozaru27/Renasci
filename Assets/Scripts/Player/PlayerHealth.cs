@@ -19,7 +19,8 @@ public class PlayerHealth : MonoBehaviour
             {
                 if (randomNum > StatsManager.Instance.evasion)
                 {
-                    StatsManager.Instance.life += amount;
+                    //StatsManager.Instance.life += amount;
+                    StatsManager.Instance.life -= amount;
 
                     if (StatsManager.Instance.life <= 0)
                         PlayerDeath();

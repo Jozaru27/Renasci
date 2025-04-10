@@ -19,13 +19,9 @@ public class SkeletonMageAttack : SkeletonMageStates
 
     public override void Entry()
     {
-        Debug.Log("A");
-
         skeletonMage.skeletonMageAgent.isStopped = true;
 
         attackRandomizer = Random.Range(0f, 1f);
-
-        Debug.Log(attackRandomizer);
 
         basicAttackProbability = 0.66f;
 
@@ -42,6 +38,8 @@ public class SkeletonMageAttack : SkeletonMageStates
 
     public override void Updating()
     {
+        //Debug.Log("ATTACk");
+
         if (!skeletonMage.teleporting)
         {
             Vector3 playerDirection = skeletonMage.playerObject.transform.position - skeletonMage.skeletonMageObject.transform.position;
@@ -91,7 +89,12 @@ public class SkeletonMageAttack : SkeletonMageStates
             }
         }
         else
+        {
             skeletonMage.attacking = false;
+            nextState = new SkeletonMageFollow(skeletonMage);
+            actualPhase = EVENTS.EXIT;
+            return;
+        }
     }
 
     public override void Exit()
