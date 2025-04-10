@@ -20,7 +20,7 @@ public class ChestSound : MonoBehaviour
     {
         float chance = Random.Range(0f, 1f); 
 
-        if (chance <= 0.1f)
+        if (chance <= 0.99f)
         {
             Debug.Log("Playing normal chest sound.");
             audioSource.PlayOneShot(Chest, 2f);
