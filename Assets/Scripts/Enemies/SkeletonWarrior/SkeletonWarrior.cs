@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -63,12 +64,14 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
             lookingAtPlayer = false;
         }
 
-        if (distanceToPlayer <= stats.detectionDistance && !inCombat)
+        NavMeshPath path = new NavMeshPath();
+
+        if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
         {
             AmbientSoundManager.Instance.EnterCombatMode();
             inCombat = true;
         }
-        if (distanceToPlayer > stats.detectionDistance)
+        if ((distanceToPlayer > stats.detectionDistance || (!skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
         {
             AmbientSoundManager.Instance.ExitCombatMode();
             inCombat = false;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -71,12 +72,14 @@ public class SkeletonMage : MonoBehaviour, IDamageable
             lookingAtPlayer = false;
         }
 
-        if (distanceToPlayer <= stats.detectionDistance && !inCombat)
+        NavMeshPath path = new NavMeshPath();
+
+        if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonMageAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
         {
             AmbientSoundManager.Instance.EnterCombatMode();
             inCombat = true;
         }
-        if (distanceToPlayer > stats.detectionDistance)
+        if ((distanceToPlayer > stats.detectionDistance || (!skeletonMageAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
         {
             AmbientSoundManager.Instance.ExitCombatMode();
             inCombat = false;

@@ -66,13 +66,17 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
             lookingAtPlayer = false;
         }
 
-        if (distanceToPlayer <= stats.detectionDistance && !inCombat)
+        NavMeshPath path = new NavMeshPath();
+
+        if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
         {
+            Debug.Log("SI");
             AmbientSoundManager.Instance.EnterCombatMode();
             inCombat = true;
         }
-        if (distanceToPlayer > stats.detectionDistance)
+        if ((distanceToPlayer > stats.detectionDistance || (!skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
         {
+            Debug.Log("NO");
             AmbientSoundManager.Instance.ExitCombatMode();
             inCombat = false;
         }
