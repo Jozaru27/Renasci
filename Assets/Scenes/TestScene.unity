@@ -16930,12 +16930,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: PushTrapWall
       objectReference: {fileID: 0}
+    - target: {fileID: 8101952354402102210, guid: 69c04f74cb574fb4eade5d801be594b1,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.0755177
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101952354402102210, guid: 69c04f74cb574fb4eade5d801be594b1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -1.8928747e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101952354402102210, guid: 69c04f74cb574fb4eade5d801be594b1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.037758835
+      objectReference: {fileID: 0}
     - target: {fileID: 9149774197892978959, guid: 69c04f74cb574fb4eade5d801be594b1,
         type: 3}
       propertyPath: pushZone
       value: 
       objectReference: {fileID: 751401643}
-    m_RemovedComponents: []
+    - target: {fileID: 9149774197892978959, guid: 69c04f74cb574fb4eade5d801be594b1,
+        type: 3}
+      propertyPath: pushForce
+      value: 25
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3517277173427600201, guid: 69c04f74cb574fb4eade5d801be594b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
