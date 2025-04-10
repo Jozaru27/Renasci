@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
                     {
                         GetComponent<PlayerAnimation>().Hit();
                         StopAllCoroutines();
-                        StartCoroutine(MakePlayerVencible());
+                        StartCoroutine(MakePlayerVencible(invencibleTime));
                     }
 
                     PushCharacter(enemyPosition, pushForce);
@@ -77,11 +77,11 @@ public class PlayerHealth : MonoBehaviour
         ChangeVencibleColor();
     }
 
-    IEnumerator MakePlayerVencible()
+    public IEnumerator MakePlayerVencible(float time)
     {
         invencible = true;
 
-        yield return new WaitForSeconds(invencibleTime);
+        yield return new WaitForSeconds(time);
 
         //GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(LifeRegeneration());
     }
 
-    void ChangeVencibleColor()
+    public void ChangeVencibleColor()
     {
         //GetComponent<Renderer>().material.color = Color.blue;
         GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material2;

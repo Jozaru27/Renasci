@@ -33,6 +33,8 @@ public class Dash : MonoBehaviour
 
             StartCoroutine(DashCooldown());
             StartCoroutine(Dashing());
+            GetComponent<PlayerHealth>().ChangeVencibleColor();
+            StartCoroutine(GetComponent<PlayerHealth>().MakePlayerVencible(dashTime));
         }
     }
 
