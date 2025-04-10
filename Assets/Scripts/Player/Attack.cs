@@ -192,6 +192,8 @@ public class Attack : MonoBehaviour
 
         GameManager.Instance.playerCannotMove = false;
 
+        inRangeEnemies.Clear();
+
         foreach (Collider burnableCollider in Physics.OverlapSphere(transform.position, fireDistance, burnableMask))
         {
             inRangeEnemies.Add(burnableCollider.gameObject);
