@@ -40,7 +40,7 @@ public class EffectSoundManager : MonoBehaviour
 
         if (!audioSource.isPlaying && onceAct == false)
         {
-            Debug.Log("Hola");
+          
             StartCoroutine(playEffectSound());
 
             onceAct = true;
@@ -63,7 +63,7 @@ public class EffectSoundManager : MonoBehaviour
 
     IEnumerator playEffectSound()
     {
-        Debug.Log("corrutina corrutierrez");
+     
         while (effectSound == prevEffectSound && chance1!=1)
         {
             chance1 = Random.Range(1, 101);
