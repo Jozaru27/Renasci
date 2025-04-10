@@ -70,6 +70,17 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         {
             lookingAtPlayer = false;
         }
+
+        if (distanceToPlayer <= stats.detectionDistance && !inCombat)
+        {
+            AmbientSoundManager.Instance.EnterCombatMode();
+            inCombat = true;
+        }
+        if (distanceToPlayer > stats.detectionDistance)
+        {
+            AmbientSoundManager.Instance.ExitCombatMode();
+            inCombat = false;
+        }
     }
 
     public void TakeDamage(float amount, bool stateDamage)

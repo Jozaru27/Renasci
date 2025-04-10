@@ -25,8 +25,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     damaged = true;
 
-                    //StatsManager.Instance.life += amount;
-                    StatsManager.Instance.life -= amount;
+                    StatsManager.Instance.life += amount;
 
                     if (StatsManager.Instance.life <= 0)
                         PlayerDeath();

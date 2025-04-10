@@ -41,6 +41,7 @@ public class AmbientSoundManager : MonoBehaviour
     {
         if(enableCombatMusic == true && !audioTwoPlaying)
         {
+            Debug.Log("A");
             StopAllCoroutines();
             StartCoroutine(FadeUp());
 
@@ -49,6 +50,7 @@ public class AmbientSoundManager : MonoBehaviour
         }
         else if(enableCombatMusic == false && !audioOnePlaying)
         {
+            Debug.Log("B");
             StopAllCoroutines();
             StartCoroutine(FadeLow());
 
@@ -59,6 +61,7 @@ public class AmbientSoundManager : MonoBehaviour
 
     IEnumerator FadeUp()
     {
+        Debug.Log("C");
         while(audioSource[1].volume < 1)
         {
             audioSource[0].volume -= (0.25f * Time.deltaTime);
@@ -69,6 +72,7 @@ public class AmbientSoundManager : MonoBehaviour
 
     IEnumerator FadeLow()
     {
+        Debug.Log("D");
         while(audioSource[0].volume < 1)
         {
             audioSource[1].volume -= (0.25f * Time.deltaTime);

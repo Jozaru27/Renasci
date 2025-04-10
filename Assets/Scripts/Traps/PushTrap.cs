@@ -24,8 +24,6 @@ public class PushTrap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("A");
-
         if (other.gameObject.CompareTag("Player") && !isPushing)
         {
             isPushing = true;

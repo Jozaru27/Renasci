@@ -6,13 +6,18 @@ using TMPro;
 
 public class FloatingTextManager : MonoBehaviour
 {
+    [SerializeField] TMP_Text relicsText;
+
     public GameObject floatingTextPrefab;
+
+    GameObject relicCanvas;
     public Canvas canvas;
     public float floatSpeed = 1f;
     public float fadeDuration = 2f;
 
-    public void ShowFloatingText(string text/*, Vector3 position*/)
+    public void ShowFloatingText(string text, Vector3 position, GameObject canvas)
     {
+        relicCanvas = canvas;
         //if (canvas == null)
         //    return;
 
@@ -21,7 +26,7 @@ public class FloatingTextManager : MonoBehaviour
 
         //Text textComponent = floatingText.GetComponent<Text>();
 
-        TMP_Text textComponent = UIManager.Instance.relicsText;
+        TMP_Text textComponent = relicsText;
 
         if (textComponent != null)
         {
@@ -50,6 +55,6 @@ public class FloatingTextManager : MonoBehaviour
         }
 
         textComponent.text = string.Empty;
-        //Destroy(floatingText);
+        Destroy(relicCanvas);
     }
 }
