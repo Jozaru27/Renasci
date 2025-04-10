@@ -72,6 +72,10 @@ public class PlayerSounds : MonoBehaviour
 
     public void playHitSound()
     {
-        audioSource.PlayOneShot(hit,5f);
+        if (GetComponent<PlayerHealth>().damaged)
+        {
+            audioSource.PlayOneShot(hit, 5f);
+            GetComponent<PlayerHealth>().damaged = false;
+        }
     }
 }

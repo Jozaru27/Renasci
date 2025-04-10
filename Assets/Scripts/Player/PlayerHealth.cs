@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [HideInInspector] public bool damaged;
+
     [SerializeField] float invencibleTime;
     [SerializeField] Material material1, material2;
 
@@ -19,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
             {
                 if (randomNum > StatsManager.Instance.evasion)
                 {
+                    damaged = true;
+
                     //StatsManager.Instance.life += amount;
                     StatsManager.Instance.life -= amount;
 

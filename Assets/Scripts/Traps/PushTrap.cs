@@ -30,6 +30,7 @@ public class PushTrap : MonoBehaviour
         {
             isPushing = true;
             playerInside = true;
+            GameManager.Instance.playerCannotMove = true;
             animator.Play("IdlePush");
         }
 
@@ -49,14 +50,31 @@ public class PushTrap : MonoBehaviour
     {
         if (playerInside)
         {
-            Vector3 dir = (playerObj.transform.position - transform.position).normalized;
+            Vector3 modifiedPosition = new Vector3(transform.position.x, playerObj.transform.position.y, transform.position.z);
+            Vector3 dir = (playerObj.transform.position - modifiedPosition).normalized;
             playerObj.gameObject.GetComponent<Rigidbody>().AddForce(dir * pushForce, ForceMode.Impulse);
+
+            StartCoroutine(MakePlayerMove());
         }
     }
 
     public void PushingFalse()
     {
+        Debug.Log("B");
         isPushing = false;
+        animator.Play("PushTrackAttack");
+        trigger.enabled = false;
+        trigger.enabled = true;
+    }
+
+    IEnumerator MakePlayerMove()
+    {
+        GameManager.Instance.playerCannotMove = true;
+        playerObj.GetComponent<PlayerAnimation>().Hit();
+
+        yield return new WaitForSeconds(0.5f);
+
+        GameManager.Instance.playerCannotMove = false;
     }
 
     //private IEnumerator ActivateTrap(Collider playerCollider)
