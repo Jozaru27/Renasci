@@ -39,7 +39,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     float distanceToPlayer;
     bool inCombat;
 
-
+    [SerializeField] GameObject cylinder; //PLACEHOLDER
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -156,6 +156,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.5f);
 
         float timer = 0;
+        cylinder.SetActive(true);
 
         GetComponent<SkeletonMageAnimation>().SecondAttack();
 
@@ -181,6 +182,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         secondAttack = false;
         attacking = false;
+        cylinder.SetActive(false);
 
         mageAttackFinish = true;
         goToIdle = true;
