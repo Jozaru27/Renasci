@@ -61,7 +61,13 @@ public class PushTrap : MonoBehaviour
         Debug.Log("B");
         isPushing = false;
         animator.Play("PushTrackAttack");
+        StartCoroutine(ResetTrigger());
+    }
+
+    private IEnumerator ResetTrigger()
+    {
         trigger.enabled = false;
+        yield return null;
         trigger.enabled = true;
     }
 
