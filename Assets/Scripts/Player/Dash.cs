@@ -29,7 +29,7 @@ public class Dash : MonoBehaviour
                 StartCoroutine(DashCooldown());
                 StartCoroutine(Dashing());
                 GetComponent<PlayerHealth>().ChangeVencibleColor();
-                StartCoroutine(GetComponent<PlayerHealth>().MakePlayerVencible(dashTime));
+                StartCoroutine(GetComponent<PlayerHealth>().InvencibleDash(dashTime));
 
                 rb.AddForce(pMov.movement * dashForce, ForceMode.Impulse);
             }

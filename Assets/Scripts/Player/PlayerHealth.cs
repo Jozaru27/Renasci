@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [HideInInspector] public bool damaged;
-
+    
     [SerializeField] float invencibleTime;
     [SerializeField] Material material1, material2;
 
     bool invencible;
+    bool gotDamage;
+    bool dashed;
 
     public void ChangeHealthAmount(float amount, Vector3 enemyPosition, float pushForce)
     {
@@ -83,16 +85,41 @@ public class PlayerHealth : MonoBehaviour
 
     public IEnumerator MakePlayerVencible(float time)
     {
+        gotDamage = true;
         invencible = true;
 
         yield return new WaitForSeconds(time);
 
         //GetComponent<Renderer>().material.color = Color.white;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
 
-        invencible = false;
+        if (!dashed)
+        {
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+            invencible = false;
+        }
+        
+        gotDamage = false;
         StartCoroutine(LifeRegeneration());
+    }
+
+    public IEnumerator InvencibleDash(float time)
+    {
+        invencible = true;
+        dashed = true;
+
+        yield return new WaitForSeconds(time);
+
+        //GetComponent<Renderer>().material.color = Color.white;
+
+        if (!gotDamage)
+        {
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+            invencible = false;
+        }
+
+        dashed = false;
     }
 
     public void ChangeVencibleColor()
