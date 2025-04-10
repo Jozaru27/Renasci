@@ -33,19 +33,31 @@ public class AudioManager : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+        if (volume <= -75)
+            audioMixer.SetFloat("MasterVolume", -80);
+        else
+            audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+
         PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+        if (volume <= -75)
+            audioMixer.SetFloat("SFXVolume", -80);
+        else
+            audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+        if (volume <= -75)
+            audioMixer.SetFloat("MusicVolume", -80);
+        else
+            audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+
         PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 }
