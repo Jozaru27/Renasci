@@ -57,8 +57,6 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
             nextState = new SkeletonWarriorFollow(skeletonWarrior);
             actualPhase = EVENTS.EXIT;
         }
-        else
-            AmbientSoundManager.Instance.enableCombatMusic = false;
     }
 
     public override void Exit()

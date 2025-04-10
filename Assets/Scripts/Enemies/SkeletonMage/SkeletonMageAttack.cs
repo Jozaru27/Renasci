@@ -29,10 +29,13 @@ public class SkeletonMageAttack : SkeletonMageStates
 
         basicAttackProbability = 0.66f;
 
-        if (attackRandomizer <= basicAttackProbability)
-            skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Attack();
+        if (!skeletonMage.teleporting)
+        {
+            if (attackRandomizer <= basicAttackProbability)
+                skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Attack();
 
-        skeletonMage.attacking = true;
+            skeletonMage.attacking = true;
+        }
 
         base.Entry();
     }

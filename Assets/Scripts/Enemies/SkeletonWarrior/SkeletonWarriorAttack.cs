@@ -19,9 +19,6 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Entry()
     {
-        
-        
-
         if (!skeletonWarrior.dead)
         {
             //skeletonWarrior.StartCoroutine(GoingToBlock());
@@ -40,9 +37,6 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
         //skeletonWarriorNav.isStopped = true;
         //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
         float distanceToPlayer=Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position,skeletonWarrior.playerObject.transform.position);
-
-        if (distanceToPlayer > skeletonWarrior.stats.detectionDistance)
-            AmbientSoundManager.Instance.enableCombatMusic = false;
 
         //skeletonWarrior.skeletonWarriorObject.transform.position = Vector3.Slerp(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position, 2 * Time.deltaTime);
 

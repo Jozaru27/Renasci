@@ -29,7 +29,9 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public bool damaged;
     public bool playerDirectionTaken;
 
-    float distanceToPLayer;
+    bool inCombat;
+
+    float distanceToPlayer;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,7 +51,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     {
         FSM = FSM.Process();
 
-        distanceToPLayer = Vector3.Distance(skeletonWarriorObject.transform.position, playerObject.transform.position);
+        distanceToPlayer = Vector3.Distance(skeletonWarriorObject.transform.position, playerObject.transform.position);
 
         RaycastHit hit;
         if (Physics.Raycast(skeletonWarriorObject.transform.position,transform.TransformDirection(Vector3.forward),out hit,5,playerMask))
@@ -59,6 +61,17 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         else
         {
             lookingAtPlayer = false;
+        }
+
+        if (distanceToPlayer <= stats.detectionDistance && !inCombat)
+        {
+            AmbientSoundManager.Instance.EnterCombatMode();
+            inCombat = true;
+        }
+        if (distanceToPlayer > stats.detectionDistance)
+        {
+            AmbientSoundManager.Instance.ExitCombatMode();
+            inCombat = false;
         }
     }
 
@@ -91,6 +104,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         if (stats.life <= 0)
         {
             stats.life = 0;
+            AmbientSoundManager.Instance.ExitCombatMode();
             GetComponent<SkeletonWarriorAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();
@@ -151,7 +165,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void FinishAttack()
     {
-        if (distanceToPLayer >= 3)
+        if (distanceToPlayer >= 3)
         {
             StartCoroutine(FinishingAttack());
         }  
@@ -168,7 +182,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void AttackToBlock()
     {
-        if (distanceToPLayer < 3)
+        if (distanceToPlayer < 3)
         {
             StartCoroutine(AttackingToBlock());
         }

@@ -35,7 +35,7 @@ public class SkeletonMageFollow : SkeletonMageStates
         if (Quaternion.Angle(skeletonMage.skeletonMageObject.transform.rotation, playerRotation) <= 15f && skeletonMage.damaged)
             skeletonMage.skeletonMageObject.transform.rotation = playerRotation;
 
-        //Debug.Log("FOLLOW");
+        Debug.Log("FOLLOW");
         float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
 
         NavMeshPath path = new NavMeshPath();
@@ -54,7 +54,7 @@ public class SkeletonMageFollow : SkeletonMageStates
             skeletonMage.StartCoroutine(skeletonMage.Teleporting(1f));
             skeletonMage.teleporting = true;
         }
-        else if (distanceToPlayer >= 5f)
+        else if (distanceToPlayer >= 5f && !skeletonMage.teleporting)
         {
             nextState = new SkeletonMageAttack(skeletonMage);
             actualPhase = EVENTS.EXIT;

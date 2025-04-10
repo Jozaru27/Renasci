@@ -36,6 +36,9 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     public bool teleporting = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
 
+    float distanceToPlayer;
+    bool inCombat;
+
 
     void Start()
     {
@@ -55,6 +58,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     void Update()
     {
         FSM = FSM.Process();
+
+        distanceToPlayer = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
 
         RaycastHit hit;
         if (Physics.Raycast(skeletonMageObject.transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, playerMask))

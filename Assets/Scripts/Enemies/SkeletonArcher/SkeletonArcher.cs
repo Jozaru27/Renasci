@@ -30,7 +30,8 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     public GameObject arrowPrefab;
     public Transform firePoint;
 
-    float distanceToPLayer;
+    float distanceToPlayer;
+    bool inCombat;
 
     public bool isRepositioning = false;
 
@@ -53,7 +54,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     {
         FSM = FSM.Process();
 
-        distanceToPLayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
+        distanceToPlayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
 
         RaycastHit hit;
         if (Physics.Raycast(skeletonArcherObject.transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, playerMask))
@@ -63,6 +64,17 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         else
         {
             lookingAtPlayer = false;
+        }
+
+        if (distanceToPlayer <= stats.detectionDistance && !inCombat)
+        {
+            AmbientSoundManager.Instance.EnterCombatMode();
+            inCombat = true;
+        }
+        if (distanceToPlayer > stats.detectionDistance)
+        {
+            AmbientSoundManager.Instance.ExitCombatMode();
+            inCombat = false;
         }
     }
 
@@ -77,6 +89,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         if (stats.life <= 0)
         {
             stats.life = 0;
+            AmbientSoundManager.Instance.ExitCombatMode();
             GetComponent<SkeletonArcherAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();

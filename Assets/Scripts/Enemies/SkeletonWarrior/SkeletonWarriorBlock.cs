@@ -35,9 +35,6 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
     {
         float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
 
-        if (distanceToPlayer > skeletonWarrior.stats.detectionDistance)
-            AmbientSoundManager.Instance.enableCombatMusic = false;
-
         RaycastHit hit;
         if (Physics.Raycast(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.transform.TransformDirection(Vector3.back),out hit,5,skeletonWarrior.playerMask))
         {

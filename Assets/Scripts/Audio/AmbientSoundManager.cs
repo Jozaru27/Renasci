@@ -83,6 +83,8 @@ public class AmbientSoundManager : MonoBehaviour
 
         if (enemiesInCombat > 0)
             enableCombatMusic = true;
+        if (enemiesInCombat >= GameManager.Instance.enemies.Length)
+            enemiesInCombat = GameManager.Instance.enemies.Length;
     }
 
     public void ExitCombatMode()
