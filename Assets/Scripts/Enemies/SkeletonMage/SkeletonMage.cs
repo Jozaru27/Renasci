@@ -97,6 +97,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         if (stats.life <= 0)
         {
             stats.life = 0;
+            AmbientSoundManager.Instance.ExitCombatMode();
             GetComponent<SkeletonMageAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();
