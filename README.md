@@ -22,6 +22,70 @@ Rama NEW-Producción: Rama en la que se trabaja. <br>
 
 <br> <br>
 
+# ⚔️ Contenido Ampliado y Sistema de Reliquias (v0.2.0)
+
+## 🧬 Mejoras al Personaje Principal
+- Todas las estadísticas del personaje ahora son funcionales.
+- Se ha añadido inmunidad temporal durante el dash y tras recibir daño.
+- Nuevas acciones disponibles:
+  - Interactuar con objetos.
+  - Usar reliquias activas.
+  - Cambiar entre reliquias.
+  - Atacar a distancia.
+
+## 🏺 Sistema de Reliquias
+- Añadidas Reliquias Pasivas:
+  - Modeladas en 3D.
+  - Aplican efectos automáticamente al recogerlas.
+- Añadidas Reliquias Activas:
+  - Se pueden usar con botón asignado.
+  - Algunas están ligadas a puzles o mecánicas específicas.
+- Las reliquias ahora pueden caer como drop de enemigos o de cofres.
+- Se muestra texto en pantalla indicando qué estadística ha aumentado al recoger una reliquia.
+
+## ☠️ Nuevos Enemigos
+- Esqueleto Arquero:
+  - Ataca a distancia.
+  - Se reposiciona para mantener una distancia segura del jugador.
+- Esqueleto Mago:
+  - Ataques mágicos a distancia:
+    - Orbe perseguidor.
+    - Rayo de barrido.
+  - Si el jugador se acerca, intenta huir.
+
+## 🔊 Audio y Música
+- Añadidos efectos de sonido para el personaje (pasos, ataque, daño, etc).
+- Sonidos ambientales para mayor inmersión.
+- Música:
+  - Track de exploración.
+  - Track de combate.
+  - Sistema dinámico con transiciones suaves (fade in/out) según detección de enemigos.
+  - Las pistas se reproducen en bucle de forma continua.
+
+## 🗺️ Mapas y Entornos
+- Añadidos módulos de salas:
+  - Suelos, paredes y puertas reutilizables.
+- Props beta mejorados:
+  - Nuevo modelado con detalles más limpios.
+  - Efectos de desgaste y envejecimiento aplicados.
+- Modelo de puerta para el menú (falta esculpido final).
+
+## 🎥 Sistema de Cámaras
+- Cámaras dinámicas que siguen al jugador en salas grandes.
+- Cámaras fijas para salas pequeñas o eventos específicos.
+
+## 🎁 Cofres y Loot
+- Cofres con animación de apertura.
+- Posibilidad de contener reliquias y drops.
+
+## ⚠️ Trampas
+- Añadidas trampas funcionales:
+  - Pinchos.
+  - Empuje.
+  - Confusión (afecta temporalmente el control del jugador).
+
+---
+
 ## ⚔️ Jugador & Esqueleto Guerrero (v0.1.0)
 
 <br>
