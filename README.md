@@ -84,8 +84,6 @@ Rama NEW-Producción: Rama en la que se trabaja. <br>
   - Empuje.
   - Confusión (afecta temporalmente el control del jugador).
 
----
-
 ## ⚔️ Jugador & Esqueleto Guerrero (v0.1.0)
 
 <br>
