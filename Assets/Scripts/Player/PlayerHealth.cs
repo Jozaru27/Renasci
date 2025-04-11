@@ -4,26 +4,50 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [HideInInspector] public bool damaged;
+    
+    [SerializeField] float invencibleTime;
     [SerializeField] Material material1, material2;
+
+    bool invencible;
+    bool gotDamage;
+    bool dashed;
 
     public void ChangeHealthAmount(float amount, Vector3 enemyPosition, float pushForce)
     {
-        StatsManager.Instance.life += amount;
+        float randomNum = Random.Range(0, 100);
 
         if (amount < 0)
         {
-            if (StatsManager.Instance.life < 0)
-                PlayerDeath();
-            else
-                GetComponent<PlayerAnimation>().Hit();
+            if (!invencible)
+            {
+                if (randomNum > StatsManager.Instance.evasion)
+                {
+                    damaged = true;
 
-            PushCharacter(enemyPosition, pushForce);
-            StartCoroutine(ChangingColor());
-            GameManager.Instance.playerCannotMove = true;
+                    StatsManager.Instance.life += amount;
+
+                    if (StatsManager.Instance.life <= 0)
+                        PlayerDeath();
+                    else
+                    {
+                        GetComponent<PlayerAnimation>().Hit();
+                        StopAllCoroutines();
+                        StartCoroutine(MakePlayerVencible(invencibleTime));
+                    }
+
+                    PushCharacter(enemyPosition, pushForce);
+                    StartCoroutine(ChangingColor());
+                    GameManager.Instance.playerCannotMove = true;
+                }
+            }
         }
-        else if (StatsManager.Instance.life > 10)
-            StatsManager.Instance.life = 10;
-        
+        else
+            StatsManager.Instance.life += amount;
+
+        if (StatsManager.Instance.life > StatsManager.Instance.maxLife)
+            StatsManager.Instance.life = StatsManager.Instance.maxLife;
+
         UIManager.Instance.ChangeLife();
     }
 
@@ -54,5 +78,64 @@ public class PlayerHealth : MonoBehaviour
 
 ;       //GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+
+        ChangeVencibleColor();
+    }
+
+    public IEnumerator MakePlayerVencible(float time)
+    {
+        gotDamage = true;
+        invencible = true;
+
+        yield return new WaitForSeconds(time);
+
+        //GetComponent<Renderer>().material.color = Color.white;
+
+        if (!dashed)
+        {
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+            invencible = false;
+        }
+        
+        gotDamage = false;
+        StartCoroutine(LifeRegeneration());
+    }
+
+    public IEnumerator InvencibleDash(float time)
+    {
+        invencible = true;
+        dashed = true;
+
+        yield return new WaitForSeconds(time);
+
+        //GetComponent<Renderer>().material.color = Color.white;
+
+        if (!gotDamage)
+        {
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
+            GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+            invencible = false;
+        }
+
+        dashed = false;
+    }
+
+    public void ChangeVencibleColor()
+    {
+        //GetComponent<Renderer>().material.color = Color.blue;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material2;
+        GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.blue;
+    }
+
+    IEnumerator LifeRegeneration()
+    {
+        while (StatsManager.Instance.life < StatsManager.Instance.maxLife)
+        {
+            yield return new WaitForSeconds(1f);
+
+            StatsManager.Instance.life += StatsManager.Instance.lifeRegeneration;
+            UIManager.Instance.ChangeLife();
+        }
     }
 }

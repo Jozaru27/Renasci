@@ -18,16 +18,23 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
 
     public override void Entry()
     {
-        skeletonWarrior.StartCoroutine(GoingToBlock());
-        skeletonWarrior.isBlocking=true;
-        skeletonWarrior.skeletonWarriorAgent.isStopped = true;
-        skeletonWarrior.startBlock = false;
-        //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+       
+        if (!skeletonWarrior.dead)
+        {
+            skeletonWarrior.StartCoroutine(GoingToBlock());
+            skeletonWarrior.isBlocking = true;
+            skeletonWarrior.skeletonWarriorAgent.isStopped = true;
+            skeletonWarrior.startBlock = false;
+            //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+        }
+
         base.Entry();
     }
 
     public override void Updating()
     {
+        float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
+
         RaycastHit hit;
         if (Physics.Raycast(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.transform.TransformDirection(Vector3.back),out hit,5,skeletonWarrior.playerMask))
         {
@@ -69,8 +76,6 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
         }
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Block();
-
-        float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
 
         if (distanceToPlayer >= skeletonWarrior.stats.detectionDistance-4)
         {

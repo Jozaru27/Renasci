@@ -5,14 +5,21 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("RelicsUI")]
+    public GameObject relicsUI;
+
     [Header("UI Elements")]
     [SerializeField] TMP_Text lifeText;
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TMP_Text bulletCountText;
+    [SerializeField] TMP_Text relicText;
+
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] GameObject victoryMenu;
+    [SerializeField] GameObject inventoryMenu;
 
     [Header("SettingsAreas")]
     [SerializeField] GameObject audioArea;
@@ -31,6 +38,8 @@ public class UIManager : MonoBehaviour
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyCountText.text = $"Enemies left: {enemyCount}";
+        bulletCountText.text = $"Bullets: 6";
+        relicText.text = $"Relic: None";
         ChangeLife();
     }
 
@@ -51,11 +60,31 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ChangeBulletCount(int amount)
+    {
+        if (amount <= 0)
+            bulletCountText.text = $"Bullet: RECHARGING...";
+        else
+            bulletCountText.text = $"Bullets: {amount}";
+    }
+
+    public void ChangeRelicInfo(string relic)
+    {
+        if (GameManager.Instance.currentRelicSlots >= 0)
+            relicText.text = $"Relic: {relic}";
+    }
+
     public void EnablePauseMenu()
     {
-        pauseMenu.SetActive(true);
-        GameManager.Instance.gamePaused = true;
-        Time.timeScale = 0f;
+        if (!GameManager.Instance.gameWin && !GameManager.Instance.gameOver && !GameManager.Instance.onInventory)
+        {
+            pauseMenu.SetActive(true);
+            GameManager.Instance.gamePaused = true;
+            Time.timeScale = 0f;
+        }
+
+        if (GameManager.Instance.onInventory)
+            DisableInventoryMenu();
     }
 
     public void DisablePauseMenu()
@@ -64,6 +93,9 @@ public class UIManager : MonoBehaviour
         settingsMenu.SetActive(false);
         GameManager.Instance.gamePaused = false;
         Time.timeScale = 1f;
+
+        if (GameManager.Instance.onInventory)
+            DisableInventoryMenu();
     }
 
     public void EnableGameOverMenu()
@@ -112,5 +144,17 @@ public class UIManager : MonoBehaviour
     {
         audioArea.SetActive(false);
         videoArea.SetActive(true);
+    }
+
+    public void EnableInventoryMenu()
+    {
+        Time.timeScale = 0f;
+        inventoryMenu.SetActive(true);
+    }
+
+    public void DisableInventoryMenu()
+    {
+        Time.timeScale = 1f;
+        inventoryMenu.SetActive(false);
     }
 }

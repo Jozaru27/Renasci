@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] bool groundCheck;//
 
+    [HideInInspector] public float inputFactor;
     [HideInInspector] public Vector3 movement;
     [HideInInspector] public Vector2 inputMovement;
 
@@ -28,10 +29,16 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Dash dash;
 
+    //AudioSource audioSource;
+    //public AudioClip walkSound;
+
     private void Start()
     {
+        //audioSource = this.gameObject.GetComponent<AudioSource>();
+
         rb = GetComponent<Rigidbody>();
         dash = GetComponent<Dash>();
+        inputFactor = 1;
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -53,16 +60,22 @@ public class PlayerMovement : MonoBehaviour
             if (inputMovement.magnitude >= 0.25f)
             {
                 GetComponent<PlayerAnimation>().Run();
-                playerMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
+                playerMovement = new Vector3(inputMovement.x * inputFactor , 0, inputMovement.y * inputFactor);
+
+                //audioSource.clip = walkSound;
+                //audioSource.Play();
 
                 movement = playerMovement;
                 Vector3 velocity = rb.velocity;
 
                 if (rb.velocity.magnitude < StatsManager.Instance.movementSpeed)
+                {
                     rb.AddForce(movement * force, ForceMode.Acceleration);
+                }
                 else if (!dash.dashing)
+                {
                     rb.velocity = velocity.normalized * StatsManager.Instance.movementSpeed;
-
+                }
                 inIdle = false;
             }
             else if (!inIdle)
@@ -83,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             //viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
             //viewPos = Mathf.Round(viewPos * 100) / 100;
 
-            inputAngle = new Vector3(inputMovement.x, 0, inputMovement.y);
+            inputAngle = new Vector3(inputMovement.x * inputFactor, 0, inputMovement.y * inputFactor);
 
             if (inputAngle != Vector3.zero)
                 rotationTarget = Quaternion.LookRotation(inputAngle);
@@ -122,5 +135,10 @@ public class PlayerMovement : MonoBehaviour
             else
                 rb.drag = moveDrag;
         }
+    }
+
+    public void ChangeRotation(Quaternion newTarget)
+    {
+        rotationTarget = newTarget;
     }
 }

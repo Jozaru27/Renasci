@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Stairs
   - Enemy
+  - Prop
+  - Obstacle
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -15,14 +18,14 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Stairs
+  - Obstacle
   - Interactable
   - Enemy
   - Bullet
-  - 
-  - 
-  - 
-  - 
+  - Damageable
+  - Burnable
+  - EnemyBullet
+  - BulletCollision
   - 
   - 
   - 

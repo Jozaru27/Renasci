@@ -19,11 +19,15 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
 
     public override void Entry()
     {
-        //skeletonWarrior.StartCoroutine(GoingToBlock());
-        skeletonWarrior.isBlocking=false;
-        skeletonWarrior.skeletonWarriorAgent.isStopped = true;
-        skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
-        //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+        if (!skeletonWarrior.dead)
+        {
+            //skeletonWarrior.StartCoroutine(GoingToBlock());
+            skeletonWarrior.isBlocking = false;
+            skeletonWarrior.skeletonWarriorAgent.isStopped = true;
+            skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Attack();
+            //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+        }
+
         base.Entry();
     }
 

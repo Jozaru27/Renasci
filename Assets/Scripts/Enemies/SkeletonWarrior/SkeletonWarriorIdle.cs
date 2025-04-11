@@ -25,6 +25,7 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
         skeletonWarrior.skeletonWarriorAnimator.SetBool("Idle", true);
         waitTime = Random.Range(1f, 10f);
         skeletonWarrior.StartCoroutine(WaitAndPatrol());
+        skeletonWarrior.isBlocking = false;
     }
 
     public override void Updating()
@@ -81,8 +82,11 @@ public class SkeletonWarriorIdle : SkeletonWarriorStates
         yield return new WaitForSeconds(waitTime);
         if (!skeletonWarrior.lookingAtPlayer)
         {
+            
             nextState = new SkeletonWarriorPatrol(skeletonWarrior);
             actualPhase = EVENTS.EXIT;
         }
     }
+
+
 }

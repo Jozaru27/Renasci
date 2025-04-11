@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,7 +30,9 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public bool damaged;
     public bool playerDirectionTaken;
 
-    float distanceToPLayer;
+    bool inCombat;
+
+    float distanceToPlayer;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,7 +52,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     {
         FSM = FSM.Process();
 
-        distanceToPLayer = Vector3.Distance(skeletonWarriorObject.transform.position, playerObject.transform.position);
+        distanceToPlayer = Vector3.Distance(skeletonWarriorObject.transform.position, playerObject.transform.position);
 
         RaycastHit hit;
         if (Physics.Raycast(skeletonWarriorObject.transform.position,transform.TransformDirection(Vector3.forward),out hit,5,playerMask))
@@ -60,6 +63,19 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         {
             lookingAtPlayer = false;
         }
+
+        NavMeshPath path = new NavMeshPath();
+
+        if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+        {
+            AmbientSoundManager.Instance.EnterCombatMode();
+            inCombat = true;
+        }
+        if ((distanceToPlayer > stats.detectionDistance || (!skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
+        {
+            AmbientSoundManager.Instance.ExitCombatMode();
+            inCombat = false;
+        }
     }
 
     public void OnTriggerEnter(Collider other){
@@ -69,11 +85,11 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool stateDamage)
     {
         float pushedForce = stats.pushedForce;
 
-        if(isBlocking==false){
+        if(isBlocking==false && !stateDamage){
             stats.life += amount;
             StartCoroutine(ChangingColor());
             damaged = true;
@@ -81,26 +97,37 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         else{
             pushedForce *= 0.5f;
         }
+        
+        if (stateDamage)
+        {
+            stats.life += amount;
+            StartCoroutine(ChangingColor());
+        }
 
         if (stats.life <= 0)
         {
             stats.life = 0;
+            AmbientSoundManager.Instance.ExitCombatMode();
             GetComponent<SkeletonWarriorAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();
             rb.velocity = Vector3.zero;
             rb.freezeRotation = true;
             dead = true;
+            skeletonWarriorAgent.isStopped = true;
         }
 
         GetComponent<SkeletonWarriorAnimation>().Hit();
         //GetComponent<SkeletonWarriorAnimation>().Idle();
 
-        Vector3 pushDirection = transform.position - playerObject.transform.position;
-        pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
-        rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+        if (!stateDamage)
+        {
+            Vector3 pushDirection = transform.position - playerObject.transform.position;
+            pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
+            rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+        }
 
-        damaged = true;////
+        //damaged = true;////
     }
 
     IEnumerator ChangingColor()
@@ -119,7 +146,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void DestroyThisObject()
     {
-        GetComponent<LootSpawn>().SpawnHeal();
+        LootSpawnManager.Instance.LootProbability(transform.position);
         Destroy(this.gameObject);
     }
 
@@ -141,7 +168,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void FinishAttack()
     {
-        if (distanceToPLayer >= 3)
+        if (distanceToPlayer >= 3)
         {
             StartCoroutine(FinishingAttack());
         }  
@@ -158,7 +185,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     public void AttackToBlock()
     {
-        if (distanceToPLayer < 3)
+        if (distanceToPlayer < 3)
         {
             StartCoroutine(AttackingToBlock());
         }
@@ -171,4 +198,8 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         startBlock = true;
         Debug.Log("EmpiezaBloqueo");
     }
+
+    //public void EnableAmbient(){
+    //    AmbientSoundManager.Instance.enableCombatMusic = false;
+    //}
 }

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int currentRelicSlots;
     public bool gamePaused;
     public bool gameOver;
     public bool gameWin;
     public bool interacting;
     public bool dashing;
     public bool playerCannotMove;
+    public bool onInventory;
+    public GameObject[] enemies;
 
     public static GameManager Instance { get; private set; }
 
@@ -24,8 +27,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
     public void ResetProperties()
     {
+        currentRelicSlots = -1;
         gamePaused = false;
         gameOver = false;
         gamePaused = false;
@@ -34,5 +43,6 @@ public class GameManager : MonoBehaviour
         interacting = false;
         dashing = false;
         playerCannotMove = false;
-}
+        onInventory = false;
+    }
 }

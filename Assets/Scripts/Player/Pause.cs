@@ -11,15 +11,23 @@ public class Pause : MonoBehaviour
     {
         if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
         {
-            if (!paused)
+            if (GameManager.Instance.onInventory)
             {
-                UIManager.Instance.EnablePauseMenu();
-                paused = true;
+                UIManager.Instance.DisableInventoryMenu();
+                GameManager.Instance.onInventory = false;
             }
             else
             {
-                UIManager.Instance.DisablePauseMenu();
-                paused = false;
+                if (!paused)
+                {
+                    UIManager.Instance.EnablePauseMenu();
+                    paused = true;
+                }
+                else
+                {
+                    UIManager.Instance.DisablePauseMenu();
+                    paused = false;
+                }
             }
         }
     }

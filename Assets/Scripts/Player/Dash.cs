@@ -25,14 +25,18 @@ public class Dash : MonoBehaviour
         if (context.performed && !dashing && canDash)
         {
             if (pMov.inputMovement.magnitude > 0)
+            {
+                StartCoroutine(DashCooldown());
+                StartCoroutine(Dashing());
+                GetComponent<PlayerHealth>().ChangeVencibleColor();
+                StartCoroutine(GetComponent<PlayerHealth>().InvencibleDash(dashTime));
+
                 rb.AddForce(pMov.movement * dashForce, ForceMode.Impulse);
+            }
 
             Vector3 velocity = rb.velocity;
             if (rb.velocity.magnitude > maxDashSpeed)
                 rb.velocity = velocity.normalized * maxDashSpeed;
-
-            StartCoroutine(DashCooldown());
-            StartCoroutine(Dashing());
         }
     }
 
