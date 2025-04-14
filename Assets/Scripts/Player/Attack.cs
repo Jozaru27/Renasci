@@ -145,7 +145,7 @@ public class Attack : MonoBehaviour
         Vector3 shotDirection = shotPosition - bulletPosition;
         Vector3 collideInPlayerFoot = new Vector3(collidePosition.x, transform.position.y, collidePosition.z);
 
-        Vector3 playerShotDirection = collideInPlayerFoot - transform.position;
+        Vector3 playerShotDirection = (collideInPlayerFoot - transform.position).normalized;
 
         Quaternion targetRotation = Quaternion.LookRotation(playerShotDirection);
 
@@ -164,7 +164,7 @@ public class Attack : MonoBehaviour
 
         yield return new WaitForSeconds(0.125f);
 
-        GameObject bullet = Instantiate(bulletPref, shotPoint.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPref, shotPoint.position, targetRotation);
 
         UIManager.Instance.ChangeBulletCount(6 - shots);
 
