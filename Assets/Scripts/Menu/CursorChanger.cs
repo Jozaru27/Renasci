@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 
 public class CursorChanger : MonoBehaviour
 {
-
     public Texture2D cursorPointer;
     public List<GameObject> uiElementsList; 
 

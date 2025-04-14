@@ -229,7 +229,7 @@ public class Attack : MonoBehaviour
     IEnumerator ShootCooldown()
     {
         if (shots < 6)
-            yield return new WaitForSeconds(StatsManager.Instance.shootCadence);
+            yield return new WaitForSeconds(1 / StatsManager.Instance.shootCadence);
         if (shots >= 6)
         {
             yield return new WaitForSeconds(rechargeTime);

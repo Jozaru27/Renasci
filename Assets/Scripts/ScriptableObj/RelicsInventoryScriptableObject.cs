@@ -5,6 +5,14 @@ public class RelicsInventoryScriptableObject : ScriptableObject
 {
     public Sprite image;
     public string relicName;
-    public string description;
-    public string effect;
+    [TextArea (2, 6)] public string description;
+    [TextArea (2, 6)] public string effect;
+    public string value;
+
+    public enum Relics
+    {
+        Passive,
+        Active
+    }
+    public Relics relicType;
 }

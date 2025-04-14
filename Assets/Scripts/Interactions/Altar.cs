@@ -23,7 +23,8 @@ public class Altar : MonoBehaviour, IInteractable
                 UIManager.Instance.ChangeRelicInfo("Fire");
                 playerObj.GetComponent<Attack>().currentRelic = Attack.Relics.Fire;
             }
-                
+
+            GetComponent<AddRelicInventory>().PassInfoToInventory();
             firstTime = true;
         }
     }
