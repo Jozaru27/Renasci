@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Networking;
 
-public class AmbientSoundManager : MonoBehaviour
+public class AmbientMusicManager : MonoBehaviour
 {
     public AudioSource[] audioSource;
 
@@ -22,7 +22,7 @@ public class AmbientSoundManager : MonoBehaviour
     bool audioOnePlaying = false;
     bool audioTwoPlaying = false;
 
-    public static AmbientSoundManager Instance { get; private set; }
+    public static AmbientMusicManager Instance { get; private set; }
     
     void Awake()
     {

@@ -71,13 +71,13 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
         {
             Debug.Log("SI");
-            AmbientSoundManager.Instance.EnterCombatMode();
+            AmbientMusicManager.Instance.EnterCombatMode();
             inCombat = true;
         }
         if ((distanceToPlayer > stats.detectionDistance || (!skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
         {
             Debug.Log("NO");
-            AmbientSoundManager.Instance.ExitCombatMode();
+            AmbientMusicManager.Instance.ExitCombatMode();
             inCombat = false;
         }
     }
@@ -93,7 +93,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         if (stats.life <= 0)
         {
             stats.life = 0;
-            AmbientSoundManager.Instance.ExitCombatMode();
+            AmbientMusicManager.Instance.ExitCombatMode();
             GetComponent<SkeletonArcherAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();

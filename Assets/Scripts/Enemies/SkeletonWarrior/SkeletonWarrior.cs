@@ -68,12 +68,12 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
         if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
         {
-            AmbientSoundManager.Instance.EnterCombatMode();
+            AmbientMusicManager.Instance.EnterCombatMode();
             inCombat = true;
         }
         if ((distanceToPlayer > stats.detectionDistance || (!skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
         {
-            AmbientSoundManager.Instance.ExitCombatMode();
+            AmbientMusicManager.Instance.ExitCombatMode();
             inCombat = false;
         }
     }
@@ -107,7 +107,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         if (stats.life <= 0)
         {
             stats.life = 0;
-            AmbientSoundManager.Instance.ExitCombatMode();
+            AmbientMusicManager.Instance.ExitCombatMode();
             GetComponent<SkeletonWarriorAnimation>().Death();
             GetComponent<CapsuleCollider>().enabled = false;
             UIManager.Instance.ChangeEnemyCount();
