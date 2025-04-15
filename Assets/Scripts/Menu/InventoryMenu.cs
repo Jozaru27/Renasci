@@ -15,9 +15,12 @@ public class InventoryMenu : MonoBehaviour
     [Header("RelicSlots")]
     [SerializeField] GameObject[] passiveRelicButtons;
     [SerializeField] GameObject[] activeRelicButtons;
+    [SerializeField] TMP_Text[] relicTexts;
 
     int passiveButtonsNum;
     int activeButtonsNum;
+    int relicNum;
+    List<int> relicQuantity = new List<int>();
     List<RelicsInventoryScriptableObject> passiveRelicsInfo = new List<RelicsInventoryScriptableObject>();
     List<RelicsInventoryScriptableObject> activeRelicsInfo = new List<RelicsInventoryScriptableObject>();
 
@@ -30,6 +33,7 @@ public class InventoryMenu : MonoBehaviour
 
     public void AddToInventory(RelicsInventoryScriptableObject relicInfo)
     {
+        int iterations = 0;
         bool relicInList = false;
 
         if (relicInfo.relicType.ToString() == "Passive")
@@ -39,6 +43,9 @@ public class InventoryMenu : MonoBehaviour
                 {
                     if (info == relicInfo)
                         relicInList = true;
+
+                    if (!relicInList)
+                        iterations++;
                 }
 
             if (!relicInList)
@@ -46,9 +53,21 @@ public class InventoryMenu : MonoBehaviour
                 passiveRelicsInfo.Add(relicInfo);
 
                 if (passiveButtonsNum <= 2)
+                {
                     passiveRelicButtons[passiveButtonsNum].GetComponent<Image>().sprite = relicInfo.image;
+                    relicTexts[passiveButtonsNum].gameObject.SetActive(true);
+                }
 
                 passiveButtonsNum++;
+                relicQuantity.Add(1);
+            }
+            else
+            {
+                relicQuantity[iterations]++;
+
+                //if (iterations <= 2 && relicNum <= 2)
+                //    relicTexts[iterations].text = $"x{relicQuantity[iterations]}";
+                //else
             }
         }
         else
@@ -74,13 +93,13 @@ public class InventoryMenu : MonoBehaviour
 
     public void PassiveButton(int button)
     {
-        if (passiveRelicsInfo.Count >= (button + 1))
+        if (passiveRelicsInfo.Count >= (button + 1 + relicNum))
         {
             infoSection.SetActive(true);
 
-            relicImage.sprite = passiveRelicsInfo[button].image;
-            nameText.text = passiveRelicsInfo[button].relicName;
-            infoText.text = passiveRelicsInfo[button].description + "\n\n <size=25>" + passiveRelicsInfo[button].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button].value + "</color></size>";
+            relicImage.sprite = passiveRelicsInfo[button + relicNum].image;
+            nameText.text = passiveRelicsInfo[button + relicNum].relicName;
+            infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + "</color></size>";
         }
     }
 
@@ -99,5 +118,35 @@ public class InventoryMenu : MonoBehaviour
     public void DisableInfo()
     {
         infoSection.SetActive(false);
+    }
+
+    public void GoRight()
+    {
+        relicNum++;
+
+        if (relicNum > passiveRelicsInfo.Count - 3)
+            relicNum--;
+
+        if (passiveRelicsInfo.Count > 3)
+            for (int i = 0; i < 3; i++)
+            {
+                passiveRelicButtons[i].GetComponent<Image>().sprite = passiveRelicsInfo[i + relicNum].image;
+                relicTexts[i].text = $"x{relicQuantity[i + relicNum]}";
+            }
+    }
+
+    public void GoLeft()
+    {
+        relicNum--;
+
+        if (relicNum < 0)
+            relicNum = 0;
+
+        if (passiveRelicsInfo.Count > 3)
+            for (int i = 0; i < 3; i++)
+            {
+                passiveRelicButtons[i].GetComponent<Image>().sprite = passiveRelicsInfo[i + relicNum].image;
+                relicTexts[i].text = $"x{relicQuantity[i + relicNum]}";
+            }
     }
 }
