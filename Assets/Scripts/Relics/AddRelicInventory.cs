@@ -11,6 +11,9 @@ public class AddRelicInventory : MonoBehaviour
         InventoryMenu.Instance.AddToInventory(relicInfo);
 
         if (relicInfo.relicType.ToString() == "Passive")
+        {
+            InventoryMenu.Instance.UpdateStats();
             Destroy(this.gameObject);
+        }
     }
 }

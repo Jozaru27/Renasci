@@ -43,6 +43,9 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
         stats.dashCooldown += dashCooldown;
         stats.evasion += evasion;
 
+        if (stats.dashCooldown < 0)
+            stats.dashCooldown = 0;
+
         GameObject relicCanvas = Instantiate(UIManager.Instance.relicsUI, (transform.position + new Vector3(0, 2, 0)), Quaternion.identity);
 
         FloatingTextManager floatingTextManager = relicCanvas.transform.GetChild(0).GetComponent<FloatingTextManager>();
@@ -55,7 +58,7 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
         if (movementSpeed != 0) floatingTextManager.ShowFloatingText("Movement Speed + " + movementSpeed, transform.position, relicCanvas);
         if (attackSpeed != 0) floatingTextManager.ShowFloatingText("Attack Speed + " + attackSpeed, transform.position, relicCanvas);
         if (shootCadence != 0) floatingTextManager.ShowFloatingText("Shoot Cadence + " + shootCadence, transform.position, relicCanvas);
-        if (dashCooldown != 0) floatingTextManager.ShowFloatingText("Dash Cooldown + " + dashCooldown, transform.position, relicCanvas);
+        if (dashCooldown != 0) floatingTextManager.ShowFloatingText("Dash Cooldown - " + dashCooldown, transform.position, relicCanvas);
         if (evasion != 0) floatingTextManager.ShowFloatingText("Evasion + " + evasion, transform.position, relicCanvas);
 
         GetComponent<AddRelicInventory>().PassInfoToInventory();

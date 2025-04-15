@@ -16,5 +16,6 @@ MonoBehaviour:
   relicName: Titanium Heart
   description: An indestructible shard from an old sacred armour
   effect: 'Maximum Life '
-  value: +1
+  value: +
+  valueQuantity: 1
   relicType: 0

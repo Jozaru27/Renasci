@@ -16,5 +16,6 @@ MonoBehaviour:
   relicName: Hand Of The Gunner
   description: An enchanted trigger taken from a weapon forged by gods
   effect: 'Shoot Cadence '
-  value: +0.01
+  value: +
+  valueQuantity: 0.01
   relicType: 0
