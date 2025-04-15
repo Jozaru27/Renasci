@@ -16,6 +16,14 @@ public class Attack : MonoBehaviour
     [SerializeField] float fireDistance;
     [SerializeField] LayerMask burnableMask;
 
+    [Header("Fire Relic VFX")]
+    [SerializeField] GameObject fireWispPrefab;
+    [SerializeField] int totalWisps = 4;
+    [SerializeField] float spiralDuration = 2f;
+    [SerializeField] float spiralOutwardDistance = 3f;
+    [SerializeField] float spiralRotations = 2f;
+
+
     int shots;
     int relicSlot = 0;
     bool shotable = true;
@@ -190,6 +198,8 @@ public class Attack : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
+        StartCoroutine(SpawnFireWisps());
+
         GameManager.Instance.playerCannotMove = false;
 
         inRangeEnemies.Clear();
@@ -202,6 +212,47 @@ public class Attack : MonoBehaviour
         StartCoroutine(RelicCoolDown());
         StartCoroutine(BurningEnemy());
     }
+
+    IEnumerator SpawnFireWisps()
+    {
+        for (int i = 0; i < totalWisps; i++)
+        {
+            float angleOffset = (360f / totalWisps) * i * Mathf.Deg2Rad;
+            StartCoroutine(MoveWispInSpiral(angleOffset));
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        yield return null;
+    }
+
+    IEnumerator MoveWispInSpiral(float angleOffset)
+    {
+        GameObject wisp = Instantiate(fireWispPrefab, transform.position, Quaternion.identity);
+        Transform wispTransform = wisp.transform;
+
+        float t = 0f;
+
+        while (t < spiralDuration)
+        {
+            float normalizedTime = t / spiralDuration;
+
+            float angle = angleOffset + (normalizedTime * spiralRotations * 2 * Mathf.PI);
+            float radius = normalizedTime * spiralOutwardDistance;
+
+            float x = Mathf.Cos(angle) * radius;
+            float z = Mathf.Sin(angle) * radius;
+
+            Vector3 offset = new Vector3(x, 0.5f, z);
+            wispTransform.position = transform.position + offset;
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(wisp);
+    }
+
+
 
     void IceRelic()
     {
