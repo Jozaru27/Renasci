@@ -32,16 +32,16 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
 
     public void OnPlayerTake()
     {
-        stats.maxLife += life;
-        stats.lifeRegeneration += lifeRegeneration;
-        stats.damage += damage;
-        stats.damageMultiplyer += damageMultiplyer;
-        stats.criticalChance += criticalChance;
-        stats.movementSpeed += movementSpeed;
-        stats.attackSpeed += attackSpeed;
-        stats.shootCadence += shootCadence;
-        stats.dashCooldown += dashCooldown;
-        stats.evasion += evasion;
+        stats.maxLife += ((life * 100) / 100);
+        stats.lifeRegeneration += ((lifeRegeneration * 100) / 100);
+        stats.damage += ((damage * 100) / 100);
+        stats.damageMultiplyer += ((damageMultiplyer * 100) / 100);
+        stats.criticalChance += ((criticalChance * 100) / 100);
+        stats.movementSpeed += ((movementSpeed * 100) / 100);
+        stats.attackSpeed += ((attackSpeed * 100) / 100);
+        stats.shootCadence += ((shootCadence * 100) / 100);
+        stats.dashCooldown += ((dashCooldown * 100) / 100);
+        stats.evasion += ((evasion * 100) / 100);
 
         if (stats.dashCooldown < 0)
             stats.dashCooldown = 0;
@@ -58,7 +58,7 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
         if (movementSpeed != 0) floatingTextManager.ShowFloatingText("Movement Speed + " + movementSpeed, transform.position, relicCanvas);
         if (attackSpeed != 0) floatingTextManager.ShowFloatingText("Attack Speed + " + attackSpeed, transform.position, relicCanvas);
         if (shootCadence != 0) floatingTextManager.ShowFloatingText("Shoot Cadence + " + shootCadence, transform.position, relicCanvas);
-        if (dashCooldown != 0) floatingTextManager.ShowFloatingText("Dash Cooldown - " + dashCooldown, transform.position, relicCanvas);
+        if (dashCooldown != 0) floatingTextManager.ShowFloatingText("Dash Cooldown " + dashCooldown, transform.position, relicCanvas);
         if (evasion != 0) floatingTextManager.ShowFloatingText("Evasion + " + evasion, transform.position, relicCanvas);
 
         GetComponent<AddRelicInventory>().PassInfoToInventory();
