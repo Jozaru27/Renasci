@@ -17,5 +17,6 @@ MonoBehaviour:
   description: 'A fragment of a mystic mirror that allows the user to move through
     dimensions '
   effect: 'Dash Cooldown '
-  value: -0.1
+  value: '-'
+  valueQuantity: 0.15
   relicType: 0

@@ -16,5 +16,6 @@ MonoBehaviour:
   relicName: Wings Of The Wind
   description: An enchanted feather from an extremely fast celestial creature
   effect: 'Movement Speed '
-  value: +0.2
+  value: +
+  valueQuantity: 0.2
   relicType: 0

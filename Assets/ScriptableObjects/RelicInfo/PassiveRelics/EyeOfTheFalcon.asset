@@ -16,5 +16,6 @@ MonoBehaviour:
   relicName: Eye Of The Falcon
   description: A little cristal that gives the bearer
   effect: 'Critical Chance '
-  value: +1.5
+  value: +
+  valueQuantity: 1.5
   relicType: 0

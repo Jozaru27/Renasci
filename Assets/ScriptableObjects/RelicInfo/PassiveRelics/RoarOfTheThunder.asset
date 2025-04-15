@@ -16,5 +16,6 @@ MonoBehaviour:
   relicName: Roar Of The Thunder
   description: An orb with condensated energy of a raging storm
   effect: 'Attack Speed '
-  value: +0.05
+  value: +
+  valueQuantity: 0.05
   relicType: 0

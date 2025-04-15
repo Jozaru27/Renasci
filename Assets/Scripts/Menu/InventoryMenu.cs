@@ -6,8 +6,12 @@ using UnityEngine.UI;
 
 public class InventoryMenu : MonoBehaviour
 {
+    [Header("Stats Section")]
+    [SerializeField] TMP_Text statsText;
+
     [Header("Info Section")]
     [SerializeField] GameObject infoSection;
+    [SerializeField] GameObject statsSection;
     [SerializeField] Image relicImage;
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text infoText;
@@ -65,9 +69,8 @@ public class InventoryMenu : MonoBehaviour
             {
                 relicQuantity[iterations]++;
 
-                //if (iterations <= 2 && relicNum <= 2)
-                //    relicTexts[iterations].text = $"x{relicQuantity[iterations]}";
-                //else
+                if (iterations >= relicNum && iterations <= relicNum + 2)
+                    relicTexts[iterations - relicNum].text = $"x{relicQuantity[iterations]}";
             }
         }
         else
@@ -96,10 +99,11 @@ public class InventoryMenu : MonoBehaviour
         if (passiveRelicsInfo.Count >= (button + 1 + relicNum))
         {
             infoSection.SetActive(true);
+            statsSection.SetActive(false);
 
             relicImage.sprite = passiveRelicsInfo[button + relicNum].image;
             nameText.text = passiveRelicsInfo[button + relicNum].relicName;
-            infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + "</color></size>";
+            infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
         }
     }
 
@@ -108,6 +112,7 @@ public class InventoryMenu : MonoBehaviour
         if (activeRelicsInfo.Count >= (button + 1))
         {
             infoSection.SetActive(true);
+            statsSection.SetActive(false);
 
             relicImage.sprite = activeRelicsInfo[button].image;
             nameText.text = activeRelicsInfo[button].relicName;
@@ -118,6 +123,7 @@ public class InventoryMenu : MonoBehaviour
     public void DisableInfo()
     {
         infoSection.SetActive(false);
+        statsSection.SetActive(true);
     }
 
     public void GoRight()
@@ -148,5 +154,20 @@ public class InventoryMenu : MonoBehaviour
                 passiveRelicButtons[i].GetComponent<Image>().sprite = passiveRelicsInfo[i + relicNum].image;
                 relicTexts[i].text = $"x{relicQuantity[i + relicNum]}";
             }
+    }
+
+    public void UpdateStats()
+    {
+        statsText.text = $"{StatsManager.Instance.maxLife} \n\n" +
+            $"{StatsManager.Instance.life} \n\n" +
+            $"{StatsManager.Instance.lifeRegeneration} \n\n" +
+            $"{StatsManager.Instance.damage} \n\n" +
+            $"{StatsManager.Instance.damageMultiplyer} \n\n" +
+            $"{StatsManager.Instance.criticalChance} \n\n" +
+            $"{StatsManager.Instance.movementSpeed} \n\n" +
+            $"{StatsManager.Instance.attackSpeed} \n\n" +
+            $"{StatsManager.Instance.shootCadence} \n\n" +
+            $"{StatsManager.Instance.dashCooldown} \n\n" +
+            $"{StatsManager.Instance.evasion} \n\n";
     }
 }

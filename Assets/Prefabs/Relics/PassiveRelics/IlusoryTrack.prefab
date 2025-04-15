@@ -110,7 +110,7 @@ MonoBehaviour:
   movementSpeed: 0
   attackSpeed: 0
   shootCadence: 0
-  dashCooldown: -0.5
+  dashCooldown: -0.15
   evasion: 0
 --- !u!114 &6840547965455336464
 MonoBehaviour:

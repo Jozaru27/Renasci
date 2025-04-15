@@ -8,6 +8,7 @@ public class RelicsInventoryScriptableObject : ScriptableObject
     [TextArea (2, 6)] public string description;
     [TextArea (2, 6)] public string effect;
     public string value;
+    public float valueQuantity;
 
     public enum Relics
     {

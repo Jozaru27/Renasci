@@ -17,5 +17,6 @@ MonoBehaviour:
   description: A necklace with the essence of an old assasin. It allow its bearer
     to move undetected
   effect: 'Evasion '
-  value: +2.5
+  value: +
+  valueQuantity: 2.5
   relicType: 0
