@@ -16,6 +16,10 @@ public class Attack : MonoBehaviour
     [SerializeField] float fireDistance;
     [SerializeField] LayerMask burnableMask;
 
+    [Header("Relic Object")]
+    [SerializeField] GameObject iceObj;
+    [SerializeField] GameObject windObj;
+
     [Header("Fire Relic VFX")]
     [SerializeField] GameObject fireWispPrefab;
     [SerializeField] int totalWisps = 4;
@@ -252,8 +256,6 @@ public class Attack : MonoBehaviour
         Destroy(wisp);
     }
 
-
-
     void IceRelic()
     {
 
@@ -261,7 +263,10 @@ public class Attack : MonoBehaviour
 
     void WindRelic()
     {
+        GameObject windBullet = Instantiate(windObj, shotPoint.transform.position, Quaternion.identity);
+        windBullet.GetComponent<WindRelic>().GetDirection(transform.forward);
 
+        StartCoroutine(RelicCoolDown());
     }
 
     IEnumerator BurningEnemy()
