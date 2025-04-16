@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: c929603e945b47c459adc82f37891704, type: 3}
   relicName: Eye Of The Falcon
-  description: A little cristal that gives the bearer
+  description: A little cristal that gives the bearer sharp vision and supernatural
+    precision
   effect: 'Critical Chance '
   value: +
   valueQuantity: 1.5

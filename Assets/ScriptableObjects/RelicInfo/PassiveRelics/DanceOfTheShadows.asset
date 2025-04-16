@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 19a57e471246d5347a7652eb3e0633c7, type: 3}
   relicName: Dance Of The Shadows
-  description: A necklace with the essence of an old assasin. It allow its bearer
+  description: A necklace with the essence of an old assasin. It allows its bearer
     to move undetected
   effect: 'Evasion '
   value: +

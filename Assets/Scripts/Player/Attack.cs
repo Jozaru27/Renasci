@@ -95,9 +95,9 @@ public class Attack : MonoBehaviour
             float input = context.ReadValue<float>();
 
             if (input < 0)
-                relicSlot--;
-            else if (input > 0)
                 relicSlot++;
+            else if (input > 0)
+                relicSlot--;
 
             if (relicSlot > GameManager.Instance.currentRelicSlots)
                 relicSlot = 0;
