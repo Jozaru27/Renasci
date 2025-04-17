@@ -280,7 +280,10 @@ public class Attack : MonoBehaviour
 
     void IceRelic()
     {
+        GameObject iceBullet = Instantiate(iceObj, shotPoint.transform.position, Quaternion.identity);
+        iceBullet.GetComponent<IceRelic>().GetDirection(transform.forward);
 
+        StartCoroutine(RelicCoolDown());
     }
 
     void WindRelic()
