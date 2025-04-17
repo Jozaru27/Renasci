@@ -170,4 +170,10 @@ public class InventoryMenu : MonoBehaviour
             $"{StatsManager.Instance.dashCooldown} \n\n" +
             $"{StatsManager.Instance.evasion} \n\n";
     }
+
+    public void DisableInventory()
+    {
+        infoSection.SetActive(false);
+        statsSection.SetActive(true);
+    }
 }

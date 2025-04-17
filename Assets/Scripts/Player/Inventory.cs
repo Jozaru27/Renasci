@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
             else
             {
                 UIManager.Instance.DisableInventoryMenu();
+                InventoryMenu.Instance.DisableInventory();
                 GameManager.Instance.onInventory = false;
             }
         }
