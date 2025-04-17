@@ -219,19 +219,21 @@ public class Attack : MonoBehaviour
 
     IEnumerator SpawnFireWisps()
     {
+        Vector3 spawnCenter = transform.position + Vector3.up * 0.5f; 
+
         for (int i = 0; i < totalWisps; i++)
         {
-            float angleOffset = (360f / totalWisps) * i * Mathf.Deg2Rad;
-            StartCoroutine(MoveWispInSpiral(angleOffset));
-            yield return new WaitForSeconds(0.1f);
+            float angle = (360f / totalWisps) * i * Mathf.Deg2Rad;
+            StartCoroutine(MoveWispInSpiral(spawnCenter, angle));
+            // yield return new WaitForSeconds(0.05f);
         }
 
         yield return null;
     }
 
-    IEnumerator MoveWispInSpiral(float angleOffset)
+    IEnumerator MoveWispInSpiral(Vector3 center, float angleOffset)
     {
-        GameObject wisp = Instantiate(fireWispPrefab, transform.position, Quaternion.identity);
+        GameObject wisp = Instantiate(fireWispPrefab, center, Quaternion.identity);
         Transform wispTransform = wisp.transform;
 
         float t = 0f;
@@ -243,17 +245,37 @@ public class Attack : MonoBehaviour
             float angle = angleOffset + (normalizedTime * spiralRotations * 2 * Mathf.PI);
             float radius = normalizedTime * spiralOutwardDistance;
 
-            float x = Mathf.Cos(angle) * radius;
-            float z = Mathf.Sin(angle) * radius;
+            Vector3 localOffset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
+            Vector3 rotatedOffset = transform.rotation * localOffset;
 
-            Vector3 offset = new Vector3(x, 0.5f, z);
-            wispTransform.position = transform.position + offset;
+            wispTransform.position = center + rotatedOffset;
 
             t += Time.deltaTime;
             yield return null;
         }
 
-        Destroy(wisp);
+        ParticleSystem ps = wisp.GetComponent<ParticleSystem>();
+        if (ps != null) ps.Stop();
+
+            Light coreLight = wisp.transform.Find("FireRelicCore")?.GetComponent<Light>();
+
+        if (coreLight != null)
+        {
+            float duration = 1f;
+            float elapsed = 0f;
+            float startIntensity = coreLight.intensity;
+
+            while (elapsed < duration)
+            {
+                coreLight.intensity = Mathf.Lerp(startIntensity, 0f, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            coreLight.intensity = 0f;
+        }
+
+        Destroy(wisp, 3f);
     }
 
     void IceRelic()

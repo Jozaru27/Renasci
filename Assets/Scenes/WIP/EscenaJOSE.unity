@@ -13699,7 +13699,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5735764, y: -0, z: -0, w: 0.8191521}
-  m_LocalPosition: {x: 80.7054, y: 10.822452, z: 15.714646}
+  m_LocalPosition: {x: 124.9554, y: 10.822452, z: -13.535356}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52574,7 +52574,9 @@ MonoBehaviour:
   burnableMask:
     serializedVersion: 2
     m_Bits: 4608
-  fireWispPrefab: {fileID: 7803216088843879029, guid: 643918b8caaab0f48be7067f024913a4,
+  iceObj: {fileID: 0}
+  windObj: {fileID: 0}
+  fireWispPrefab: {fileID: 1779722923088446237, guid: cf3b87de475d749449639837604ef91d,
     type: 3}
   totalWisps: 4
   spiralDuration: 2
@@ -62304,7 +62306,7 @@ Transform:
   m_GameObject: {fileID: 1365173356}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 80.7054, y: 10.822452, z: 15.714646}
+  m_LocalPosition: {x: 124.9554, y: 10.822452, z: -13.535356}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -103920,7 +103922,7 @@ Transform:
   m_GameObject: {fileID: 3596748219824563610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80.7054, y: -2.4645448, z: 19.134848}
+  m_LocalPosition: {x: 124.9554, y: -2.4645448, z: -10.115152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
