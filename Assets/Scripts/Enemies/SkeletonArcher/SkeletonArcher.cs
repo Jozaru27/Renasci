@@ -26,6 +26,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     public bool goToIdle;
     public bool damaged;
     public bool playerDirectionTaken;
+    public bool frozen;
 
     public GameObject arrowPrefab;
     public Transform firePoint;

@@ -15,6 +15,25 @@ public class IceRelic : MonoBehaviour
 
     public void GetDirection(Vector3 setDirection)
     {
-        direction = setDirection;
+        direction = setDirection.normalized;
+        transform.rotation = Quaternion.LookRotation(direction);
+
+        StartCoroutine(AttackDissappears());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+            other.gameObject.GetComponent<StateEffect>().GetFreeze();
+
+        //if (!other.gameObject.CompareTag("Player"))
+        //    Destroy(this.gameObject);
+    }
+
+    IEnumerator AttackDissappears()
+    {
+        yield return new WaitForSeconds(5);
+
+        Destroy(this.gameObject);
     }
 }

@@ -18,7 +18,6 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
 
     public override void Entry()
     {
-       
         if (!skeletonWarrior.dead)
         {
             skeletonWarrior.StartCoroutine(GoingToBlock());
@@ -33,77 +32,80 @@ public class SkeletonWarriorBlock : SkeletonWarriorStates
 
     public override void Updating()
     {
-        float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
-
-        RaycastHit hit;
-        if (Physics.Raycast(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.transform.TransformDirection(Vector3.back),out hit,5,skeletonWarrior.playerMask))
+        if (!skeletonWarrior.frozen)
         {
-            skeletonWarrior.isBlocking = false;
-        }
-        else
-        {
-            skeletonWarrior.isBlocking = true;
-        }
+            float distanceToPlayer = Vector3.Distance(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.playerObject.transform.position);
 
-        //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
-        //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
-        //skeletonWarriorNav.isStopped = true;
-
-        if (!skeletonWarrior.damaged)
-        {
-            Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.skeletonWarriorObject.transform.position;
-            skeletonWarrior.blockTarget = Quaternion.LookRotation(playerDirection.normalized);
-            skeletonWarrior.angularVelocityOnBlock = 15f;
-        }
-        else if (!skeletonWarrior.playerDirectionTaken)
-        {
-            Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.skeletonWarriorObject.transform.position;
-            skeletonWarrior.blockTarget = Quaternion.LookRotation(playerDirection.normalized);
-            skeletonWarrior.angularVelocityOnBlock = 15f;
-            skeletonWarrior.playerDirectionTaken = true;
-        }
-
-        if (!skeletonWarrior.dead)
-        {
-            skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Lerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget, skeletonWarrior.angularVelocityOnBlock * Time.deltaTime);
-
-            if (Quaternion.Angle(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget) <= 35f && skeletonWarrior.damaged)
+            RaycastHit hit;
+            if (Physics.Raycast(skeletonWarrior.skeletonWarriorObject.transform.position, skeletonWarrior.transform.TransformDirection(Vector3.back), out hit, 5, skeletonWarrior.playerMask))
             {
-                skeletonWarrior.skeletonWarriorObject.transform.rotation = skeletonWarrior.blockTarget;
-                skeletonWarrior.damaged = false;
-                skeletonWarrior.playerDirectionTaken = false;
+                skeletonWarrior.isBlocking = false;
             }
-        }
+            else
+            {
+                skeletonWarrior.isBlocking = true;
+            }
 
-        skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Block();
+            //skeletonWarrior.skeletonWarriorObject.transform.LookAt(skeletonWarrior.playerObject.transform.position);
+            //NavMeshAgent skeletonWarriorNav = skeletonWarrior.gameObject.GetComponent<NavMeshAgent>();
+            //skeletonWarriorNav.isStopped = true;
 
-        if (distanceToPlayer >= skeletonWarrior.stats.detectionDistance-4)
-        {
-            warriorFarPlayer = true;
-        }
-        else
-        {
-            warriorFarPlayer = false;
-        }
+            if (!skeletonWarrior.damaged)
+            {
+                Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.skeletonWarriorObject.transform.position;
+                skeletonWarrior.blockTarget = Quaternion.LookRotation(playerDirection.normalized);
+                skeletonWarrior.angularVelocityOnBlock = 15f;
+            }
+            else if (!skeletonWarrior.playerDirectionTaken)
+            {
+                Vector3 playerDirection = skeletonWarrior.playerObject.transform.position - skeletonWarrior.skeletonWarriorObject.transform.position;
+                skeletonWarrior.blockTarget = Quaternion.LookRotation(playerDirection.normalized);
+                skeletonWarrior.angularVelocityOnBlock = 15f;
+                skeletonWarrior.playerDirectionTaken = true;
+            }
 
-        if (playerFar())
-        {
-            nextState = new SkeletonWarriorFollow(skeletonWarrior);
-            actualPhase = EVENTS.EXIT;
-        }
+            if (!skeletonWarrior.dead)
+            {
+                skeletonWarrior.skeletonWarriorObject.transform.rotation = Quaternion.Lerp(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget, skeletonWarrior.angularVelocityOnBlock * Time.deltaTime);
 
-        
+                if (Quaternion.Angle(skeletonWarrior.skeletonWarriorObject.transform.rotation, skeletonWarrior.blockTarget) <= 35f && skeletonWarrior.damaged)
+                {
+                    skeletonWarrior.skeletonWarriorObject.transform.rotation = skeletonWarrior.blockTarget;
+                    skeletonWarrior.damaged = false;
+                    skeletonWarrior.playerDirectionTaken = false;
+                }
+            }
 
-        if (stopBlocking())
-        {
-            nextState = new SkeletonWarriorAttack(skeletonWarrior);
-            actualPhase = EVENTS.EXIT;
-        }
+            skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Block();
 
-        if (skeletonWarrior.goToIdle)
-        {
-            nextState = new SkeletonWarriorIdle(skeletonWarrior);
-            actualPhase = EVENTS.EXIT;
+            if (distanceToPlayer >= skeletonWarrior.stats.detectionDistance - 4)
+            {
+                warriorFarPlayer = true;
+            }
+            else
+            {
+                warriorFarPlayer = false;
+            }
+
+            if (playerFar())
+            {
+                nextState = new SkeletonWarriorFollow(skeletonWarrior);
+                actualPhase = EVENTS.EXIT;
+            }
+
+
+
+            if (stopBlocking())
+            {
+                nextState = new SkeletonWarriorAttack(skeletonWarrior);
+                actualPhase = EVENTS.EXIT;
+            }
+
+            if (skeletonWarrior.goToIdle)
+            {
+                nextState = new SkeletonWarriorIdle(skeletonWarrior);
+                actualPhase = EVENTS.EXIT;
+            }
         }
     }
 

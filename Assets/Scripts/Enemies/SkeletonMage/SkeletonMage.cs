@@ -30,6 +30,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public bool goToIdle;
     public bool damaged;
     public bool playerDirectionTaken;
+    public bool frozen;
 
     public GameObject bulletPrefab;
     public Transform firePoint;

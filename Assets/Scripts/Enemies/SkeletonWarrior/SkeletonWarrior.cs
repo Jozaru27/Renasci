@@ -29,6 +29,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public bool goToIdle;
     public bool damaged;
     public bool playerDirectionTaken;
+    public bool frozen;
 
     bool inCombat;
 

@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
         currentRelicSlots = -1;
         gamePaused = false;
         gameOver = false;
-        gamePaused = false;
-        gameOver = false;
         gameWin = false;
         interacting = false;
         dashing = false;
