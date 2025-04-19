@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RelicsGroundAnimation : MonoBehaviour
 {
+    [SerializeField] bool isActive;
+
     GameObject relic; 
     float maxDistanceY = 3;
     float lowestDistanceY = -3;
@@ -15,7 +17,7 @@ public class RelicsGroundAnimation : MonoBehaviour
     Vector3 finalPos1;
     float middlePoint;
     public AnimationCurve curve;
-    // Start is called before the first frame update
+
     void Start()
     {
         relic = this.gameObject;
@@ -25,7 +27,6 @@ public class RelicsGroundAnimation : MonoBehaviour
         middlePoint = originalPos.y / finalPos1.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -54,12 +55,7 @@ public class RelicsGroundAnimation : MonoBehaviour
             }
         }
 
-       
-            
-       
-
-       
-        
-        relic.transform.rotation *= Quaternion.Euler(0,0.5f,0);
+        if (!isActive)
+            relic.transform.rotation *= Quaternion.Euler(0,0.5f,0);
     }
 }
