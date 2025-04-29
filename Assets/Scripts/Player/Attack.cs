@@ -238,6 +238,8 @@ public class Attack : MonoBehaviour
 
         float t = 0f;
 
+        Quaternion initialRotation = transform.rotation;
+
         while (t < spiralDuration)
         {
             float normalizedTime = t / spiralDuration;
@@ -246,8 +248,8 @@ public class Attack : MonoBehaviour
             float radius = normalizedTime * spiralOutwardDistance;
 
             Vector3 localOffset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
-            Vector3 rotatedOffset = transform.rotation * localOffset;
-
+            Vector3 rotatedOffset = initialRotation * localOffset;
+            
             wispTransform.position = center + rotatedOffset;
 
             t += Time.deltaTime;
@@ -257,7 +259,7 @@ public class Attack : MonoBehaviour
         ParticleSystem ps = wisp.GetComponent<ParticleSystem>();
         if (ps != null) ps.Stop();
 
-            Light coreLight = wisp.transform.Find("FireRelicCore")?.GetComponent<Light>();
+        Light coreLight = wisp.transform.Find("FireRelicCore")?.GetComponent<Light>();
 
         if (coreLight != null)
         {
@@ -277,6 +279,7 @@ public class Attack : MonoBehaviour
 
         Destroy(wisp, 3f);
     }
+
 
     void IceRelic()
     {
