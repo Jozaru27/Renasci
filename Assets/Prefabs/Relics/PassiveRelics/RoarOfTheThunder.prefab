@@ -58,11 +58,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4728571479400314386, guid: 4a7060159c4cf764f80d36e3f84361ac,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 269d7ea9d84e25643b1fbe341f022853, type: 2}
     - target: {fileID: 919132149155446097, guid: 4a7060159c4cf764f80d36e3f84361ac,
         type: 3}
       propertyPath: m_Name
       value: RoarOfTheThunder
       objectReference: {fileID: 0}
+    - target: {fileID: 1136359397752283680, guid: 4a7060159c4cf764f80d36e3f84361ac,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5dd28aa7a1cc4234fac78acafebc9e7f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -124,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f22acf6157a40b4eb5c8fc321aafb80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   curve:
     serializedVersion: 2
     m_Curve:

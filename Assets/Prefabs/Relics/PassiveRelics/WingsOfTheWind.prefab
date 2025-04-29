@@ -58,6 +58,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5762173534388935078, guid: 2a41ec03a8e690e4dbaf54c851eb8145,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fad3a280846a64f49af5c3f4d51ba630, type: 2}
+    - target: {fileID: 704054774535333717, guid: 2a41ec03a8e690e4dbaf54c851eb8145,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fad3a280846a64f49af5c3f4d51ba630, type: 2}
     - target: {fileID: 919132149155446097, guid: 2a41ec03a8e690e4dbaf54c851eb8145,
         type: 3}
       propertyPath: m_Name
@@ -124,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f22acf6157a40b4eb5c8fc321aafb80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   curve:
     serializedVersion: 2
     m_Curve:

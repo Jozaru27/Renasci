@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8822726740628553734, guid: 07731913c53fd3a42acfb466d81fc9f6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ada911b078be5b3408d5794b6ab74138, type: 2}
     - target: {fileID: -8679921383154817045, guid: 07731913c53fd3a42acfb466d81fc9f6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -58,11 +63,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4841621683740773081, guid: 07731913c53fd3a42acfb466d81fc9f6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ada911b078be5b3408d5794b6ab74138, type: 2}
+    - target: {fileID: -4020924224465817570, guid: 07731913c53fd3a42acfb466d81fc9f6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ada911b078be5b3408d5794b6ab74138, type: 2}
+    - target: {fileID: -279123317167804377, guid: 07731913c53fd3a42acfb466d81fc9f6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ada911b078be5b3408d5794b6ab74138, type: 2}
     - target: {fileID: 919132149155446097, guid: 07731913c53fd3a42acfb466d81fc9f6,
         type: 3}
       propertyPath: m_Name
       value: HandOfTheGunner
       objectReference: {fileID: 0}
+    - target: {fileID: 6683096742102310941, guid: 07731913c53fd3a42acfb466d81fc9f6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ada911b078be5b3408d5794b6ab74138, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -124,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f22acf6157a40b4eb5c8fc321aafb80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   curve:
     serializedVersion: 2
     m_Curve:

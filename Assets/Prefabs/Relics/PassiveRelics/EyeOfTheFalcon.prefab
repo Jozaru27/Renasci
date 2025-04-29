@@ -58,11 +58,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3892322038770718218, guid: c6677e1f010d5904fb84d5e2a43dfc91,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7bff2dce297dafd4bad56e1fc1fd1445, type: 2}
     - target: {fileID: 919132149155446097, guid: c6677e1f010d5904fb84d5e2a43dfc91,
         type: 3}
       propertyPath: m_Name
       value: EyeOfTheFalcon
       objectReference: {fileID: 0}
+    - target: {fileID: 6671134275228593271, guid: c6677e1f010d5904fb84d5e2a43dfc91,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3fb517fdda091554aa1ad91b09683b53, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -124,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f22acf6157a40b4eb5c8fc321aafb80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   curve:
     serializedVersion: 2
     m_Curve:
