@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PuertaSmall
+  m_Name: Barrel
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,11 +29,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6efc400f888527d4cba978e242b380f9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1973c9ff458dd7542b440c303eb6ab5c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: e797fcc774f6e2f4bb207c8f1791da52, type: 3}
+        m_Texture: {fileID: 2800000, guid: 569558c10e21fe241a03c98b105f3126, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -53,19 +53,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6efc400f888527d4cba978e242b380f9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1973c9ff458dd7542b440c303eb6ab5c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: f59686eed93e12248b62701ba2381904, type: 3}
+        m_Texture: {fileID: 2800000, guid: f605859589bac844c9bb3494c46ba59c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 7486cd539f755bb4b85bbcd3d31e52aa, type: 3}
+        m_Texture: {fileID: 2800000, guid: aa8cc9fbffad0e244b2b40aefe04587a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 6496ac51382bfda43a5945ddab7524ed, type: 3}
+        m_Texture: {fileID: 2800000, guid: 05d4dc7ede3556b43ad85ceaa23fef43, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -122,7 +122,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7136894718498856439
+--- !u!114 &7738711150115626053
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
