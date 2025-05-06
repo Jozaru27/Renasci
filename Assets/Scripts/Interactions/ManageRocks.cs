@@ -14,6 +14,7 @@ public class ManageRocks : MonoBehaviour
         {
             foreach (GameObject rock in rocks)
             {
+                rock.GetComponent<Rigidbody>().isKinematic = false;
                 rock.GetComponent<PushableObjectScript>().PushRock(other.gameObject.transform.position, this.gameObject);
             }
 

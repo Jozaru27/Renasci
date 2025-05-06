@@ -5,28 +5,34 @@ using UnityEngine;
 public class PushableObjectScript : MonoBehaviour
 {
     [SerializeField] float pushableForce;
+    [SerializeField] Material dissolveMaterial;
 
     Rigidbody rb;
-    Material material;
-
+    Material currentMaterial;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        material = GetComponent<Renderer>().material;
+        currentMaterial = GetComponent<Renderer>().material;
     }
 
     public void PushRock(Vector3 windPosition, GameObject parentObject)
     {
         Vector3 pushDirection = transform.position - windPosition;
+        pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
         rb.AddForce(pushDirection.normalized * pushableForce, ForceMode.Impulse);
         StartCoroutine(DissolveRock(parentObject));
     }
 
     IEnumerator DissolveRock(GameObject parentObject)
     {
-        while (material.GetFloat("_CutOff_Height") > -80)
+        GetComponent<Renderer>().material = dissolveMaterial;
+        currentMaterial = GetComponent<Renderer>().material;
+        rb.constraints = RigidbodyConstraints.None;
+
+        while (currentMaterial.GetFloat("_CutOff_Height") > -5)
         {
-            material.SetFloat("_CutOff_Height", material.GetFloat("_CutOff_Height") - (25 * Time.deltaTime));
+            currentMaterial.SetFloat("_CutOff_Height", currentMaterial.GetFloat("_CutOff_Height") - (5 * Time.deltaTime));
             yield return null;
         }
 
