@@ -3,7 +3,12 @@ guid: da00b63b6c552fc48a4f9fe6096d1143
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chekcer
+    second: {fileID: 2100000, guid: 9e1202b1d9c2a36428989c7cd605e7dc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
