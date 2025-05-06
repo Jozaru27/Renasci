@@ -5,9 +5,6 @@
     "m_Properties": [
         {
             "m_Id": "d1919808e2a84b9d8fb74fdb112d5b14"
-        },
-        {
-            "m_Id": "fa38c25205164aa7b148ae6d7b6f7d4e"
         }
     ],
     "m_Keywords": [],
@@ -178,6 +175,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "0b709eec907c4f93b5f3cadd530d6b5a",
+    "m_Id": 1,
+    "m_DisplayName": "Out_Float",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out_Float",
+    "m_StageCapability": 2,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.ScreenPositionNode",
     "m_ObjectId": "17cd57fdf0f046bc826eaf462960a8c9",
     "m_Group": {
@@ -267,9 +279,6 @@
     "m_ChildObjectList": [
         {
             "m_Id": "d1919808e2a84b9d8fb74fdb112d5b14"
-        },
-        {
-            "m_Id": "fa38c25205164aa7b148ae6d7b6f7d4e"
         }
     ]
 }
@@ -333,7 +342,7 @@
     },
     "m_Slots": [
         {
-            "m_Id": "97e736c99c7e436e8268ca121263f3b5"
+            "m_Id": "0b709eec907c4f93b5f3cadd530d6b5a"
         }
     ],
     "synonyms": [],
@@ -604,21 +613,6 @@
     },
     "m_Labels": [],
     "m_ScreenSpaceType": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "97e736c99c7e436e8268ca121263f3b5",
-    "m_Id": 1,
-    "m_DisplayName": "Out_Vector4",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out_Vector4",
-    "m_StageCapability": 2,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {
@@ -904,35 +898,5 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "fa38c25205164aa7b148ae6d7b6f7d4e",
-    "m_Guid": {
-        "m_GuidSerialized": "f00feca7-2f09-4226-937d-9e5c728015ee"
-    },
-    "m_Name": "ShallowWater",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "ShallowWater",
-    "m_DefaultReferenceName": "_ShallowWater",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
 }
 

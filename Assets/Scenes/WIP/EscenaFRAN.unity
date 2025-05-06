@@ -13718,8 +13718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresDepthTextureOption: 1
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -107827,7 +107827,7 @@ PrefabInstance:
     - target: {fileID: 6283313403161056251, guid: 5232112730b346f4894b3f8184c32c2c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.23
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 6283313403161056251, guid: 5232112730b346f4894b3f8184c32c2c,
         type: 3}
