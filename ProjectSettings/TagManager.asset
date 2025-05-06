@@ -10,6 +10,7 @@ TagManager:
   - Prop
   - Obstacle
   - Trap
+  - Wind
   layers:
   - Default
   - TransparentFX
