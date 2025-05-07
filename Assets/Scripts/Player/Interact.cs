@@ -10,12 +10,23 @@ public class Interact : MonoBehaviour
     {
         if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
         {
-            Ray cameraRay = new Ray(transform.position, transform.forward);
-
-            if (Physics.Raycast(cameraRay, out RaycastHit hit, interactionDistance, interactLayer))
+            if (GameManager.Instance.inInfo)
             {
-                if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj))
-                    interactObj.Interact();
+                if (GameManager.Instance.infoShowed)
+                {
+                    Time.timeScale = 1;
+                    InfoPanel.Instance.ComproveRelicsList();
+                }
+            }
+            else
+            {
+                Ray cameraRay = new Ray(transform.position, transform.forward);
+
+                if (Physics.Raycast(cameraRay, out RaycastHit hit, interactionDistance, interactLayer))
+                {
+                    if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+                        interactObj.Interact();
+                }
             }
         }
     }

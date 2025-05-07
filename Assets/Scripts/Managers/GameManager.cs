@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public bool dashing;
     public bool playerCannotMove;
     public bool onInventory;
+    public bool inInfo;
+    public bool infoShowed;
     public GameObject[] enemies;
 
     public static GameManager Instance { get; private set; }
@@ -42,5 +44,7 @@ public class GameManager : MonoBehaviour
         dashing = false;
         playerCannotMove = false;
         onInventory = false;
+        inInfo = false;
+        infoShowed = false;
     }
 }
