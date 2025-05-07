@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
     public Slider healthBarSlider; 
     public int maxHealth;
+    [SerializeField] private Gradient gradient;
 
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
@@ -51,8 +52,10 @@ public class UIManager : MonoBehaviour
     public void ChangeLife()
     {
         lifeText.text = $"Life: {StatsManager.Instance.life}";
-        //healthBarSlider.value = StatsManager.Instance.life;
         healthBarSlider.value = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife * healthBarSlider.maxValue;
+    
+        float normalizedLife = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife;
+        healthBarSlider.fillRect.GetComponent<Image>().color = gradient.Evaluate(normalizedLife);
     }
 
     public void ChangeEnemyCount()
