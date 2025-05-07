@@ -9,7 +9,7 @@ public class Pause : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
+        if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin && !GameManager.Instance.inInfo)
         {
             if (GameManager.Instance.onInventory)
             {
