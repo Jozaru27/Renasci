@@ -38,62 +38,65 @@ public class SkeletonMageAttack : SkeletonMageStates
 
     public override void Updating()
     {
-        //Debug.Log("ATTACk");
-
-        if (!skeletonMage.teleporting)
+        if (!skeletonMage.frozen)
         {
-            Vector3 playerDirection = skeletonMage.playerObject.transform.position - skeletonMage.skeletonMageObject.transform.position;
-            Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
+            //Debug.Log("ATTACk");
 
-            if (!skeletonMage.secondAttack)
-                skeletonMage.skeletonMageObject.transform.rotation = Quaternion.Lerp(skeletonMage.skeletonMageObject.transform.rotation, playerRotation, 5 * Time.deltaTime);
-
-            if ((Quaternion.Angle(skeletonMage.skeletonMageObject.transform.rotation, playerRotation) <= 15f || skeletonMage.damaged) && !skeletonMage.secondAttack)
+            if (!skeletonMage.teleporting)
             {
-                skeletonMage.skeletonMageObject.transform.rotation = playerRotation;
+                Vector3 playerDirection = skeletonMage.playerObject.transform.position - skeletonMage.skeletonMageObject.transform.position;
+                Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
 
-                if (attackRandomizer > basicAttackProbability)
-                    skeletonMage.StartCoroutine(skeletonMage.MakingSecondAttack());
-            }
+                if (!skeletonMage.secondAttack)
+                    skeletonMage.skeletonMageObject.transform.rotation = Quaternion.Lerp(skeletonMage.skeletonMageObject.transform.rotation, playerRotation, 5 * Time.deltaTime);
 
-            float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
+                if ((Quaternion.Angle(skeletonMage.skeletonMageObject.transform.rotation, playerRotation) <= 15f || skeletonMage.damaged) && !skeletonMage.secondAttack)
+                {
+                    skeletonMage.skeletonMageObject.transform.rotation = playerRotation;
 
-            NavMeshPath path = new NavMeshPath();
-            bool pathExists = skeletonMage.skeletonMageAgent.CalculatePath(skeletonMage.playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete;
+                    if (attackRandomizer > basicAttackProbability)
+                        skeletonMage.StartCoroutine(skeletonMage.MakingSecondAttack());
+                }
 
-            if (attackRandomizer <= basicAttackProbability && !skeletonMage.attacking)
-            {
-                if (distanceToPlayer > skeletonMage.stats.detectionDistance)
+                float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
+
+                NavMeshPath path = new NavMeshPath();
+                bool pathExists = skeletonMage.skeletonMageAgent.CalculatePath(skeletonMage.playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete;
+
+                if (attackRandomizer <= basicAttackProbability && !skeletonMage.attacking)
+                {
+                    if (distanceToPlayer > skeletonMage.stats.detectionDistance)
+                    {
+                        nextState = new SkeletonMageIdle(skeletonMage);
+                        actualPhase = EVENTS.EXIT;
+                    }
+
+                    if (distanceToPlayer < 5f && pathExists)
+                    {
+                        nextState = new SkeletonMageFollow(skeletonMage);
+                        actualPhase = EVENTS.EXIT;
+                        return;
+                    }
+
+                    if (skeletonMage.goToIdle)
+                    {
+                        nextState = new SkeletonMageIdle(skeletonMage);
+                        actualPhase = EVENTS.EXIT;
+                    }
+                }
+                if (!skeletonMage.attacking && skeletonMage.goToIdle)
                 {
                     nextState = new SkeletonMageIdle(skeletonMage);
                     actualPhase = EVENTS.EXIT;
                 }
-
-                if (distanceToPlayer < 5f && pathExists)
-                {
-                    nextState = new SkeletonMageFollow(skeletonMage);
-                    actualPhase = EVENTS.EXIT;
-                    return;
-                }
-
-                if (skeletonMage.goToIdle)
-                {
-                    nextState = new SkeletonMageIdle(skeletonMage);
-                    actualPhase = EVENTS.EXIT;
-                }
             }
-            if (!skeletonMage.attacking && skeletonMage.goToIdle)
+            else
             {
-                nextState = new SkeletonMageIdle(skeletonMage);
+                skeletonMage.attacking = false;
+                nextState = new SkeletonMageFollow(skeletonMage);
                 actualPhase = EVENTS.EXIT;
+                return;
             }
-        }
-        else
-        {
-            skeletonMage.attacking = false;
-            nextState = new SkeletonMageFollow(skeletonMage);
-            actualPhase = EVENTS.EXIT;
-            return;
         }
     }
 

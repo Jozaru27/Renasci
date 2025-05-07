@@ -22,34 +22,36 @@ public class SkeletonArcherAttack : SkeletonArcherStates
 
     public override void Updating()
     {
-
-        Vector3 playerDirection = skeletonArcher.playerObject.transform.position - skeletonArcher.skeletonArcherObject.transform.position;
-        Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
-
-        skeletonArcher.skeletonArcherObject.transform.rotation = Quaternion.Lerp(skeletonArcher.skeletonArcherObject.transform.rotation, playerRotation, 5 * Time.deltaTime);
-
-        if (Quaternion.Angle(skeletonArcher.skeletonArcherObject.transform.rotation, playerRotation) <= 15f && skeletonArcher.damaged)
-            skeletonArcher.skeletonArcherObject.transform.rotation = playerRotation;
-
-        float distanceToPlayer = Vector3.Distance(skeletonArcher.skeletonArcherObject.transform.position,skeletonArcher.playerObject.transform.position);
-
-        if (distanceToPlayer > 7f)
+        if (!skeletonArcher.frozen)
         {
-            nextState = new SkeletonArcherFollow(skeletonArcher);
-            actualPhase = EVENTS.EXIT;
-        }
+            Vector3 playerDirection = skeletonArcher.playerObject.transform.position - skeletonArcher.skeletonArcherObject.transform.position;
+            Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
 
-        //if (distanceToPlayer < 5f)
-        //{
-        //    nextState = new SkeletonArcherFollow(skeletonArcher);
-        //    actualPhase = EVENTS.EXIT;
-        //    return;
-        //}
+            skeletonArcher.skeletonArcherObject.transform.rotation = Quaternion.Lerp(skeletonArcher.skeletonArcherObject.transform.rotation, playerRotation, 5 * Time.deltaTime);
 
-        if (skeletonArcher.goToIdle)
-        {
-            nextState = new SkeletonArcherIdle(skeletonArcher);
-            actualPhase = EVENTS.EXIT;
+            if (Quaternion.Angle(skeletonArcher.skeletonArcherObject.transform.rotation, playerRotation) <= 15f && skeletonArcher.damaged)
+                skeletonArcher.skeletonArcherObject.transform.rotation = playerRotation;
+
+            float distanceToPlayer = Vector3.Distance(skeletonArcher.skeletonArcherObject.transform.position, skeletonArcher.playerObject.transform.position);
+
+            if (distanceToPlayer > 7f)
+            {
+                nextState = new SkeletonArcherFollow(skeletonArcher);
+                actualPhase = EVENTS.EXIT;
+            }
+
+            //if (distanceToPlayer < 5f)
+            //{
+            //    nextState = new SkeletonArcherFollow(skeletonArcher);
+            //    actualPhase = EVENTS.EXIT;
+            //    return;
+            //}
+
+            if (skeletonArcher.goToIdle)
+            {
+                nextState = new SkeletonArcherIdle(skeletonArcher);
+                actualPhase = EVENTS.EXIT;
+            }
         }
     }
 

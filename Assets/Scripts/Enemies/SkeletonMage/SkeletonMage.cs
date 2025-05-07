@@ -178,6 +178,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         while (timer < 3.5f && !teleporting)
         {
+            yield return new WaitUntil(() => !frozen);
+
             Vector3 playerDirection = playerObject.transform.position - skeletonMageObject.transform.position;
             Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, 20 * Time.deltaTime);

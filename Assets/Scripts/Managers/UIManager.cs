@@ -47,6 +47,8 @@ public class UIManager : MonoBehaviour
         relicText.text = $"Relic: None";
         healthBarSlider.maxValue = maxHealth;
         ChangeLife();
+
+        GameManager.Instance.ResetProperties();
     }
 
     public void ChangeLife()
