@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text bulletCountText;
     [SerializeField] TMP_Text relicText;
+
+    public Slider healthBarSlider; 
+    public int maxHealth;
 
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
@@ -40,12 +44,15 @@ public class UIManager : MonoBehaviour
         enemyCountText.text = $"Enemies left: {enemyCount}";
         bulletCountText.text = $"Bullets: 6";
         relicText.text = $"Relic: None";
+        healthBarSlider.maxValue = maxHealth;
         ChangeLife();
     }
 
     public void ChangeLife()
     {
         lifeText.text = $"Life: {StatsManager.Instance.life}";
+        //healthBarSlider.value = StatsManager.Instance.life;
+        healthBarSlider.value = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife * healthBarSlider.maxValue;
     }
 
     public void ChangeEnemyCount()

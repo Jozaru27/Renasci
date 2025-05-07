@@ -62,5 +62,7 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
         if (evasion != 0) floatingTextManager.ShowFloatingText("Evasion + " + evasion, transform.position, relicCanvas);
 
         GetComponent<AddRelicInventory>().PassInfoToInventory();
+
+        UIManager.Instance.ChangeLife();
     }
 }
