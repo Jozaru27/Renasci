@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2844597631465161307}
   m_Layer: 0
   m_Name: IceBullet_Attack
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

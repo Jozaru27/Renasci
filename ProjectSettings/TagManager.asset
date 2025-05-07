@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - Trap
   - Wind
+  - Ice
   layers:
   - Default
   - TransparentFX
