@@ -17,6 +17,8 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
     public float dashCooldown;
     public float evasion;
 
+    GameObject playerObj;
+
     void Awake()
     {
         stats = FindObjectOfType<StatsManager>();
@@ -26,6 +28,7 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            playerObj = other.gameObject;
             OnPlayerTake();
         }
     }
@@ -45,6 +48,9 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
 
         if (stats.dashCooldown < 0)
             stats.dashCooldown = 0;
+
+        if (lifeRegeneration > 0)
+            playerObj.GetComponent<PlayerHealth>().StartCoroutine(playerObj.GetComponent<PlayerHealth>().LifeRegeneration());
 
         GameObject relicCanvas = Instantiate(UIManager.Instance.relicsUI, (transform.position + new Vector3(0, 2, 0)), Quaternion.identity);
 

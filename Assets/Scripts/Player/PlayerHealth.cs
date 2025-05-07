@@ -129,7 +129,7 @@ public class PlayerHealth : MonoBehaviour
         GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.blue;
     }
 
-    IEnumerator LifeRegeneration()
+    public IEnumerator LifeRegeneration()
     {
         while (StatsManager.Instance.life < StatsManager.Instance.maxLife)
         {
