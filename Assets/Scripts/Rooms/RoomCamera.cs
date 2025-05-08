@@ -73,6 +73,8 @@ public class RoomCamera : MonoBehaviour
 
     public void EnableCombatMode()
     {
+        Debug.Log("COMBAT");
+
         if (enemies.Count > 0)
         {
             foreach (GameObject door in doors)
