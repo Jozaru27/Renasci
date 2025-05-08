@@ -158,17 +158,17 @@ public class InventoryMenu : MonoBehaviour
 
     public void UpdateStats()
     {
-        statsText.text = $"{StatsManager.Instance.maxLife} \n\n" +
-            $"{StatsManager.Instance.life} \n\n" +
-            $"{StatsManager.Instance.lifeRegeneration} \n\n" +
-            $"{StatsManager.Instance.damage} \n\n" +
-            $"{StatsManager.Instance.damageMultiplyer} \n\n" +
-            $"{StatsManager.Instance.criticalChance} \n\n" +
-            $"{StatsManager.Instance.movementSpeed} \n\n" +
-            $"{StatsManager.Instance.attackSpeed} \n\n" +
-            $"{StatsManager.Instance.shootCadence} \n\n" +
-            $"{StatsManager.Instance.dashCooldown} \n\n" +
-            $"{StatsManager.Instance.evasion} \n\n";
+        statsText.text = $"{StatsManager.Instance.maxLife:0.00} \n\n" +
+            $"{StatsManager.Instance.life:0.00} \n\n" +
+            $"{StatsManager.Instance.lifeRegeneration:0.00} \n\n" +
+            $"{StatsManager.Instance.damage:0.00} \n\n" +
+            $"{StatsManager.Instance.damageMultiplyer:0.00} \n\n" +
+            $"{StatsManager.Instance.criticalChance:0.00} \n\n" +
+            $"{StatsManager.Instance.movementSpeed:0.00} \n\n" +
+            $"{StatsManager.Instance.attackSpeed:0.00} \n\n" +
+            $"{StatsManager.Instance.shootCadence:0.00} \n\n" +
+            $"{StatsManager.Instance.dashCooldown:0.00} \n\n" +
+            $"{StatsManager.Instance.evasion:0.00} \n\n";
     }
 
     public void DisableInventory()

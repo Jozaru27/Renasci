@@ -73,12 +73,12 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator ChangingColor()
     {
         //GetComponent<Renderer>().material.color = Color.blue;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material2;
+        GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material2;
 
         yield return new WaitForSeconds(0.125f);
 
 ;       //GetComponent<Renderer>().material.color = Color.white;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+        GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material1;
 
         ChangeVencibleColor();
     }
@@ -94,8 +94,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (!dashed)
         {
-            GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+            GameObject.Find("PlayerCh").GetComponent<Renderer>().material.color = Color.white;
+            GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material1;
             invencible = false;
         }
         
@@ -114,8 +114,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (!gotDamage)
         {
-            GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material1;
+            GameObject.Find("PlayerCh").GetComponent<Renderer>().material.color = Color.white;
+            GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material1;
             invencible = false;
         }
 
@@ -125,8 +125,8 @@ public class PlayerHealth : MonoBehaviour
     public void ChangeVencibleColor()
     {
         //GetComponent<Renderer>().material.color = Color.blue;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material = material2;
-        GameObject.Find("DummyMesh").GetComponent<Renderer>().material.color = Color.blue;
+        GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material2;
+        GameObject.Find("PlayerCh").GetComponent<Renderer>().material.color = Color.blue;
     }
 
     public IEnumerator LifeRegeneration()
@@ -138,5 +138,7 @@ public class PlayerHealth : MonoBehaviour
             StatsManager.Instance.life += StatsManager.Instance.lifeRegeneration;
             UIManager.Instance.ChangeLife();
         }
+
+        StatsManager.Instance.life = StatsManager.Instance.maxLife;
     }
 }
