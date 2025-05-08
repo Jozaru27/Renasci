@@ -91,26 +91,29 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateCharacter()
     {
-        if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.playerCannotMove)
+        if (!GameManager.Instance.gameWin)
         {
-            //viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
-            //viewPos = Mathf.Round(viewPos * 100) / 100;
+            if (inputMovement.magnitude >= 0.25f && !GameManager.Instance.playerCannotMove)
+            {
+                //viewPos = Mathf.Atan2(inputMovement.x, inputMovement.y) * Mathf.Rad2Deg;
+                //viewPos = Mathf.Round(viewPos * 100) / 100;
 
-            inputAngle = new Vector3(inputMovement.x * inputFactor, 0, inputMovement.y * inputFactor);
+                inputAngle = new Vector3(inputMovement.x * inputFactor, 0, inputMovement.y * inputFactor);
 
-            if (inputAngle != Vector3.zero)
-                rotationTarget = Quaternion.LookRotation(inputAngle);
-        }
+                if (inputAngle != Vector3.zero)
+                    rotationTarget = Quaternion.LookRotation(inputAngle);
+            }
 
-        //Quaternion target = Quaternion.Euler(0, viewPos, 0);
+            //Quaternion target = Quaternion.Euler(0, viewPos, 0);
 
-        if (Quaternion.Angle(rb.rotation, rotationTarget) > 0.15f)
-        {
-            //rb.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
-            rb.rotation = Quaternion.Slerp(rb.rotation, rotationTarget, rotationSpeed * Time.deltaTime);
+            if (Quaternion.Angle(rb.rotation, rotationTarget) > 0.15f)
+            {
+                //rb.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+                rb.rotation = Quaternion.Slerp(rb.rotation, rotationTarget, rotationSpeed * Time.deltaTime);
 
-            if (Math.Abs(rb.rotation.y - rotationTarget.y) <= 0.01f)
-                rb.rotation = rotationTarget;
+                if (Math.Abs(rb.rotation.y - rotationTarget.y) <= 0.01f)
+                    rb.rotation = rotationTarget;
+            }
         }
     }
 
