@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5602986509249303488}
   m_Layer: 0
-  m_Name: FireRelicAltar+Relic
+  m_Name: RelicAltar + Fire Relic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
