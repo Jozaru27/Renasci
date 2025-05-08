@@ -18,6 +18,9 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Run", false);
         playerAnim.SetBool("Hit", false);
         playerAnim.SetBool("Dash", false);
+        playerAnim.SetBool("Interact", false);
+        playerAnim.SetBool("RelicAttack", false);
+        playerAnim.SetBool("Shoot", false);
         GameManager.Instance.playerCannotMove = false;
     }
 
@@ -28,6 +31,9 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Run", false);
         playerAnim.SetBool("Hit", false);
         playerAnim.SetBool("Dash", false);
+        playerAnim.SetBool("Interact", false);
+        playerAnim.SetBool("RelicAttack", false);
+        playerAnim.SetBool("Shoot", false);
     }
 
     public void Hit()
@@ -37,6 +43,9 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Run", false);
         playerAnim.SetBool("Hit", true);
         playerAnim.SetBool("Dash", false);
+        playerAnim.SetBool("Interact", false);
+        playerAnim.SetBool("RelicAttack", false);
+        playerAnim.SetBool("Shoot", false);
     }
 
     public void Run()
@@ -46,20 +55,50 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Run", true);
         playerAnim.SetBool("Hit", false);
         playerAnim.SetBool("Dash", false);
+        playerAnim.SetBool("Interact", false);
+        playerAnim.SetBool("RelicAttack", false);
+        playerAnim.SetBool("Shoot", false);
+    }
+
+    public void Interact()
+    {
+        playerAnim.SetBool("Idle", false);
+        playerAnim.SetBool("Attack", false);
+        playerAnim.SetBool("Run", false);
+        playerAnim.SetBool("Hit", false);
+        playerAnim.SetBool("Dash", false);
+        playerAnim.SetBool("Interact", true);
+        playerAnim.SetBool("RelicAttack", false);
+        playerAnim.SetBool("Shoot", false);
+    }
+
+    public void RelicAttack()
+    {
+        playerAnim.SetBool("Idle", false);
+        playerAnim.SetBool("Attack", false);
+        playerAnim.SetBool("Run", false);
+        playerAnim.SetBool("Hit", false);
+        playerAnim.SetBool("Dash", false);
+        playerAnim.SetBool("Interact", false);
+        playerAnim.SetBool("RelicAttack", true);
+        playerAnim.SetBool("Shoot", false);
+    }
+
+    public void Shoot()
+    {
+        playerAnim.SetBool("Idle", false);
+        playerAnim.SetBool("Attack", false);
+        playerAnim.SetBool("Run", false);
+        playerAnim.SetBool("Hit", false);
+        playerAnim.SetBool("Dash", false);
+        playerAnim.SetBool("Interact", false);
+        playerAnim.SetBool("RelicAttack", false);
+        playerAnim.SetBool("Shoot", true);
     }
 
     public void Dash()
     {
         playerAnim.SetBool("Dash", true);
-    }
-
-    public void Shoot() //PlaceHolder
-    {
-        playerAnim.SetBool("Idle", true);
-        playerAnim.SetBool("Attack", false);
-        playerAnim.SetBool("Run", false);
-        playerAnim.SetBool("Hit", false);
-        playerAnim.SetBool("Dash", false);
     }
 
     public void Death()
