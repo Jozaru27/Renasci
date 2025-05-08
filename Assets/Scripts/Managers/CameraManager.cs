@@ -49,7 +49,10 @@ public class CameraManager : MonoBehaviour
         comeOutCamera = comeOut;
 
         if (enteredCamera != null && enteredCamera.entered)
+        {
+            enteredCamera.EnableCombatMode();
             ResetVariables();
+        }
     }
 
     void ResetVariables()

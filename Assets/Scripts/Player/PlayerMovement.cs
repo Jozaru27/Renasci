@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Dash))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] bool groundCheck;//
+    [SerializeField] bool groundCheck;
 
     [HideInInspector] public float inputFactor;
     [HideInInspector] public Vector3 movement;

@@ -116,6 +116,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
             rb.freezeRotation = true;
             dead = true;
             skeletonWarriorAgent.isStopped = true;
+            GetComponent<LinkWithRoom>().RemoveFromRoomList();
         }
 
         GetComponent<SkeletonWarriorAnimation>().Hit();

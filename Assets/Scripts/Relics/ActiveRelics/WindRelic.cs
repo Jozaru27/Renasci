@@ -10,7 +10,7 @@ public class WindRelic : MonoBehaviour
 
     Vector3 direction;
 
-    List<GameObject> affectedEnemies = new List<GameObject>();
+    List<GameObject> currentEnemies = new List<GameObject>();
 
     private void Update()
     {
@@ -37,9 +37,9 @@ public class WindRelic : MonoBehaviour
     {
         while (true)
         {
-            if (affectedEnemies.Count != 0)
+            if (currentEnemies.Count != 0)
             {
-                foreach (GameObject enemy in affectedEnemies)
+                foreach (GameObject enemy in currentEnemies)
                 {
                     if (enemy != null)
                         enemy.GetComponent<Rigidbody>().AddForce(direction * impulseForce, ForceMode.Acceleration);
@@ -52,13 +52,18 @@ public class WindRelic : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-            affectedEnemies.Add(other.gameObject);
-            
+        {
+            other.gameObject.GetComponent<StateEffect>().GetPushed();
+            currentEnemies.Add(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-            affectedEnemies.Remove(other.gameObject);
+        {
+            other.gameObject.GetComponent<StateEffect>().StopPushing();
+            currentEnemies.Remove(other.gameObject);
+        }
     }
 }

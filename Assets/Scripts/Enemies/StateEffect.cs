@@ -1,20 +1,46 @@
 using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class StateEffect : MonoBehaviour
 {
-    bool inState;
+    NavMeshAgent agent;
+    EnemyStats enemyStats;
+
+    bool inIceState;
+    bool inWindState;
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        enemyStats = GetComponent<EnemyStats>();
+    }
 
     public void GetFreeze()
     {
-        if (!inState)
+        if (!inIceState)
             StartCoroutine(ApplyIceState());
+    }
+
+    public void GetPushed()
+    {
+        agent.speed = 0;
+        StopAllCoroutines();
+
+        if (inIceState)
+            StartCoroutine(ApplyIceState());
+    }
+
+    public void StopPushing()
+    {
+        if (!inWindState)
+            StartCoroutine(UnableWindState());
     }
 
     IEnumerator ApplyIceState()
     {
-        inState = true;
+        inIceState = true;
 
         if (TryGetComponent<SkeletonWarrior>(out SkeletonWarrior warriorScript))
             warriorScript.frozen = true;
@@ -28,7 +54,7 @@ public class StateEffect : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        inState = false;
+        inIceState = false;
 
         if (warriorScript != null)
             warriorScript.frozen = false;
@@ -39,5 +65,12 @@ public class StateEffect : MonoBehaviour
 
         GetComponent<NavMeshAgent>().isStopped = false;
         GetComponent<Animator>().speed = 1;
+    }
+
+    IEnumerator UnableWindState()
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        agent.speed = enemyStats.movementSpeed;
     }
 }

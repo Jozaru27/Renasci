@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 528139584204026149}
   - component: {fileID: 2162164349942689644}
   - component: {fileID: 7892698175339048737}
+  - component: {fileID: 61404942084066435}
+  - component: {fileID: 8507231740950991832}
   m_Layer: 9
   m_Name: SkeletonArcher
   m_TagString: Enemy
@@ -149,6 +151,7 @@ MonoBehaviour:
   goToIdle: 0
   damaged: 0
   playerDirectionTaken: 0
+  frozen: 0
   arrowPrefab: {fileID: 6719897257099830832, guid: 17e6901c6e81a63478ecdcac51078ff6,
     type: 3}
   firePoint: {fileID: 2934421803456721691}
@@ -232,6 +235,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkeletonArcherAnim: {fileID: 0}
+--- !u!114 &61404942084066435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8645420683892507248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20a71639326d9345b72bad29781d569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8507231740950991832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8645420683892507248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75192a7d3ca172c489973392c05a38a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomCam: {fileID: 0}
 --- !u!1001 &5072762213088557502
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2081,6 +2081,8 @@ GameObject:
   - component: {fileID: 1914273085291704593}
   - component: {fileID: 7012487484474857087}
   - component: {fileID: 223616165151221628}
+  - component: {fileID: 661978768747932557}
+  - component: {fileID: 5909734771841890903}
   m_Layer: 9
   m_Name: MageWarrior
   m_TagString: Enemy
@@ -2257,6 +2259,7 @@ MonoBehaviour:
   goToIdle: 0
   damaged: 0
   playerDirectionTaken: 0
+  frozen: 0
   bulletPrefab: {fileID: 7141126841207442651, guid: 87579248b7c7c584e95ea55fa1e5e549,
     type: 3}
   firePoint: {fileID: 9176680725578949926}
@@ -2276,3 +2279,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonMageAnim: {fileID: 0}
+--- !u!114 &661978768747932557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9202698497038775592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20a71639326d9345b72bad29781d569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5909734771841890903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9202698497038775592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75192a7d3ca172c489973392c05a38a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomCam: {fileID: 0}

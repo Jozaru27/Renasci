@@ -106,6 +106,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
             rb.freezeRotation = true;
             dead = true;
             skeletonMageAgent.isStopped = true;
+            GetComponent<LinkWithRoom>().RemoveFromRoomList();
         }
 
         GetComponent<SkeletonMageAnimation>().Hit();

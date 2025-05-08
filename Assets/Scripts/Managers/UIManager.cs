@@ -64,12 +64,6 @@ public class UIManager : MonoBehaviour
     {
         enemyCount--;
         enemyCountText.text = $"Enemies left: {enemyCount}";
-
-        if (enemyCount <= 0)
-        {
-            GameManager.Instance.gameWin = true;
-            EnableVictoryMenu();
-        }
     }
 
     public void ChangeBulletCount(int amount)

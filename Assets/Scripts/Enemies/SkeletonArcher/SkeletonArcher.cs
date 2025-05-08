@@ -102,6 +102,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
             rb.freezeRotation = true;
             dead = true;
             skeletonArcherAgent.isStopped = true;
+            GetComponent<LinkWithRoom>().RemoveFromRoomList();
         }
 
         //GetComponent<SkeletonArcherAnimation>().Hit();
