@@ -27,13 +27,13 @@ public class FreezableObjectScript : MonoBehaviour
     {
         ice_02.SetActive(true);
 
-        while (currentMaterial.GetFloat("_CutOff_Height") < 0)
+        while (currentMaterial.GetFloat("_CutOff_Height") < 0 || currentColor.a < 0.5f)
         {
             currentMaterial.SetFloat("_CutOff_Height", currentMaterial.GetFloat("_CutOff_Height") + (15f * Time.deltaTime));
 
-            if (currentColor.a < 0.2f)
+            if (currentColor.a < 0.5f)
             {
-                currentColor.a += (0.0125f * Time.deltaTime);
+                currentColor.a += (0.25f * Time.deltaTime);
                 ice_02.GetComponent<Renderer>().material.color = currentColor;
             }
             

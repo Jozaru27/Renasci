@@ -28,13 +28,13 @@ public class VictoryCondition : MonoBehaviour
 
         Vector3 lookDirection = (targetPosition.position - playerObj.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
-        
-        while (playerObj.transform.position != targetPosition.position || fadeImage.color.a != 1)
+        playerObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        while (fadeImage.color.a != 1)
         {
             playerObj.GetComponent<Rigidbody>().rotation = Quaternion.Slerp(playerObj.GetComponent<Rigidbody>().rotation, lookRotation, 10 * Time.deltaTime);
 
             if (playerObj.transform.position != targetPosition.position)
-                playerObj.transform.position = Vector3.MoveTowards(playerObj.transform.position, targetPosition.position, 3 * Time.deltaTime);
+                playerObj.transform.position = Vector3.MoveTowards(playerObj.transform.position, targetPosition.position, 7.5f * Time.deltaTime);
             if (Vector3.Distance(playerObj.transform.position, targetPosition.position) <= 0.5f)
                 playerObj.transform.position = targetPosition.position;
 
