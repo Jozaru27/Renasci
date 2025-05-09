@@ -1,6 +1,6 @@
 # Renasci
 Repositorio del Videojuego Renasci <br>
-Versión del Proyecto: 0.1.0 <br><br>
+Versión del Proyecto: 0.3.0 <br><br>
 <i>(1.X.X Para la Build Final / X.1.X Para cada Release o Actualización Grande / X.X.1 Parches y Hotfixes)</i>
 
 <br><br>
@@ -19,6 +19,51 @@ Rama NEW-Producción: Rama en la que se trabaja. <br>
 <br><br><br>
 
 # Actualizaciones 
+
+# 🖼️ Update 3 - Sights to See (Visual Update)
+
+## 🎨 Arte y Visuales
+- Creación de texturas con Substance para:
+  - Salas
+  - Reliquias activas y pasivas
+  - Todos los props del juego
+- Modelado de:
+  - Personaje Principal
+  - Esqueleto Base
+- Sistema de partículas implementado:
+  - Fuego
+  - Antorchas
+  - Condensación
+- Nuevos shaders:
+  - Agua
+  - Desintegración
+  - Integración
+
+## 🔓 Interacción y Jugabilidad
+- Sistema de puertas añadido:
+  - Las puertas se abren automáticamente cuando se derrotan todos los enemigos en la sala.
+- Funcionalidad de nuevas reliquias:
+  - Reliquia de Hielo: congela o ralentiza enemigos.
+  - Reliquia de Viento: empuja enemigos o interactúa con elementos del entorno.
+  - Ambas reliquias interactúan directamente con enemigos.
+
+## 🧩 Puzles
+- Añadidos los dos puzles restantes:
+  - Lago congelado
+  - Escombros derribados
+
+## 🕺 Animaciones y Rigging
+- Rigs creados para:
+  - Personaje principal
+  - Esqueleto base
+- Animaciones base implementadas para el personaje principal.
+
+## 🧪 Interfaz de Usuario
+- Iniciado el rediseño del UI (Makeover):
+  - Primera versión de la nueva barra de vida implementada.
+
+## 🐞 Corrección de Errores
+- Mejoras y correcciones de bugs menores en distintas áreas del juego.
 
 <br> <br>
 
