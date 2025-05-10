@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
+        if (!GameManager.Instance.gameOver && !GameManager.Instance.gameWin && !GameManager.Instance.playerCannotMove)
             inputMovement = context.ReadValue<Vector2>();
     }
 

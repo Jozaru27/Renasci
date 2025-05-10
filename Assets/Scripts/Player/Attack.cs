@@ -27,7 +27,6 @@ public class Attack : MonoBehaviour
     [SerializeField] float spiralOutwardDistance = 3f;
     [SerializeField] float spiralRotations = 2f;
 
-
     int shots;
     int relicSlot = 0;
     bool shotable = true;
@@ -72,18 +71,25 @@ public class Attack : MonoBehaviour
     {
         if (context.started && relicUsable)
         {
-            switch (currentRelic)
-            {
-                case Relics.Fire:
-                    StartCoroutine(FireRelic());
-                    break;
-                case Relics.Ice:
-                    IceRelic();
-                    break;
-                case Relics.Wind:
-                    WindRelic();
-                    break;
-            }
+            GameManager.Instance.playerCannotMove = true;
+            GetComponent<PlayerAnimation>().RelicAttack();
+            //relicUsable = false;
+        }
+    }
+
+    public void SelectCurrentRelic()
+    {
+        switch (currentRelic)
+        {
+            case Relics.Fire:
+                FireRelic();
+                break;
+            case Relics.Ice:
+                IceRelic();
+                break;
+            case Relics.Wind:
+                WindRelic();
+                break;
         }
     }
 
@@ -94,7 +100,7 @@ public class Attack : MonoBehaviour
 
     public void ChangeRelic(InputAction.CallbackContext context)
     {
-        if (context.started && GameManager.Instance.currentRelicSlots >= 0)
+        if (context.started && GameManager.Instance.currentRelicSlots >= 0 && relicUsable)
         {
             float input = context.ReadValue<float>();
 
@@ -174,7 +180,7 @@ public class Attack : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.125f);
+        yield return new WaitForSeconds(0.25f);
 
         GameObject bullet = Instantiate(bulletPref, shotPoint.position, targetRotation);
 
@@ -195,13 +201,9 @@ public class Attack : MonoBehaviour
     {
         rb.AddForce(transform.forward * -1 * recoilForce, ForceMode.Impulse);
     }
-    
-    IEnumerator FireRelic()
+
+    public void FireRelic()
     {
-        GameManager.Instance.playerCannotMove = true;
-
-        yield return new WaitForSeconds(1.5f);
-
         StartCoroutine(SpawnFireWisps());
 
         GameManager.Instance.playerCannotMove = false;
@@ -216,6 +218,29 @@ public class Attack : MonoBehaviour
         StartCoroutine(RelicCoolDown());
         StartCoroutine(BurningEnemy());
     }
+
+    //IEnumerator FireRelic()
+    //{
+    //    relicUsable = false;
+
+    //    GameManager.Instance.playerCannotMove = true;
+
+    //    yield return new WaitForSeconds(1.5f);
+
+    //    StartCoroutine(SpawnFireWisps());
+
+    //    GameManager.Instance.playerCannotMove = false;
+
+    //    inRangeEnemies.Clear();
+
+    //    foreach (Collider burnableCollider in Physics.OverlapSphere(transform.position, fireDistance, burnableMask))
+    //    {
+    //        inRangeEnemies.Add(burnableCollider.gameObject);
+    //    }
+
+    //    StartCoroutine(RelicCoolDown());
+    //    StartCoroutine(BurningEnemy());
+    //}
 
     IEnumerator SpawnFireWisps()
     {
@@ -286,6 +311,7 @@ public class Attack : MonoBehaviour
         GameObject iceBullet = Instantiate(iceObj, shotPoint.transform.position, Quaternion.identity);
         iceBullet.GetComponent<IceRelic>().GetDirection(transform.forward);
 
+        GameManager.Instance.playerCannotMove = false;
         StartCoroutine(RelicCoolDown());
     }
 
@@ -294,6 +320,7 @@ public class Attack : MonoBehaviour
         GameObject windBullet = Instantiate(windObj, shotPoint.transform.position, Quaternion.identity);
         windBullet.GetComponent<WindRelic>().GetDirection(transform.forward);
 
+        GameManager.Instance.playerCannotMove = false;
         StartCoroutine(RelicCoolDown());
     }
 
@@ -326,10 +353,9 @@ public class Attack : MonoBehaviour
 
     IEnumerator RelicCoolDown()
     {
-        relicUsable = false;
-
         yield return new WaitForSeconds(5f);
 
         relicUsable = true;
+        Debug.Log("Relic Usable");
     }
 }

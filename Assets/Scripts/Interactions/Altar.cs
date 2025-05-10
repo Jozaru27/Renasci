@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Altar : MonoBehaviour, IInteractable
 {
+    [SerializeField] GameObject relicObj;
+
     bool firstTime;
     GameObject playerObj;
 
@@ -25,6 +27,7 @@ public class Altar : MonoBehaviour, IInteractable
             }
 
             GetComponent<AddRelicInventory>().PassInfoToInventory();
+            Destroy(relicObj);
             firstTime = true;
         }
     }
