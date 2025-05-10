@@ -25,7 +25,11 @@ public class Interact : MonoBehaviour
                 if (Physics.Raycast(cameraRay, out RaycastHit hit, interactionDistance, interactLayer))
                 {
                     if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+                    {
+                        GameManager.Instance.playerCannotMove = true;
+                        GetComponent<PlayerAnimation>().Interact();
                         interactObj.Interact();
+                    }
                 }
             }
         }
