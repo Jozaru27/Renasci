@@ -15,12 +15,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text bulletCountText;
     [SerializeField] TMP_Text relicText;
 
+    [Header("UI Player Info Healthbar")]
     public Slider healthBarSlider; 
     public int maxHealth;
     [SerializeField] private Gradient gradient;
     private Coroutine healthLerpCoroutine;
     private float targetHealthValue;
 
+    [Header("UI Player Info Staminabar")]
+    [SerializeField] private Slider staminaBarSlider;
+    public int maxStamina;
+    [SerializeField] private Color staminaColor = new Color(0f, 0.992f, 1f);
+    private Coroutine staminaRegenCoroutine;
+    private float targetStaminaValue;
 
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
@@ -46,9 +53,16 @@ public class UIManager : MonoBehaviour
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyCountText.text = $"Enemies left: {enemyCount}";
+
         bulletCountText.text = $"Bullets: 6";
+
         relicText.text = $"Relic: None";
+
         healthBarSlider.maxValue = maxHealth;
+
+        staminaBarSlider.maxValue = 1f;
+        staminaBarSlider.value = 1f;
+
         ChangeLife();
 
         GameManager.Instance.ResetProperties();
@@ -95,6 +109,31 @@ public class UIManager : MonoBehaviour
 
         healthBarSlider.value = targetHealthValue;
         fillImage.color = endColor;
+    }
+
+    public void ResetStamina()
+    {
+        if (staminaRegenCoroutine != null)
+            StopCoroutine(staminaRegenCoroutine);
+
+        staminaBarSlider.value = 0f;
+        staminaRegenCoroutine = StartCoroutine(RechargeStamina());
+    }
+
+    private IEnumerator RechargeStamina()
+    {
+        float duration = StatsManager.Instance.dashCooldown;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            staminaBarSlider.value = Mathf.Lerp(0f, 1f, t);
+            yield return null;
+        }
+
+        staminaBarSlider.value = 1f;
     }
 
 

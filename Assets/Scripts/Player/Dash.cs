@@ -31,6 +31,8 @@ public class Dash : MonoBehaviour
                 GetComponent<PlayerHealth>().ChangeVencibleColor();
                 StartCoroutine(GetComponent<PlayerHealth>().InvencibleDash(dashTime));
 
+                UIManager.Instance.ResetStamina();
+
                 rb.AddForce(pMov.movement * dashForce, ForceMode.Impulse);
             }
 
