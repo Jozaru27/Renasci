@@ -29,6 +29,11 @@ public class UIManager : MonoBehaviour
     private Coroutine staminaRegenCoroutine;
     private float targetStaminaValue;
 
+    [Header("UI Player Info AmmoLeft")]
+    [SerializeField] private List<Image> bulletIcons;
+    [SerializeField] private Color bulletFullColor = Color.white;
+    [SerializeField] private Color bulletEmptyColor = new Color(0.2f, 0.2f, 0.2f, 1f);
+
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
@@ -43,6 +48,8 @@ public class UIManager : MonoBehaviour
     int enemyCount;
 
     public static UIManager Instance { get; private set; }
+
+    public Attack attackScript;
 
     private void Awake()
     {
@@ -146,11 +153,29 @@ public class UIManager : MonoBehaviour
 
     public void ChangeBulletCount(int amount)
     {
+        for (int i = 0; i < bulletIcons.Count; i++)
+        {
+            bulletIcons[i].color = i < amount ? bulletFullColor : bulletEmptyColor;
+        }
+
         if (amount <= 0)
-            bulletCountText.text = $"Bullet: RECHARGING...";
-        else
-            bulletCountText.text = $"Bullets: {amount}";
+        {
+            bulletIcons[0].color = bulletEmptyColor;
+
+            StartCoroutine(RefillBulletsGradually());
+        }
     }
+
+    private IEnumerator RefillBulletsGradually()
+    {
+        float delay = 0.832f;
+        for (int i = 0; i < bulletIcons.Count; i++)
+        {
+            yield return new WaitForSeconds(delay);
+            bulletIcons[i].color = bulletFullColor;
+        }
+    }
+
 
     public void ChangeRelicInfo(string relic)
     {

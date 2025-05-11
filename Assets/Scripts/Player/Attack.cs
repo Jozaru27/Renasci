@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Attack : MonoBehaviour
 {
     [Header("Distance Attack")]
-    [SerializeField] float rechargeTime;
+    [SerializeField] public float rechargeTime;
     [SerializeField] float recoilForce;
     [SerializeField] GameObject bulletPref;
     [SerializeField] Transform shotPoint;

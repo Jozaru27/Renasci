@@ -5,6 +5,7 @@ using UnityEngine;
 public class ConfusionTrap : MonoBehaviour
 {
     [SerializeField] float trapCooldown;
+    [SerializeField] private GameObject confussionDebuffIcon;
 
     bool activeTrap = true;
     GameObject playerObj;
@@ -12,6 +13,7 @@ public class ConfusionTrap : MonoBehaviour
     private void Start()
     {
         playerObj = GameObject.Find("Player");
+        confussionDebuffIcon.SetActive(false);
     }
 
     private void Update()
@@ -23,11 +25,13 @@ public class ConfusionTrap : MonoBehaviour
     IEnumerator TrapCooldown()
     {
         playerObj.GetComponent<PlayerMovement>().inputFactor = -1;
+        confussionDebuffIcon.SetActive(true);
         activeTrap = false;
 
         yield return new WaitForSeconds(trapCooldown);
 
         playerObj.GetComponent<PlayerMovement>().inputFactor = 1;
+        confussionDebuffIcon.SetActive(false);
         activeTrap = true;
     }
 }
