@@ -5,8 +5,8 @@ using UnityEngine;
 public class ConfusionTrap : MonoBehaviour
 {
     [SerializeField] float trapCooldown;
-    [SerializeField] private GameObject confussionDebuffIcon;
-
+    [SerializeField] GameObject confussionDebuffIcon;
+    
     bool activeTrap = true;
     GameObject playerObj;
 
