@@ -64,25 +64,39 @@ public class UIManager : MonoBehaviour
 
         healthLerpCoroutine = StartCoroutine(SmoothHealthBarChange());
 
-        float normalizedLife = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife;
-        healthBarSlider.fillRect.GetComponent<Image>().color = gradient.Evaluate(normalizedLife);
+        // float normalizedLife = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife;
+        // healthBarSlider.fillRect.GetComponent<Image>().color = gradient.Evaluate(normalizedLife);
     }
 
     private IEnumerator SmoothHealthBarChange()
     {
         float startValue = healthBarSlider.value;
-        float duration = 0.2f;
+        float duration = 0.5f;
         float elapsed = 0f;
+
+        float startNormalized = startValue / healthBarSlider.maxValue;
+        float endNormalized = targetHealthValue / healthBarSlider.maxValue;
+
+        Color startColor = gradient.Evaluate(startNormalized);
+        Color endColor = gradient.Evaluate(endNormalized);
+
+        Image fillImage = healthBarSlider.fillRect.GetComponent<Image>();
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            healthBarSlider.value = Mathf.Lerp(startValue, targetHealthValue, elapsed / duration);
+            float t = elapsed / duration;
+
+            healthBarSlider.value = Mathf.Lerp(startValue, targetHealthValue, t);
+            fillImage.color = Color.Lerp(startColor, endColor, t);
+
             yield return null;
         }
 
         healthBarSlider.value = targetHealthValue;
+        fillImage.color = endColor;
     }
+
 
 
     public void ChangeEnemyCount()
