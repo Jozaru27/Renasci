@@ -160,7 +160,7 @@ public class UIManager : MonoBehaviour
 
         if (amount <= 0)
         {
-            bulletIcons[0].color = bulletEmptyColor;
+            bulletIcons[0].color = bulletEmptyColor; // Esta línea es necesaria para que "despintar" Bullet1 por algún motivo
 
             StartCoroutine(RefillBulletsGradually());
         }
