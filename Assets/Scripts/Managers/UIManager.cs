@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     public Slider healthBarSlider; 
     public int maxHealth;
     [SerializeField] private Gradient gradient;
+    private Coroutine healthLerpCoroutine;
+    private float targetHealthValue;
+
 
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
@@ -54,11 +57,33 @@ public class UIManager : MonoBehaviour
     public void ChangeLife()
     {
         lifeText.text = $"Life: {StatsManager.Instance.life}";
-        healthBarSlider.value = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife * healthBarSlider.maxValue;
-    
+        targetHealthValue = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife * healthBarSlider.maxValue;
+
+        if (healthLerpCoroutine != null)
+            StopCoroutine(healthLerpCoroutine);
+
+        healthLerpCoroutine = StartCoroutine(SmoothHealthBarChange());
+
         float normalizedLife = (float)StatsManager.Instance.life / StatsManager.Instance.maxLife;
         healthBarSlider.fillRect.GetComponent<Image>().color = gradient.Evaluate(normalizedLife);
     }
+
+    private IEnumerator SmoothHealthBarChange()
+    {
+        float startValue = healthBarSlider.value;
+        float duration = 0.2f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            healthBarSlider.value = Mathf.Lerp(startValue, targetHealthValue, elapsed / duration);
+            yield return null;
+        }
+
+        healthBarSlider.value = targetHealthValue;
+    }
+
 
     public void ChangeEnemyCount()
     {
