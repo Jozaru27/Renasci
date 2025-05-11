@@ -41,6 +41,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5602986509249303488}
     m_Modifications:
+    - target: {fileID: 1939104267097244470, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -91,10 +96,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2948460873897428489, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7803216088843879029, guid: 643918b8caaab0f48be7067f024913a4,
         type: 3}
       propertyPath: m_Name
       value: FireRelic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467417109805609442, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
