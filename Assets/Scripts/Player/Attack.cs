@@ -119,16 +119,20 @@ public class Attack : MonoBehaviour
                 case 0:
                     currentRelic = Relics.Fire;
                     UIManager.Instance.ChangeRelicInfo("Fire");
+                    UIManager.Instance.UpdateRelicRotation(relicSlot);
                     break;
                 case 1:
                     currentRelic = Relics.Ice;
                     UIManager.Instance.ChangeRelicInfo("Ice");
+                    UIManager.Instance.UpdateRelicRotation(relicSlot);
                     break;
                 case 2:
                     currentRelic = Relics.Wind;
                     UIManager.Instance.ChangeRelicInfo("Wind");
+                    UIManager.Instance.UpdateRelicRotation(relicSlot);
                     break;
             }
+
         }
     }
 

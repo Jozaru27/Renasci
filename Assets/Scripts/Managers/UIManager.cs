@@ -34,6 +34,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Color bulletFullColor = Color.white;
     [SerializeField] private Color bulletEmptyColor = new Color(0.2f, 0.2f, 0.2f, 1f);
 
+    [Header("UI Player Info ActiveRelic")]
+    [SerializeField] private Transform relicCircleParent;
+    [SerializeField] private int currentRelicIndex = 0;
+    [SerializeField] private List<RectTransform> relicIcons;
+    [SerializeField] private int availableRelicCount = 0;
+
+
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
@@ -75,6 +82,8 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.ResetProperties();
     }
 
+
+    // HP BAR
     public void ChangeLife()
     {
         lifeText.text = $"Life: {StatsManager.Instance.life}";
@@ -118,6 +127,7 @@ public class UIManager : MonoBehaviour
         fillImage.color = endColor;
     }
 
+    // DASH BAR
     public void ResetStamina()
     {
         if (staminaRegenCoroutine != null)
@@ -144,13 +154,14 @@ public class UIManager : MonoBehaviour
     }
 
 
-
     public void ChangeEnemyCount()
     {
         enemyCount--;
         enemyCountText.text = $"Enemies left: {enemyCount}";
     }
 
+
+    // AMMO BAR
     public void ChangeBulletCount(int amount)
     {
         for (int i = 0; i < bulletIcons.Count; i++)
@@ -160,7 +171,7 @@ public class UIManager : MonoBehaviour
 
         if (amount <= 0)
         {
-            bulletIcons[0].color = bulletEmptyColor; // Esta línea es necesaria para que "despintar" Bullet1 por algún motivo
+            bulletIcons[0].color = bulletEmptyColor; // Esta línea es necesaria para que "despinte" Bullet1 por algún motivo
 
             StartCoroutine(RefillBulletsGradually());
         }
@@ -176,11 +187,44 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
+    // RELIC INDICATOR
     public void ChangeRelicInfo(string relic)
     {
         if (GameManager.Instance.currentRelicSlots >= 0)
             relicText.text = $"Relic: {relic}";
+    }
+
+    public void UpdateRelicRotation(int slotIndex)
+    {
+        float angle = 0f;
+
+        switch (slotIndex)
+        {
+            case 0: angle = 0f; break;
+            case 1: angle = -120f; break;
+            case 2: angle = 120f; break;
+        }
+
+        StartCoroutine(RotateCircleSmoothly(angle));
+    }
+
+    private IEnumerator RotateCircleSmoothly(float targetAngle)
+    {
+        
+        float duration = 0.4f;
+        float elapsed = 0f;
+
+        Quaternion startRotation = relicCircleParent.rotation;
+        Quaternion endRotation = Quaternion.Euler(0, 0, targetAngle);
+
+        while (elapsed < duration)
+        {
+            relicCircleParent.rotation = Quaternion.Slerp(startRotation, endRotation, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        relicCircleParent.rotation = endRotation;
     }
 
     public void EnablePauseMenu()
