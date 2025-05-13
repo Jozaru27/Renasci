@@ -35,6 +35,7 @@ public class Attack : MonoBehaviour
     Vector2 mousePos;
     Vector3 collidePosition;
     Rigidbody rb;
+    PlayerInput input;
 
     List<GameObject> inRangeEnemies = new List<GameObject>();
 
@@ -50,6 +51,7 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        input = GetComponent<PlayerInput>();
     }
 
     public void NormalAttack(InputAction.CallbackContext context)
@@ -160,19 +162,38 @@ public class Attack : MonoBehaviour
 
         shots++;
 
-        Ray screenRay = Camera.main.ScreenPointToRay(mousePos);
+        Vector3 shotDirection = Vector3.zero;
+        Quaternion targetRotation = Quaternion.identity;
 
-        if (Physics.Raycast(screenRay, out RaycastHit hit, Mathf.Infinity, rayMask))
-            collidePosition = hit.point;
+        if (input.currentControlScheme == "Keyboard")
+        {
+            Ray screenRay = Camera.main.ScreenPointToRay(mousePos);
 
-        Vector3 bulletPosition = shotPoint.position;
-        Vector3 shotPosition = new Vector3(collidePosition.x, bulletPosition.y, collidePosition.z);
-        Vector3 shotDirection = shotPosition - bulletPosition;
-        Vector3 collideInPlayerFoot = new Vector3(collidePosition.x, transform.position.y, collidePosition.z);
+            if (Physics.Raycast(screenRay, out RaycastHit hit, Mathf.Infinity, rayMask))
+                collidePosition = hit.point;
 
-        Vector3 playerShotDirection = (collideInPlayerFoot - transform.position).normalized;
+            Vector3 bulletPosition = shotPoint.position;
+            Vector3 shotPosition = new Vector3(collidePosition.x, bulletPosition.y, collidePosition.z);
+            shotDirection = shotPosition - bulletPosition;
+            Vector3 collideInPlayerFoot = new Vector3(collidePosition.x, transform.position.y, collidePosition.z);
 
-        Quaternion targetRotation = Quaternion.LookRotation(playerShotDirection);
+            Vector3 playerShotDirection = (collideInPlayerFoot - transform.position).normalized;
+
+            targetRotation = Quaternion.LookRotation(playerShotDirection);
+        }
+        else if (input.currentControlScheme == "Gamepad")
+        {
+            Vector3 inputDirection = new Vector3(mousePos.x, 0, mousePos.y);
+            shotDirection = inputDirection.normalized;
+            targetRotation = Quaternion.LookRotation(shotDirection);
+
+            if (targetRotation == Quaternion.identity)
+            {
+                Vector3 playerDirection = transform.forward;
+                shotDirection = playerDirection.normalized;
+                targetRotation = Quaternion.LookRotation(shotDirection);
+            }
+        }
 
         GetComponent<PlayerMovement>().ChangeRotation(targetRotation);
         GetComponent<PlayerAnimation>().Shoot();
