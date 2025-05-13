@@ -55,4 +55,10 @@ public class CursorChanger : MonoBehaviour
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
+
+    public void ResetCursor()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
 }

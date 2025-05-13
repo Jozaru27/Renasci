@@ -175,5 +175,18 @@ public class InventoryMenu : MonoBehaviour
     {
         infoSection.SetActive(false);
         statsSection.SetActive(true);
+
+        CursorChanger cursorChanger = FindObjectOfType<CursorChanger>();
+        if (cursorChanger != null)
+        {
+            cursorChanger.ResetCursor();
+        }
+
+        HoverEffect hoverEffect = FindObjectOfType<HoverEffect>();
+        if (hoverEffect != null)
+        {
+            hoverEffect.ResetAllHoverEffects();
+        }
+
     }
 }

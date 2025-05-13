@@ -85,4 +85,20 @@ public class HoverEffect : MonoBehaviour
     {
         OnPointerExit(uiElement); 
     }
+
+    public void ResetAllHoverEffects()
+    {
+        foreach (GameObject uiElement in uiElementsList)
+        {
+            if (originalColors.ContainsKey(uiElement))
+            {
+                Image panelImage = uiElement.GetComponentInChildren<Image>();
+                if (panelImage != null)
+                {
+                    panelImage.color = originalColors[uiElement];
+                }
+            }
+        }
+    }
+
 }
