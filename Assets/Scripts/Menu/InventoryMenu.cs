@@ -21,6 +21,11 @@ public class InventoryMenu : MonoBehaviour
     [SerializeField] GameObject[] activeRelicButtons;
     [SerializeField] TMP_Text[] relicTexts;
 
+    [Header("Arrow Buttons")]
+    [SerializeField] Button arrowButtonLeft;
+    [SerializeField] Button arrowButtonRight;
+
+
     int passiveButtonsNum;
     int activeButtonsNum;
     int relicNum;
@@ -92,6 +97,9 @@ public class InventoryMenu : MonoBehaviour
                     activeButtonsNum = 2;
             }
         }
+
+        UpdateArrowButtons();
+
     }
 
     public void PassiveButton(int button)
@@ -187,6 +195,13 @@ public class InventoryMenu : MonoBehaviour
         {
             hoverEffect.ResetAllHoverEffects();
         }
-
     }
+
+    private void UpdateArrowButtons()
+    {
+        bool hasEnoughRelics = passiveRelicsInfo.Count >= 4;
+        arrowButtonLeft.interactable = hasEnoughRelics;
+        arrowButtonRight.interactable = hasEnoughRelics;
+    }
+
 }
