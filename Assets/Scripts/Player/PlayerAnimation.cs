@@ -6,6 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] GameObject sword;
     [SerializeField] GameObject revolver;
+    [SerializeField] GameObject swordParticles;
 
     Animator playerAnim;
 
@@ -25,6 +26,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("RelicAttack", false);
         playerAnim.SetBool("Shoot", false);
         sword.SetActive(true);
+        swordParticles.SetActive(false);
         revolver.SetActive(false);
         GameManager.Instance.playerCannotMove = false;
     }
@@ -40,6 +42,8 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("RelicAttack", false);
         playerAnim.SetBool("Shoot", false);
         sword.SetActive(true);
+        swordParticles.SetActive(true);
+        swordParticles.GetComponent<ParticleSystem>().Play();
         revolver.SetActive(false);
     }
 
@@ -53,6 +57,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Interact", false);
         playerAnim.SetBool("RelicAttack", false);
         playerAnim.SetBool("Shoot", false);
+        swordParticles.SetActive(false);
         sword.SetActive(true);
         revolver.SetActive(false);
     }
@@ -67,6 +72,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Interact", false);
         playerAnim.SetBool("RelicAttack", false);
         playerAnim.SetBool("Shoot", false);
+        swordParticles.SetActive(false);
         sword.SetActive(true);
         revolver.SetActive(false);
     }
@@ -81,6 +87,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Interact", true);
         playerAnim.SetBool("RelicAttack", false);
         playerAnim.SetBool("Shoot", false);
+        swordParticles.SetActive(false);
         sword.SetActive(false);
         revolver.SetActive(false);
     }
@@ -95,6 +102,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Interact", false);
         playerAnim.SetBool("RelicAttack", true);
         playerAnim.SetBool("Shoot", false);
+        swordParticles.SetActive(false);
         sword.SetActive(false);
         revolver.SetActive(false);
     }
@@ -109,6 +117,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Interact", false);
         playerAnim.SetBool("RelicAttack", false);
         playerAnim.SetBool("Shoot", true);
+        swordParticles.SetActive(false);
         sword.SetActive(false);
         revolver.SetActive(true);
     }
@@ -118,6 +127,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Dash", true);
         sword.SetActive(false);
         revolver.SetActive(false);
+        swordParticles.SetActive(false);
     }
 
     public void Death()
@@ -125,5 +135,6 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("Death", true);
         sword.SetActive(false);
         revolver.SetActive(true);
+        swordParticles.SetActive(false);
     }
 }
