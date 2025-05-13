@@ -101,6 +101,8 @@ public class Attack : MonoBehaviour
 
     public void ChangeRelic(InputAction.CallbackContext context)
     {
+        if (UIManager.Instance.IsRotating) return;
+
         if (context.started && GameManager.Instance.currentRelicSlots >= 0 && relicUsable)
         {
             float input = context.ReadValue<float>();

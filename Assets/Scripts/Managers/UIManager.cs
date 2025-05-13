@@ -44,7 +44,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject iceRelicSprite;
     [SerializeField] private GameObject windRelicSprite;
 
-    [SerializeField] private List<Vector3> defaultScales = new List<Vector3>();  
+    [SerializeField] private List<Vector3> defaultScales = new List<Vector3>();
+    
+    [SerializeField] private bool isRotating = false;
+    [SerializeField] public bool IsRotating => isRotating;
 
     [Header("Menus")]
     [SerializeField] GameObject pauseMenu;
@@ -206,6 +209,10 @@ public class UIManager : MonoBehaviour
 
     public void UpdateRelicRotation(int slotIndex)
     {
+        if (isRotating) return;
+
+        isRotating = true;
+
         float angle = 0f;
 
         switch (slotIndex)
@@ -236,6 +243,8 @@ public class UIManager : MonoBehaviour
         }
 
         relicCircleParent.rotation = endRotation;
+
+        isRotating = false;
     }
 
     public void UpdateRelicIcons(int relicCount)
@@ -278,7 +287,7 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < relicIcons.Count; i++)
         {
             RectTransform icon = relicIcons[i];
-            Image img = icon.GetComponent<Image>(); 
+            Image img = icon.GetComponent<Image>();
 
             if (i == selectedIndex)
             {
@@ -287,12 +296,35 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                icon.localScale = Vector3.one * 0.75f;
-                img.color = new Color(1f, 1f, 1f, 0.75f); 
+                icon.localScale = defaultScales[i] * 0.75f;
+                img.color = new Color(1f, 1f, 1f, 0.75f);
             }
         }
     }
 
+    public void UpdateRelicVisuals(int selectedIndex)
+    {
+        for (int i = 0; i < relicIcons.Count; i++)
+        {
+            Image iconImage = relicIcons[i].GetComponent<Image>();
+
+            // if (iconImage != null)
+            // {
+            //     Color color = iconImage.color;
+            //     color.a = (i == selectedIndex) ? 1f : 0.4f;
+            //     iconImage.color = color;
+            // }
+
+            if (i == selectedIndex)
+            {
+                iconImage.color = Color.white;
+            }
+            else
+            {
+                iconImage.color = Color.gray;
+            }
+        }
+    }
 
     public void EnablePauseMenu()
     {
