@@ -73,6 +73,7 @@ public class Attack : MonoBehaviour
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().RelicAttack();
+            SelectCurrentRelic();
             //relicUsable = false;
         }
     }
