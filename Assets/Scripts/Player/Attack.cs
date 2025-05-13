@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour
     [SerializeField] float spiralRotations = 2f;
 
     int shots;
-    int relicSlot = 0;
+    public int relicSlot = 0;
     bool shotable = true;
     bool shoting;
     bool relicUsable = true;
