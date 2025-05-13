@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] bool groundCheck;
+    [SerializeField] GameObject[] dustParticles;
 
     [HideInInspector] public float inputFactor;
     [HideInInspector] public Vector3 movement;
@@ -143,5 +144,17 @@ public class PlayerMovement : MonoBehaviour
     public void ChangeRotation(Quaternion newTarget)
     {
         rotationTarget = newTarget;
+    }
+
+    public void GenerateDust_01()
+    {
+        dustParticles[0].SetActive(true);
+        dustParticles[0].GetComponent<ParticleSystem>().Play();
+    }
+
+    public void GenerateDust_02()
+    {
+        dustParticles[1].SetActive(true);
+        dustParticles[1].GetComponent<ParticleSystem>().Play();
     }
 }
