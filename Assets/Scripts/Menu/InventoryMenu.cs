@@ -38,6 +38,7 @@ public class InventoryMenu : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        UpdateArrowButtons();
     }
 
     public void AddToInventory(RelicsInventoryScriptableObject relicInfo)
@@ -99,7 +100,6 @@ public class InventoryMenu : MonoBehaviour
         }
 
         UpdateArrowButtons();
-
     }
 
     public void PassiveButton(int button)
@@ -200,8 +200,31 @@ public class InventoryMenu : MonoBehaviour
     private void UpdateArrowButtons()
     {
         bool hasEnoughRelics = passiveRelicsInfo.Count >= 4;
+
         arrowButtonLeft.interactable = hasEnoughRelics;
         arrowButtonRight.interactable = hasEnoughRelics;
+
+        SetButtonOpacity(arrowButtonLeft.gameObject, hasEnoughRelics ? 1f : 0.3f);
+        SetButtonOpacity(arrowButtonRight.gameObject, hasEnoughRelics ? 1f : 0.3f);
+    }
+
+    private void SetButtonOpacity(GameObject buttonGO, float alpha)
+    {
+        Image[] images = buttonGO.GetComponentsInChildren<Image>(true);
+        foreach (Image img in images)
+        {
+            Color c = img.color;
+            c.a = alpha;
+            img.color = c;
+        }
+
+        TMPro.TextMeshProUGUI[] texts = buttonGO.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+        foreach (var text in texts)
+        {
+            Color c = text.color;
+            c.a = alpha;
+            text.color = c;
+        }
     }
 
 }

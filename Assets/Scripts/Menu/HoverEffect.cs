@@ -60,8 +60,11 @@ public class HoverEffect : MonoBehaviour
 
     public void OnPointerEnter(GameObject uiElement)
     {
-        Image panelImage = uiElement.GetComponentInChildren<Image>();
+        Button btn = uiElement.GetComponent<Button>();
+        if (btn != null && !btn.interactable)
+            return;
 
+        Image panelImage = uiElement.GetComponentInChildren<Image>();
         if (panelImage != null)
         {
             soundsManager.PlayHoverSound();
@@ -71,6 +74,10 @@ public class HoverEffect : MonoBehaviour
 
     public void OnPointerExit(GameObject uiElement)
     {
+        Button btn = uiElement.GetComponent<Button>();
+        if (btn != null && !btn.interactable)
+            return;
+
         if (originalColors.ContainsKey(uiElement))
         {
             Image panelImage = uiElement.GetComponentInChildren<Image>();

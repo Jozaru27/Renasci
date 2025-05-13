@@ -11,6 +11,8 @@ public class CursorChanger : MonoBehaviour
     public Texture2D cursorPointer;
     public List<GameObject> uiElementsList; 
 
+    private GameObject currentUIElement;
+
     void Start()
     {
         foreach (GameObject uiElement in uiElementsList)
@@ -26,7 +28,7 @@ public class CursorChanger : MonoBehaviour
         // Event OnPointerEnter
         EventTrigger.Entry entryEnter = new EventTrigger.Entry();
         entryEnter.eventID = EventTriggerType.PointerEnter;
-        entryEnter.callback.AddListener((data) => { OnPointerEnter(); });
+        entryEnter.callback.AddListener((data) => { OnPointerEnter(uiElement); });
         trigger.triggers.Add(entryEnter);
 
         // Event OnPointerExit
@@ -44,8 +46,13 @@ public class CursorChanger : MonoBehaviour
 
 
     // Swaps the mouse cursor to the pointer design
-    public void OnPointerEnter()
+    public void OnPointerEnter(GameObject uiElement)
     {
+        Button btn = uiElement.GetComponent<Button>();
+        if (btn != null && !btn.interactable)
+        return;
+
+        currentUIElement = uiElement;
         Cursor.SetCursor(cursorPointer, Vector2.zero, CursorMode.Auto);
     }
 
