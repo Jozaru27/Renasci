@@ -9,17 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb1838fe8befb0429646b938e757ff3, type: 3}
-  m_Name: Spanish (es)
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: FlagTable_en
   m_EditorClassIdentifier: 
-  m_Identifier:
-    m_Code: es
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: c7e53a8c9302e3c43930868408137c06, type: 2}
   m_Metadata:
     m_Items: []
-  m_LocaleName: Spanish (es)
-  m_CustomFormatCultureCode: 
-  m_UseCustomFormatter: 0
-  m_SortOrder: 1
+  m_TableData:
+  - m_Id: 61565984768
+    m_Localized: 6f92dabf3274bd440a4021626ea265c1
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
