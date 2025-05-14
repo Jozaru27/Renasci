@@ -213,6 +213,10 @@ MonoBehaviour:
     m_Localized: "Hurac\xE0 embotellat"
     m_Metadata:
       m_Items: []
+  - m_Id: 198038477758464
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
