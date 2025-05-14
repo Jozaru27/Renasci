@@ -16,13 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 5372fd68ce94fb84d9cad7c29b7278b3
-  m_SerializeEntries:
-  - m_GUID: 2b318c6ca98c6194a9a09f544350d5a3
-    m_Address: SpainFlag
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-es
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 46339bbdb71730d4f985e8561750a6c8, type: 2}
   m_SchemaSet:

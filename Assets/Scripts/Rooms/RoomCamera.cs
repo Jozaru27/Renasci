@@ -78,7 +78,11 @@ public class RoomCamera : MonoBehaviour
             foreach (GameObject door in doors)
             {
                 door.GetComponent<Animator>().speed = 1;
-                door.GetComponent<Animator>().Play("Door_Close");
+
+                if (!door.GetComponent<Door>().isBig)
+                    door.GetComponent<Animator>().Play("Door_Close");
+                else
+                    door.GetComponent<Animator>().Play("Door_Close_Big");
             }
         }
     }
@@ -88,7 +92,11 @@ public class RoomCamera : MonoBehaviour
         foreach(GameObject door in doors)
         {
             door.GetComponent<Animator>().speed = 1;
-            door.GetComponent<Animator>().Play("Door_Open");
+
+            if (!door.GetComponent<Door>().isBig)
+                door.GetComponent<Animator>().Play("Door_Open");
+            else
+                door.GetComponent<Animator>().Play("Door_Open_Big");
         }
     }
 

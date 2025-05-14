@@ -16,13 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: f3de5c7dd5aebd24181be2ebeb442ca9
-  m_SerializeEntries:
-  - m_GUID: 47133076abd460e4db7224f6b79212ba
-    m_Address: ValencianCommunityFlag
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ca-ES-valencia
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 46339bbdb71730d4f985e8561750a6c8, type: 2}
   m_SchemaSet:

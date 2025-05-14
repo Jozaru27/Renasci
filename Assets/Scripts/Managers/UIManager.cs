@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -60,6 +61,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject audioArea;
     [SerializeField] GameObject videoArea;
 
+    [Header("Buttons")]
+    [SerializeField] Button resumeButton;
+    [SerializeField] Button settingsButton;
+    [SerializeField] Button videoButton;
+    [SerializeField] Button retryButtonWin;
+    [SerializeField] Button retryButtonLose;
+    [SerializeField] Button firstRelic;
+
     int enemyCount;
 
     public static UIManager Instance { get; private set; }
@@ -93,6 +102,8 @@ public class UIManager : MonoBehaviour
         {
             defaultScales.Add(icon.localScale);
         }
+
+        GamepadMenuSupport.Instance.lastSelectedObject = resumeButton.gameObject;
     }
 
 
@@ -328,6 +339,10 @@ public class UIManager : MonoBehaviour
 
     public void EnablePauseMenu()
     {
+        GamepadMenuSupport.Instance.inMenu = true;
+        EventSystem.current.SetSelectedGameObject(resumeButton.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = resumeButton.gameObject;
+
         if (!GameManager.Instance.gameWin && !GameManager.Instance.gameOver && !GameManager.Instance.onInventory)
         {
             pauseMenu.SetActive(true);
@@ -341,6 +356,7 @@ public class UIManager : MonoBehaviour
 
     public void DisablePauseMenu()
     {
+        GamepadMenuSupport.Instance.inMenu = false;
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         GameManager.Instance.gamePaused = false;
@@ -352,11 +368,17 @@ public class UIManager : MonoBehaviour
 
     public void EnableGameOverMenu()
     {
+        GamepadMenuSupport.Instance.inMenu = true;
+        EventSystem.current.SetSelectedGameObject(retryButtonLose.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = retryButtonLose.gameObject;
         gameOverMenu.SetActive(true);
     }
 
     public void EnableVictoryMenu()
     {
+        GamepadMenuSupport.Instance.inMenu = true;
+        EventSystem.current.SetSelectedGameObject(retryButtonWin.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = retryButtonWin.gameObject;
         victoryMenu.SetActive(true);
     }
 
@@ -368,13 +390,17 @@ public class UIManager : MonoBehaviour
 
     public void EnableSettingsMenu()
     {
+        EventSystem.current.SetSelectedGameObject(videoButton.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = videoButton.gameObject;
         settingsMenu.SetActive(true);
         pauseMenu.SetActive(false);
-        EnableAudioArea();
+        EnableVideoArea();
     }
 
     public void DisableSettingsMenu()
     {
+        EventSystem.current.SetSelectedGameObject(settingsButton.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = resumeButton.gameObject;
         settingsMenu.SetActive(false);
         pauseMenu.SetActive(true);
     }
@@ -401,12 +427,16 @@ public class UIManager : MonoBehaviour
     public void EnableInventoryMenu()
     {
         Time.timeScale = 0f;
+        GamepadMenuSupport.Instance.inMenu = true;
+        EventSystem.current.SetSelectedGameObject(firstRelic.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = firstRelic.gameObject;
         inventoryMenu.SetActive(true);
     }
 
     public void DisableInventoryMenu()
     {
         Time.timeScale = 1f;
+        GamepadMenuSupport.Instance.inMenu = false;
         inventoryMenu.SetActive(false);
     }
 }

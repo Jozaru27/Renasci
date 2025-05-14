@@ -10,6 +10,7 @@ public class Attack : MonoBehaviour
     [SerializeField] float recoilForce;
     [SerializeField] GameObject bulletPref;
     [SerializeField] Transform shotPoint;
+    [SerializeField] GameObject indicatorObj;
     [SerializeField] LayerMask rayMask;
 
     [Header("Relic Behaviour")]
@@ -32,6 +33,7 @@ public class Attack : MonoBehaviour
     bool shotable = true;
     bool shoting;
     bool relicUsable = true;
+    bool usingIndicator;
     Vector2 mousePos;
     Vector3 collidePosition;
     Rigidbody rb;
@@ -99,6 +101,25 @@ public class Attack : MonoBehaviour
     public void MousePosition(InputAction.CallbackContext context)
     {
         mousePos = context.ReadValue<Vector2>();
+
+        if (input.currentControlScheme == "Keyboard")
+            indicatorObj.SetActive(false);
+        else if (input.currentControlScheme == "Gamepad")
+        {
+            if (context.started)
+                usingIndicator = true;
+            if (context.canceled)
+                usingIndicator = false;
+
+            if (usingIndicator)
+            {
+                indicatorObj.SetActive(true);
+                Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
+                indicatorObj.transform.rotation = Quaternion.LookRotation(indicatorRotation);
+            }
+            else
+                indicatorObj.SetActive(false);
+        }
     }
 
     public void ChangeRelic(InputAction.CallbackContext context)

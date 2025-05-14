@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public bool isBig;
     [SerializeField] GameObject[] colliders;
+    [SerializeField] GameObject dustParticle;
 
     Animator anim;
 
@@ -32,5 +34,11 @@ public class Door : MonoBehaviour
         {
             collider.SetActive(false);
         }
+    }
+
+    public void GenerateDust()
+    {
+        dustParticle.SetActive(true);
+        dustParticle.GetComponent<ParticleSystem>().Play();
     }
 }

@@ -7,6 +7,8 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] GameObject sword;
     [SerializeField] GameObject revolver;
     [SerializeField] GameObject swordParticles;
+    [SerializeField] GameObject dustWalk;
+    [SerializeField] GameObject[] dustPositions;
 
     Animator playerAnim;
 
@@ -136,5 +138,18 @@ public class PlayerAnimation : MonoBehaviour
         sword.SetActive(false);
         revolver.SetActive(true);
         swordParticles.SetActive(false);
+    }
+
+    public void GenerateDust(int position)
+    {
+        GameObject newDustParticle = Instantiate(dustWalk, dustPositions[position].transform.position, Quaternion.identity);
+        StartCoroutine(VanishDust(newDustParticle));
+    }
+
+    IEnumerator VanishDust(GameObject dustParticle)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(dustParticle);
     }
 }

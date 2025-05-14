@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
 
     public void OnOpenInventory(InputAction.CallbackContext context)
     {
-        if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin && !GameManager.Instance.inInfo)
+        if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin && !GameManager.Instance.inInfo && !GameManager.Instance.gamePaused)
         {
             if (!GameManager.Instance.onInventory)
             {

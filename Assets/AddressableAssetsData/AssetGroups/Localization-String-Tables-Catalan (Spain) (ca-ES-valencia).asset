@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ca-ES-valencia
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 822c2e5ead0de2e4ba799f572617fee3
+    m_Address: Base Localization Collection_ca-ES-valencia
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca-ES-valencia
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 46339bbdb71730d4f985e8561750a6c8, type: 2}
   m_SchemaSet:
