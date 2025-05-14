@@ -41,7 +41,13 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     float distanceToPlayer;
     bool inCombat;
 
-    [SerializeField] GameObject cylinder; //PLACEHOLDER
+    [SerializeField] LayerMask collisionLayer;
+
+    [SerializeField] GameObject magicRay;
+    [SerializeField] LineRenderer rayRend;
+    [SerializeField] Collider rayCollision;
+    bool usingRay;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -84,6 +90,18 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         {
             AmbientMusicManager.Instance.ExitCombatMode();
             inCombat = false;
+        }
+
+        if (usingRay)
+        {
+            Ray cameraRay = new Ray(transform.position, transform.forward);
+
+            if (Physics.Raycast(cameraRay, out RaycastHit rayHit, Mathf.Infinity, collisionLayer))
+            {
+                float rayLenght = Vector3.Distance(rayHit.point, rayRend.gameObject.transform.position);
+                Vector3 finalPoint = new Vector3(0, 0, rayLenght);
+                rayRend.SetPosition(1, finalPoint);
+            }
         }
     }
 
@@ -173,9 +191,11 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.5f);
 
         float timer = 0;
-        cylinder.SetActive(true);
+        magicRay.SetActive(true);
 
         GetComponent<SkeletonMageAnimation>().SecondAttack();
+
+        usingRay = true;
 
         while (timer < 3.5f && !teleporting)
         {
@@ -199,9 +219,11 @@ public class SkeletonMage : MonoBehaviour, IDamageable
             yield return null;
         }
 
+        usingRay = false;
+
         secondAttack = false;
         attacking = false;
-        cylinder.SetActive(false);
+        magicRay.SetActive(false);
 
         mageAttackFinish = true;
         goToIdle = true;
