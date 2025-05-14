@@ -24,11 +24,13 @@ public class GamepadMenuSupport : MonoBehaviour
     {
         if (input.currentControlScheme == "Keyboard")
         {
+            Debug.Log("A");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else if (input.currentControlScheme == "Gamepad")
         {
+            Debug.Log("B");
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -43,9 +45,11 @@ public class GamepadMenuSupport : MonoBehaviour
             else if (input.currentControlScheme == "Gamepad" && !firstTimeInGamepad)
             {
                 if (lastSelectedObject != null)
+                {
                     EventSystem.current.SetSelectedGameObject(lastSelectedObject);
 
-                firstTimeInGamepad = true;
+                    firstTimeInGamepad = true;
+                }
             }
         }
     }

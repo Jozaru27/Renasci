@@ -5072,7 +5072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1387576219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8455,6 +8455,7 @@ MonoBehaviour:
   - {fileID: 864862929}
   - {fileID: 1806966162}
   - {fileID: 244677154}
+  ignorePointerClickReset: []
   glowColor: {r: 1, g: 1, b: 0.5, a: 1}
 --- !u!1 &5440221732783872510
 GameObject:
