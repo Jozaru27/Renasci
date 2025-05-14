@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -8,7 +10,17 @@ public class MainMenu : MonoBehaviour
     [Header("Setting Areas")]
     [SerializeField] GameObject audioArea;
     [SerializeField] GameObject videoArea;
-    
+    [Header("Buttons")]
+    [SerializeField] Button videoButton;
+    [SerializeField] Button settingsButton;
+    [SerializeField] Button playButton;
+
+    private void Start()
+    {
+        GamepadMenuSupport.Instance.inMenu = true;
+        GamepadMenuSupport.Instance.lastSelectedObject = playButton.gameObject;
+    }
+
     public void Play()
     {
         SceneLoader.Instance.LoadNextScene();
@@ -18,7 +30,9 @@ public class MainMenu : MonoBehaviour
     {
         settingsMenu.SetActive(true);
         mainMenu.SetActive(false);
-        EnableAudioArea();
+        EnableVideoArea();
+        EventSystem.current.SetSelectedGameObject(videoButton.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = videoButton.gameObject;
     }
 
     public void Exit()
@@ -30,6 +44,8 @@ public class MainMenu : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         mainMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(settingsButton.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = playButton.gameObject;
     }
 
     public void EnableAudioArea()
