@@ -242,6 +242,70 @@ MonoBehaviour:
     m_Localized: Language
     m_Metadata:
       m_Items: []
+  - m_Id: 201755071504384
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203194976067584
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203303176527872
+    m_Localized: RENASCI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203245790060544
+    m_Localized: THE TEMPLE CLAIMS YET ANOTHER SOUL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204082079752192
+    m_Localized: ESCAPED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204549438464000
+    m_Localized: THE CYCLE BREAKS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 205639294803968
+    m_Localized: 'Max. Life:
+
+
+      Life:
+
+
+      Life Regen.:
+
+
+      Damage:
+
+
+      Damage
+      Mult.:
+
+
+      Critic. Chance:
+
+
+      Mov. Speed:
+
+
+      Attack Speed:
+
+
+      Cadence:
+
+
+      Dash
+      Cooldown:
+
+
+      Evasion:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206707248488448
+    m_Localized: Relic Name
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

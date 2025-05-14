@@ -221,6 +221,40 @@ MonoBehaviour:
     m_Localized: Idioma
     m_Metadata:
       m_Items: []
+  - m_Id: 201755071504384
+    m_Localized: Pausa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203194976067584
+    m_Localized: Fin de la Partida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203303176527872
+    m_Localized: RENASCI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203245790060544
+    m_Localized: EL TEMPLO SE COBRA OTRA ALMA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204082079752192
+    m_Localized: ESCAPADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204549438464000
+    m_Localized: EL CICLO SE ROMPE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 205639294803968
+    m_Localized: "Vida M\xE1xima:\n\nVida:\n\nRegeneraci\xF3n de Vida:\n\nDa\xF1o:\n\nMultiplicador
+      de Da\xF1o:\n\nProbabilidad de Cr\xEDtico:\n\nVelocidad de Movimiento:\n\nVelocidad
+      de Ataque:\n\nCadencia:\n\nTiempo de Recarga del Dash:\n\nEvasi\xF3n:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206707248488448
+    m_Localized: Nombre de la Reliquia
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
