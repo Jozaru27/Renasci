@@ -41,7 +41,7 @@ public class Altar : MonoBehaviour, IInteractable
                     playerObj.GetComponent<Attack>().relicSlot = 1;
                     break;
                 case 2:
-                    UIManager.Instance.ChangeRelicInfo("Wind");
+                   UIManager.Instance.ChangeRelicInfo("Wind");
                     playerObj.GetComponent<Attack>().currentRelic = Attack.Relics.Wind;
                     playerObj.GetComponent<Attack>().relicSlot = 2;
                     break;

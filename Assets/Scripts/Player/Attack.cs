@@ -73,7 +73,7 @@ public class Attack : MonoBehaviour
 
     public void RelicAttack(InputAction.CallbackContext context)
     {
-        if (context.started && relicUsable)
+        if (context.started && relicUsable && GameManager.Instance.currentRelicSlots > -1)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().RelicAttack();
@@ -102,24 +102,24 @@ public class Attack : MonoBehaviour
     {
         mousePos = context.ReadValue<Vector2>();
 
-        if (input.currentControlScheme == "Keyboard")
-            indicatorObj.SetActive(false);
-        else if (input.currentControlScheme == "Gamepad")
-        {
-            if (context.started)
-                usingIndicator = true;
-            if (context.canceled)
-                usingIndicator = false;
+        //if (input.currentControlScheme == "Keyboard")
+        //    indicatorObj.SetActive(false);
+        //else if (input.currentControlScheme == "Gamepad")
+        //{
+        //    if (context.started)
+        //        usingIndicator = true;
+        //    if (context.canceled)
+        //        usingIndicator = false;
 
-            if (usingIndicator)
-            {
-                indicatorObj.SetActive(true);
-                Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
-                indicatorObj.transform.rotation = Quaternion.LookRotation(indicatorRotation);
-            }
-            else
-                indicatorObj.SetActive(false);
-        }
+        //    if (usingIndicator)
+        //    {
+        //        indicatorObj.SetActive(true);
+        //        Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
+        //        indicatorObj.transform.rotation = Quaternion.Lmás le vookRotation(indicatorRotation);
+        //    }
+        //    else
+        //        indicatorObj.SetActive(false);
+        //}
     }
 
     public void ChangeRelic(InputAction.CallbackContext context)
