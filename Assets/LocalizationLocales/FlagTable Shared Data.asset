@@ -19,9 +19,16 @@ MonoBehaviour:
     m_Key: Flag Image
     m_Metadata:
       m_Items: []
+  - m_Id: 18328133197824
+    m_Key: 'Flag Image
+
+'
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 8477917781395243022
+    - rid: 8477917781395243029
   m_KeyGenerator:
     rid: 8477917781395243021
   references:
@@ -42,4 +49,15 @@ MonoBehaviour:
           - es
           - ca-ES-valencia
         m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    - rid: 8477917781395243029
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 18328133197824
+          m_TableCodes:
+          - en
+          - es
+          - ca-ES-valencia
+        m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null

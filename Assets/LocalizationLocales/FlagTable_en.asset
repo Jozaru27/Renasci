@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: 6f92dabf3274bd440a4021626ea265c1
     m_Metadata:
       m_Items: []
+  - m_Id: 18328133197824
+    m_Localized: 6f92dabf3274bd440a4021626ea265c1[UKFlag]
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

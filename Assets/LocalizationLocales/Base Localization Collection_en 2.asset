@@ -18,12 +18,224 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 129145205841920
-    m_Localized: Good Morning
+  - m_Id: 158355576217600
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   - m_Id: 129503164522496
     m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158408554471424
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158467316670464
+    m_Localized: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158510568333312
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158555514494976
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158788315144192
+    m_Localized: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158830665031680
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159184848838656
+    m_Localized: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159205598060544
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159515913641984
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160091959353344
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160109395075072
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160168236965888
+    m_Localized: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160197144109056
+    m_Localized: Passive Relics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160214181371904
+    m_Localized: Active Relics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160229306032128
+    m_Localized: Stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160241314324480
+    m_Localized: Maximum Life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160258112512000
+    m_Localized: Life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160267834908672
+    m_Localized: Life Regeneration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160302224007168
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160321719132160
+    m_Localized: Damage Multiplier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160345182068736
+    m_Localized: Critical Strike Chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160369446117376
+    m_Localized: Movement Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160391885643776
+    m_Localized: Attack Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160402975383552
+    m_Localized: Cadence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160421648424960
+    m_Localized: Dash Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160446004748288
+    m_Localized: Evasion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160580620935168
+    m_Localized: 'A piece of a haunted ruby that burns with the power of destruction
+
+
+      Critical
+      Damage Multiplyer +0,1'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161274803412992
+    m_Localized: 'A necklace with the essence of an old assasin. It allows its bearer
+      to move undetected
+
+
+      Evasion +2,5'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161294948655104
+    m_Localized: 'A little cristal that gives the bearer sharp vision and supernatural
+      precision
+
+
+      Critical Chance +1,5'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161315110674432
+    m_Localized: 'An enchanted trigger taken from a weapon forged by gods
+
+
+      Shoot
+      Cadence +0,01'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161332231823360
+    m_Localized: 'An orb with condensated energy of a raging storm
+
+
+      Attack
+      Speed +0,05'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161350191833088
+    m_Localized: "A fragment of a mystic mirror that allows the user to move through
+      dimensions \n\nDash Cooldown -0,15"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161364238557184
+    m_Localized: 'A fragment of a sword of a legendary warrior who died in battle
+
+
+      Damage
+      +1'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161385549815808
+    m_Localized: 'An indestructible shard from an old sacred armour
+
+
+      Maximum
+      Life +1'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161406152237056
+    m_Localized: 'A little sprout from a divine tree that regenerate the wounds of
+      the used
+
+
+      Life Regeneration +0,1'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161434837082112
+    m_Localized: 'An enchanted feather from an extremely fast celestial creature
+
+
+      Movement
+      Speed +0,2'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162359836303360
+    m_Localized: "Envelops the user's surroundings in fire. It generates damage to
+      enemies\n\n <size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162439741988864
+    m_Localized: "The user throw an ice icicle to where the player is aiming. It
+      can freeze the enemies\n\n <size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162509761699840
+    m_Localized: "Releases a strong current that pushes the enemies in front of the
+      player\n\n <size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162558105247744
+    m_Localized: Relic Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162609544192000
+    m_Localized: Fatuous Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162627797803008
+    m_Localized: Permafrost Floe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162640934363136
+    m_Localized: Bottled Hurricane
     m_Metadata:
       m_Items: []
   references:

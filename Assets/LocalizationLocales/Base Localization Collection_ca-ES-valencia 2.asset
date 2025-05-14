@@ -18,12 +18,199 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 129145205841920
-    m_Localized: Bon dia
+  - m_Id: 158355576217600
+    m_Localized: Ajustes
     m_Metadata:
       m_Items: []
   - m_Id: 129503164522496
     m_Localized: Jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158408554471424
+    m_Localized: Eixir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158467316670464
+    m_Localized: Pantalla Completa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158510568333312
+    m_Localized: Tornar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158555514494976
+    m_Localized: "Resoluci\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158788315144192
+    m_Localized: "V\xEDdeo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158830665031680
+    m_Localized: "\xC0udio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159184848838656
+    m_Localized: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159205598060544
+    m_Localized: EFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159515913641984
+    m_Localized: "M\xFAsica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160091959353344
+    m_Localized: Reanudar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160109395075072
+    m_Localized: "Men\xFA Principal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160168236965888
+    m_Localized: Inventari
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160197144109056
+    m_Localized: "Rel\xEDquies Passives"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160214181371904
+    m_Localized: "Rel\xEDquies Actives"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160229306032128
+    m_Localized: "Estad\xEDstiques"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160241314324480
+    m_Localized: "Vida M\xE0xima"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160258112512000
+    m_Localized: Vida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160267834908672
+    m_Localized: "Regeneraci\xF3 de Vida"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160302224007168
+    m_Localized: Dany
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160321719132160
+    m_Localized: Multiplicador de Dany
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160345182068736
+    m_Localized: "Probabilitat de Cop Cr\xEDtic"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160369446117376
+    m_Localized: Velocitat de Moviment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160391885643776
+    m_Localized: Velocitat d'Atac
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160402975383552
+    m_Localized: "Cad\xE8ncia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160421648424960
+    m_Localized: "Temps de Rec\xE0rrega del Dash"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160446004748288
+    m_Localized: "Evasi\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160580620935168
+    m_Localized: "Un tros d\u2019un rub\xED encantat que crema amb el poder de la
+      destrucci\xF3\n\nMultiplicador de dany cr\xEDtic +0,1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161274803412992
+    m_Localized: "Un collar amb l\u2019ess\xE8ncia d\u2019un antic assass\xED. Permet
+      al seu portador moure\u2019s sense ser detectat\n\nEvasi\xF3 +2,5"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161294948655104
+    m_Localized: "Un xicotet cristall que dona al seu portador una visi\xF3 aguda
+      i una precisi\xF3 sobrenatural\n\nProbabilitat de cr\xEDtic +1,5"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161315110674432
+    m_Localized: "Un gallet encantat extret d\u2019una arma forjada pels d\xE9us\r\n\nCad\xE8ncia
+      de dispar +0,01"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161332231823360
+    m_Localized: "Una esfera amb energia condensada d\u2019una tempesta furiosa\r\n\nVelocitat
+      d\u2019atac +0,05"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161350191833088
+    m_Localized: "Un fragment d\u2019un espill m\xEDstic que permet al portador despla\xE7ar-se
+      entre dimensions\r\n\nRec\xE0rrega del dash -0,15"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161364238557184
+    m_Localized: "Un fragment de l\u2019espasa d\u2019un guerrer llegendari que va
+      morir en combat\r\n\nDany +1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161385549815808
+    m_Localized: "Un tros indestructible d\u2019una antiga armadura sagrada\r\n\nVida
+      m\xE0xima +1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161406152237056
+    m_Localized: "Un brot menut d\u2019un arbre div\xED que regenera les ferides
+      de qui el porta\r\n\nRegeneraci\xF3 de vida +0,1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161434837082112
+    m_Localized: "Una ploma encantada d\u2019una criatura celestial extremadament
+      r\xE0pida\r\n\nVelocitat de moviment +0,2"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162359836303360
+    m_Localized: "Plena l\u2019entorn de l\u2019usuari amb foc. Genera dany als enemics\n\n<size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162439741988864
+    m_Localized: "L\u2019usuari llan\xE7a un canell\xF3 de gel cap on apunta el jugador.
+      Pot congelar els enemics\n\n<size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162509761699840
+    m_Localized: 'Allibera una forta corrent que espenta els enemics en davant del
+      jugador
+
+
+      <size=25><color=#00ff00ff></color></size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162558105247744
+    m_Localized: "Info de la rel\xEDquia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162609544192000
+    m_Localized: Foc Fatu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162627797803008
+    m_Localized: "Canell\xF3 de Permagel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162640934363136
+    m_Localized: "Hurac\xE0 embotellat"
     m_Metadata:
       m_Items: []
   references:

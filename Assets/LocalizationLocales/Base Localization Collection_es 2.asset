@@ -18,12 +18,203 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 129145205841920
-    m_Localized: "Buenos d\xEDas"
+  - m_Id: 158355576217600
+    m_Localized: Ajustes
     m_Metadata:
       m_Items: []
   - m_Id: 129503164522496
     m_Localized: Jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158408554471424
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158467316670464
+    m_Localized: Pantalla Completa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158510568333312
+    m_Localized: Volver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158555514494976
+    m_Localized: "Resoluci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158788315144192
+    m_Localized: "V\xEDdeo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158830665031680
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159184848838656
+    m_Localized: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159205598060544
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159515913641984
+    m_Localized: "M\xFAsica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160091959353344
+    m_Localized: Reanudar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160109395075072
+    m_Localized: "Men\xFA Principal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160168236965888
+    m_Localized: Inventario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160197144109056
+    m_Localized: Reliquias Pasivas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160214181371904
+    m_Localized: Reliquias Activas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160229306032128
+    m_Localized: "Estad\xEDsticas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160241314324480
+    m_Localized: "Vida M\xE1xima"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160258112512000
+    m_Localized: Vida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160267834908672
+    m_Localized: "Regeneraci\xF3n de Vida"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160302224007168
+    m_Localized: "Da\xF1o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160321719132160
+    m_Localized: "Multiplicador de Da\xF1o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160345182068736
+    m_Localized: "Probabilidad de Golpe Cr\xEDtico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160369446117376
+    m_Localized: Velocidad de Movimiento
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160391885643776
+    m_Localized: Velocidad de Ataque
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160402975383552
+    m_Localized: Cadencia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160421648424960
+    m_Localized: Tiempo de Recarga del Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160446004748288
+    m_Localized: "Evasi\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160580620935168
+    m_Localized: "Un trozo de un rub\xED embrujado que arde con el poder de la destrucci\xF3n\n\nMultiplicador
+      de da\xF1o cr\xEDtico +0,1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161274803412992
+    m_Localized: "Un collar con la esencia de un antiguo asesino. Permite a su portador
+      moverse sin ser detectado\n\nEvasi\xF3n +2,5"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161294948655104
+    m_Localized: "Un peque\xF1o cristal que otorga a su portador una visi\xF3n aguda
+      y una precisi\xF3n sobrenatural\n\nProbabilidad de cr\xEDtico +1,5"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161315110674432
+    m_Localized: "Un gatillo encantado extra\xEDdo de un arma forjada por los dioses\n\nCadencia
+      de disparo +0,01"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161332231823360
+    m_Localized: "Una esfera con energ\xEDa condensada de una tormenta furiosa\r\n\nVelocidad
+      de ataque +0,05"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161350191833088
+    m_Localized: "Un fragmento de un espejo m\xEDstico que permite al portador desplazarse
+      entre dimensiones\r\n\nRecarga del dash -0,15"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161364238557184
+    m_Localized: "Un fragmento de la espada de un guerrero legendario que muri\xF3
+      en batalla\r\n\nDa\xF1o +1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161385549815808
+    m_Localized: "Un fragmento indestructible de una antigua armadura sagrada\r\n\nVida
+      m\xE1xima +1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161406152237056
+    m_Localized: "Un peque\xF1o brote de un \xE1rbol divino que regenera las heridas
+      de quien lo lleva\r\n\nRegeneraci\xF3n de vida +0,1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161434837082112
+    m_Localized: 'Una pluma encantada de una criatura celestial extremadamente veloz
+
+
+      Velocidad
+      de movimiento +0,2'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162359836303360
+    m_Localized: "Envuelve el entorno del usuario en fuego. Provoca da\xF1o a los
+      enemigos\n\n<size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162439741988864
+    m_Localized: "El usuario lanza un car\xE1mbano de hielo hacia donde apunta el
+      jugador. Puede congelar a los enemigos\n\n<size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162509761699840
+    m_Localized: 'Libera una fuerte corriente que empuja a los enemigos enfrente
+      del jugador
+
+
+      <size=25><color=#00ff00ff></color></size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162558105247744
+    m_Localized: Info de la reliquia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162609544192000
+    m_Localized: Fuego Fatuo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162627797803008
+    m_Localized: "Car\xE1mbano de Permahielo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162640934363136
+    m_Localized: "Hurac\xE1n embotellado"
     m_Metadata:
       m_Items: []
   references:
