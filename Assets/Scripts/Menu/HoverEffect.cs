@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class HoverEffect : MonoBehaviour
 {
     public List<GameObject> uiElementsList;
+    public List<GameObject> ignorePointerClickReset;
+    private GameObject currentUIElement;
     public Color glowColor = new Color(1f, 1f, 0.5f, 1f);
     private Dictionary<GameObject, Color> originalColors = new Dictionary<GameObject, Color>();
 
@@ -64,6 +66,10 @@ public class HoverEffect : MonoBehaviour
         if (btn != null && !btn.interactable)
             return;
 
+        InventoryMenu inventoryMenu = FindObjectOfType<InventoryMenu>();
+        if (uiElement.name.Contains("ArrowButton_01") && !inventoryMenu.CanGoLeft()) return;
+        if (uiElement.name.Contains("ArrowButton_02") && !inventoryMenu.CanGoRight()) return;
+
         Image panelImage = uiElement.GetComponentInChildren<Image>();
         if (panelImage != null)
         {
@@ -78,6 +84,7 @@ public class HoverEffect : MonoBehaviour
         if (btn != null && !btn.interactable)
             return;
 
+        // Restauramos el color original siempre
         if (originalColors.ContainsKey(uiElement))
         {
             Image panelImage = uiElement.GetComponentInChildren<Image>();
@@ -86,11 +93,34 @@ public class HoverEffect : MonoBehaviour
                 panelImage.color = originalColors[uiElement]; 
             }
         }
+
+        // Restaurar el cursor si es necesario
+        if (currentUIElement == uiElement)
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            currentUIElement = null;
+        }
     }
 
-    public void OnPointerClick(GameObject uiElement)
+
+public void OnPointerClick(GameObject uiElement)
     {
-        OnPointerExit(uiElement); 
+        //OnPointerExit(uiElement); 
+
+        //if (!ignorePointerClickReset.Contains(uiElement))
+        //{
+        //    OnPointerExit(uiElement);
+        //}
+
+        Button btn = uiElement.GetComponent<Button>();
+        if (btn != null && !btn.interactable)
+            return;
+
+        InventoryMenu inventoryMenu = FindObjectOfType<InventoryMenu>();
+        if (uiElement.name.Contains("ArrowButton_01") && !inventoryMenu.CanGoLeft()) return;
+        if (uiElement.name.Contains("ArrowButton_02") && !inventoryMenu.CanGoRight()) return;
+
+        OnPointerExit(uiElement);
     }
 
     public void ResetAllHoverEffects()

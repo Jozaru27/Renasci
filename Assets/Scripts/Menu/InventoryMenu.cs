@@ -25,7 +25,6 @@ public class InventoryMenu : MonoBehaviour
     [SerializeField] Button arrowButtonLeft;
     [SerializeField] Button arrowButtonRight;
 
-
     int passiveButtonsNum;
     int activeButtonsNum;
     int relicNum;
@@ -149,6 +148,8 @@ public class InventoryMenu : MonoBehaviour
             }
     }
 
+
+
     public void GoLeft()
     {
         relicNum--;
@@ -163,6 +164,8 @@ public class InventoryMenu : MonoBehaviour
                 relicTexts[i].text = $"x{relicQuantity[i + relicNum]}";
             }
     }
+
+
 
     public void UpdateStats()
     {
@@ -226,5 +229,16 @@ public class InventoryMenu : MonoBehaviour
             text.color = c;
         }
     }
+
+    public bool CanGoLeft()
+    {
+        return relicNum > 0;
+    }
+
+    public bool CanGoRight()
+    {
+        return relicNum < passiveRelicsInfo.Count - 3;
+    }
+
 
 }

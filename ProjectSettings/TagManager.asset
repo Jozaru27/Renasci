@@ -12,6 +12,7 @@ TagManager:
   - Trap
   - Wind
   - Ice
+  - UI_NoPointerReset
   layers:
   - Default
   - TransparentFX
