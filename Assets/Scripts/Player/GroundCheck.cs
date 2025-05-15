@@ -11,7 +11,6 @@ public class GroundCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("GroundCheck SI ERA");
             //GameManager.Instance.playerCannotMove = false;
             grounded = true;
         }
