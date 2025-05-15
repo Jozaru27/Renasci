@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: 3692496bde259a74892e9651b95e7d22, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 8477917791100338178
   m_TableData:
   - m_Id: 158355576217600
     m_Localized: Settings
@@ -306,6 +307,15 @@ MonoBehaviour:
     m_Localized: Relic Name
     m_Metadata:
       m_Items: []
+  - m_Id: 285560641839104
+    m_Localized: <b>{description}</b>\n\n{effect} {value}{valueQuantity}
+    m_Metadata:
+      m_Items:
+      - rid: 8477917791100338178
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8477917791100338178
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00609e44b7030100

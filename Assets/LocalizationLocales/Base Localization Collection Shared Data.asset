@@ -283,6 +283,10 @@ MonoBehaviour:
     m_Key: Relic Name
     m_Metadata:
       m_Items: []
+  - m_Id: 285560641839104
+    m_Key: Relic Info Smart Strings
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
