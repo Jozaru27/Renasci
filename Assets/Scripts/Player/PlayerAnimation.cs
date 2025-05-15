@@ -34,13 +34,6 @@ public class PlayerAnimation : MonoBehaviour
         GetComponent<Attack>().attacking = false;
     }
 
-    IEnumerator ResetAttack()
-    {
-        yield return null;
-
-        
-    }
-
     public void Attack()
     {
         playerAnim.SetBool("Idle", false);

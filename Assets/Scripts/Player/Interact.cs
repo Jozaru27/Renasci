@@ -14,8 +14,8 @@ public class Interact : MonoBehaviour
             {
                 if (GameManager.Instance.infoShowed)
                 {
-                    Time.timeScale = 1;
-                    InfoPanel.Instance.ComproveRelicsList();
+                    //Time.timeScale = 1;
+                    InfoPanel.Instance.CheckRelicsList();
                 }
             }
             else

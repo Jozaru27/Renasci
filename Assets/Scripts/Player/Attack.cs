@@ -57,14 +57,37 @@ public class Attack : MonoBehaviour
         input = GetComponent<PlayerInput>();
     }
 
+    private void Update()
+    {
+        if (input.currentControlScheme == "Gamepad")
+        {
+            if (usingIndicator && !shoting)
+            {
+                indicatorObj.SetActive(true);
+                Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
+                indicatorObj.transform.rotation = Quaternion.LookRotation(indicatorRotation);
+            }
+            else
+                indicatorObj.SetActive(false);
+        }
+    }
+
     public void NormalAttack(InputAction.CallbackContext context)
     {
         if (context.started && !GameManager.Instance.gamePaused && !shoting && !attacking)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
+            StartCoroutine(FinishAttack());
             attacking = true;
         }
+    }
+
+    IEnumerator FinishAttack()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GetComponent<PlayerAnimation>().Idle();
     }
 
     public void DistanceAttack(InputAction.CallbackContext context)
@@ -112,14 +135,15 @@ public class Attack : MonoBehaviour
             if (context.canceled)
                 usingIndicator = false;
 
-            if (usingIndicator)
-            {
-                indicatorObj.SetActive(true);
-                Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
-                indicatorObj.transform.rotation = Quaternion.LookRotation(indicatorRotation);
-            }
-            else
-                indicatorObj.SetActive(false);
+            //if (usingIndicator && !shoting)
+            //{
+            //    indicatorObj.SetActive(true);
+            //    Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
+            //    //indicatorObj.transform.rotation = Quaternion.LookRotation(indicatorRotation);
+            //    indicatorObj.transform.rotation = Quaternion.Slerp(indicatorObj.transform.rotation, Quaternion.LookRotation(indicatorRotation), 10f * Time.deltaTime );
+            //}
+            //else
+            //    indicatorObj.SetActive(false);
         }
     }
 
@@ -180,6 +204,7 @@ public class Attack : MonoBehaviour
     {
         shotable = false;
         shoting = true;
+        indicatorObj.SetActive(false);
         GameManager.Instance.playerCannotMove = true;
 
         shots++;

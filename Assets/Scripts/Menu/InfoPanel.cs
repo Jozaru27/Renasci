@@ -68,7 +68,7 @@ public class InfoPanel : MonoBehaviour
         GameManager.Instance.inInfo = true;
         float timeElapsed = 0f;
 
-        while (timeElapsed < fadeDuration)
+        while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
             timeElapsed += Time.unscaledDeltaTime;
 
@@ -100,7 +100,7 @@ public class InfoPanel : MonoBehaviour
     {
         float timeElapsed = 0f;
 
-        while (timeElapsed < fadeDuration)
+        while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
             timeElapsed += Time.unscaledDeltaTime;
 
@@ -137,6 +137,7 @@ public class InfoPanel : MonoBehaviour
 
         //Debug.Log(takenRelics.Count);
 
+        Debug.Log("ABCDEFG");
         if (nextRelic == takenRelics[0])
         {
             if (nextRelic.valueQuantity != 0)
@@ -144,10 +145,9 @@ public class InfoPanel : MonoBehaviour
             else
                 ImageTextInfo(nextRelic.description + "\n\n" + nextRelic.effect, nextRelic.image, fadeTime);
         }
-            
     }
 
-    public void ComproveRelicsList()
+    public void CheckRelicsList()
     {
         GameManager.Instance.infoShowed = false;
         //Debug.Log(takenRelics.Count);
@@ -155,6 +155,8 @@ public class InfoPanel : MonoBehaviour
         if (takenRelics.Count == 0)
             StartCoroutine(DespawnInfo(0.75f));
         else
-            ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, fadeTimer);
+            ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, 0);
+
+        Debug.Log(fadeTimer);
     }
 }
