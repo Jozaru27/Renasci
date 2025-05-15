@@ -16,48 +16,27 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 3692496bde259a74892e9651b95e7d22
   m_Entries:
   - m_Id: 161350191833088
-    m_Key: "A fragment of a mystic mirror that allows the user to move through dimensions
-      \n\nDash Cooldown -0,15"
+    m_Key: relicdesc_illusorytrack
     m_Metadata:
       m_Items: []
   - m_Id: 161364238557184
-    m_Key: 'A fragment of a sword of a legendary warrior who died in battle
-
-
-      Damage
-      +1'
+    m_Key: relicdesc_swordofthefallen
     m_Metadata:
       m_Items: []
   - m_Id: 161294948655104
-    m_Key: 'A little cristal that gives the bearer sharp vision and supernatural
-      precision
-
-
-      Critical Chance +1,5'
+    m_Key: relicdesc_eyeofthefalcon
     m_Metadata:
       m_Items: []
   - m_Id: 161406152237056
-    m_Key: 'A little sprout from a divine tree that regenerate the wounds of the
-      used
-
-
-      Life Regeneration +0,1'
+    m_Key: relicdesc_treeofeternity
     m_Metadata:
       m_Items: []
   - m_Id: 161274803412992
-    m_Key: 'A necklace with the essence of an old assasin. It allows its bearer to
-      move undetected
-
-
-      Evasion +2,5'
+    m_Key: relicdesc_danceoftheshadows
     m_Metadata:
       m_Items: []
   - m_Id: 160580620935168
-    m_Key: 'A piece of a haunted ruby that burns with the power of destruction
-
-
-      Critical
-      Damage Multiplyer +0,1'
+    m_Key: relicdesc_crimsonfury
     m_Metadata:
       m_Items: []
   - m_Id: 160214181371904
@@ -65,35 +44,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161434837082112
-    m_Key: 'An enchanted feather from an extremely fast celestial creature
-
-
-      Movement
-      Speed +0,2'
+    m_Key: relicdesc_wingsofthewind
     m_Metadata:
       m_Items: []
   - m_Id: 161315110674432
-    m_Key: 'An enchanted trigger taken from a weapon forged by gods
-
-
-      Shoot
-      Cadence +0,01'
+    m_Key: relicdesc_handofthegunner
     m_Metadata:
       m_Items: []
   - m_Id: 161385549815808
-    m_Key: 'An indestructible shard from an old sacred armour
-
-
-      Maximum Life
-      +1'
+    m_Key: relicdesc_titaniumheart
     m_Metadata:
       m_Items: []
   - m_Id: 161332231823360
-    m_Key: 'An orb with condensated energy of a raging storm
-
-
-      Attack Speed
-      +0,05'
+    m_Key: relicdesc_roarofthethunder
     m_Metadata:
       m_Items: []
   - m_Id: 160391885643776
@@ -284,7 +247,47 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 285560641839104
-    m_Key: Relic Info Smart Strings
+    m_Key: relic_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336444912590848
+    m_Key: relicname_illusorytrack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336482288033792
+    m_Key: relicname_swordofthefallen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336493696540672
+    m_Key: relicname_eyeofthefalcon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336506791157760
+    m_Key: relicname_treeofeternity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336519835443200
+    m_Key: relicname_danceoftheshadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336533458542592
+    m_Key: relicname_crimsonfury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336547920502784
+    m_Key: relicname_wingsofthewind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336560067207168
+    m_Key: relicname_handofthegunner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336571173724160
+    m_Key: relicname_titaniumheart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336582108274688
+    m_Key: relicname_roarofthethunder
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "RelicInventory", menuName = "ScriptableObjects/RelicInventory")]
 public class RelicsInventoryScriptableObject : ScriptableObject
@@ -7,6 +8,7 @@ public class RelicsInventoryScriptableObject : ScriptableObject
     public string relicName;
     [TextArea (2, 6)] public string description;
     [TextArea (2, 6)] public string effect;
+
     public string value;
     public float valueQuantity;
 

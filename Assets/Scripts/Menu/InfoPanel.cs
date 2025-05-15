@@ -7,8 +7,6 @@ using System;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
-//LocalizedString localizedRelicInfo = new LocalizedString("Relic Info Smart Strings", "relic_info");
-
 public class InfoPanel : MonoBehaviour
 {
     [SerializeField] GameObject infoCanvas;
@@ -63,34 +61,6 @@ public class InfoPanel : MonoBehaviour
         infoText.text = text;
         StartCoroutine(SpawnInfo(fadeDuration));
     }
-
-    //public void ImageTextInfo(RelicInventoryScriptableObject relic, float fadeDuration)
-    //{
-    //    infoImage.SetActive(true);
-    //    infoCanvas.SetActive(true);
-    //    infoImage.gameObject.GetComponent<Image>().sprite = relic.image;
-    //    infoText.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(255, 0, 0);
-    //    infoText.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 650);
-
-    //    localizedRelicInfo.Arguments = new object[]
-    //    {
-    //        new {
-    //            description = relic.description,
-    //            effect = relic.effect,
-    //            value = relic.value,
-    //            valueQuantity = relic.valueQuantity
-    //        }
-    //    };
-
-    //    localizedRelicInfo.StringChanged += (localizedText) =>
-    //    {
-    //        infoText.text = localizedText;
-    //    };
-
-    //    localizedRelicInfo.RefreshString();
-
-    //    StartCoroutine(SpawnInfo(fadeDuration));
-    //}
 
     IEnumerator SpawnInfo(float fadeDuration)
     {

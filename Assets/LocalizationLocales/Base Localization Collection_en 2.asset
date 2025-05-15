@@ -132,80 +132,53 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160580620935168
-    m_Localized: 'A piece of a haunted ruby that burns with the power of destruction
-
-
-      Critical
-      Damage Multiplyer +0,1'
+    m_Localized: A piece of a haunted ruby that burns with the power of destruction\nCritical
+      Damage Multiplyer +0,1
     m_Metadata:
       m_Items: []
   - m_Id: 161274803412992
-    m_Localized: 'A necklace with the essence of an old assasin. It allows its bearer
-      to move undetected
-
-
-      Evasion +2,5'
+    m_Localized: A necklace with the essence of an old assasin. It allows its bearer
+      to move undetected\nEvasion +2,5
     m_Metadata:
       m_Items: []
   - m_Id: 161294948655104
-    m_Localized: 'A little cristal that gives the bearer sharp vision and supernatural
-      precision
-
-
-      Critical Chance +1,5'
+    m_Localized: A little cristal that gives the bearer sharp vision and supernatural
+      precision\nCritical Chance +1,5
     m_Metadata:
       m_Items: []
   - m_Id: 161315110674432
-    m_Localized: 'An enchanted trigger taken from a weapon forged by gods
-
-
-      Shoot
-      Cadence +0,01'
+    m_Localized: An enchanted trigger taken from a weapon forged by gods\nShoot Cadence
+      +0,01
     m_Metadata:
       m_Items: []
   - m_Id: 161332231823360
-    m_Localized: 'An orb with condensated energy of a raging storm
-
-
-      Attack
-      Speed +0,05'
+    m_Localized: An orb with condensated energy of a raging storm\nAttack Speed +0,05\nMaximum
+      Life +1
     m_Metadata:
       m_Items: []
   - m_Id: 161350191833088
-    m_Localized: "A fragment of a mystic mirror that allows the user to move through
-      dimensions \n\nDash Cooldown -0,15"
+    m_Localized: A fragment of a mystic mirror that allows the user to move through
+      dimensions\nDash Cooldown -0,15
     m_Metadata:
       m_Items: []
   - m_Id: 161364238557184
-    m_Localized: 'A fragment of a sword of a legendary warrior who died in battle
-
-
-      Damage
-      +1'
+    m_Localized: A fragment of a sword of a legendary warrior who died in battle\nDamage
+      +1
     m_Metadata:
       m_Items: []
   - m_Id: 161385549815808
-    m_Localized: 'An indestructible shard from an old sacred armour
-
-
-      Maximum
-      Life +1'
+    m_Localized: An indestructible shard from an old sacred armour\nMaximum Life
+      +1
     m_Metadata:
       m_Items: []
   - m_Id: 161406152237056
-    m_Localized: 'A little sprout from a divine tree that regenerate the wounds of
-      the used
-
-
-      Life Regeneration +0,1'
+    m_Localized: A little sprout from a divine tree that regenerate the wounds of
+      the used\nLife Regeneration +0,1
     m_Metadata:
       m_Items: []
   - m_Id: 161434837082112
-    m_Localized: 'An enchanted feather from an extremely fast celestial creature
-
-
-      Movement
-      Speed +0,2'
+    m_Localized: An enchanted feather from an extremely fast celestial creature\nMovement
+      Speed +0,2
     m_Metadata:
       m_Items: []
   - m_Id: 162359836303360
@@ -308,10 +281,53 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 285560641839104
-    m_Localized: <b>{description}</b>\n\n{effect} {value}{valueQuantity}
+    m_Localized: '{description}
+
+
+      {effect}: {value} {valueQuantity}'
     m_Metadata:
       m_Items:
       - rid: 8477917791100338178
+  - m_Id: 336444912590848
+    m_Localized: Ilusory Track
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336482288033792
+    m_Localized: Sword Of The Fallen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336493696540672
+    m_Localized: Eye Of The Falcon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336506791157760
+    m_Localized: Tree Of Eternity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336519835443200
+    m_Localized: Dance Of The Shadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336533458542592
+    m_Localized: Crimson Fury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336547920502784
+    m_Localized: Wings Of The Wind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336560067207168
+    m_Localized: Hand Of The Gunner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336571173724160
+    m_Localized: Titanium Heart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336582108274688
+    m_Localized: Roar Of The Thunder
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

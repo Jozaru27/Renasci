@@ -20,7 +20,7 @@ MonoBehaviour:
     - rid: 8477917791100338180
   m_TableData:
   - m_Id: 158355576217600
-    m_Localized: Ajustes
+    m_Localized: Ajustos
     m_Metadata:
       m_Items: []
   - m_Id: 129503164522496
@@ -133,17 +133,17 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 160580620935168
     m_Localized: "Un tros d\u2019un rub\xED encantat que crema amb el poder de la
-      destrucci\xF3\n\nMultiplicador de dany cr\xEDtic +0,1"
+      destrucci\xF3\\nMultiplicador de dany cr\xEDtic +0,1"
     m_Metadata:
       m_Items: []
   - m_Id: 161274803412992
     m_Localized: "Un collar amb l\u2019ess\xE8ncia d\u2019un antic assass\xED. Permet
-      al seu portador moure\u2019s sense ser detectat\n\nEvasi\xF3 +2,5"
+      al seu portador moure\u2019s sense ser detectat\\nEvasi\xF3 +2,5"
     m_Metadata:
       m_Items: []
   - m_Id: 161294948655104
     m_Localized: "Un xicotet cristall que dona al seu portador una visi\xF3 aguda
-      i una precisi\xF3 sobrenatural\n\nProbabilitat de cr\xEDtic +1,5"
+      i una precisi\xF3 sobrenatural\\nProbabilitat de cr\xEDtic +1,5"
     m_Metadata:
       m_Items: []
   - m_Id: 161315110674432
@@ -158,12 +158,12 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 161350191833088
     m_Localized: "Un fragment d\u2019un espill m\xEDstic que permet al portador despla\xE7ar-se
-      entre dimensions\r\n\nRec\xE0rrega del dash -0,15"
+      entre dimensions\r\\nRec\xE0rrega del dash -0,15"
     m_Metadata:
       m_Items: []
   - m_Id: 161364238557184
     m_Localized: "Un fragment de l\u2019espasa d\u2019un guerrer llegendari que va
-      morir en combat\r\n\nDany +1"
+      morir en combat\r\\nDany +1"
     m_Metadata:
       m_Items: []
   - m_Id: 161385549815808
@@ -173,7 +173,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 161406152237056
     m_Localized: "Un brot menut d\u2019un arbre div\xED que regenera les ferides
-      de qui el porta\r\n\nRegeneraci\xF3 de vida +0,1"
+      de qui el porta\r\\nRegeneraci\xF3 de vida +0,1"
     m_Metadata:
       m_Items: []
   - m_Id: 161434837082112
@@ -243,9 +243,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 205639294803968
-    m_Localized: "Vida M\xE0xima:\n\nVida:\n\nRegeneraci\xF3 de Vida:\n\nDany:\n\nMultiplicador
-      de dany:\n\nProbabilitat de Cr\xEDtic:\n\nVelocitat de Moviment:\n\nVelocitat
-      de Atac:\n\nCad\xE8ncia:\n\nTemps de Recarrega del Dash:\n\nEvasi\xF3n:"
+    m_Localized: "Vida M\xE0x.:\n\nVida:\n\nRegen. de Vida:\n\nDany:\n\nMult. de
+      dany:\n\nProb.t de Cr\xEDtic:\n\nVel. de Moviment:\n\nVel. de Atac:\n\nCad\xE8ncia:\n\nRecarrega
+      del Dash:\n\nEvasi\xF3n:"
     m_Metadata:
       m_Items: []
   - m_Id: 206707248488448
@@ -253,10 +253,53 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 285560641839104
-    m_Localized: <b>{description}</b>\n\n{effect} {value}{valueQuantity}
+    m_Localized: '{description}
+
+
+      {effect}: {value} {valueQuantity}'
     m_Metadata:
       m_Items:
       - rid: 8477917791100338180
+  - m_Id: 336571173724160
+    m_Localized: Cor de Titani
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336560067207168
+    m_Localized: "M\xE0 de l\u2019Artiller"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336444912590848
+    m_Localized: "Senda Il\xB7lus\xF2ria"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336482288033792
+    m_Localized: Espasa del Caigut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336493696540672
+    m_Localized: "Ull del Falc\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336506791157760
+    m_Localized: "Arbre de l\u2019Eternitat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336519835443200
+    m_Localized: Dansa de les Ombres
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336533458542592
+    m_Localized: "F\xFAria Carmesina"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336547920502784
+    m_Localized: Ales de Vent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336582108274688
+    m_Localized: Rugit del Tro
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

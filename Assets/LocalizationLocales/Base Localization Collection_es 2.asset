@@ -132,18 +132,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160580620935168
-    m_Localized: "Un trozo de un rub\xED embrujado que arde con el poder de la destrucci\xF3n\n\nMultiplicador
+    m_Localized: "Un trozo de un rub\xED embrujado que arde con el poder de la destrucci\xF3n\\nMultiplicador
       de da\xF1o cr\xEDtico +0,1"
     m_Metadata:
       m_Items: []
   - m_Id: 161274803412992
     m_Localized: "Un collar con la esencia de un antiguo asesino. Permite a su portador
-      moverse sin ser detectado\n\nEvasi\xF3n +2,5"
+      moverse sin ser detectado\\nEvasi\xF3n +2,5"
     m_Metadata:
       m_Items: []
   - m_Id: 161294948655104
     m_Localized: "Un peque\xF1o cristal que otorga a su portador una visi\xF3n aguda
-      y una precisi\xF3n sobrenatural\n\nProbabilidad de cr\xEDtico +1,5"
+      y una precisi\xF3n sobrenatural\\nProbabilidad de cr\xEDtico +1,5"
     m_Metadata:
       m_Items: []
   - m_Id: 161315110674432
@@ -158,12 +158,12 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 161350191833088
     m_Localized: "Un fragmento de un espejo m\xEDstico que permite al portador desplazarse
-      entre dimensiones\r\n\nRecarga del dash -0,15"
+      entre dimensiones\r\\nRecarga del dash -0,15"
     m_Metadata:
       m_Items: []
   - m_Id: 161364238557184
     m_Localized: "Un fragmento de la espada de un guerrero legendario que muri\xF3
-      en batalla\r\n\nDa\xF1o +1"
+      en batalla\r\\nDa\xF1o +1"
     m_Metadata:
       m_Items: []
   - m_Id: 161385549815808
@@ -173,7 +173,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 161406152237056
     m_Localized: "Un peque\xF1o brote de un \xE1rbol divino que regenera las heridas
-      de quien lo lleva\r\n\nRegeneraci\xF3n de vida +0,1"
+      de quien lo lleva\r\\nRegeneraci\xF3n de vida +0,1"
     m_Metadata:
       m_Items: []
   - m_Id: 161434837082112
@@ -247,9 +247,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 205639294803968
-    m_Localized: "Vida M\xE1xima:\n\nVida:\n\nRegeneraci\xF3n de Vida:\n\nDa\xF1o:\n\nMultiplicador
-      de Da\xF1o:\n\nProbabilidad de Cr\xEDtico:\n\nVelocidad de Movimiento:\n\nVelocidad
-      de Ataque:\n\nCadencia:\n\nTiempo de Recarga del Dash:\n\nEvasi\xF3n:"
+    m_Localized: "Vida M\xE1x.:\n\nVida:\n\nRegenn de Vida:\n\nDa\xF1o:\n\nMult.
+      de Da\xF1o:\n\nProb. de Cr\xEDtico:\n\nVel. de Movimiento:\n\nVel.de Ataque:\n\nCadencia:\n\nRecarga
+      del Dash:\n\nEvasi\xF3n:"
     m_Metadata:
       m_Items: []
   - m_Id: 206707248488448
@@ -257,10 +257,57 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 285560641839104
-    m_Localized: <b>{description}</b>\n\n{effect} {value}{valueQuantity}
+    m_Localized: '{description}
+
+
+      {effect}: {value} {valueQuantity}'
     m_Metadata:
       m_Items:
       - rid: 8477917791100338179
+  - m_Id: 336444912590848
+    m_Localized: "Senda Ilusoria\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336560067207168
+    m_Localized: 'Mano del Artillero
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336582108274688
+    m_Localized: "Rugido del Trueno\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336547920502784
+    m_Localized: 'Alas del Viento
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336571173724160
+    m_Localized: "Coraz\xF3n de Titanio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336533458542592
+    m_Localized: "Furia Carmes\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336519835443200
+    m_Localized: Danza de las Sombras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336506791157760
+    m_Localized: "\xC1rbol de la Eternidad"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336493696540672
+    m_Localized: "Ojo del Halc\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336482288033792
+    m_Localized: "Espada del Ca\xEDdo"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
