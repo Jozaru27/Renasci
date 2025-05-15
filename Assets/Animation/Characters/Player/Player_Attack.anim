@@ -46727,7 +46727,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
+  - time: 0.45833334
     functionName: Idle
     data: 
     objectReferenceParameter: {fileID: 0}

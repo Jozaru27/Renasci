@@ -31,6 +31,14 @@ public class PlayerAnimation : MonoBehaviour
         swordParticles.SetActive(false);
         revolver.SetActive(false);
         GameManager.Instance.playerCannotMove = false;
+        GetComponent<Attack>().attacking = false;
+    }
+
+    IEnumerator ResetAttack()
+    {
+        yield return null;
+
+        
     }
 
     public void Attack()
@@ -135,8 +143,8 @@ public class PlayerAnimation : MonoBehaviour
     public void Death()
     {
         playerAnim.SetBool("Death", true);
-        sword.SetActive(false);
-        revolver.SetActive(true);
+        sword.SetActive(true);
+        revolver.SetActive(false);
         swordParticles.SetActive(false);
     }
 

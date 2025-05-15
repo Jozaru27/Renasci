@@ -5060,7 +5060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf406e1fd38c384bb48712f574d2fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relicObj: {fileID: 0}
+  relicObj: {fileID: 4339746833955292750}
+  relicInfo: {fileID: 11400000, guid: 0fcb9bdfa45fddb44a351f88129db1ac, type: 2}
 --- !u!65 &2320049409545086520
 BoxCollider:
   m_ObjectHideFlags: 0

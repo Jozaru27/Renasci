@@ -138,7 +138,13 @@ public class InfoPanel : MonoBehaviour
         //Debug.Log(takenRelics.Count);
 
         if (nextRelic == takenRelics[0])
-            ImageTextInfo(nextRelic.description + "\n\n" + nextRelic.effect + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
+        {
+            if (nextRelic.valueQuantity != 0)
+                ImageTextInfo(nextRelic.description + "\n\n" + nextRelic.effect + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
+            else
+                ImageTextInfo(nextRelic.description + "\n\n" + nextRelic.effect, nextRelic.image, fadeTime);
+        }
+            
     }
 
     public void ComproveRelicsList()

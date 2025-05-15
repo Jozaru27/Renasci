@@ -34,6 +34,7 @@ public class Attack : MonoBehaviour
     bool shoting;
     bool relicUsable = true;
     bool usingIndicator;
+    public bool attacking;
     Vector2 mousePos;
     Vector3 collidePosition;
     Rigidbody rb;
@@ -58,10 +59,11 @@ public class Attack : MonoBehaviour
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !GameManager.Instance.gamePaused && !shoting)
+        if (context.started && !GameManager.Instance.gamePaused && !shoting && !attacking)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
+            attacking = true;
         }
     }
 
@@ -77,7 +79,6 @@ public class Attack : MonoBehaviour
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().RelicAttack();
-            //SelectCurrentRelic();
             relicUsable = false;
         }
     }
@@ -126,7 +127,7 @@ public class Attack : MonoBehaviour
     {
         if (UIManager.Instance.IsRotating) return;
 
-        if (context.started && GameManager.Instance.currentRelicSlots >= 0 && relicUsable)
+        if (context.started && GameManager.Instance.currentRelicSlots >= 0)
         {
             float input = context.ReadValue<float>();
 

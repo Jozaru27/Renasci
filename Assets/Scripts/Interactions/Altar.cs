@@ -5,6 +5,7 @@ using UnityEngine;
 public class Altar : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject relicObj;
+    [SerializeField] RelicsInventoryScriptableObject relicInfo;
 
     bool firstTime;
     GameObject playerObj;
@@ -51,6 +52,7 @@ public class Altar : MonoBehaviour, IInteractable
             UIManager.Instance.UpdateRelicRotation(currentSlot);
 
             GetComponent<AddRelicInventory>().PassInfoToInventory();
+            InfoPanel.Instance.AddRelic(relicInfo, 1f);
             Destroy(relicObj);
             firstTime = true;
         }

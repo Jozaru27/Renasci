@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InventoryMenu : MonoBehaviour
@@ -31,6 +33,8 @@ public class InventoryMenu : MonoBehaviour
     List<int> relicQuantity = new List<int>();
     List<RelicsInventoryScriptableObject> passiveRelicsInfo = new List<RelicsInventoryScriptableObject>();
     List<RelicsInventoryScriptableObject> activeRelicsInfo = new List<RelicsInventoryScriptableObject>();
+    [SerializeField] PlayerInput input;
+    GameObject lastSelected;
 
     public static InventoryMenu Instance { get; private set; }
 
@@ -38,6 +42,16 @@ public class InventoryMenu : MonoBehaviour
     {
         Instance = this;
         UpdateArrowButtons();
+    }
+
+    private void Update()
+    {
+        if (input.currentControlScheme == "Gamepad" && EventSystem.current.currentSelectedGameObject != lastSelected)
+        {
+            infoSection.SetActive(false);
+            statsSection.SetActive(true);
+            lastSelected = EventSystem.current.currentSelectedGameObject;
+        }
     }
 
     public void AddToInventory(RelicsInventoryScriptableObject relicInfo)
@@ -64,6 +78,7 @@ public class InventoryMenu : MonoBehaviour
                 if (passiveButtonsNum <= 2)
                 {
                     passiveRelicButtons[passiveButtonsNum].GetComponent<Image>().sprite = relicInfo.image;
+                    passiveRelicButtons[passiveButtonsNum].GetComponent<Image>().color = Color.white;
                     relicTexts[passiveButtonsNum].gameObject.SetActive(true);
                 }
 
@@ -91,6 +106,7 @@ public class InventoryMenu : MonoBehaviour
             {
                 activeRelicsInfo.Add(relicInfo);
                 activeRelicButtons[activeButtonsNum].GetComponent<Image>().sprite = relicInfo.image;
+                activeRelicButtons[activeButtonsNum].GetComponent<Image>().color = Color.white;
                 activeButtonsNum++;
 
                 if (activeButtonsNum > 2)
@@ -240,5 +256,26 @@ public class InventoryMenu : MonoBehaviour
         return relicNum < passiveRelicsInfo.Count - 3;
     }
 
+    public void ToggleInfo(int button)
+    {
+        if (input.currentControlScheme == "Gamepad")
+        {
+            infoSection.SetActive(!infoSection.activeSelf);
+            statsSection.SetActive(!statsSection.activeSelf);
 
+            if (button < 3)
+            {
+                relicImage.sprite = passiveRelicsInfo[button + relicNum].image;
+                nameText.text = passiveRelicsInfo[button + relicNum].relicName;
+                infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
+            }
+            else
+            {
+                button -= 3;
+                relicImage.sprite = activeRelicsInfo[button].image;
+                nameText.text = activeRelicsInfo[button].relicName;
+                infoText.text = activeRelicsInfo[button].description + "\n\n <size=25>" + activeRelicsInfo[button].effect + "<color=#00ff00ff>" + activeRelicsInfo[button].value + "</color></size>";
+            }
+        }
+    }
 }
