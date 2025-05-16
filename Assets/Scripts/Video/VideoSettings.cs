@@ -85,6 +85,4 @@ public class VideoSettings : MonoBehaviour
         yield return null; 
         Screen.fullScreen = true;
     }
-
-
 }
