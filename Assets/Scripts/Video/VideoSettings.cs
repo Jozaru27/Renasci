@@ -17,7 +17,6 @@ public class VideoSettings : MonoBehaviour
         new Vector2Int(1280, 720)
     };
 
-
     void Start()
     {
         fullscreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
@@ -48,12 +47,44 @@ public class VideoSettings : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
-        Screen.SetResolution(Screen.width, Screen.height, isFullscreen);
+
+        if (isFullscreen)
+        {
+            Screen.SetResolution(Screen.width, Screen.height, true);
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        }
+        else
+        {
+            Screen.SetResolution(1920, 1080, false);
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
+
+        Debug.Log("Fullscreen mode set to: " + Screen.fullScreenMode);
     }
 
     private void ChangeResolution(int index)
     {
         Vector2Int selectedRes = allowedResolutions[index];
         Screen.SetResolution(selectedRes.x, selectedRes.y, Screen.fullScreen);
+        
+        if (Screen.fullScreen)
+        {
+            Screen.SetResolution(selectedRes.x, selectedRes.y, true);
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+            StartCoroutine(RefreshFullscreen());
+        }
+        else
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+
+        Debug.Log($"Changed resolution to: {selectedRes.x}x{selectedRes.y}, fullscreen mode: {Screen.fullScreenMode}");
     }
+
+    private IEnumerator RefreshFullscreen()
+    {
+        Screen.fullScreen = false;
+        yield return null; 
+        Screen.fullScreen = true;
+    }
+
+
 }
