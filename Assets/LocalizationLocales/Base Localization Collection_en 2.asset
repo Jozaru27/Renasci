@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 159184848838656
-    m_Localized: General
+    m_Localized: General Volume
     m_Metadata:
       m_Items: []
   - m_Id: 159205598060544
@@ -88,7 +88,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160241314324480
-    m_Localized: Maximum Life
+    m_Localized: Max. Life
     m_Metadata:
       m_Items: []
   - m_Id: 160258112512000
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160267834908672
-    m_Localized: Life Regeneration
+    m_Localized: Life Regen.
     m_Metadata:
       m_Items: []
   - m_Id: 160302224007168
@@ -104,15 +104,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160321719132160
-    m_Localized: Damage Multiplier
+    m_Localized: Damage Mult.
     m_Metadata:
       m_Items: []
   - m_Id: 160345182068736
-    m_Localized: Critical Strike Chance
+    m_Localized: Critical Chance
     m_Metadata:
       m_Items: []
   - m_Id: 160369446117376
-    m_Localized: Movement Speed
+    m_Localized: Mov. Speed
     m_Metadata:
       m_Items: []
   - m_Id: 160391885643776
@@ -132,53 +132,82 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160580620935168
-    m_Localized: A piece of a haunted ruby that burns with the power of destruction\nCritical
-      Damage Multiplyer +0,1
+    m_Localized: 'A piece of a haunted ruby that burns with the power of destruction
+
+
+      Critical
+      Damage Multiplyer'
     m_Metadata:
       m_Items: []
   - m_Id: 161274803412992
-    m_Localized: A necklace with the essence of an old assasin. It allows its bearer
-      to move undetected\nEvasion +2,5
+    m_Localized: 'A necklace with the essence of an old assasin. It allows its bearer
+      to move undetected
+
+
+      Evasion'
     m_Metadata:
       m_Items: []
   - m_Id: 161294948655104
-    m_Localized: A little cristal that gives the bearer sharp vision and supernatural
-      precision\nCritical Chance +1,5
+    m_Localized: 'A little cristal that gives the bearer sharp vision and supernatural
+      precision
+
+
+      Critical Chance'
     m_Metadata:
       m_Items: []
   - m_Id: 161315110674432
-    m_Localized: An enchanted trigger taken from a weapon forged by gods\nShoot Cadence
-      +0,01
+    m_Localized: 'An enchanted trigger taken from a weapon forged by gods
+
+
+      Shoot
+      Cadence'
     m_Metadata:
       m_Items: []
   - m_Id: 161332231823360
-    m_Localized: An orb with condensated energy of a raging storm\nAttack Speed +0,05\nMaximum
-      Life +1
+    m_Localized: 'An orb with condensated energy of a raging storm
+
+
+      Attack
+      Speed'
     m_Metadata:
       m_Items: []
   - m_Id: 161350191833088
-    m_Localized: A fragment of a mystic mirror that allows the user to move through
-      dimensions\nDash Cooldown -0,15
+    m_Localized: 'A fragment of a mystic mirror that allows the user to move through
+      dimensions
+
+
+      Dash Cooldown'
     m_Metadata:
       m_Items: []
   - m_Id: 161364238557184
-    m_Localized: A fragment of a sword of a legendary warrior who died in battle\nDamage
-      +1
+    m_Localized: 'A fragment of a sword of a legendary warrior who died in battle
+
+
+      Damage'
     m_Metadata:
       m_Items: []
   - m_Id: 161385549815808
-    m_Localized: An indestructible shard from an old sacred armour\nMaximum Life
-      +1
+    m_Localized: 'An indestructible shard from an old sacred armour
+
+
+      Maximum
+      Life'
     m_Metadata:
       m_Items: []
   - m_Id: 161406152237056
-    m_Localized: A little sprout from a divine tree that regenerate the wounds of
-      the used\nLife Regeneration +0,1
+    m_Localized: 'A little sprout from a divine tree that regenerate the wounds of
+      the used
+
+
+      Life Regeneration'
     m_Metadata:
       m_Items: []
   - m_Id: 161434837082112
-    m_Localized: An enchanted feather from an extremely fast celestial creature\nMovement
-      Speed +0,2
+    m_Localized: 'An enchanted feather from an extremely fast celestial creature
+
+
+      Movement
+      Speed'
     m_Metadata:
       m_Items: []
   - m_Id: 162359836303360
@@ -337,6 +366,42 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 8477917791100338178
+  - m_Id: 811853680566272
+    m_Localized: 'Max. Life:
+
+
+      Life:
+
+
+      Life Regen.:
+
+
+      Damage:
+
+
+      Damage
+      Mult.:
+
+
+      Critic. Chance:
+
+
+      Mov. Speed:
+
+
+      Attack Speed:
+
+
+      Cadence:
+
+
+      Dash
+      Cooldown:
+
+
+      Evasion:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

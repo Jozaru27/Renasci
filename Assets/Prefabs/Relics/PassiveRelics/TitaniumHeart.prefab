@@ -228,6 +228,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8216862399998152113}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 788aa5dc7cfa41e4bb32584a4cc92f0a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7258829161176837854}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 788aa5dc7cfa41e4bb32584a4cc92f0a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1186964103051744511}
   m_SourcePrefab: {fileID: 100100000, guid: 788aa5dc7cfa41e4bb32584a4cc92f0a, type: 3}
 --- !u!1 &3639905304663304210 stripped
 GameObject:
@@ -247,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8116b9598a3019e4c8c84da77f3622ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relicEffect: 
   life: 1
   lifeRegeneration: 0
   damage: 0
@@ -306,6 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9c7fe29f19d0d448a0c81c6d101745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relicName: 
+  relicDescription: 
   relicInfo: {fileID: 11400000, guid: 9c038662a38e1da45b52c2a2ab63a4f2, type: 2}
 --- !u!135 &4860785380309651385
 SphereCollider:
@@ -342,9 +353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 336571173724160
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -352,7 +363,99 @@ MonoBehaviour:
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8359492268362500160}
+        m_TargetAssemblyTypeName: AddRelicInventory, Assembly-CSharp
+        m_MethodName: ChangeName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-7258829161176837854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639905304663304210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 161385549815808
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8359492268362500160}
+        m_TargetAssemblyTypeName: AddRelicInventory, Assembly-CSharp
+        m_MethodName: ChangeDescription
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1186964103051744511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639905304663304210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 160258112512000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1295473667892513984}
+        m_TargetAssemblyTypeName: PassiveRelicsManager, Assembly-CSharp
+        m_MethodName: ChangeEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   references:
     version: 2
     RefIds: []

@@ -4975,6 +4975,8 @@ GameObject:
   - component: {fileID: 6862165705229669801}
   - component: {fileID: 2320049409545086520}
   - component: {fileID: 5804843414375370161}
+  - component: {fileID: 5129227486739572026}
+  - component: {fileID: 2849615464800863255}
   m_Layer: 8
   m_Name: RelicAltar + Ice Relic
   m_TagString: Untagged
@@ -5060,6 +5062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf406e1fd38c384bb48712f574d2fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relicName: 
+  relicDescription: 
   relicObj: {fileID: 4339746833955292750}
   relicInfo: {fileID: 11400000, guid: 0fcb9bdfa45fddb44a351f88129db1ac, type: 2}
 --- !u!65 &2320049409545086520
@@ -5095,4 +5099,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9c7fe29f19d0d448a0c81c6d101745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relicName: 
+  relicDescription: 
   relicInfo: {fileID: 11400000, guid: 0fcb9bdfa45fddb44a351f88129db1ac, type: 2}
+--- !u!114 &5129227486739572026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704495165063024501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 162627797803008
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6862165705229669801}
+        m_TargetAssemblyTypeName: Altar, Assembly-CSharp
+        m_MethodName: ChangeName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5804843414375370161}
+        m_TargetAssemblyTypeName: AddRelicInventory, Assembly-CSharp
+        m_MethodName: ChangeName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &2849615464800863255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704495165063024501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 162439741988864
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6862165705229669801}
+        m_TargetAssemblyTypeName: Altar, Assembly-CSharp
+        m_MethodName: ChangeDescription
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5804843414375370161}
+        m_TargetAssemblyTypeName: AddRelicInventory, Assembly-CSharp
+        m_MethodName: ChangeDescription
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []

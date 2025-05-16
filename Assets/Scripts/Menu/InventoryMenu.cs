@@ -36,6 +36,11 @@ public class InventoryMenu : MonoBehaviour
     [SerializeField] PlayerInput input;
     GameObject lastSelected;
 
+    List<string> passiveRelicNames = new List<string>();
+    List<string> passiveRelicDescriptions = new List<string>();
+    List<string> activeRelicNames = new List<string>();
+    List<string> activeRelicDescriptions = new List<string>();
+
     public static InventoryMenu Instance { get; private set; }
 
     private void Awake()
@@ -54,7 +59,7 @@ public class InventoryMenu : MonoBehaviour
         }
     }
 
-    public void AddToInventory(RelicsInventoryScriptableObject relicInfo)
+    public void AddToInventory(string relName, string relDescription, RelicsInventoryScriptableObject relicInfo)
     {
         int iterations = 0;
         bool relicInList = false;
@@ -74,6 +79,8 @@ public class InventoryMenu : MonoBehaviour
             if (!relicInList)
             {
                 passiveRelicsInfo.Add(relicInfo);
+                passiveRelicNames.Add(relName);
+                passiveRelicDescriptions.Add(relDescription);
 
                 if (passiveButtonsNum <= 2)
                 {
@@ -105,6 +112,9 @@ public class InventoryMenu : MonoBehaviour
             if (!relicInList)
             {
                 activeRelicsInfo.Add(relicInfo);
+                activeRelicNames.Add(relName);
+                activeRelicDescriptions.Add(relDescription);
+
                 activeRelicButtons[activeButtonsNum].GetComponent<Image>().sprite = relicInfo.image;
                 activeRelicButtons[activeButtonsNum].GetComponent<Image>().color = Color.white;
                 activeButtonsNum++;
@@ -125,8 +135,10 @@ public class InventoryMenu : MonoBehaviour
             statsSection.SetActive(false);
 
             relicImage.sprite = passiveRelicsInfo[button + relicNum].image;
-            nameText.text = passiveRelicsInfo[button + relicNum].relicName;
-            infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
+            //nameText.text = passiveRelicsInfo[button + relicNum].relicName;
+            //infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
+            nameText.text = passiveRelicNames[button + relicNum];
+            infoText.text = passiveRelicDescriptions[button + relicNum] + " <color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
         }
     }
 
@@ -138,8 +150,10 @@ public class InventoryMenu : MonoBehaviour
             statsSection.SetActive(false);
 
             relicImage.sprite = activeRelicsInfo[button].image;
-            nameText.text = activeRelicsInfo[button].relicName;
-            infoText.text = activeRelicsInfo[button].description + "\n\n <size=25>" + activeRelicsInfo[button].effect + "<color=#00ff00ff>" + activeRelicsInfo[button].value + "</color></size>";
+            //nameText.text = activeRelicsInfo[button].relicName;
+            //infoText.text = activeRelicsInfo[button].description + "\n\n <size=25>" + activeRelicsInfo[button].effect + "<color=#00ff00ff>" + activeRelicsInfo[button].value + "</color></size>";
+            nameText.text = activeRelicNames[button];
+            infoText.text = activeRelicDescriptions[button];
         }
     }
 
@@ -266,15 +280,19 @@ public class InventoryMenu : MonoBehaviour
             if (button < 3)
             {
                 relicImage.sprite = passiveRelicsInfo[button + relicNum].image;
-                nameText.text = passiveRelicsInfo[button + relicNum].relicName;
-                infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
+                //nameText.text = passiveRelicsInfo[button + relicNum].relicName;
+                //infoText.text = passiveRelicsInfo[button + relicNum].description + "\n\n <size=25>" + passiveRelicsInfo[button + relicNum].effect + "<color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
+                nameText.text = passiveRelicNames[button + relicNum];
+                infoText.text = passiveRelicDescriptions[button + relicNum] + " <color=#00ff00ff>" + passiveRelicsInfo[button + relicNum].value + passiveRelicsInfo[button + relicNum].valueQuantity + "</color><color=#ffBf58ff> (" + passiveRelicsInfo[button + relicNum].value + (passiveRelicsInfo[button + relicNum].valueQuantity * relicQuantity[button + relicNum]).ToString() + ")</color></size>";
             }
             else
             {
                 button -= 3;
                 relicImage.sprite = activeRelicsInfo[button].image;
-                nameText.text = activeRelicsInfo[button].relicName;
-                infoText.text = activeRelicsInfo[button].description + "\n\n <size=25>" + activeRelicsInfo[button].effect + "<color=#00ff00ff>" + activeRelicsInfo[button].value + "</color></size>";
+                //nameText.text = activeRelicsInfo[button].relicName;
+                //infoText.text = activeRelicsInfo[button].description + "\n\n <size=25>" + activeRelicsInfo[button].effect + "<color=#00ff00ff>" + activeRelicsInfo[button].value + "</color></size>";
+                nameText.text = activeRelicNames[button];
+                infoText.text = activeRelicDescriptions[button];
             }
         }
     }

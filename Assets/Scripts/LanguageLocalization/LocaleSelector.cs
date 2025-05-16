@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Localization.Settings;
-using static GameManager;
 
 public class LocaleSelector : MonoBehaviour
 {
@@ -31,19 +30,6 @@ public class LocaleSelector : MonoBehaviour
         active = true;
         yield return LocalizationSettings.InitializationOperation;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[_localeID];
-
-        switch (_localeID)
-        {
-            case 0:
-                GameManager.Instance.currentLanguaje = Languajes.ENGLISH;
-                break;
-            case 1:
-                GameManager.Instance.currentLanguaje = Languajes.SPANISH;
-                break;
-            case 2:
-                GameManager.Instance.currentLanguaje = Languajes.VALENCIAN;
-                break;
-        }
 
         active = false;
     }

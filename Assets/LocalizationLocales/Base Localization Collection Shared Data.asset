@@ -298,6 +298,10 @@ MonoBehaviour:
     m_Key: relic_name
     m_Metadata:
       m_Items: []
+  - m_Id: 811853680566272
+    m_Key: stats_showcase
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -138,52 +138,24 @@ public class InfoPanel : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void AddRelic(string name, string effect, RelicsInventoryScriptableObject nextRelic, float fadeTime)
+    public void AddRelic(string relName, string relDescription, RelicsInventoryScriptableObject nextRelic, float fadeTime)
     {
         takenRelics.Add(nextRelic);
         fadeTimer = fadeTime;
 
-        //Debug.Log(takenRelics.Count);
-
-        Debug.Log("ABCDEFG");
-
-        //infoText.gameObject.GetComponent<LocalizeStringEvent>().SetEntry("description", new StringVariable { Value = "Aasd"});
-
-        infoText.gameObject.GetComponent<LocalizeStringEvent>().RefreshString();
-
         if (nextRelic == takenRelics[0])
         {
             if (nextRelic.valueQuantity != 0)
-                ImageTextInfo(nextRelic.description + "\n\n" + nextRelic.effect + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
+            {
+                nameText.text = relName;
+                ImageTextInfo(relDescription + " " + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
+            } 
             else
-                ImageTextInfo(nextRelic.description + "\n\n" + nextRelic.effect, nextRelic.image, fadeTime);
+            {
+                nameText.text = relName;
+                ImageTextInfo(relDescription, nextRelic.image, fadeTime);
+            }
         }
-
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("description_en", out IVariable descriptionVarible_en))
-            ((StringVariable)descriptionVarible_en).Value = nextRelic.description;
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("description_es", out IVariable descriptionVarible_es))
-            ((StringVariable)descriptionVarible_es).Value = nextRelic.description;
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("description_vlc", out IVariable descriptionVarible_vlc))
-            ((StringVariable)descriptionVarible_vlc).Value = nextRelic.description;
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("effect_en", out IVariable effectVarible_en))
-            ((StringVariable)effectVarible_en).Value = nextRelic.effect;
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("effect_es", out IVariable effectVarible_es))
-            ((StringVariable)effectVarible_es).Value = nextRelic.effect;
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("effect_vlc", out IVariable effectVarible_vlc))
-            ((StringVariable)effectVarible_vlc).Value = nextRelic.effect;
-
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("value", out IVariable valueVariable))
-            ((StringVariable)valueVariable).Value = nextRelic.value;
-
-        if (infoText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("valueQuantity", out IVariable valueQuantityVariable))
-            ((StringVariable)valueVariable).Value = nextRelic.valueQuantity.ToString();
-
-        if (nameText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("name_en", out IVariable nameVariable_en))
-            ((StringVariable)nameVariable_en).Value = nextRelic.relicName;
-        if (nameText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("name_es", out IVariable nameVariable_es))
-            ((StringVariable)nameVariable_es).Value = nextRelic.relicName;
-        if (nameText.gameObject.GetComponent<LocalizeStringEvent>().StringReference.TryGetValue("name_vlc", out IVariable nameVariable_vlc))
-            ((StringVariable)nameVariable_vlc).Value = nextRelic.relicName;
     }
 
     public void CheckRelicsList()

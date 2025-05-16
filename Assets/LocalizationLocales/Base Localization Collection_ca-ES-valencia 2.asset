@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 159184848838656
-    m_Localized: General
+    m_Localized: Volum General
     m_Metadata:
       m_Items: []
   - m_Id: 159205598060544
@@ -88,7 +88,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160241314324480
-    m_Localized: "Vida M\xE0xima"
+    m_Localized: "Vida M\xE0x."
     m_Metadata:
       m_Items: []
   - m_Id: 160258112512000
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160267834908672
-    m_Localized: "Regeneraci\xF3 de Vida"
+    m_Localized: Regen. de Vida
     m_Metadata:
       m_Items: []
   - m_Id: 160302224007168
@@ -104,15 +104,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160321719132160
-    m_Localized: Multiplicador de Dany
+    m_Localized: Mult. de Dany
     m_Metadata:
       m_Items: []
   - m_Id: 160345182068736
-    m_Localized: "Probabilitat de Cop Cr\xEDtic"
+    m_Localized: "Prob. de Cr\xEDtic"
     m_Metadata:
       m_Items: []
   - m_Id: 160369446117376
-    m_Localized: Velocitat de Moviment
+    m_Localized: Velocitat de Mov.
     m_Metadata:
       m_Items: []
   - m_Id: 160391885643776
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 160421648424960
-    m_Localized: "Temps de Rec\xE0rrega del Dash"
+    m_Localized: "Rec\xE0rrega del Dash"
     m_Metadata:
       m_Items: []
   - m_Id: 160446004748288
@@ -133,52 +133,52 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 160580620935168
     m_Localized: "Un tros d\u2019un rub\xED encantat que crema amb el poder de la
-      destrucci\xF3\\nMultiplicador de dany cr\xEDtic +0,1"
+      destrucci\xF3\n\nMultiplicador de dany cr\xEDtic"
     m_Metadata:
       m_Items: []
   - m_Id: 161274803412992
     m_Localized: "Un collar amb l\u2019ess\xE8ncia d\u2019un antic assass\xED. Permet
-      al seu portador moure\u2019s sense ser detectat\\nEvasi\xF3 +2,5"
+      al seu portador moure\u2019s sense ser detectat\n\nEvasi\xF3"
     m_Metadata:
       m_Items: []
   - m_Id: 161294948655104
     m_Localized: "Un xicotet cristall que dona al seu portador una visi\xF3 aguda
-      i una precisi\xF3 sobrenatural\\nProbabilitat de cr\xEDtic +1,5"
+      i una precisi\xF3 sobrenatural\n\nProbabilitat de cr\xEDtic"
     m_Metadata:
       m_Items: []
   - m_Id: 161315110674432
     m_Localized: "Un gallet encantat extret d\u2019una arma forjada pels d\xE9us\r\n\nCad\xE8ncia
-      de dispar +0,01"
+      de dispar"
     m_Metadata:
       m_Items: []
   - m_Id: 161332231823360
     m_Localized: "Una esfera amb energia condensada d\u2019una tempesta furiosa\r\n\nVelocitat
-      d\u2019atac +0,05"
+      d\u2019atac"
     m_Metadata:
       m_Items: []
   - m_Id: 161350191833088
     m_Localized: "Un fragment d\u2019un espill m\xEDstic que permet al portador despla\xE7ar-se
-      entre dimensions\r\\nRec\xE0rrega del dash -0,15"
+      entre dimensions\r\n\nRec\xE0rrega del dash"
     m_Metadata:
       m_Items: []
   - m_Id: 161364238557184
     m_Localized: "Un fragment de l\u2019espasa d\u2019un guerrer llegendari que va
-      morir en combat\r\\nDany +1"
+      morir en combat\r\n\nDany"
     m_Metadata:
       m_Items: []
   - m_Id: 161385549815808
     m_Localized: "Un tros indestructible d\u2019una antiga armadura sagrada\r\n\nVida
-      m\xE0xima +1"
+      m\xE0xima"
     m_Metadata:
       m_Items: []
   - m_Id: 161406152237056
     m_Localized: "Un brot menut d\u2019un arbre div\xED que regenera les ferides
-      de qui el porta\r\\nRegeneraci\xF3 de vida +0,1"
+      de qui el porta\r\n\nRegeneraci\xF3 de vida"
     m_Metadata:
       m_Items: []
   - m_Id: 161434837082112
     m_Localized: "Una ploma encantada d\u2019una criatura celestial extremadament
-      r\xE0pida\r\n\nVelocitat de moviment +0,2"
+      r\xE0pida\r\n\nVelocitat de moviment"
     m_Metadata:
       m_Items: []
   - m_Id: 162359836303360
@@ -313,6 +313,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 8477917791100338180
+  - m_Id: 811853680566272
+    m_Localized: "Vida m\xE0x.:\n\nVida:\n\nRegen. de Vida:\n\nDany:\n\nMult. de
+      Dany:\n\nProb. Cr\xEDtic:\n\nVel. de Mov.:\n\nVel. d'Atac:\n\nCadencia:\n\nCooldown
+      Dash:\n\nEvasi\xF3:"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

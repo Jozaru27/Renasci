@@ -192,6 +192,8 @@ GameObject:
   - component: {fileID: 950020965406088702}
   - component: {fileID: 8801511006218623649}
   - component: {fileID: 4663895525922062913}
+  - component: {fileID: 7930560961761592676}
+  - component: {fileID: 5355910000705869973}
   m_Layer: 8
   m_Name: RelicAltar + Wind Relic
   m_TagString: Untagged
@@ -277,6 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf406e1fd38c384bb48712f574d2fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relicName: 
+  relicDescription: 
   relicObj: {fileID: 1646737970447082589}
   relicInfo: {fileID: 11400000, guid: 6366cbecd7f3a3845ae7c94c56bc7220, type: 2}
 --- !u!65 &8801511006218623649
@@ -312,7 +316,113 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9c7fe29f19d0d448a0c81c6d101745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relicName: 
+  relicDescription: 
   relicInfo: {fileID: 11400000, guid: 6366cbecd7f3a3845ae7c94c56bc7220, type: 2}
+--- !u!114 &7930560961761592676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5465402760982166193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 162640934363136
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 950020965406088702}
+        m_TargetAssemblyTypeName: Altar, Assembly-CSharp
+        m_MethodName: ChangeName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4663895525922062913}
+        m_TargetAssemblyTypeName: AddRelicInventory, Assembly-CSharp
+        m_MethodName: ChangeName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &5355910000705869973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5465402760982166193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 162509761699840
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 950020965406088702}
+        m_TargetAssemblyTypeName: Altar, Assembly-CSharp
+        m_MethodName: ChangeDescription
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4663895525922062913}
+        m_TargetAssemblyTypeName: AddRelicInventory, Assembly-CSharp
+        m_MethodName: ChangeDescription
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &7178153990114206474
 GameObject:
   m_ObjectHideFlags: 0
