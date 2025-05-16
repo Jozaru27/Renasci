@@ -253,10 +253,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 285560641839104
-    m_Localized: '{description}
+    m_Localized: '{name_vlc}
 
 
-      {effect}: {value} {valueQuantity}'
+      {description_vlc}
+
+
+      {effect_vlc}: {value}
+      {valueQuantity}'
     m_Metadata:
       m_Items:
       - rid: 8477917791100338180
@@ -289,21 +293,30 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 336533458542592
-    m_Localized: "F\xFAria Carmesina"
+    m_Localized: "F\xFAria Carmes\xED"
     m_Metadata:
       m_Items: []
   - m_Id: 336547920502784
-    m_Localized: Ales de Vent
+    m_Localized: Ales del Vent
     m_Metadata:
       m_Items: []
   - m_Id: 336582108274688
     m_Localized: Rugit del Tro
     m_Metadata:
       m_Items: []
+  - m_Id: 694432306413568
+    m_Localized: "Traducci\xF3n valenciana"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 715017153527808
+    m_Localized: '{name_vlc}'
+    m_Metadata:
+      m_Items:
+      - rid: 8477917791100338180
   references:
     version: 2
     RefIds:
     - rid: 8477917791100338180
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00609e44b7030100
+        m_Entries: 00609e44b703010000c071e74d8a0200

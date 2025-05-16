@@ -16,10 +16,21 @@ public class GameManager : MonoBehaviour
     public bool infoShowed;
     public GameObject[] enemies;
 
+    public enum Languajes
+    {
+        ENGLISH,
+        SPANISH,
+        VALENCIAN
+    };
+
+    public Languajes currentLanguaje;
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
+        currentLanguaje = Languajes.SPANISH;
+
         if (Instance != null && Instance != this)
             Destroy(this);
         else

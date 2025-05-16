@@ -290,6 +290,14 @@ MonoBehaviour:
     m_Key: relicname_roarofthethunder
     m_Metadata:
       m_Items: []
+  - m_Id: 694432306413568
+    m_Key: relic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 715017153527808
+    m_Key: relic_name
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

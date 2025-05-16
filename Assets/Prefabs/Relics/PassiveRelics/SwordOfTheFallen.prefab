@@ -239,6 +239,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -8481510513462114443}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 390c166e7c83e15438b0610c909a4363,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1906403990303044148}
   m_SourcePrefab: {fileID: 100100000, guid: 390c166e7c83e15438b0610c909a4363, type: 3}
 --- !u!1 &160344982437064956 stripped
 GameObject:
@@ -341,6 +345,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relicInfo: {fileID: 11400000, guid: 530d42c19c0370046885378844211c07, type: 2}
+--- !u!114 &-1906403990303044148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160344982437064956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &680738735412554310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 390c166e7c83e15438b0610c909a4363,

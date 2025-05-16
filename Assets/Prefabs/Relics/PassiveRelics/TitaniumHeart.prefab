@@ -224,6 +224,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4860785380309651385}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 788aa5dc7cfa41e4bb32584a4cc92f0a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8216862399998152113}
   m_SourcePrefab: {fileID: 100100000, guid: 788aa5dc7cfa41e4bb32584a4cc92f0a, type: 3}
 --- !u!1 &3639905304663304210 stripped
 GameObject:
@@ -324,6 +328,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.329628
   m_Center: {x: -0.006778717, y: 0.29370725, z: 0.0046871006}
+--- !u!114 &8216862399998152113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639905304663304210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &4163677062641775272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 788aa5dc7cfa41e4bb32584a4cc92f0a,

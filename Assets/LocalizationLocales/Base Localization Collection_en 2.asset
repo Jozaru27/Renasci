@@ -281,10 +281,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 285560641839104
-    m_Localized: '{description}
+    m_Localized: '{description_en}
 
 
-      {effect}: {value} {valueQuantity}'
+      {effect_en}: {value} {valueQuantity}'
     m_Metadata:
       m_Items:
       - rid: 8477917791100338178
@@ -328,10 +328,19 @@ MonoBehaviour:
     m_Localized: Roar Of The Thunder
     m_Metadata:
       m_Items: []
+  - m_Id: 694432306413568
+    m_Localized: English translation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 715017153527808
+    m_Localized: '{name_en}'
+    m_Metadata:
+      m_Items:
+      - rid: 8477917791100338178
   references:
     version: 2
     RefIds:
     - rid: 8477917791100338178
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00609e44b7030100
+        m_Entries: 00609e44b703010000c071e74d8a0200

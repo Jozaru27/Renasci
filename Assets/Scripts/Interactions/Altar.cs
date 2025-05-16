@@ -52,7 +52,7 @@ public class Altar : MonoBehaviour, IInteractable
             UIManager.Instance.UpdateRelicRotation(currentSlot);
 
             GetComponent<AddRelicInventory>().PassInfoToInventory();
-            InfoPanel.Instance.AddRelic(relicInfo, 1f);
+            //InfoPanel.Instance.AddRelic(relicInfo, 1f);
             Destroy(relicObj);
             firstTime = true;
         }
