@@ -9,6 +9,7 @@ public class Dash : MonoBehaviour
     [SerializeField] float dashForce;
     [SerializeField] float dashTime;
     [SerializeField] float maxDashSpeed;
+    [SerializeField] GameObject dashDust;
 
     bool canDash = true;
     Rigidbody rb;
@@ -45,6 +46,7 @@ public class Dash : MonoBehaviour
     IEnumerator Dashing()
     {
         GetComponent<PlayerAnimation>().Dash();
+        dashDust.GetComponent<ParticleSystem>().Play();
         dashing = true;
 
         yield return new WaitForSeconds(dashTime);
