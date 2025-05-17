@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 61565984768
-    m_Localized: c7258903801afd54e876e0786eb04f67
+    m_Localized: 2b318c6ca98c6194a9a09f544350d5a3
     m_Metadata:
       m_Items: []
   - m_Id: 18328133197824
-    m_Localized: c7258903801afd54e876e0786eb04f67[PacoFlag]
+    m_Localized: 2b318c6ca98c6194a9a09f544350d5a3[SpainFlag]
     m_Metadata:
       m_Items: []
   references:

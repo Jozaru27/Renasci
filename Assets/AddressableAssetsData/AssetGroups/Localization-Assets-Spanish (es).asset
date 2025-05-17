@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 5372fd68ce94fb84d9cad7c29b7278b3
   m_SerializeEntries:
-  - m_GUID: c7258903801afd54e876e0786eb04f67
-    m_Address: PacoFlag
+  - m_GUID: 2b318c6ca98c6194a9a09f544350d5a3
+    m_Address: SpainFlag
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es
