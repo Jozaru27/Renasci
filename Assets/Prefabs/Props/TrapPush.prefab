@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8033824724231356992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6544152638175798879}
+  m_Layer: 0
+  m_Name: PushPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6544152638175798879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8033824724231356992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8883170502920774280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8239325110266128469
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,17 +95,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: af265a3ef10f7624097f769646428f09,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7499275
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af265a3ef10f7624097f769646428f09,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4552765
+      value: -2.47
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af265a3ef10f7624097f769646428f09,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.405005
+      value: -8.72
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af265a3ef10f7624097f769646428f09,
         type: 3}
@@ -123,6 +154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6244585564672905371, guid: af265a3ef10f7624097f769646428f09,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000004768372
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244585564672905371, guid: af265a3ef10f7624097f769646428f09,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
@@ -133,6 +169,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6041319740094137105}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: af265a3ef10f7624097f769646428f09,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6544152638175798879}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: af265a3ef10f7624097f769646428f09,
         type: 3}
@@ -207,8 +247,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 4, z: 0.27126312}
-  m_Center: {x: -1, y: 2, z: -0.10778269}
+  m_Size: {x: 2, y: 4, z: 0.9640945}
+  m_Center: {x: -0.99999994, y: 2, z: -0.45419842}
 --- !u!1 &8073982358939924530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: af265a3ef10f7624097f769646428f09,
@@ -275,9 +315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfab0c9ce78ada4c8b0892e18263841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 0}
-  pushZone: {fileID: 0}
-  pushForce: 10
+  trigger: {fileID: 6337555834283643679}
+  pushPosition: {fileID: 6544152638175798879}
+  pushZone: {fileID: 4557424868949837743}
+  pushForce: 20
   delayBeforePush: 0.5
   zoneActiveTime: 0.2
 --- !u!4 &8883170502920774280 stripped

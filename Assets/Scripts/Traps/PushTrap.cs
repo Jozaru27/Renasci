@@ -7,6 +7,7 @@ public class PushTrap : MonoBehaviour
     GameObject playerObj;
 
     [SerializeField] Collider trigger;
+    [SerializeField] Transform pushPosition;
 
     public GameObject pushZone;
     public float pushForce = 25f;
@@ -29,7 +30,7 @@ public class PushTrap : MonoBehaviour
             isPushing = true;
             playerInside = true;
             GameManager.Instance.playerCannotMove = true;
-            animator.Play("IdlePush");
+            animator.Play("Push_PushTrap");
         }
 
         //Debug.Log("Player collided with DetectionZone");
@@ -48,7 +49,7 @@ public class PushTrap : MonoBehaviour
     {
         if (playerInside)
         {
-            Vector3 modifiedPosition = new Vector3(transform.position.x, playerObj.transform.position.y, transform.position.z);
+            Vector3 modifiedPosition = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y, pushPosition.position.z);
             Vector3 dir = (playerObj.transform.position - modifiedPosition).normalized;
             playerObj.gameObject.GetComponent<Rigidbody>().AddForce(dir * pushForce, ForceMode.Impulse);
 
@@ -58,9 +59,8 @@ public class PushTrap : MonoBehaviour
 
     public void PushingFalse()
     {
-        Debug.Log("B");
         isPushing = false;
-        animator.Play("PushTrackAttack");
+        animator.Play("Idle_Push");
         StartCoroutine(ResetTrigger());
     }
 
