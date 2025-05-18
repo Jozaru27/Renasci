@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text bulletCountText;
     [SerializeField] TMP_Text relicText;
+    [SerializeField] GameObject shootCooldown;
+    [SerializeField] GameObject relicCooldown;
+    [SerializeField] GameObject confussionIcon;
 
     [Header("UI Player Info Healthbar")]
     public Slider healthBarSlider; 
@@ -438,5 +441,39 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         GamepadMenuSupport.Instance.inMenu = false;
         inventoryMenu.SetActive(false);
+    }
+
+    public void ActiveShootCooldown(float time)
+    {
+        StartCoroutine(SetCooldown(time, shootCooldown));
+    }
+
+    public void ActiveRelicCooldown(float time)
+    {
+        StartCoroutine(SetCooldown(time, relicCooldown));
+    }
+
+    public void ActiveConfussionCooldown(float time)
+    {
+        StartCoroutine(SetCooldown(time, confussionIcon));
+    }
+
+    IEnumerator SetCooldown(float timer, GameObject cooldownIcon)
+    {
+        cooldownIcon.SetActive(true);
+        cooldownIcon.GetComponent<Image>().fillAmount = 1f;
+
+        float timeElapsed = 0f;
+
+        while (timeElapsed < timer)
+        {
+            timeElapsed += Time.deltaTime;
+
+            cooldownIcon.GetComponent<Image>().fillAmount = 1f - (timeElapsed / timer);
+            yield return null;
+        }
+
+        cooldownIcon.GetComponent<Image>().fillAmount = 0f;
+        cooldownIcon.SetActive(false);
     }
 }

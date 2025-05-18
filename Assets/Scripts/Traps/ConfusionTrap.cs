@@ -5,7 +5,6 @@ using UnityEngine;
 public class ConfusionTrap : MonoBehaviour
 {
     [SerializeField] float trapCooldown;
-    [SerializeField] GameObject confussionDebuffIcon;
     [SerializeField] GameObject confussionRay;
     [SerializeField] LineRenderer rayRend;
     
@@ -16,18 +15,16 @@ public class ConfusionTrap : MonoBehaviour
     private void Start()
     {
         playerObj = GameObject.Find("Player");
-        confussionDebuffIcon.SetActive(false);
     }
 
     private void Update()
     {
-        if (Vector3.Distance(playerObj.transform.position, transform.position) < 3.5f && activeTrap)
+        if (Vector3.Distance(playerObj.transform.position, transform.position) < 3.5f && activeTrap && playerObj.GetComponent<PlayerMovement>().inputFactor == 1)
         {
             StopAllCoroutines();
             StartCoroutine(TrapCooldown());
             StartCoroutine(GenerateRay());
         }   
-
         if (usingRay)
         {
             float rayLenght = Vector3.Distance(playerObj.transform.position, transform.position);
@@ -42,13 +39,12 @@ public class ConfusionTrap : MonoBehaviour
     IEnumerator TrapCooldown()
     {
         playerObj.GetComponent<PlayerMovement>().inputFactor = -1;
-        confussionDebuffIcon.SetActive(true);
+        UIManager.Instance.ActiveConfussionCooldown(trapCooldown);
         activeTrap = false;
 
         yield return new WaitForSeconds(trapCooldown);
 
         playerObj.GetComponent<PlayerMovement>().inputFactor = 1;
-        confussionDebuffIcon.SetActive(false);
         activeTrap = true;
     }
 

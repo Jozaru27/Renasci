@@ -415,7 +415,10 @@ public class Attack : MonoBehaviour
     IEnumerator ShootCooldown()
     {
         if (shots < 6)
-            yield return new WaitForSeconds(1 / StatsManager.Instance.shootCadence);
+        {
+            UIManager.Instance.ActiveShootCooldown(1f / StatsManager.Instance.shootCadence);
+            yield return new WaitForSeconds(1f / StatsManager.Instance.shootCadence);
+        }
         if (shots >= 6)
         {
             yield return new WaitForSeconds(rechargeTime);
@@ -428,6 +431,7 @@ public class Attack : MonoBehaviour
 
     IEnumerator RelicCoolDown()
     {
+        UIManager.Instance.ActiveRelicCooldown(5f);
         yield return new WaitForSeconds(5f);
 
         relicUsable = true;
