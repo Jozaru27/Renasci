@@ -79,14 +79,6 @@ MonoBehaviour:
     m_Key: Cadence
     m_Metadata:
       m_Items: []
-  - m_Id: 161934588403712
-    m_Key: COMPROBAR PASSIVE RELIC STATS ACTUALES
-    m_Metadata:
-      m_Items: []
-  - m_Id: 161970701361152
-    m_Key: COMPROBAR PASSIVE RELIC TEXT AL ABRIR COFRE
-    m_Metadata:
-      m_Items: []
   - m_Id: 160345182068736
     m_Key: Critical Strike Chance
     m_Metadata:
@@ -104,8 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 162359836303360
-    m_Key: "Envelops the user's surroundings in fire. It generates damage to enemies\n\n
-      <size=25><color=#00ff00ff></color></size>"
+    m_Key: Fatous Fire Desc
     m_Metadata:
       m_Items: []
   - m_Id: 160446004748288
@@ -181,8 +172,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 162509761699840
-    m_Key: "Releases a strong current that pushes the enemies in front of the player\n\n
-      <size=25><color=#00ff00ff></color></size>"
+    m_Key: Wind Desc
     m_Metadata:
       m_Items: []
   - m_Id: 162558105247744
@@ -210,8 +200,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 162439741988864
-    m_Key: "The user throw an ice icicle to where the player is aiming. It can freeze
-      the enemies\n\n <size=25><color=#00ff00ff></color></size>"
+    m_Key: Ice Desc
     m_Metadata:
       m_Items: []
   - m_Id: 158788315144192
