@@ -176,6 +176,7 @@ public class InventoryMenu : MonoBehaviour
                 passiveRelicButtons[i].GetComponent<Image>().sprite = passiveRelicsInfo[i + relicNum].image;
                 relicTexts[i].text = $"x{relicQuantity[i + relicNum]}";
             }
+            UpdateArrowInteractivity();
     }
 
 
@@ -193,6 +194,7 @@ public class InventoryMenu : MonoBehaviour
                 passiveRelicButtons[i].GetComponent<Image>().sprite = passiveRelicsInfo[i + relicNum].image;
                 relicTexts[i].text = $"x{relicQuantity[i + relicNum]}";
             }
+            UpdateArrowInteractivity();
     }
 
 
@@ -296,4 +298,33 @@ public class InventoryMenu : MonoBehaviour
             }
         }
     }
+
+    private void ForceExitHover(GameObject target)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
+        {
+            pointerEnter = null
+        };
+
+        ExecuteEvents.Execute(target, pointerEventData, ExecuteEvents.pointerExitHandler);
+    }
+
+
+        private void UpdateArrowInteractivity()
+    {
+        bool canGoLeft = CanGoLeft();
+        bool canGoRight = CanGoRight();
+
+        arrowButtonLeft.interactable = canGoLeft;
+        arrowButtonRight.interactable = canGoRight;
+
+        SetButtonOpacity(arrowButtonLeft.gameObject, canGoLeft ? 1f : 0.3f);
+        SetButtonOpacity(arrowButtonRight.gameObject, canGoRight ? 1f : 0.3f);
+
+        if (!canGoLeft)
+            ForceExitHover(arrowButtonLeft.gameObject);
+        if (!canGoRight)
+            ForceExitHover(arrowButtonRight.gameObject);
+    }
+
 }

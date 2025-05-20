@@ -86,7 +86,6 @@ public class HoverEffect : MonoBehaviour
         if (btn != null && !btn.interactable)
             return;
 
-        // Restauramos el color original siempre
         if (originalColors.ContainsKey(uiElement))
         {
             Image panelImage = uiElement.GetComponentInChildren<Image>();
@@ -96,7 +95,6 @@ public class HoverEffect : MonoBehaviour
             }
         }
 
-        // Restaurar el cursor si es necesario
         if (currentUIElement == uiElement)
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -115,7 +113,6 @@ public class HoverEffect : MonoBehaviour
         if (uiElement.name.Contains("ArrowButton_01") && !inventoryMenu.CanGoLeft()) return;
         if (uiElement.name.Contains("ArrowButton_02") && !inventoryMenu.CanGoRight()) return;
 
-        // 🔁 Restablece el color
         OnPointerExit(uiElement);
 
         StartCoroutine(RestoreHoverNextFrame(uiElement));
@@ -124,6 +121,7 @@ public class HoverEffect : MonoBehaviour
     private IEnumerator RestoreHoverNextFrame(GameObject uiElement)
     {
         yield return null;
+        
         if (IsPointerOver(uiElement))
         {
             OnPointerEnter(uiElement);
