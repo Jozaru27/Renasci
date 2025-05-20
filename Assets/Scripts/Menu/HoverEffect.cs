@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+
 
 public class HoverEffect : MonoBehaviour
 {
@@ -103,15 +105,8 @@ public class HoverEffect : MonoBehaviour
     }
 
 
-public void OnPointerClick(GameObject uiElement)
+    public void OnPointerClick(GameObject uiElement)
     {
-        //OnPointerExit(uiElement); 
-
-        //if (!ignorePointerClickReset.Contains(uiElement))
-        //{
-        //    OnPointerExit(uiElement);
-        //}
-
         Button btn = uiElement.GetComponent<Button>();
         if (btn != null && !btn.interactable)
             return;
@@ -120,8 +115,42 @@ public void OnPointerClick(GameObject uiElement)
         if (uiElement.name.Contains("ArrowButton_01") && !inventoryMenu.CanGoLeft()) return;
         if (uiElement.name.Contains("ArrowButton_02") && !inventoryMenu.CanGoRight()) return;
 
+        // 🔁 Restablece el color
         OnPointerExit(uiElement);
+
+        StartCoroutine(RestoreHoverNextFrame(uiElement));
     }
+
+    private IEnumerator RestoreHoverNextFrame(GameObject uiElement)
+    {
+        yield return null;
+        if (IsPointerOver(uiElement))
+        {
+            OnPointerEnter(uiElement);
+        }
+    }
+
+    private bool IsPointerOver(GameObject obj)
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject == obj || result.gameObject.transform.IsChildOf(obj.transform))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public void ResetAllHoverEffects()
     {
