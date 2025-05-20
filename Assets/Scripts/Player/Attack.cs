@@ -435,6 +435,5 @@ public class Attack : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         relicUsable = true;
-        Debug.Log("Relic Usable");
     }
 }

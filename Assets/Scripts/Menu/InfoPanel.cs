@@ -167,7 +167,5 @@ public class InfoPanel : MonoBehaviour
             StartCoroutine(DespawnInfo(0.75f));
         else
             ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, 0);
-
-        Debug.Log(fadeTimer);
     }
 }

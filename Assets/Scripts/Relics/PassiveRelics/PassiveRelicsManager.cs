@@ -24,15 +24,13 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
     void Awake()
     {
         stats = FindObjectOfType<StatsManager>();
+        playerObj = GameObject.Find("Player");
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            playerObj = other.gameObject;
             OnPlayerTake();
-        }
     }
 
     public void OnPlayerTake()

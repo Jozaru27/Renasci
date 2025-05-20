@@ -5,8 +5,14 @@ using UnityEngine;
 public class ManageIce : MonoBehaviour
 {
     [SerializeField] GameObject[] iceBlocks;
+    Collider collision;
 
     bool frozen;
+
+    private void Start()
+    {
+        collision = GetComponent<Collider>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,7 +20,7 @@ public class ManageIce : MonoBehaviour
         {
             foreach (GameObject ice in iceBlocks)
             {
-                ice.GetComponent<FreezableObjectScript>().Freeze(this.gameObject);
+                ice.GetComponent<FreezableObjectScript>().Freeze(collision);
             }
 
             frozen = true;
