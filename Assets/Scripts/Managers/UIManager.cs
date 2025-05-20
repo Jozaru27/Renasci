@@ -263,8 +263,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateRelicIcons(int relicCount)
     {
-        Debug.Log($"[UI] Actualizando iconos. Reliquias recogidas: {relicCount}");
-
         fireRelicSprite.SetActive(false);
         iceRelicSprite.SetActive(false);
         windRelicSprite.SetActive(false);
@@ -279,17 +277,14 @@ public class UIManager : MonoBehaviour
 
         if (relicCount >= 0)
         {
-            Debug.Log("Activando: Fire");
             fireRelicSprite.SetActive(true);
         }
         if (relicCount >= 1)
         {
-            Debug.Log("Activando: Ice");
             iceRelicSprite.SetActive(true);
         }
         if (relicCount >= 2)
         {
-            Debug.Log("Activando: Wind");
             windRelicSprite.SetActive(true);
         }
     }

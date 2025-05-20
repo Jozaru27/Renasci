@@ -142,10 +142,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4327154153586031924, guid: af265a3ef10f7624097f769646428f09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1435391860911016284, guid: af265a3ef10f7624097f769646428f09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: af265a3ef10f7624097f769646428f09,
         type: 3}
       propertyPath: m_Name
       value: TrapPush
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: af265a3ef10f7624097f769646428f09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6244585564672905371, guid: af265a3ef10f7624097f769646428f09,
         type: 3}

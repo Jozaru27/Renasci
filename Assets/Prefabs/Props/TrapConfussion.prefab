@@ -5151,10 +5151,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.000002109937
       objectReference: {fileID: 0}
+    - target: {fileID: -2623085562771288092, guid: c2626b8f29581c543b7a299e0696d96f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2626b8f29581c543b7a299e0696d96f,
         type: 3}
       propertyPath: m_Name
       value: TrapConfussion
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2626b8f29581c543b7a299e0696d96f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175879208977087358, guid: c2626b8f29581c543b7a299e0696d96f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5227,7 +5242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapCooldown: 5
-  confussionDebuffIcon: {fileID: 0}
   confussionRay: {fileID: 5561677998151808430}
   rayRend: {fileID: 7298688313978448177}
 --- !u!65 &8883361162288999790

@@ -22,12 +22,10 @@ public class ChestSound : MonoBehaviour
 
         if (chance <= 0.99f)
         {
-            Debug.Log("Playing normal chest sound.");
             audioSource.PlayOneShot(Chest, 2f);
         }
         else
         {
-            Debug.Log("🎉 Lucky! Playing special chest sound!");
             audioSource.PlayOneShot(ChestSpecial, 2f);
         }
     }
