@@ -73,7 +73,7 @@ public class RoomCamera : MonoBehaviour
 
     public void EnableCombatMode()
     {
-        if (enemies.Count > 0)
+        if (enemies.Count > 0 && doors.Length > 0)
         {
             foreach (GameObject door in doors)
             {
@@ -89,14 +89,17 @@ public class RoomCamera : MonoBehaviour
 
     public void DisableCombatMode()
     {
-        foreach(GameObject door in doors)
+        if (doors.Length > 0)
         {
-            door.GetComponent<Animator>().speed = 1;
+            foreach (GameObject door in doors)
+            {
+                door.GetComponent<Animator>().speed = 1;
 
-            if (!door.GetComponent<Door>().isBig)
-                door.GetComponent<Animator>().Play("Door_Open");
-            else
-                door.GetComponent<Animator>().Play("Door_Open_Big");
+                if (!door.GetComponent<Door>().isBig)
+                    door.GetComponent<Animator>().Play("Door_Open");
+                else
+                    door.GetComponent<Animator>().Play("Door_Open_Big");
+            }
         }
     }
 
