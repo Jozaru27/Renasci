@@ -17,11 +17,13 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] Image backgroundImage;
     [SerializeField] TMP_Text infoText;
     [SerializeField] TMP_Text nameText;
+    [SerializeField] TMP_Text decorationLine;
+
 
     float fadeTimer;
 
     Color generalColor = Color.white;
-    Color textColor = Color.black;
+    Color textColor = Color.white;
     Color bgColor = Color.black;
 
     List <RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
@@ -43,6 +45,7 @@ public class InfoPanel : MonoBehaviour
         backgroundImage.color = bgColor;
         infoText.color = textColor;
         nameText.color = textColor;
+        decorationLine.color = textColor;
     }
 
     public void TextInfo(string text, float fadeDuration)
@@ -78,26 +81,28 @@ public class InfoPanel : MonoBehaviour
 
             generalColor.a = Mathf.Lerp(0, 1, (timeElapsed / fadeDuration));
             textColor.a = Mathf.Lerp(0, 1, (timeElapsed / fadeDuration));
-            bgColor.a = Mathf.Lerp(0, 0.8f, (timeElapsed / fadeDuration));
+            bgColor.a = Mathf.Lerp(0, 0.9f, (timeElapsed / fadeDuration));
 
             infoPanel.GetComponent<Image>().color = generalColor;
             infoImage.GetComponent<Image>().color = generalColor;
             backgroundImage.color = bgColor;
             infoText.color = textColor;
             nameText.color = textColor;
+            decorationLine.color = textColor;
 
             yield return null;
         }
 
         generalColor.a = 1;
         textColor.a = 1;
-        bgColor.a = 0.8f;
+        bgColor.a = 0.9f;
 
         infoPanel.GetComponent<Image>().color = generalColor;
         infoImage.GetComponent<Image>().color = generalColor;
         backgroundImage.color = bgColor;
         infoText.color = textColor;
         nameText.color = textColor;
+        decorationLine.color = textColor;
         GameManager.Instance.infoShowed = true;
         takenRelics.RemoveAt(0);
     }
@@ -112,13 +117,14 @@ public class InfoPanel : MonoBehaviour
 
             generalColor.a = Mathf.Lerp(1, 0, (timeElapsed / fadeDuration));
             textColor.a = Mathf.Lerp(1, 0, (timeElapsed / fadeDuration));
-            bgColor.a = Mathf.Lerp(0.8f, 0, (timeElapsed / fadeDuration));
+            bgColor.a = Mathf.Lerp(0.9f, 0, (timeElapsed / fadeDuration));
 
             infoPanel.GetComponent<Image>().color = generalColor;
             infoImage.GetComponent<Image>().color = generalColor;
             backgroundImage.color = bgColor;
             infoText.color = textColor;
             nameText.color = textColor;
+            decorationLine.color = textColor;
 
             yield return null;
         }
@@ -132,6 +138,7 @@ public class InfoPanel : MonoBehaviour
         backgroundImage.color = bgColor;
         infoText.color = textColor;
         nameText.color = textColor;
+        decorationLine.color = textColor;
 
         infoCanvas.SetActive(false);
         GameManager.Instance.inInfo = false;
