@@ -149,6 +149,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         Rigidbody ArrowRb = arrow.GetComponent<Rigidbody>();
         arrow.GetComponent<Arrow>().damage = stats.mainDamage;
         arrow.GetComponent<Arrow>().pushForce = stats.pushForce;
+        arrow.GetComponent<Arrow>().SetShooter(this.gameObject);
 
         if (ArrowRb != null)
         {
@@ -164,9 +165,66 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     }
 
     // Hace que el arquero se reposicione cuando el jugador se acerca demasiado. Busca un camino válido, si lo encuentra huye, si no, ataca. Si se reposiciona, valora la distancia para decidir su próximo estado.
+    
+    // public IEnumerator WaitAndReposition()
+    // {
+    //     yield return new WaitForSeconds(0.5f);
+
+    //     if (dead)
+    //     {
+    //         isRepositioning = false;
+    //         yield break;
+    //     }
+
+    //     Vector3 dirToPlayer = (skeletonArcherObject.transform.position - playerObject.transform.position).normalized;
+    //     Vector3 targetPosition = playerObject.transform.position + dirToPlayer * 6f;
+
+    //     NavMeshPath path = new NavMeshPath();
+
+    //     if (!(skeletonArcherAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
+    //     {
+    //         FSM = new SkeletonArcherAttack(this);
+    //         isRepositioning = false;
+    //         yield break; 
+    //     }
+
+    //     skeletonArcherAgent.isStopped = false;
+    //     skeletonArcherAgent.SetDestination(targetPosition);
+    //     skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
+
+    //     while (skeletonArcherAgent.pathPending || skeletonArcherAgent.remainingDistance > 0.5f)
+    //     {
+    //         yield return null;
+    //         skeletonArcherAgent.ResetPath();
+    //         skeletonArcherAgent.isStopped = true;
+    //     }
+
+    //     float distanceToPlayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
+    //     if (distanceToPlayer >= 5f && distanceToPlayer <= 7f)
+    //     {
+    //         FSM = new SkeletonArcherAttack(this);
+    //     }
+    //     else if (distanceToPlayer > 7f)
+    //     {
+    //         FSM = new SkeletonArcherFollow(this);
+    //     }
+    //     else
+    //     {
+    //         yield return new WaitForSeconds(2f);
+    //     }
+
+    //     isRepositioning = false; 
+    // }
+
     public IEnumerator WaitAndReposition()
     {
         yield return new WaitForSeconds(0.5f);
+
+        if (dead)
+        {
+            isRepositioning = false;
+            yield break;
+        }
 
         Vector3 dirToPlayer = (skeletonArcherObject.transform.position - playerObject.transform.position).normalized;
         Vector3 targetPosition = playerObject.transform.position + dirToPlayer * 6f;
@@ -177,17 +235,31 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         {
             FSM = new SkeletonArcherAttack(this);
             isRepositioning = false;
-            yield break; 
+            yield break;
         }
 
         skeletonArcherAgent.isStopped = false;
         skeletonArcherAgent.SetDestination(targetPosition);
         skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Run();
 
-        while (skeletonArcherAgent.pathPending || skeletonArcherAgent.remainingDistance > 0.5f)
+        float timeout = 3.5f;
+        float elapsed = 0f;
+
+        while ((skeletonArcherAgent.pathPending || skeletonArcherAgent.remainingDistance > 0.5f) && elapsed < timeout)
         {
+            if (skeletonArcherAgent.velocity.sqrMagnitude < 0.01f && !skeletonArcherAgent.pathPending)
+            {
+                Debug.LogWarning("Archer atascado durante reposicionamiento.");
+                break;
+            }
+
+            elapsed += Time.deltaTime;
             yield return null;
         }
+
+        skeletonArcherAgent.ResetPath();
+        skeletonArcherAgent.isStopped = true;
+        skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
 
         float distanceToPlayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
         if (distanceToPlayer >= 5f && distanceToPlayer <= 7f)
@@ -201,9 +273,9 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         else
         {
             yield return new WaitForSeconds(2f);
+            FSM = new SkeletonArcherAttack(this);
         }
 
-        isRepositioning = false; 
+        isRepositioning = false;
     }
-
 }

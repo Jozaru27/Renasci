@@ -19,7 +19,6 @@ public class Arrow : MonoBehaviour
         arrowCollider = GetComponent<Collider>();
         arrowRb = GetComponent<Rigidbody>();
 
-        skeletonArcher = GameObject.Find("SkeletonArcher"); 
         StartCoroutine(DisableCollisionTemporarily(0.5f));
     }
 
@@ -67,5 +66,10 @@ public class Arrow : MonoBehaviour
             Collider skeletonCollider = skeletonArcher.GetComponent<Collider>();
             Physics.IgnoreCollision(arrowCollider, skeletonCollider, false);
         }
+    }
+
+    public void SetShooter(GameObject shooter)
+    {
+        skeletonArcher = shooter;
     }
 }

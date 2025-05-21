@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2b81b3ddda36b9b4b8c7d8c9cc6ab509,
         type: 3}
       propertyPath: m_Name
-      value: Arrow-Fix-Final
+      value: WeaponArrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -133,9 +133,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.04162245
-  m_Height: 1.3679024
+  m_Height: 0.6558019
   m_Direction: 1
-  m_Center: {x: -0.00024747849, y: -0.0027818677, z: 0.006463181}
+  m_Center: {x: -0.00024747849, y: 0.2450969, z: 0.006463181}
 --- !u!114 &7347611980235888211
 MonoBehaviour:
   m_ObjectHideFlags: 0
