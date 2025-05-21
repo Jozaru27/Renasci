@@ -255,7 +255,7 @@ public class Attack : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.75f);
 
         GameObject bullet = Instantiate(bulletPref, shotPoint.position, targetRotation);
 
