@@ -82,9 +82,9 @@ public class HoverEffect : MonoBehaviour
 
     public void OnPointerExit(GameObject uiElement)
     {
-        Button btn = uiElement.GetComponent<Button>();
-        if (btn != null && !btn.interactable)
-            return;
+        // Button btn = uiElement.GetComponent<Button>();
+        // if (btn != null && !btn.interactable)
+        //     return;
 
         if (originalColors.ContainsKey(uiElement))
         {
