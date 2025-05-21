@@ -31,30 +31,30 @@ public class SkeletonArcherPatrol : SkeletonArcherStates
     {
         float distanceToPlayer = Vector3.Distance(skeletonArcher.skeletonArcherObject.transform.position, skeletonArcher.playerObject.transform.position);
 
-        //if (distanceToPlayer <= skeletonArcher.stats.detectionDistance)
-        //{
-        //    NavMeshPath path = new NavMeshPath();
-        //    if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&
-        //        path.status == NavMeshPathStatus.PathComplete)
-        //    {
-        //        playerNearEnemy = true;
-        //    }
-        //    else
-        //    {
-        //        playerNearEnemy = false;
-        //    }
-        //}
-        //else
-        //{
-        //    playerNearEnemy = false;
-        //}
+        if (distanceToPlayer <= skeletonArcher.stats.detectionDistance)
+        {
+           NavMeshPath path = new NavMeshPath();
+           if (skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, path) &&
+               path.status == NavMeshPathStatus.PathComplete)
+           {
+               playerNearEnemy = true;
+           }
+           else
+           {
+               playerNearEnemy = false;
+           }
+        }
+        else
+        {
+           playerNearEnemy = false;
+        }
 
-        //if (playerNearEnemy) 
-        //{
-        //    nextState = new SkeletonArcherFollow(skeletonArcher);
-        //    actualPhase = EVENTS.EXIT;
-        //    return;
-        //}
+        if (playerNearEnemy) 
+        {
+           nextState = new SkeletonArcherFollow(skeletonArcher);
+           actualPhase = EVENTS.EXIT;
+           return;
+        }
 
         playerNearEnemy = distanceToPlayer <= skeletonArcher.stats.detectionDistance && skeletonArcher.skeletonArcherAgent.CalculatePath(skeletonArcher.playerObject.transform.position, new NavMeshPath());
 
