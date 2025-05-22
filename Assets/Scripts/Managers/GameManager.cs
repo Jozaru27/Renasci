@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool onInventory;
     public bool inInfo;
     public bool infoShowed;
+    public bool inMenu;
     public GameObject[] enemies;
 
     public enum Languajes
@@ -57,5 +58,6 @@ public class GameManager : MonoBehaviour
         onInventory = false;
         inInfo = false;
         infoShowed = false;
+        inMenu = false;
     }
 }

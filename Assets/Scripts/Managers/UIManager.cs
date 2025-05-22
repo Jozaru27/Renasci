@@ -345,6 +345,7 @@ public class UIManager : MonoBehaviour
         {
             pauseMenu.SetActive(true);
             GameManager.Instance.gamePaused = true;
+            GameManager.Instance.inMenu = true;
             Time.timeScale = 0f;
         }
 
@@ -358,6 +359,7 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         GameManager.Instance.gamePaused = false;
+        GameManager.Instance.inMenu = false;
         Time.timeScale = 1f;
 
         if (GameManager.Instance.onInventory)
@@ -367,6 +369,7 @@ public class UIManager : MonoBehaviour
     public void EnableGameOverMenu()
     {
         GamepadMenuSupport.Instance.inMenu = true;
+        GameManager.Instance.inMenu = true;
         EventSystem.current.SetSelectedGameObject(retryButtonLose.gameObject);
         GamepadMenuSupport.Instance.lastSelectedObject = retryButtonLose.gameObject;
         gameOverMenu.SetActive(true);
@@ -375,6 +378,7 @@ public class UIManager : MonoBehaviour
     public void EnableVictoryMenu()
     {
         GamepadMenuSupport.Instance.inMenu = true;
+        GameManager.Instance.inMenu = true;
         EventSystem.current.SetSelectedGameObject(retryButtonWin.gameObject);
         GamepadMenuSupport.Instance.lastSelectedObject = retryButtonWin.gameObject;
         victoryMenu.SetActive(true);
@@ -426,6 +430,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         GamepadMenuSupport.Instance.inMenu = true;
+        GameManager.Instance.inMenu = true;
         EventSystem.current.SetSelectedGameObject(firstRelic.gameObject);
         GamepadMenuSupport.Instance.lastSelectedObject = firstRelic.gameObject;
         inventoryMenu.SetActive(true);
@@ -435,6 +440,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         GamepadMenuSupport.Instance.inMenu = false;
+        GameManager.Instance.inMenu = false;
         inventoryMenu.SetActive(false);
     }
 

@@ -76,7 +76,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("RelicAttack", false);
         playerAnim.SetBool("Shoot", false);
         swordParticles.SetActive(false);
-        sword.SetActive(true);
+        sword.SetActive(false);
         revolver.SetActive(false);
     }
 

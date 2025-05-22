@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
                     else
                     {
                         GetComponent<PlayerAnimation>().Hit();
-                        StopAllCoroutines();
+                        StopAllCoroutines(); //PROBLEMA DE REGENERACIÓN DE LA VIDA
                         StartCoroutine(MakePlayerVencible(invencibleTime));
                     }
 

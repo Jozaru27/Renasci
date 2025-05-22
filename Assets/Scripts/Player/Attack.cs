@@ -74,7 +74,7 @@ public class Attack : MonoBehaviour
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !GameManager.Instance.gamePaused && !shoting && !attacking)
+        if (context.started && !GameManager.Instance.gamePaused && !shoting && !attacking && !GameManager.Instance.inMenu)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
@@ -92,13 +92,13 @@ public class Attack : MonoBehaviour
 
     public void DistanceAttack(InputAction.CallbackContext context)
     {
-        if (context.started && shotable && !GameManager.Instance.gamePaused)
+        if (context.started && shotable && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu)
             StartCoroutine(Shooting());
     }
 
     public void RelicAttack(InputAction.CallbackContext context)
     {
-        if (context.started && relicUsable && GameManager.Instance.currentRelicSlots > -1)
+        if (context.started && relicUsable && GameManager.Instance.currentRelicSlots > -1 && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().RelicAttack();

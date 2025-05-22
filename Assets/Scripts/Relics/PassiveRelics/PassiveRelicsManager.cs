@@ -56,16 +56,16 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
 
         FloatingTextManager floatingTextManager = relicCanvas.transform.GetChild(0).GetComponent<FloatingTextManager>();
 
-        if (life != 0) floatingTextManager.ShowFloatingText(relicEffect + life, transform.position, relicCanvas);
-        if (lifeRegeneration != 0) floatingTextManager.ShowFloatingText(relicEffect + lifeRegeneration, transform.position, relicCanvas);
-        if (damage != 0) floatingTextManager.ShowFloatingText(relicEffect + damage, transform.position, relicCanvas);
-        if (damageMultiplyer != 0) floatingTextManager.ShowFloatingText(relicEffect + damageMultiplyer, transform.position, relicCanvas);
-        if (criticalChance != 0) floatingTextManager.ShowFloatingText(relicEffect + criticalChance, transform.position, relicCanvas);
-        if (movementSpeed != 0) floatingTextManager.ShowFloatingText(relicEffect + movementSpeed, transform.position, relicCanvas);
-        if (attackSpeed != 0) floatingTextManager.ShowFloatingText(relicEffect + attackSpeed, transform.position, relicCanvas);
-        if (shootCadence != 0) floatingTextManager.ShowFloatingText(relicEffect + shootCadence, transform.position, relicCanvas);
+        if (life != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + life, transform.position, relicCanvas);
+        if (lifeRegeneration != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + lifeRegeneration, transform.position, relicCanvas);
+        if (damage != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + damage, transform.position, relicCanvas);
+        if (damageMultiplyer != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + damageMultiplyer, transform.position, relicCanvas);
+        if (criticalChance != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + criticalChance, transform.position, relicCanvas);
+        if (movementSpeed != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + movementSpeed, transform.position, relicCanvas);
+        if (attackSpeed != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + attackSpeed, transform.position, relicCanvas);
+        if (shootCadence != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + shootCadence, transform.position, relicCanvas);
         if (dashCooldown != 0) floatingTextManager.ShowFloatingText(relicEffect + dashCooldown, transform.position, relicCanvas);
-        if (evasion != 0) floatingTextManager.ShowFloatingText(relicEffect + evasion, transform.position, relicCanvas);
+        if (evasion != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + evasion, transform.position, relicCanvas);
 
         GetComponent<AddRelicInventory>().PassInfoToInventory();
 
