@@ -10,6 +10,6 @@ public class FirstInfo : MonoBehaviour
 
     private void Start()
     {
-        InfoPanel.Instance.ImageTextInfo(info[0], infoImages[0], 0.125f);
+        InfoPanel.Instance.AddText(info[0], 0.125f);
     }
 }

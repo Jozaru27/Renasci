@@ -14,14 +14,13 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text decorationLine;
 
-
-    float fadeTimer;
-
     Color generalColor = Color.white;
     Color textColor = Color.white;
     Color bgColor = Color.black;
 
-    List <RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
+    List<RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
+    List<string> infoTexts = new List<string>();
+    List<Sprite> infoImages = new List<Sprite>();
 
     public static InfoPanel Instance { get; private set; }
 
@@ -99,7 +98,9 @@ public class InfoPanel : MonoBehaviour
         nameText.color = textColor;
         decorationLine.color = textColor;
         GameManager.Instance.infoShowed = true;
-        takenRelics.RemoveAt(0);
+
+        if (takenRelics.Count > 0)
+            takenRelics.RemoveAt(0);
     }
 
     public IEnumerator DespawnInfo(float fadeDuration)
@@ -143,7 +144,6 @@ public class InfoPanel : MonoBehaviour
     public void AddRelic(string relName, string relDescription, RelicsInventoryScriptableObject nextRelic, float fadeTime)
     {
         takenRelics.Add(nextRelic);
-        fadeTimer = fadeTime;
 
         if (nextRelic == takenRelics[0])
         {
@@ -158,6 +158,17 @@ public class InfoPanel : MonoBehaviour
                 ImageTextInfo(relDescription, nextRelic.image, fadeTime);
             }
         }
+    }
+
+    public void AddText(string infoText, float fadeTime)
+    {
+        infoTexts.Add(infoText);
+    }
+
+    public void AddTextWithImage(string infoText, Sprite infoImage, float fadeTime)
+    {
+        infoTexts.Add(infoText);
+        infoImages.Add(infoImage);
     }
 
     public void CheckRelicsList()
