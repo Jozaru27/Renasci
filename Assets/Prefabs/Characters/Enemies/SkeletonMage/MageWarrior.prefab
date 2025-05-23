@@ -16146,7 +16146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonMageAnim: {fileID: 0}
-  book: {fileID: 0}
+  book: {fileID: 4855926793278199590}
 --- !u!114 &661978768747932557
 MonoBehaviour:
   m_ObjectHideFlags: 0
