@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public bool inInfo;
     public bool infoShowed;
     public bool inMenu;
+    public bool alreadyStarted;
     public GameObject[] enemies;
 
     public enum Languajes
@@ -59,5 +60,6 @@ public class GameManager : MonoBehaviour
         inInfo = false;
         infoShowed = false;
         inMenu = false;
+        alreadyStarted = false;
     }
 }

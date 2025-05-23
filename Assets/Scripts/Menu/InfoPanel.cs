@@ -21,6 +21,7 @@ public class InfoPanel : MonoBehaviour
     List<RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
     List<string> infoTexts = new List<string>();
     List<Sprite> infoImages = new List<Sprite>();
+    List<bool> infoWithImage = new List<bool>();
 
     public static InfoPanel Instance { get; private set; }
 
@@ -69,6 +70,17 @@ public class InfoPanel : MonoBehaviour
         GameManager.Instance.inInfo = true;
         float timeElapsed = 0f;
 
+        generalColor.a = 0;
+        textColor.a = 0;
+        bgColor.a = 0;
+
+        infoPanel.GetComponent<Image>().color = generalColor;
+        infoImage.GetComponent<Image>().color = generalColor;
+        backgroundImage.color = bgColor;
+        infoText.color = textColor;
+        nameText.color = textColor;
+        decorationLine.color = textColor;
+
         while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
             timeElapsed += Time.unscaledDeltaTime;
@@ -101,11 +113,28 @@ public class InfoPanel : MonoBehaviour
 
         if (takenRelics.Count > 0)
             takenRelics.RemoveAt(0);
+
+        if (infoTexts.Count > 0)
+        {
+            infoTexts.RemoveAt(0);
+            infoWithImage.RemoveAt(0);
+        }
     }
 
     public IEnumerator DespawnInfo(float fadeDuration)
     {
         float timeElapsed = 0f;
+
+        generalColor.a = 1;
+        textColor.a = 1;
+        bgColor.a = 0.9f;
+
+        infoPanel.GetComponent<Image>().color = generalColor;
+        infoImage.GetComponent<Image>().color = generalColor;
+        backgroundImage.color = bgColor;
+        infoText.color = textColor;
+        nameText.color = textColor;
+        decorationLine.color = textColor;
 
         while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
@@ -139,6 +168,9 @@ public class InfoPanel : MonoBehaviour
         infoCanvas.SetActive(false);
         GameManager.Instance.inInfo = false;
         Time.timeScale = 1;
+
+        if (!GameManager.Instance.alreadyStarted)
+            GameManager.Instance.alreadyStarted = true;
     }
 
     public void AddRelic(string relName, string relDescription, RelicsInventoryScriptableObject nextRelic, float fadeTime)
@@ -163,22 +195,44 @@ public class InfoPanel : MonoBehaviour
     public void AddText(string infoText, float fadeTime)
     {
         infoTexts.Add(infoText);
+        infoWithImage.Add(false);
+
+        if (infoText == infoTexts[0])
+            TextInfo(infoText, fadeTime);
     }
 
     public void AddTextWithImage(string infoText, Sprite infoImage, float fadeTime)
     {
         infoTexts.Add(infoText);
         infoImages.Add(infoImage);
+        infoWithImage.Add(true);
+
+        if (infoText == infoTexts[0])
+            ImageTextInfo(infoText, infoImage, fadeTime);
     }
 
     public void CheckRelicsList()
     {
         GameManager.Instance.infoShowed = false;
-        //Debug.Log(takenRelics.Count);
 
-        if (takenRelics.Count == 0)
-            StartCoroutine(DespawnInfo(0.75f));
+        if (GameManager.Instance.alreadyStarted)
+        {
+            if (takenRelics.Count == 0)
+                StartCoroutine(DespawnInfo(0.75f));
+            else
+                ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, 0.125f);
+        }
         else
-            ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, 0);
+        {
+            if (infoTexts.Count == 0)
+                StartCoroutine(DespawnInfo(0.75f));
+            else
+            {
+                if (infoWithImage[0])
+                    ImageTextInfo(infoTexts[0], infoImages[0], 0.125f);
+                else
+                    TextInfo(infoTexts[0], 0.125f);
+            }
+        }
     }
 }

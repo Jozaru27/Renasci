@@ -10,6 +10,9 @@ public class FirstInfo : MonoBehaviour
 
     private void Start()
     {
-        InfoPanel.Instance.AddText(info[0], 0.125f);
+        foreach (string currentInfo in info)
+        {
+            InfoPanel.Instance.AddText(currentInfo, 0.125f);
+        }
     }
 }
