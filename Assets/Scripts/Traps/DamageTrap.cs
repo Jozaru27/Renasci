@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class DamageTrap : MonoBehaviour
 {
+    AudioSource audioSource;
+    public AudioClip SpikeAttack;
+    // public AudioClip SpikeHide;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlaySpikeSound()
+    {
+        audioSource.PlayOneShot(SpikeAttack, 5f);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

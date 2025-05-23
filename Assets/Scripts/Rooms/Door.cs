@@ -8,11 +8,17 @@ public class Door : MonoBehaviour
     [SerializeField] GameObject[] colliders;
     [SerializeField] GameObject dustParticle;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip sonidoAbrir;
+    [SerializeField] private AudioClip sonidoCerrar;
+    private AudioSource audioSource;
+
     Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PauseAnimator()
@@ -40,5 +46,33 @@ public class Door : MonoBehaviour
     {
         dustParticle.SetActive(true);
         dustParticle.GetComponent<ParticleSystem>().Play();
+    }
+
+        public void AbrirPuerta()
+    {
+        if (isBig)
+        {
+            anim.SetTrigger("Door_Open_Big");
+        }
+        else
+        {
+            anim.SetTrigger("Door_Open");
+        }
+
+        audioSource.PlayOneShot(sonidoAbrir);
+    }
+
+    public void CerrarPuerta()
+    {
+        if (isBig)
+        {
+            anim.SetTrigger("Door_Close_Big");
+        }
+        else
+        {
+            anim.SetTrigger("Door_Close");
+        }
+
+        audioSource.PlayOneShot(sonidoCerrar);
     }
 }
