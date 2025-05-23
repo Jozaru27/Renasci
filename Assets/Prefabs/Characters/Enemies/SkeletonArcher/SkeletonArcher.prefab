@@ -10831,8 +10831,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonArcherAgent: {fileID: 0}
-  rend1: {fileID: 3854751228401737675}
-  rend2: {fileID: 6167192452241872695}
+  rends:
+  - {fileID: 6167192452241872695}
+  - {fileID: 3854751228401737675}
+  - {fileID: 7436447470883249521}
+  - {fileID: 6967961645389630874}
+  - {fileID: 4636516752993718572}
+  - {fileID: 4088531161676146951}
+  - {fileID: 2448791779168719732}
+  - {fileID: 4647712683257490747}
+  - {fileID: 1588225406354038489}
+  - {fileID: 8318828687867694261}
+  - {fileID: 5393742770369380797}
+  - {fileID: 2440032884919259947}
+  - {fileID: 2731805666682552589}
+  - {fileID: 5493324422338674755}
+  - {fileID: 1632504685044171357}
   stats: {fileID: 0}
   playerObject: {fileID: 0}
   skeletonArcherObject: {fileID: 0}

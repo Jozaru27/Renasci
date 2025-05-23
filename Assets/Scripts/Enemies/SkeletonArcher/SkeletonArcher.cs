@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class SkeletonArcher : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonArcherAgent;
-    public Renderer rend1, rend2;
+    public Renderer[] rends;
     SkeletonArcherStates FSM;
     Rigidbody rb;
 
@@ -120,13 +120,17 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
 
     IEnumerator ChangingColor()
     {
-        rend1.material.color = Color.red;
-        rend2.material.color = Color.red;
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.red;
+        }
 
         yield return new WaitForSeconds(0.125f);
 
-        rend1.material.color = Color.white;
-        rend2.material.color = Color.white;
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.white;
+        }
     }
 
     public void DestroyThisObject()

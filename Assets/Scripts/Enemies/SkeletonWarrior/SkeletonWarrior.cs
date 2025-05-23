@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class SkeletonWarrior : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonWarriorAgent;
-    public Renderer rend1, rend2, rend3;
+    public Renderer[] rends;
     public Collider attackTrigger;
     SkeletonWarriorStates FSM;
     Rigidbody rb;
@@ -134,16 +134,17 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
     IEnumerator ChangingColor()
     {
-        //Placeholder
-        rend1.material.color = Color.red;
-        rend2.material.color = Color.red;
-        rend3.material.color = Color.red;
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.red;
+        }
 
         yield return new WaitForSeconds(0.125f);
 
-        rend1.material.color = Color.white;
-        rend2.material.color = Color.white;
-        rend3.material.color = Color.white;
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.white;
+        }
     }
 
     public void DestroyThisObject()

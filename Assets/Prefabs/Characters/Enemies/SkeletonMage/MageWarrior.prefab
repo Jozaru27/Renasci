@@ -16100,8 +16100,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonMageAgent: {fileID: 0}
-  rend1: {fileID: 9077631611970391456}
-  rend2: {fileID: 9132481962754501352}
+  rends:
+  - {fileID: 8236980057587935899}
+  - {fileID: 6517613540360286628}
+  - {fileID: 4478245726746817749}
+  - {fileID: 9085732744915057241}
+  - {fileID: 3574745580338233064}
+  - {fileID: 265668539043505434}
+  - {fileID: 1126053555503459929}
+  - {fileID: 2560896862954647529}
+  - {fileID: 1827808873834186508}
+  - {fileID: 2054411512184317037}
+  - {fileID: 9090180161241752442}
+  - {fileID: 6367782860624863178}
+  - {fileID: 9077631611970391456}
+  - {fileID: 9132481962754501352}
   stats: {fileID: 0}
   playerObject: {fileID: 0}
   skeletonMageObject: {fileID: 0}
