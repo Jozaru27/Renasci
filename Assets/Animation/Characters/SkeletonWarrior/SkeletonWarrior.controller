@@ -36,7 +36,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack
-  m_Speed: 0.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6037fc4b1fbcbb645acb80f52026de62, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8a0b870ff387a7d4aaecea66416e117b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -3391,6 +3391,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 90235419}
+  doors: []
+  enemies: []
 --- !u!65 &90235419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9664,6 +9666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f51e0bb958dacb4bb524f3d8548558c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dissolveMaterial: {fileID: 0}
+  particles: {fileID: 0}
 --- !u!65 &249717452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12011,6 +12015,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 302624289}
+  doors: []
+  enemies: []
 --- !u!65 &302624289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20185,6 +20191,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 478076337}
+  doors: []
+  enemies: []
 --- !u!65 &478076337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24317,7 +24325,11 @@ MonoBehaviour:
   dashing: 0
   playerCannotMove: 0
   onInventory: 0
+  inInfo: 0
+  infoShowed: 0
+  inMenu: 0
   enemies: []
+  currentLanguaje: 0
 --- !u!4 &546743516
 Transform:
   m_ObjectHideFlags: 0
@@ -29774,6 +29786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 0}
+  pushPosition: {fileID: 0}
   pushZone: {fileID: 0}
   pushForce: 10
   delayBeforePush: 0.5
@@ -40908,6 +40921,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 897604398}
+  doors: []
+  enemies: []
 --- !u!65 &897604398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50850,6 +50865,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 1121935529}
+  doors: []
+  enemies: []
 --- !u!65 &1121935529
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52568,6 +52585,7 @@ MonoBehaviour:
   bulletPref: {fileID: 2667837620566746448, guid: e8a3a5b294a53c74ba8103d5dab21a8d,
     type: 3}
   shotPoint: {fileID: 1357824972}
+  indicatorObj: {fileID: 0}
   rayMask:
     serializedVersion: 2
     m_Bits: 16384
@@ -52575,6 +52593,15 @@ MonoBehaviour:
   burnableMask:
     serializedVersion: 2
     m_Bits: 4608
+  iceObj: {fileID: 0}
+  windObj: {fileID: 0}
+  fireWispPrefab: {fileID: 0}
+  totalWisps: 4
+  spiralDuration: 2
+  spiralOutwardDistance: 3
+  spiralRotations: 2
+  relicSlot: 0
+  attacking: 0
   currentRelic: 3
 --- !u!114 &1148507162
 MonoBehaviour:
@@ -52604,6 +52631,7 @@ MonoBehaviour:
   invencibleTime: 1.5
   material1: {fileID: 2100000, guid: 63e8c3d8ce75eae4ebaa4935bd776825, type: 2}
   material2: {fileID: 2100000, guid: ea453f0e3ea4e0c4aa9db8399444b5b6, type: 2}
+  rend: []
 --- !u!114 &1148507164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52636,6 +52664,7 @@ MonoBehaviour:
   dashForce: 30
   dashTime: 0.125
   maxDashSpeed: 5
+  dashDust: {fileID: 0}
 --- !u!114 &1148507166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52914,6 +52943,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c0b7d1cd74ca9419a0c0c959323ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 0}
+  revolver: {fileID: 0}
+  swordParticles: {fileID: 0}
+  dustWalk: {fileID: 0}
+  dustPositions: []
 --- !u!1 &1149152672
 GameObject:
   m_ObjectHideFlags: 0
@@ -53436,6 +53470,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 1156839380}
+  doors: []
+  enemies: []
 --- !u!65 &1156839380
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63393,6 +63429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapCooldown: 5
+  confussionRay: {fileID: 0}
+  rayRend: {fileID: 0}
 --- !u!23 &1387470748
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63615,6 +63653,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 328496862}
   trigger: {fileID: 1389297047}
+  doors: []
+  enemies: []
 --- !u!65 &1389297047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70475,6 +70515,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 1522982398}
+  doors: []
+  enemies: []
 --- !u!65 &1522982398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78349,6 +78391,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 1948150461}
   trigger: {fileID: 1683745766}
+  doors: []
+  enemies: []
 --- !u!65 &1683745766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88367,6 +88411,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 1893369766}
+  doors: []
+  enemies: []
 --- !u!65 &1893369766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94820,6 +94866,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c58c5139545cb6419ac0113d63945ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statsText: {fileID: 0}
+  infoSection: {fileID: 0}
+  statsSection: {fileID: 0}
+  relicImage: {fileID: 0}
+  nameText: {fileID: 0}
+  infoText: {fileID: 0}
+  passiveRelicButtons: []
+  activeRelicButtons: []
+  relicTexts: []
+  arrowButtonLeft: {fileID: 0}
+  arrowButtonRight: {fileID: 0}
+  input: {fileID: 0}
 --- !u!1 &2003986530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 75245a85bcbcf66469e8db96a2a9d34f,
@@ -94881,6 +94939,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 2007312712}
+  doors: []
+  enemies: []
 --- !u!65 &2007312712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95131,6 +95191,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 63866358}
   trigger: {fileID: 2011793832}
+  doors: []
+  enemies: []
 --- !u!65 &2011793832
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -101778,6 +101840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1430745030}
+  pushPosition: {fileID: 0}
   pushZone: {fileID: 0}
   pushForce: 10
   delayBeforePush: 0.5
@@ -111106,6 +111169,56 @@ MonoBehaviour:
   enemyCountText: {fileID: 300027647}
   bulletCountText: {fileID: 2091067650}
   relicText: {fileID: 1392212197}
+  shootCooldown: {fileID: 0}
+  relicCooldown: {fileID: 0}
+  confussionIcon: {fileID: 0}
+  healthBarSlider: {fileID: 0}
+  maxHealth: 0
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  staminaBarSlider: {fileID: 0}
+  maxStamina: 0
+  staminaColor: {r: 0, g: 0.992, b: 1, a: 1}
+  bulletIcons: []
+  bulletFullColor: {r: 1, g: 1, b: 1, a: 1}
+  bulletEmptyColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  relicCircleParent: {fileID: 0}
+  currentRelicIndex: 0
+  relicIcons: []
+  availableRelicCount: 0
+  fireRelicSprite: {fileID: 0}
+  iceRelicSprite: {fileID: 0}
+  windRelicSprite: {fileID: 0}
+  defaultScales: []
+  isRotating: 0
   pauseMenu: {fileID: 3692907359727535496}
   settingsMenu: {fileID: 4356141856975174286}
   gameOverMenu: {fileID: 5074644561915989058}
@@ -111113,6 +111226,13 @@ MonoBehaviour:
   inventoryMenu: {fileID: 2003851064}
   audioArea: {fileID: 8158783961360669623}
   videoArea: {fileID: 6647949062215269259}
+  resumeButton: {fileID: 0}
+  settingsButton: {fileID: 0}
+  videoButton: {fileID: 0}
+  retryButtonWin: {fileID: 0}
+  retryButtonLose: {fileID: 0}
+  firstRelic: {fileID: 0}
+  attackScript: {fileID: 0}
 --- !u!114 &6777159134684170768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111145,6 +111265,7 @@ MonoBehaviour:
   - {fileID: 2717763270016965559}
   - {fileID: 7070323445205734070}
   - {fileID: 5415890083840315182}
+  ignorePointerClickReset: []
   glowColor: {r: 1, g: 1, b: 0.5, a: 1}
 --- !u!114 &6777159134684170769
 MonoBehaviour:
@@ -112551,6 +112672,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 1948150461}
   trigger: {fileID: 7466817278562490414}
+  doors: []
+  enemies: []
 --- !u!65 &7466817278562490414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112782,6 +112905,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 7572384171758097196}
+  doors: []
+  enemies: []
 --- !u!65 &7572384171758097196
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113117,6 +113242,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 7769027834571062991}
+  doors: []
+  enemies: []
 --- !u!65 &7769027834571062991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113653,6 +113780,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 8001206567278626748}
+  doors: []
+  enemies: []
 --- !u!65 &8001206567278626748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113987,6 +114116,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 328496862}
   trigger: {fileID: 8466729664181243911}
+  doors: []
+  enemies: []
 --- !u!65 &8466729664181243911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114757,6 +114888,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 9012595330363116879}
+  doors: []
+  enemies: []
 --- !u!65 &9012595330363116879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115005,6 +115138,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 0}
   trigger: {fileID: 9196450109050407793}
+  doors: []
+  enemies: []
 --- !u!65 &9196450109050407793
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115120,6 +115255,8 @@ MonoBehaviour:
   comeOut: 0
   roomCamera: {fileID: 63866358}
   trigger: {fileID: 9204370674050084914}
+  doors: []
+  enemies: []
 --- !u!65 &9204370674050084914
 BoxCollider:
   m_ObjectHideFlags: 0

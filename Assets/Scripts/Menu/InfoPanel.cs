@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Components;
-using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class InfoPanel : MonoBehaviour
 {

@@ -49,8 +49,11 @@ public class PushTrap : MonoBehaviour
     {
         if (playerInside)
         {
-            Vector3 modifiedPosition = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y, pushPosition.position.z);
-            Vector3 dir = (playerObj.transform.position - modifiedPosition).normalized;
+            Vector3 frontDirection = transform.forward;
+            //Vector3 modifiedPosition = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y, pushPosition.position.z);
+            Vector3 modifiedPosition = new Vector3(frontDirection.x, playerObj.transform.position.y, frontDirection.z);
+            //Vector3 dir = (playerObj.transform.position - modifiedPosition).normalized;
+            Vector3 dir = modifiedPosition.normalized;
             playerObj.gameObject.GetComponent<Rigidbody>().AddForce(dir * pushForce, ForceMode.Impulse);
 
             StartCoroutine(MakePlayerMove());
