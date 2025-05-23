@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 1365261098788154907}
   - component: {fileID: 5725415256815445956}
   - component: {fileID: 8027758952043012731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorBig_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15464,7 +15464,7 @@ GameObject:
   - component: {fileID: 381123541161315925}
   - component: {fileID: 5870335176609627063}
   - component: {fileID: 8609253647990589704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorBig_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,10 +8,12 @@ public class PlayerHealth : MonoBehaviour
     
     [SerializeField] float invencibleTime;
     [SerializeField] Material material1, material2;
+    [SerializeField] Renderer[] rend;
 
     bool invencible;
     bool gotDamage;
     bool dashed;
+    bool lifeRegen;
 
     public void ChangeHealthAmount(float amount, Vector3 enemyPosition, float pushForce)
     {
@@ -33,7 +35,11 @@ public class PlayerHealth : MonoBehaviour
                     else
                     {
                         GetComponent<PlayerAnimation>().Hit();
-                        StopAllCoroutines(); //PROBLEMA DE REGENERACIÓN DE LA VIDA
+                        StopAllCoroutines();
+
+                        if (lifeRegen)
+                            StartCoroutine(LifeRegeneration());
+
                         StartCoroutine(MakePlayerVencible(invencibleTime));
                     }
 
@@ -75,10 +81,20 @@ public class PlayerHealth : MonoBehaviour
         //GetComponent<Renderer>().material.color = Color.blue;
         //GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material2;////
 
+        foreach(Renderer thisRend in rend)
+        {
+            thisRend.material.color = Color.red;
+        }
+
         yield return new WaitForSeconds(0.125f);
 
 ;       //GetComponent<Renderer>().material.color = Color.white;
         //GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material1;////
+
+        foreach (Renderer thisRend in rend)
+        {
+            thisRend.material.color = Color.white;
+        }
 
         ChangeVencibleColor();
     }
@@ -92,10 +108,21 @@ public class PlayerHealth : MonoBehaviour
 
         //GetComponent<Renderer>().material.color = Color.white;
 
+        foreach (Renderer thisRend in rend)
+        {
+            thisRend.material.color = Color.white;
+        }
+
         if (!dashed)
         {
             //GameObject.Find("PlayerCh").GetComponent<Renderer>().material.color = Color.white;////
             //GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material1;////
+
+            foreach (Renderer thisRend in rend)
+            {
+                thisRend.material.color = Color.blue;
+            }
+
             invencible = false;
         }
         
@@ -116,6 +143,12 @@ public class PlayerHealth : MonoBehaviour
         {
             //GameObject.Find("PlayerCh").GetComponent<Renderer>().material.color = Color.white;////
             //GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material1;////
+
+            foreach (Renderer thisRend in rend)
+            {
+                thisRend.material.color = Color.white;
+            }
+
             invencible = false;
         }
 
@@ -124,6 +157,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeVencibleColor()
     {
+        foreach (Renderer thisRend in rend)
+        {
+            thisRend.material.color = Color.blue;
+        }
         //GetComponent<Renderer>().material.color = Color.blue;
         //GameObject.Find("PlayerCh").GetComponent<Renderer>().material = material2;////
         //GameObject.Find("PlayerCh").GetComponent<Renderer>().material.color = Color.blue;////
@@ -131,6 +168,8 @@ public class PlayerHealth : MonoBehaviour
 
     public IEnumerator LifeRegeneration()
     {
+        lifeRegen = true;
+
         while (StatsManager.Instance.life < StatsManager.Instance.maxLife)
         {
             yield return new WaitForSeconds(1f);
