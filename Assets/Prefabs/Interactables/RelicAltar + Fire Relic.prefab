@@ -177,6 +177,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5602986509249303488}
     m_Modifications:
+    - target: {fileID: 1585975644672144609, guid: 414b605d828ddfc4bb6797e7bb7681f9,
+        type: 3}
+      propertyPath: relicPickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 30344b7b80cf25b448d5f7c936d4cf94, type: 3}
     - target: {fileID: 7250027856041250630, guid: 414b605d828ddfc4bb6797e7bb7681f9,
         type: 3}
       propertyPath: m_Name

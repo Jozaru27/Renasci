@@ -17,10 +17,14 @@ public class PushTrap : MonoBehaviour
     private bool isPushing = false;
     bool playerInside;
 
+    AudioSource audioSource;
+    public AudioClip pushSound;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         playerObj = GameObject.Find("Player");
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +35,7 @@ public class PushTrap : MonoBehaviour
             playerInside = true;
             GameManager.Instance.playerCannotMove = true;
             animator.Play("Push_PushTrap");
+            audioSource.PlayOneShot(pushSound, 5f);
         }
 
         //Debug.Log("Player collided with DetectionZone");

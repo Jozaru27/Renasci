@@ -12,9 +12,13 @@ public class ConfusionTrap : MonoBehaviour
     bool usingRay;
     GameObject playerObj;
 
+    AudioSource audioSource;
+    public AudioClip confusionSound;
+
     private void Start()
     {
         playerObj = GameObject.Find("Player");
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -24,6 +28,8 @@ public class ConfusionTrap : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(TrapCooldown());
             StartCoroutine(GenerateRay());
+
+            audioSource.PlayOneShot(confusionSound, 5f);
         }   
         if (usingRay)
         {

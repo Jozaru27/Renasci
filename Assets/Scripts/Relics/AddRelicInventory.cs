@@ -10,9 +10,23 @@ public class AddRelicInventory : MonoBehaviour
 
     [SerializeField] RelicsInventoryScriptableObject relicInfo;
 
+    public AudioClip relicPickupSound;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void PassInfoToInventory()
     {
         InventoryMenu.Instance.AddToInventory(relicName, relicDescription, relicInfo);
+
+        if (relicPickupSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(relicPickupSound, 5f);
+        }
+
 
         if (relicInfo.relicType.ToString() == "Passive")
         {

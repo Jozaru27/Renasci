@@ -15,7 +15,7 @@ public class DamageTrap : MonoBehaviour
 
     public void PlaySpikeSound()
     {
-        audioSource.PlayOneShot(SpikeAttack, 5f);
+        audioSource.PlayOneShot(SpikeAttack);
     }
 
     private void OnTriggerEnter(Collider other)
