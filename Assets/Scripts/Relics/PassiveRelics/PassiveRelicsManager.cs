@@ -64,7 +64,7 @@ public class PassiveRelicsManager : MonoBehaviour, ITakeable
         if (movementSpeed != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + movementSpeed, transform.position, relicCanvas);
         if (attackSpeed != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + attackSpeed, transform.position, relicCanvas);
         if (shootCadence != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + shootCadence, transform.position, relicCanvas);
-        if (dashCooldown != 0) floatingTextManager.ShowFloatingText(relicEffect + dashCooldown, transform.position, relicCanvas);
+        if (dashCooldown != 0) floatingTextManager.ShowFloatingText(relicEffect + " " + dashCooldown, transform.position, relicCanvas);
         if (evasion != 0) floatingTextManager.ShowFloatingText(relicEffect + " +" + evasion, transform.position, relicCanvas);
 
         GetComponent<AddRelicInventory>().PassInfoToInventory();

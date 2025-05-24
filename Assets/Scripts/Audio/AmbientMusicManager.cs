@@ -59,7 +59,6 @@ public class AmbientMusicManager : MonoBehaviour
 
     IEnumerator FadeUp()
     {
-        Debug.Log("C");
         while(audioSource[1].volume < 1)
         {
             audioSource[0].volume -= (0.25f * Time.deltaTime);

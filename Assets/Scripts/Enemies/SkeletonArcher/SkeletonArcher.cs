@@ -71,13 +71,11 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
 
         if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
         {
-            Debug.Log("SI");
             AmbientMusicManager.Instance.EnterCombatMode();
             inCombat = true;
         }
         if ((distanceToPlayer > stats.detectionDistance || (!skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
         {
-            Debug.Log("NO");
             AmbientMusicManager.Instance.ExitCombatMode();
             inCombat = false;
         }

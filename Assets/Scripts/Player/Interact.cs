@@ -10,7 +10,7 @@ public class Interact : MonoBehaviour
     {
         if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
         {
-            if (GameManager.Instance.inInfo || !GameManager.Instance.alreadyStarted)
+            if (GameManager.Instance.inInfo)
             {
                 if (GameManager.Instance.infoShowed)
                     InfoPanel.Instance.CheckTextsList();

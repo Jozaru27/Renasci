@@ -10,9 +10,16 @@ public class FirstInfo : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(InitiatingTexts());
+    }
+
+    IEnumerator InitiatingTexts()
+    {
+        yield return null;
+
         foreach (string currentInfo in info)
         {
-            InfoPanel.Instance.AddText(string.Empty,currentInfo, 0.125f);
+            InfoPanel.Instance.AddText(string.Empty, currentInfo, 1f);
         }
     }
 }

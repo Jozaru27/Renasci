@@ -58,7 +58,6 @@ public class SkeletonMageFollow : SkeletonMageStates
             }
             else if (distanceToPlayer >= 5f && !skeletonMage.teleporting)
             {
-                Debug.Log("A");
                 nextState = new SkeletonMageAttack(skeletonMage);
                 actualPhase = EVENTS.EXIT;
             }
