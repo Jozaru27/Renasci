@@ -108,11 +108,6 @@ public class PlayerHealth : MonoBehaviour
 
         //GetComponent<Renderer>().material.color = Color.white;
 
-        foreach (Renderer thisRend in rend)
-        {
-            thisRend.material.color = Color.white;
-        }
-
         if (!dashed)
         {
             //GameObject.Find("PlayerCh").GetComponent<Renderer>().material.color = Color.white;////
@@ -120,7 +115,7 @@ public class PlayerHealth : MonoBehaviour
 
             foreach (Renderer thisRend in rend)
             {
-                thisRend.material.color = Color.blue;
+                thisRend.material.color = Color.white;
             }
 
             invencible = false;

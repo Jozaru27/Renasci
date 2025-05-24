@@ -18,10 +18,12 @@ public class InfoPanel : MonoBehaviour
     Color textColor = Color.white;
     Color bgColor = Color.black;
 
-    List<RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
+    //List<RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
     List<string> infoTexts = new List<string>();
     List<Sprite> infoImages = new List<Sprite>();
     List<bool> infoWithImage = new List<bool>();
+    List<string> infoNames = new List<string>();
+    List<bool> haveName = new List<bool>();
 
     public static InfoPanel Instance { get; private set; }
 
@@ -66,6 +68,11 @@ public class InfoPanel : MonoBehaviour
 
     IEnumerator SpawnInfo(float fadeDuration)
     {
+        if (haveName[0])
+            decorationLine.gameObject.SetActive(true);
+        else
+            decorationLine.gameObject.SetActive(false);
+
         Time.timeScale = 0;
         GameManager.Instance.inInfo = true;
         float timeElapsed = 0f;
@@ -111,13 +118,19 @@ public class InfoPanel : MonoBehaviour
         decorationLine.color = textColor;
         GameManager.Instance.infoShowed = true;
 
-        if (takenRelics.Count > 0)
-            takenRelics.RemoveAt(0);
+        //if (takenRelics.Count > 0)
+        //    takenRelics.RemoveAt(0);
 
         if (infoTexts.Count > 0)
         {
             infoTexts.RemoveAt(0);
+
+            if (infoWithImage[0])
+                infoImages.RemoveAt(0);
+
             infoWithImage.RemoveAt(0);
+            infoNames.RemoveAt(0);
+            haveName.RemoveAt(0);
         }
     }
 
@@ -169,70 +182,100 @@ public class InfoPanel : MonoBehaviour
         GameManager.Instance.inInfo = false;
         Time.timeScale = 1;
 
-        if (!GameManager.Instance.alreadyStarted)
-            GameManager.Instance.alreadyStarted = true;
+        //if (!GameManager.Instance.alreadyStarted)
+        //    GameManager.Instance.alreadyStarted = true;
     }
 
-    public void AddRelic(string relName, string relDescription, RelicsInventoryScriptableObject nextRelic, float fadeTime)
-    {
-        takenRelics.Add(nextRelic);
+    //public void AddRelic(string relName, string relDescription, RelicsInventoryScriptableObject nextRelic, float fadeTime)
+    //{
+    //    takenRelics.Add(nextRelic);
 
-        if (nextRelic == takenRelics[0])
-        {
-            if (nextRelic.valueQuantity != 0)
-            {
-                nameText.text = relName;
-                ImageTextInfo(relDescription + " " + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
-            } 
-            else
-            {
-                nameText.text = relName;
-                ImageTextInfo(relDescription, nextRelic.image, fadeTime);
-            }
-        }
-    }
+    //    if (nextRelic == takenRelics[0])
+    //    {
+    //        if (nextRelic.valueQuantity != 0)
+    //        {
+    //            nameText.text = relName;
+    //            ImageTextInfo(relDescription + " " + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
+    //        } 
+    //        else
+    //        {
+    //            nameText.text = relName;
+    //            ImageTextInfo(relDescription, nextRelic.image, fadeTime);
+    //        }
+    //    }
+    //}
 
-    public void AddText(string infoText, float fadeTime)
+    public void AddText(string textName, string infoText, float fadeTime)
     {
         infoTexts.Add(infoText);
         infoWithImage.Add(false);
+        infoNames.Add(textName);
+        
+        if (textName == string.Empty)
+            haveName.Add(false);
+        else
+            haveName.Add(true);
 
         if (infoText == infoTexts[0])
+        {
+            nameText.text = textName;
             TextInfo(infoText, fadeTime);
+        }
     }
 
-    public void AddTextWithImage(string infoText, Sprite infoImage, float fadeTime)
+    public void AddTextWithImage(string textName, string infoText, Sprite infoImage, float fadeTime)
     {
         infoTexts.Add(infoText);
         infoImages.Add(infoImage);
         infoWithImage.Add(true);
+        infoNames.Add(textName);
+        
+        if (textName == string.Empty)
+            haveName.Add(false);
+        else
+            haveName.Add(true);
 
         if (infoText == infoTexts[0])
+        {
+            nameText.text = textName;
             ImageTextInfo(infoText, infoImage, fadeTime);
+        }   
     }
 
-    public void CheckRelicsList()
+    public void CheckTextsList()
     {
         GameManager.Instance.infoShowed = false;
 
-        if (GameManager.Instance.alreadyStarted)
-        {
-            if (takenRelics.Count == 0)
-                StartCoroutine(DespawnInfo(0.75f));
-            else
-                ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, 0.125f);
-        }
+        //if (GameManager.Instance.alreadyStarted)
+        //{
+        //    if (takenRelics.Count == 0)
+        //        StartCoroutine(DespawnInfo(0.75f));
+        //    else
+        //        ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, 0.125f);
+        //}
+        //else
+        //{
+        //    if (infoTexts.Count == 0)
+        //        StartCoroutine(DespawnInfo(0.75f));
+        //    else
+        //    {
+        //        if (infoWithImage[0])
+        //            ImageTextInfo(infoTexts[0], infoImages[0], 0.125f);
+        //        else
+        //            TextInfo(infoTexts[0], 0.125f);
+        //    }
+        //}
+
+        if (infoTexts.Count == 0)
+            StartCoroutine(DespawnInfo(0.75f));
         else
         {
-            if (infoTexts.Count == 0)
-                StartCoroutine(DespawnInfo(0.75f));
+            if (infoWithImage[0])
+                ImageTextInfo(infoTexts[0], infoImages[0], 1);
             else
-            {
-                if (infoWithImage[0])
-                    ImageTextInfo(infoTexts[0], infoImages[0], 0.125f);
-                else
-                    TextInfo(infoTexts[0], 0.125f);
-            }
+                TextInfo(infoTexts[0], 1);
+
+            nameText.text = infoNames[0];
         }
     }
 }

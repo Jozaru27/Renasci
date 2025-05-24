@@ -13,7 +13,7 @@ public class Interact : MonoBehaviour
             if (GameManager.Instance.inInfo || !GameManager.Instance.alreadyStarted)
             {
                 if (GameManager.Instance.infoShowed)
-                    InfoPanel.Instance.CheckRelicsList();
+                    InfoPanel.Instance.CheckTextsList();
             }
             else
             {

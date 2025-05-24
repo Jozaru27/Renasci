@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,7 +56,8 @@ public class Altar : MonoBehaviour, IInteractable
             UIManager.Instance.UpdateRelicRotation(currentSlot);
 
             GetComponent<AddRelicInventory>().PassInfoToInventory();
-            InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+            //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+            InfoPanel.Instance.AddTextWithImage(relicName, relicDescription, relicInfo.image, 1f);
             Destroy(relicObj);
             firstTime = true;
         }

@@ -12,7 +12,7 @@ public class FirstInfo : MonoBehaviour
     {
         foreach (string currentInfo in info)
         {
-            InfoPanel.Instance.AddText(currentInfo, 0.125f);
+            InfoPanel.Instance.AddText(string.Empty,currentInfo, 0.125f);
         }
     }
 }
