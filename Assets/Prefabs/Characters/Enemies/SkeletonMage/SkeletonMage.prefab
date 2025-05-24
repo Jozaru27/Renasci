@@ -15931,7 +15931,7 @@ GameObject:
   - component: {fileID: 661978768747932557}
   - component: {fileID: 5909734771841890903}
   m_Layer: 9
-  m_Name: MageWarrior
+  m_Name: SkeletonMage
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
