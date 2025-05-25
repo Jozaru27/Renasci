@@ -30,7 +30,7 @@ public class SkeletonMageIdle : SkeletonMageStates
 
     public override void Updating()
     {
-        Debug.Log("IDLE");
+        //Debug.Log("IDLE");
         float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
 
         //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();

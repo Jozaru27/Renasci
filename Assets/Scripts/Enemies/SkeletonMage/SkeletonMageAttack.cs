@@ -38,7 +38,7 @@ public class SkeletonMageAttack : SkeletonMageStates
 
     public override void Updating()
     {
-        Debug.Log("ATTACK");
+        //Debug.Log("ATTACK");
 
         if (!skeletonMage.frozen)
         {
@@ -57,7 +57,11 @@ public class SkeletonMageAttack : SkeletonMageStates
                     skeletonMage.skeletonMageObject.transform.rotation = playerRotation;
 
                     if (attackRandomizer > basicAttackProbability)
-                        skeletonMage.StartCoroutine(skeletonMage.MakingSecondAttack());
+                    {
+                        //skeletonMage.StartCoroutine(skeletonMage.MakingSecondAttack());
+                        skeletonMage.secondAttack = true;
+                        skeletonMage.GetComponent<SkeletonMageAnimation>().SecondAttack();
+                    }
                 }
 
                 float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
@@ -69,31 +73,36 @@ public class SkeletonMageAttack : SkeletonMageStates
                 {
                     if (distanceToPlayer > skeletonMage.stats.detectionDistance)
                     {
+                        //Debug.Log("ESTO");
                         nextState = new SkeletonMageIdle(skeletonMage);
                         actualPhase = EVENTS.EXIT;
                     }
 
                     if (distanceToPlayer < 5f && pathExists)
                     {
+                        //Debug.Log("ESTO NO CREO");
                         nextState = new SkeletonMageFollow(skeletonMage);
                         actualPhase = EVENTS.EXIT;
                         return;
                     }
 
-                    if (skeletonMage.goToIdle)
+                    if (skeletonMage.goToIdle && !skeletonMage.teleporting)
                     {
+                        //Debug.Log("ESO");
                         nextState = new SkeletonMageIdle(skeletonMage);
                         actualPhase = EVENTS.EXIT;
                     }
                 }
-                if (!skeletonMage.attacking && skeletonMage.goToIdle)
+                if (!skeletonMage.attacking && skeletonMage.goToIdle && !skeletonMage.teleporting)
                 {
+                    //Debug.Log("AQUELLO");
                     nextState = new SkeletonMageIdle(skeletonMage);
                     actualPhase = EVENTS.EXIT;
                 }
             }
             else
             {
+                //Debug.Log("ESTO TAMPOCO");
                 skeletonMage.attacking = false;
                 nextState = new SkeletonMageFollow(skeletonMage);
                 actualPhase = EVENTS.EXIT;

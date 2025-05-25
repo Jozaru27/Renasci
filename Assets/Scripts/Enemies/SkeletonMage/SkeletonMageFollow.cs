@@ -27,7 +27,7 @@ public class SkeletonMageFollow : SkeletonMageStates
 
     public override void Updating()
     {
-        Debug.Log("FOLLOW");
+        //Debug.Log("FOLLOW");
 
         if (!skeletonMage.frozen)
         {
@@ -47,6 +47,7 @@ public class SkeletonMageFollow : SkeletonMageStates
 
             if (!pathExists || distanceToPlayer >= 10f)
             {
+                Debug.Log("HA HECHO ESTO Q ES BASTANTE RARO LA VERDAD");
                 nextState = new SkeletonMageIdle(skeletonMage);
                 actualPhase = EVENTS.EXIT;
                 return;
@@ -65,7 +66,7 @@ public class SkeletonMageFollow : SkeletonMageStates
                 actualPhase = EVENTS.EXIT;
             }
 
-            if (skeletonMage.goToIdle)
+            if (skeletonMage.goToIdle && !skeletonMage.teleporting)
             {
                 nextState = new SkeletonMageIdle(skeletonMage);
                 actualPhase = EVENTS.EXIT;

@@ -190,14 +190,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     public IEnumerator MakingSecondAttack()
     {
-        secondAttack = true;
-
-        yield return new WaitForSeconds(0.5f);
-
         float timer = 0;
         magicRay.SetActive(true);
-
-        GetComponent<SkeletonMageAnimation>().SecondAttack();
 
         usingRay = true;
 
@@ -230,7 +224,9 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         magicRay.SetActive(false);
 
         mageAttackFinish = true;
-        goToIdle = true;
+
+        if (!teleporting)
+            goToIdle = true;
         //GetComponent<SkeletonMageAnimation>().Idle();
     }
 
@@ -336,11 +332,50 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     public void UseTeleportAnim()
     {
         GetComponent<SkeletonMageAnimation>().Teleport();
+        //StartCoroutine(Teleporting());
         Debug.Log("INICIALIZANDO");
         damaged = false;
     }
 
-    public void Teleport()
+    //public IEnumerator Teleporting()
+    //{
+    //    yield return new WaitForSeconds(0.9f);
+
+    //    Debug.Log("FINALIZANDO");
+    //    //if (hasTeleported) yield break;
+
+    //    Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
+    //    float minDistance = 5f;
+    //    float maxDistance = 10f;
+    //    Vector3 targetPosition;
+
+    //    NavMeshPath path = new NavMeshPath();
+
+    //    float randomDistance = Random.Range(minDistance, maxDistance);
+    //    //Vector3 rotatedDir = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f) * dirToPlayer;
+    //    Vector3 rotatedDir = Quaternion.AngleAxis(Random.Range(0, 360f), Vector3.up) * dirToPlayer;
+    //    targetPosition = playerObject.transform.position - rotatedDir * randomDistance;
+
+    //    if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+    //    {
+    //        if (skeletonMageAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+    //            skeletonMageAgent.Warp(hit.position);
+    //    }
+
+    //    float distanceToPlayerFinal = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
+
+    //    transform.rotation = Quaternion.LookRotation(dirToPlayer * -1);
+
+    //    //if (distanceToPlayerFinal <= stats.detectionDistance)
+    //    //    FSM = new SkeletonMageAttack(this);
+    //    //else
+    //    //    yield return new WaitForSeconds(0.1f);
+
+    //    goToIdle = true;
+    //    teleporting = false;
+    //}
+
+    public void Teleporting()
     {
         Debug.Log("FINALIZANDO");
         //if (hasTeleported) yield break;
@@ -422,4 +457,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     //     isRepositioning = false;
     // }
 
+    public void MECAGOENDIOSPORQUEPOLLASESTONOVA()
+    {
+        Debug.Log("VA PERO A PUTO MEDIAS QUE COÑO ES ESTA MIERDA");
+    }
 }

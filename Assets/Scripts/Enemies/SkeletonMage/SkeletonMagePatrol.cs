@@ -64,19 +64,19 @@ public class SkeletonMagePatrol : SkeletonMageStates
         bool pathExists = skeletonMage.skeletonMageAgent.CalculatePath(skeletonMage.playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete;
 
         if (!skeletonMage.skeletonMageAgent.pathPending &&
-            skeletonMage.skeletonMageAgent.remainingDistance <= skeletonMage.skeletonMageAgent.stoppingDistance)
+            skeletonMage.skeletonMageAgent.remainingDistance <= skeletonMage.skeletonMageAgent.stoppingDistance && !skeletonMage.teleporting)
         {
             nextState = new SkeletonMageIdle(skeletonMage);
             actualPhase = EVENTS.EXIT;
         }
 
-        if (Vector3.Distance(skeletonMage.transform.position, skeletonMage.playerObject.transform.position) <= skeletonMage.stats.detectionDistance && pathExists)
+        if (Vector3.Distance(skeletonMage.transform.position, skeletonMage.playerObject.transform.position) <= skeletonMage.stats.detectionDistance && pathExists && !skeletonMage.teleporting)
         {
             nextState = new SkeletonMageAttack(skeletonMage);
             actualPhase = EVENTS.EXIT;
         }
 
-        if (skeletonMage.goToIdle)
+        if (skeletonMage.goToIdle && !skeletonMage.teleporting)
         {
             nextState = new SkeletonMageIdle(skeletonMage);
             actualPhase = EVENTS.EXIT;
