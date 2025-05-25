@@ -231,7 +231,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
         mageAttackFinish = true;
         goToIdle = true;
-        GetComponent<SkeletonMageAnimation>().Idle();
+        //GetComponent<SkeletonMageAnimation>().Idle();
     }
 
     // Hace que el mago se teletransporte cuando el jugador se acerca demasiado. Busca un sitio v�lido en la sala, si lo encuentra se teletransporta
@@ -322,14 +322,27 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     //JOSE: ESPERA 1F INDICADO EN FOLLOW. EVITA TELETRANSPORTACIONES MULTIPLES. SEGÚN LA POSICIÓN DEL JUGADOR, BUSCA UNA DISTANCIA RANDOM ENTRE 5F Y 10F DE DISTANCIA DEL MISMO
     //JOSE: TRAS MARCAR UNA DISTANCIA, CALCULA EL PATH. SI PUEDE LLEGAR (ES DECIR, EL NAVMESH ESTÁ CONECTADO, HACE UN WARP [TELETRANSPORTE INSTANTÁNEO]).
-    public IEnumerator Teleporting(float duration)
+    //public IEnumerator Teleporting(float duration)
+    //{
+        
+
+        
+
+    //    yield return new WaitForSeconds(duration);
+
+        
+    //}
+
+    public void UseTeleportAnim()
     {
         GetComponent<SkeletonMageAnimation>().Teleport();
-
+        Debug.Log("INICIALIZANDO");
         damaged = false;
+    }
 
-        yield return new WaitForSeconds(duration);
-
+    public void Teleport()
+    {
+        Debug.Log("FINALIZANDO");
         //if (hasTeleported) yield break;
 
         Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
@@ -359,6 +372,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         //else
         //    yield return new WaitForSeconds(0.1f);
 
+        goToIdle = true;
         teleporting = false;
     }
 

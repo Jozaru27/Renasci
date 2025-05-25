@@ -6,46 +6,61 @@ using Unity.Mathematics;
 
 public class CameraBlend : MonoBehaviour
 {
+    [Header("Camera Behaviour")]
     [SerializeField] float startingDistance;
     [SerializeField] float finalXRotation;
     [SerializeField] GameObject playerObj;
     [SerializeField] GameObject distancedObj;
-    [SerializeField] CinemachineVirtualCamera blendedCam;
+    [SerializeField] GameObject blendedCam;
+
+    [Header("Door Behaviour")]
+    [SerializeField] GameObject[] doors;
+    [SerializeField] float[] finalYRotations;
 
     float startingXRotation;
-    bool finishBlend;
+    float startingYRotation;
 
     void Start()
     {
         startingXRotation = blendedCam.transform.eulerAngles.x;
+        startingYRotation = doors[0].transform.eulerAngles.y;
     }
 
     void Update()
     {
-        CameraPosition();
-        DoorRotation();
-    }
-
-    void CameraPosition()
-    {
         float distanceToObj = Vector3.Distance(playerObj.transform.position, distancedObj.transform.position);
 
-        if (distanceToObj <= startingDistance && !finishBlend) 
+        CameraPosition(distanceToObj);
+        DoorRotation(distanceToObj);
+    }
+
+    void CameraPosition(float distance)
+    {
+        if (distance <= startingDistance) 
         {
-            float t = 1 - (distanceToObj / startingDistance);
+            float t = 1 - (distance / startingDistance);
             t = Mathf.Clamp01(t);
 
             float currentX = Mathf.LerpAngle(startingXRotation, finalXRotation, t);
             Vector3 currentEuler = blendedCam.transform.eulerAngles;
             blendedCam.transform.eulerAngles = new Vector3(currentX, currentEuler.y, currentEuler.z);
 
-            if (Mathf.Abs(Mathf.DeltaAngle(currentX, finalXRotation)) <= 0.1f)
-                finishBlend = true;
+            //if (Mathf.Abs(Mathf.DeltaAngle(currentX, finalXRotation)) <= 0.1f)
+            //    finishBlend = true;
         }
     }
 
-    void DoorRotation()
+    void DoorRotation(float distance)
     {
+        if (distance <= startingDistance)
+        {
+            float t = 1 - (distance / startingDistance);
+            t = Mathf.Clamp01(t);
 
+            for(int i = 0; i < doors.Length; i++)
+            {
+                doors[i].transform.eulerAngles = new Vector3(doors[i].transform.eulerAngles.x, Mathf.LerpAngle(startingYRotation, finalYRotations[i] *  3, t), doors[i].transform.eulerAngles.z);
+            }
+        }
     }
 }

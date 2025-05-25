@@ -38,6 +38,8 @@ public class SkeletonMageAttack : SkeletonMageStates
 
     public override void Updating()
     {
+        Debug.Log("ATTACK");
+
         if (!skeletonMage.frozen)
         {
             //Debug.Log("ATTACk");

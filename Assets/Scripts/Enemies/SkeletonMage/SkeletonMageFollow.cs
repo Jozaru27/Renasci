@@ -27,6 +27,8 @@ public class SkeletonMageFollow : SkeletonMageStates
 
     public override void Updating()
     {
+        Debug.Log("FOLLOW");
+
         if (!skeletonMage.frozen)
         {
             Vector3 playerDirection = skeletonMage.playerObject.transform.position - skeletonMage.skeletonMageObject.transform.position;
@@ -53,7 +55,8 @@ public class SkeletonMageFollow : SkeletonMageStates
             if (distanceToPlayer < 5f && !skeletonMage.teleporting && !skeletonMage.attacking) // JOSE: HE AÑADIDO EL COMPROBADOR DE HAS TELEPORTER
             {
                 skeletonMage.skeletonMageAgent.isStopped = true;
-                skeletonMage.StartCoroutine(skeletonMage.Teleporting(1f));
+                //skeletonMage.StartCoroutine(skeletonMage.Teleporting(1f));
+                skeletonMage.UseTeleportAnim();
                 skeletonMage.teleporting = true;
             }
             else if (distanceToPlayer >= 5f && !skeletonMage.teleporting)
