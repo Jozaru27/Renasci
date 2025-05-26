@@ -109,7 +109,6 @@ public class SkeletonMageAttack : SkeletonMageStates
     void PlayerDetected()
     {
         attackRandomizer = Random.Range(0f, 1f);
-        attackRandomizer = 0;
         basicAttackProbability = 0.66f;
 
         if (attackRandomizer <= basicAttackProbability)
@@ -140,6 +139,7 @@ public class SkeletonMageAttack : SkeletonMageStates
     void SecondAttack()
     {
         skeletonMage.GetComponent<SkeletonMageAnimation>().SecondAttack();
+        skeletonMage.InitiateRay();
     }
 
     void ReturnToIdle()

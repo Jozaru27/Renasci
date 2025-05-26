@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class SkeletonMage : MonoBehaviour, IDamageable
 {
+    [Header("Particles")]
+    [SerializeField] GameObject initialTpParticles;
+    [SerializeField] GameObject finalTpParticles;
+    [SerializeField] GameObject rayCollisionParticles;
+    [SerializeField] GameObject rayRecharge;
+
     [Header("Renderers")]
     [SerializeField] Renderer[] rends;
     [SerializeField] LineRenderer rayRend;
@@ -73,6 +79,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
             float rayLenght = Vector3.Distance(magicRayHit.point, rayRend.gameObject.transform.position);
             Vector3 finalPoint = new Vector3(0, 0, rayLenght);
             rayRend.SetPosition(1, finalPoint);
+            rayCollisionParticles.transform.position = magicRayHit.point;
+            rayCollisionParticles.transform.position = new Vector3(rayCollisionParticles.transform.position.x, rayRend.gameObject.transform.position.y, rayCollisionParticles.transform.position.z);
         }
 
         if (Physics.Raycast(visionRay, out RaycastHit visionRayHit, Mathf.Infinity, playerMask))
@@ -104,10 +112,17 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         attacking = false;
     }
 
+    public void InitiateRay()
+    {
+        rayRecharge.SetActive(true);
+        rayRecharge.GetComponent<ParticleSystem>().Play();
+    }
+
     public IEnumerator RayAttack()
     {
         float timer = 0;
         magicRay.SetActive(true);
+        rayRecharge.SetActive(false);
 
         while (timer < 3.5f)
         {
@@ -139,6 +154,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     public void UseTeleport()
     {
+        initialTpParticles.GetComponent<ParticleSystem>().Play();
+
         float minDistance = 5f;
         float maxDistance = 10f;
         float randomDistance = Random.Range(minDistance, maxDistance);
@@ -160,6 +177,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         float distanceToPlayerFinal = Vector3.Distance(transform.position, playerObj.transform.position);
 
         transform.rotation = Quaternion.LookRotation(directionToPlayer * -1);
+
+        finalTpParticles.GetComponent<ParticleSystem>().Play();
 
         Debug.Log("SE LE QUITA EL TELEPORT");
 
