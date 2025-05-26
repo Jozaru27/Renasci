@@ -47,6 +47,7 @@ public class ConfusionTrap : MonoBehaviour
         playerObj.GetComponent<PlayerMovement>().inputFactor = -1;
         UIManager.Instance.ActiveConfussionCooldown(trapCooldown);
         activeTrap = false;
+        GetComponent<FirstConfussionInteraction>().OpenConfussionPanel();
 
         yield return new WaitForSeconds(trapCooldown);
 

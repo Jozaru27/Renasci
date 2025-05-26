@@ -183,7 +183,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0);
         warriorAttackFinish = true;
         GetComponent<SkeletonWarriorAnimation>().Idle();
-        Debug.Log("Termina ataque");
     }
 
     public void AttackToBlock()
@@ -199,7 +198,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         //yield return new WaitForSeconds(1.5f);
         yield return new WaitForSeconds(0f);
         startBlock = true;
-        Debug.Log("EmpiezaBloqueo");
     }
 
     //public void EnableAmbient(){

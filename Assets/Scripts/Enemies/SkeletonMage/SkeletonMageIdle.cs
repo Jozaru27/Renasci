@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class SkeletonMageIdle : SkeletonMageStates
 {
-    bool playerNearEnemy = false;
     float waitTime;
 
     public SkeletonMageIdle(SkeletonMage _skeletonMage) : base()
@@ -18,61 +16,57 @@ public class SkeletonMageIdle : SkeletonMageStates
 
     public override void Entry()
     {
-        base.Entry();
-        skeletonMage.skeletonMageAgent.isStopped = true;
+        skeletonMage.agent.isStopped = true;
         skeletonMage.goToIdle = false;
-        waitTime = Random.Range(3f, 6f);
-        skeletonMage.StartCoroutine(WaitAndPatrol());
 
-        if (!skeletonMage.damaged)
-            skeletonMage.skeletonMageObject.GetComponent<SkeletonMageAnimation>().Idle();
+        if (!skeletonMage.dead)
+        {
+            waitTime = Random.Range(3f, 6f);
+            skeletonMage.StartCoroutine(WaitAndPatrol());
+
+            if (!skeletonMage.damaged)
+                skeletonMage.GetComponent<SkeletonMageAnimation>().Idle();
+        }
+
+        base.Entry();
     }
 
     public override void Updating()
     {
         //Debug.Log("IDLE");
-        float distanceToPlayer = Vector3.Distance(skeletonMage.skeletonMageObject.transform.position, skeletonMage.playerObject.transform.position);
 
-        //skeletonArcher.skeletonArcherObject.GetComponent<SkeletonArcherAnimation>().Idle();
-
-        if (distanceToPlayer <= skeletonMage.stats.detectionDistance)
+        if (!skeletonMage.frozen && !skeletonMage.dead)
         {
             NavMeshPath path = new NavMeshPath();
-            if (skeletonMage.skeletonMageAgent.CalculatePath(skeletonMage.playerObject.transform.position, path) &&
-                path.status == NavMeshPathStatus.PathComplete)
-            {
-                playerNearEnemy = true;
-            }
-            else
-            {
-                playerNearEnemy = false;
-            }
-        }
-        else
-        {
-            playerNearEnemy = false;
-        }
+            bool pathExists = false;
 
-        if (playerNearEnemy)
-        {
-            nextState = new SkeletonMageFollow(skeletonMage);
-            actualPhase = EVENTS.EXIT;
+            float distanceToPlayer = Vector3.Distance(skeletonMage.transform.position, skeletonMage.playerObj.transform.position);
+
+            if (skeletonMage.agent.CalculatePath(skeletonMage.playerObj.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                pathExists = true;
+
+            if (distanceToPlayer <= skeletonMage.stats.detectionDistance && pathExists)
+                PlayerDetected();
         }
     }
 
     public override void Exit()
     {
+        skeletonMage.StopAllCoroutines();
         base.Exit();
-        //skeletonArcher.skeletonArcherAnimator.SetBool("Idle", false);
+    }
+
+    void PlayerDetected()
+    {
+        nextState = new SkeletonMageFollow(skeletonMage);
+        actualPhase = EVENTS.EXIT;
     }
 
     IEnumerator WaitAndPatrol()
     {
         yield return new WaitForSeconds(waitTime);
-        if (!skeletonMage.lookingAtPlayer)
-        {
-            nextState = new SkeletonMagePatrol(skeletonMage);
-            actualPhase = EVENTS.EXIT;
-        }
+
+        nextState = new SkeletonMagePatrol(skeletonMage);
+        actualPhase = EVENTS.EXIT;
     }
 }
