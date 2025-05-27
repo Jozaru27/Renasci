@@ -10,7 +10,13 @@ EditorBuildSettings:
     guid: 53b2be5336c27c24598cc19e095c4df4
   - enabled: 1
     path: Assets/Scenes/FinalScenes/PlayScene.unity
-    guid: 7edbe623f3abe2c4c975bd34e375cc21
+    guid: ca07f3d0982abda4583aae86425e5e90
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/CreditsScene.unity
+    guid: 6d491a030ddf7fb4abadf5e82876a26c
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/LoadingScene.unity
+    guid: 77b5f896ac03a6f48a9e11311cbd7793
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 6c1e84c75b9e0f74aa99414a7a0501a7,
       type: 2}
