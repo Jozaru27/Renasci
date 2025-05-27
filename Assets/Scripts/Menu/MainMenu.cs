@@ -21,11 +21,6 @@ public class MainMenu : MonoBehaviour
         GamepadMenuSupport.Instance.lastSelectedObject = playButton.gameObject;
     }
 
-    public void Play()
-    {
-        SceneLoader.Instance.LoadNextScene();
-    }
-
     public void Settings()
     {
         settingsMenu.SetActive(true);
