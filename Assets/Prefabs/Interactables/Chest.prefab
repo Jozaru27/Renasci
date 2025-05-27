@@ -190,7 +190,8 @@ AudioSource:
   m_GameObject: {fileID: 1153948451858537549}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6971888649239260134, guid: 2fcd719f7b366c14b93d53009a5a503b,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -199,7 +200,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -237,7 +238,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -312,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a66d3e89315d5d48afb63ccaead32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Chest: {fileID: 8300000, guid: 40105cfa895ab804babf1a498e3ac6d7, type: 3}
-  ChestSpecial: {fileID: 8300000, guid: 148cf18bdbfb1f64398806714bd6a0d6, type: 3}
-  audioSource: {fileID: 0}
+  ChestOpen: {fileID: 8300000, guid: d300fde8986bd4e40a8ec33ef8922786, type: 3}
+  ChestSearch: {fileID: 8300000, guid: e276c833eb4551e4d96ac36ff895c856, type: 3}
+  ChestSpecial: {fileID: 8300000, guid: 9ab1a4c51dbc47444958edfe2b3d3616, type: 3}
+  audioSource: {fileID: 2719273427619524796}
