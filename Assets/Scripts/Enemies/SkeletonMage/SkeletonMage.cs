@@ -282,70 +282,70 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
 
     
-public void TryTeleport()
-{
-    if (isTeleporting) return; // Si ya estás teleportando, no hacer nada
-    StartCoroutine(TeleportCoroutine());
-}
-
-IEnumerator TeleportCoroutine()
-{
-    isTeleporting = true;
-    teleporting = true;
-
-    initialTpParticles.GetComponent<ParticleSystem>().Play();
-
-    float maxWaitTime = 3f;
-    float timer = 0f;
-    Vector3 targetPosition = Vector3.zero;
-    bool foundValidPosition = false;
-
-    while (timer < maxWaitTime && !foundValidPosition)
+    public void TryTeleport()
     {
-        float minDistance = 5f;
-        float maxDistance = 10f;
-        float randomDistance = Random.Range(minDistance, maxDistance);
+        if (isTeleporting) return;
+        StartCoroutine(TeleportCoroutine());
+    }
 
-        Vector3 directionToPlayer = (transform.position - playerObj.transform.position).normalized;
-        Vector3 rotatedDir = Quaternion.AngleAxis(Random.Range(0, 360f), Vector3.up) * directionToPlayer;
+    IEnumerator TeleportCoroutine()
+    {
+        isTeleporting = true;
+        teleporting = true;
 
-        Vector3 candidatePos = playerObj.transform.position - rotatedDir * randomDistance;
+        initialTpParticles.GetComponent<ParticleSystem>().Play();
 
-        if (NavMesh.SamplePosition(candidatePos, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+        float maxWaitTime = 3f;
+        float timer = 0f;
+        Vector3 targetPosition = Vector3.zero;
+        bool foundValidPosition = false;
+
+        while (timer < maxWaitTime && !foundValidPosition)
         {
-            NavMeshPath path = new NavMeshPath();
-            if (agent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+            float minDistance = 5f;
+            float maxDistance = 10f;
+            float randomDistance = Random.Range(minDistance, maxDistance);
+
+            Vector3 directionToPlayer = (transform.position - playerObj.transform.position).normalized;
+            Vector3 rotatedDir = Quaternion.AngleAxis(Random.Range(0, 360f), Vector3.up) * directionToPlayer;
+
+            Vector3 candidatePos = playerObj.transform.position - rotatedDir * randomDistance;
+
+            if (NavMesh.SamplePosition(candidatePos, out NavMeshHit hit, 1f, NavMesh.AllAreas))
             {
-                targetPosition = hit.position;
-                foundValidPosition = true;
+                NavMeshPath path = new NavMeshPath();
+                if (agent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    targetPosition = hit.position;
+                    foundValidPosition = true;
+                }
+            }
+
+            if (!foundValidPosition)
+            {
+                timer += 0.2f;
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
-        if (!foundValidPosition)
+        if (foundValidPosition)
         {
-            timer += 0.2f;
-            yield return new WaitForSeconds(0.2f);
+            agent.Warp(targetPosition);
+
+            Vector3 directionToPlayer = (transform.position - playerObj.transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(directionToPlayer * -1);
+
+            finalTpParticles.GetComponent<ParticleSystem>().Play();
         }
+        else
+        {
+            Debug.LogWarning("NO TEPEA");
+        }
+
+        teleporting = false;
+        goToIdle = true;
+        isTeleporting = false;
     }
-
-    if (foundValidPosition)
-    {
-        agent.Warp(targetPosition);
-
-        Vector3 directionToPlayer = (transform.position - playerObj.transform.position).normalized;
-        transform.rotation = Quaternion.LookRotation(directionToPlayer * -1);
-
-        finalTpParticles.GetComponent<ParticleSystem>().Play();
-    }
-    else
-    {
-        Debug.LogWarning("No se encontró posición válida para teleportar");
-    }
-
-    teleporting = false;
-    goToIdle = true;
-    isTeleporting = false;
-}
 
 
 
