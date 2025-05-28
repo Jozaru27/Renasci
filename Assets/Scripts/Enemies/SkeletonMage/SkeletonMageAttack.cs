@@ -144,11 +144,13 @@ public class SkeletonMageAttack : SkeletonMageStates
     void BasicAttack()
     {
         skeletonMage.GetComponent<SkeletonMageAnimation>().Attack();
+        skeletonMage.GetComponent<SkeletonMage>().PlayAttackOrb();
     }
 
     void SecondAttack()
     {
         skeletonMage.GetComponent<SkeletonMageAnimation>().SecondAttack();
+        skeletonMage.GetComponent<SkeletonMage>().PlayAttackRay();
         skeletonMage.InitiateRay();
     }
 

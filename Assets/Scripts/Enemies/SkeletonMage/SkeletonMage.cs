@@ -46,6 +46,15 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     SkeletonMageStates FSM;
 
     bool isTeleporting = false;
+
+    public AudioSource audioSource;
+
+    public AudioClip SkeletonMageTakeDamage;
+    public AudioClip SkeletonMageDeath;
+    public AudioClip SkeletonMageAttackOrb;
+    public AudioClip SkeletonMageAttackRay;
+    public AudioClip SkeletonMageAttackRayHold;
+    public AudioClip SkeletonMageTeleport;
     
     private void Start()
     {
@@ -207,6 +216,7 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         magicRay.SetActive(false);
         StartCoroutine(ChangingColor());
         damaged = true;
+        PlayTakeDamageSound();
 
         if (stats.life <= 0)
         {
@@ -354,30 +364,6 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         goToIdle = true;
         isTeleporting = false;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //public LayerMask playerMask;
 
     //public bool lookingAtPlayer = false;
@@ -396,4 +382,40 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     //[SerializeField] GameObject magicRay;
     //[SerializeField] Collider rayCollision;
+
+    public void PlayTakeDamageSound()
+    {
+        if (SkeletonMageTakeDamage != null);
+            audioSource.PlayOneShot(SkeletonMageTakeDamage, 1f);
+    }
+
+    public void PlayDeathSound()
+    {
+        if (SkeletonMageDeath != null)
+            audioSource.PlayOneShot(SkeletonMageDeath, 3f);
+    }
+
+    public void PlayTeleportSound()
+    {
+        if (SkeletonMageTeleport != null)
+            audioSource.PlayOneShot(SkeletonMageTeleport, 1f);
+    }
+
+    public void PlayAttackOrb()
+    {
+        if (SkeletonMageAttackOrb != null)
+            audioSource.PlayOneShot(SkeletonMageAttackOrb, 1f);
+    }
+
+    public void PlayAttackRay()
+    {
+        if (SkeletonMageAttackRay != null)
+            audioSource.PlayOneShot(SkeletonMageAttackRay, 1f);
+    }
+
+    public void PlayAttackRayHold()
+    {
+        if (SkeletonMageAttackRayHold != null)
+            audioSource.PlayOneShot(SkeletonMageAttackRayHold, 1f);
+    }
 }

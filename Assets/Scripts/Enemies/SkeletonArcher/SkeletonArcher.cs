@@ -36,6 +36,12 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
 
     public bool isRepositioning = false;
 
+    public AudioSource audioSource;
+
+    public AudioClip SkeletonArcherTakeDamage;
+    public AudioClip SkeletonArcherDeath;
+    public AudioClip SkeletonArcherAttack;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -88,6 +94,7 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         stats.life += amount;
         StartCoroutine(ChangingColor());
         damaged = true;
+        PlayTakeDamageSound();
 
         if (stats.life <= 0)
         {
@@ -279,5 +286,23 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         }
 
         isRepositioning = false;
+    }
+
+    public void PlayTakeDamageSound()
+    {
+        if (SkeletonArcherTakeDamage != null)
+            audioSource.PlayOneShot(SkeletonArcherTakeDamage, 1f);
+    }
+
+    public void PlayDeathSound()
+    {
+        if (SkeletonArcherDeath != null)
+            audioSource.PlayOneShot(SkeletonArcherDeath, 3f);
+    }
+
+    public void PlayAttackSound()
+    {
+        if (SkeletonArcherAttack != null)
+            audioSource.PlayOneShot(SkeletonArcherAttack, 1f);
     }
 }
