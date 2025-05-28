@@ -52,9 +52,20 @@ public class SkeletonMageAttack : SkeletonMageStates
                     PlayerDetected();
                 else if (distanceToPlayer < 5f)
                     Teleport();
-                else
-                    PlayerUndetected();
             }
+            if (distanceToPlayer > skeletonMage.stats.detectionDistance)
+                PlayerUndetected();
+
+            //if (!skeletonMage.attacking && !skeletonMage.damaged)
+            //{
+            //    if (!skeletonMage.attacking && !skeletonMage.damaged)
+            //        if (distanceToPlayer <= skeletonMage.stats.detectionDistance && distanceToPlayer > 5f && pathExists && skeletonMage.lookingAtPlayer)
+            //            PlayerDetected();
+            //        else if (distanceToPlayer < 5f)
+            //            Teleport();
+            //        else
+            //            PlayerUndetected();
+            //}
         }
         if (skeletonMage.dead || skeletonMage.goToIdle)
             ReturnToIdle();
@@ -127,8 +138,7 @@ public class SkeletonMageAttack : SkeletonMageStates
 
     void PlayerUndetected()
     {
-        nextState = new SkeletonMageIdle(skeletonMage);
-        actualPhase = EVENTS.EXIT;
+        skeletonMage.StopAttack();
     }
 
     void BasicAttack()

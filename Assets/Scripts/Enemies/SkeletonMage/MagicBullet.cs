@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -29,11 +30,21 @@ public class MagicBullet : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, playerObj.transform.position + distanceToHead, 2.5f * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player") && !collided)
+    //    {
+    //        collision.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-damage, transform.position, pushForce);
+    //        StartCoroutine(CollideWithPlayer());
+    //        collided = true;
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player") && !collided)
+        if (other.gameObject.CompareTag("Player") && !collided)
         {
-            collision.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-damage, transform.position, pushForce);
+            other.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-damage, transform.position, pushForce);
             StartCoroutine(CollideWithPlayer());
             collided = true;
         }

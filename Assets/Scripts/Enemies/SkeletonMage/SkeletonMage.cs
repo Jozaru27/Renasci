@@ -154,6 +154,14 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         magicRay.SetActive(false);
     }
 
+    public void StopAttack()
+    {
+        usingRay = false;
+        attacking = false;
+        magicRay.SetActive(false);
+        goToIdle = true;
+    }
+
     public void UseTeleport()
     {
         initialTpParticles.GetComponent<ParticleSystem>().Play();
