@@ -147,6 +147,7 @@ MonoBehaviour:
   relicName: 
   relicDescription: 
   relicInfo: {fileID: 11400000, guid: 7d6fc126a11021a4dbe24d49fbae54f7, type: 2}
+  relicClip: {fileID: 8300000, guid: 30344b7b80cf25b448d5f7c936d4cf94, type: 3}
 --- !u!82 &-5631281814331577978
 AudioSource:
   m_ObjectHideFlags: 0

@@ -688,7 +688,7 @@ MonoBehaviour:
   relicName: 
   relicDescription: 
   relicInfo: {fileID: 11400000, guid: 041d2c1de55316c45a869ba9be7c1aab, type: 2}
-  relicPickupSound: {fileID: 8300000, guid: 114d0a983e19b764c93a614442685859, type: 3}
+  relicClip: {fileID: 8300000, guid: 114d0a983e19b764c93a614442685859, type: 3}
 --- !u!114 &-3617654278837522094
 MonoBehaviour:
   m_ObjectHideFlags: 0

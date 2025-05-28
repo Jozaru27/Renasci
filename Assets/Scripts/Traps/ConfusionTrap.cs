@@ -29,7 +29,7 @@ public class ConfusionTrap : MonoBehaviour
             StartCoroutine(TrapCooldown());
             StartCoroutine(GenerateRay());
 
-            audioSource.PlayOneShot(confusionSound, 5f);
+            audioSource.PlayOneShot(confusionSound, 2.5f);
         }   
         if (usingRay)
         {

@@ -9,6 +9,7 @@ public class AddRelicInventory : MonoBehaviour
     public string relicDescription;
 
     [SerializeField] RelicsInventoryScriptableObject relicInfo;
+    [SerializeField] AudioClip relicClip;
 
     // public AudioClip relicPickupSound;
     // private AudioSource audioSource;
@@ -27,9 +28,10 @@ public class AddRelicInventory : MonoBehaviour
         //     audioSource.PlayOneShot(relicPickupSound, 5f);
         // }
 
-
         if (relicInfo.relicType.ToString() == "Passive")
         {
+            UIManager.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(relicClip, 1.5f);
+
             switch (relicInfo.relicName)
             {
                 case "Crimson Fury":
@@ -127,6 +129,10 @@ public class AddRelicInventory : MonoBehaviour
 
             InventoryMenu.Instance.UpdateStats();
             Destroy(this.gameObject);
+        }
+        else
+        {
+            UIManager.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(relicClip, 1.5f);
         }
     }
 

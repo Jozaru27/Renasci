@@ -13,10 +13,13 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] TMP_Text infoText;
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text decorationLine;
+    [SerializeField] AudioClip interactSound;
 
+    bool firstPanelShown;
     Color generalColor = Color.white;
     Color textColor = Color.white;
     Color bgColor = Color.black;
+    AudioSource audioSource;
 
     //List<RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
     List<string> infoTexts = new List<string>();
@@ -34,6 +37,8 @@ public class InfoPanel : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         generalColor.a = 0;
         textColor.a = 0;
         bgColor.a = 0;
@@ -81,9 +86,13 @@ public class InfoPanel : MonoBehaviour
         textColor.a = 0;
         bgColor.a = 0;
 
-        infoPanel.GetComponent<Image>().color = generalColor;
+        if (!firstPanelShown)
+        {
+            infoPanel.GetComponent<Image>().color = generalColor;
+            backgroundImage.color = bgColor;
+        }
+
         infoImage.GetComponent<Image>().color = generalColor;
-        backgroundImage.color = bgColor;
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
@@ -96,9 +105,13 @@ public class InfoPanel : MonoBehaviour
             textColor.a = Mathf.Lerp(0, 1, (timeElapsed / fadeDuration));
             bgColor.a = Mathf.Lerp(0, 0.9f, (timeElapsed / fadeDuration));
 
-            infoPanel.GetComponent<Image>().color = generalColor;
+            if (!firstPanelShown)
+            {
+                infoPanel.GetComponent<Image>().color = generalColor;
+                backgroundImage.color = bgColor;
+            }
+
             infoImage.GetComponent<Image>().color = generalColor;
-            backgroundImage.color = bgColor;
             infoText.color = textColor;
             nameText.color = textColor;
             decorationLine.color = textColor;
@@ -157,9 +170,13 @@ public class InfoPanel : MonoBehaviour
             textColor.a = Mathf.Lerp(1, 0, (timeElapsed / fadeDuration));
             bgColor.a = Mathf.Lerp(0.9f, 0, (timeElapsed / fadeDuration));
 
-            infoPanel.GetComponent<Image>().color = generalColor;
+            if (infoTexts.Count == 0)
+            {
+                infoPanel.GetComponent<Image>().color = generalColor;
+                backgroundImage.color = bgColor;
+            }
+
             infoImage.GetComponent<Image>().color = generalColor;
-            backgroundImage.color = bgColor;
             infoText.color = textColor;
             nameText.color = textColor;
             decorationLine.color = textColor;
@@ -171,16 +188,18 @@ public class InfoPanel : MonoBehaviour
         textColor.a = 0;
         bgColor.a = 0;
 
-        infoPanel.GetComponent<Image>().color = generalColor;
+        if (infoTexts.Count == 0)
+        {
+            infoPanel.GetComponent<Image>().color = generalColor;
+            backgroundImage.color = bgColor;
+        }
+        
         infoImage.GetComponent<Image>().color = generalColor;
-        backgroundImage.color = bgColor;
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
 
-        infoCanvas.SetActive(false);
-        GameManager.Instance.inInfo = false;
-        Time.timeScale = 1;
+        CheckList();
 
         //if (!GameManager.Instance.alreadyStarted)
         //    GameManager.Instance.alreadyStarted = true;
@@ -242,32 +261,37 @@ public class InfoPanel : MonoBehaviour
         }   
     }
 
-    public void CheckTextsList()
+    public void ConfirmFade()
     {
         GameManager.Instance.infoShowed = false;
+        StartCoroutine(DespawnInfo(0.75f));
 
-        //if (GameManager.Instance.alreadyStarted)
-        //{
-        //    if (takenRelics.Count == 0)
-        //        StartCoroutine(DespawnInfo(0.75f));
-        //    else
-        //        ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, 0.125f);
-        //}
+        audioSource.PlayOneShot(interactSound, 2f);
+
+        firstPanelShown = true;
+
+        //if (infoTexts.Count == 0)
+        //    StartCoroutine(DespawnInfo(0.75f));
         //else
         //{
-        //    if (infoTexts.Count == 0)
-        //        StartCoroutine(DespawnInfo(0.75f));
+        //    if (infoWithImage[0])
+        //        ImageTextInfo(infoTexts[0], infoImages[0], 1);
         //    else
-        //    {
-        //        if (infoWithImage[0])
-        //            ImageTextInfo(infoTexts[0], infoImages[0], 0.125f);
-        //        else
-        //            TextInfo(infoTexts[0], 0.125f);
-        //    }
-        //}
+        //        TextInfo(infoTexts[0], 1);
 
+        //    nameText.text = infoNames[0];
+        //}
+    }
+
+    void CheckList()
+    {
         if (infoTexts.Count == 0)
-            StartCoroutine(DespawnInfo(0.75f));
+        {
+            infoCanvas.SetActive(false);
+            GameManager.Instance.inInfo = false;
+            Time.timeScale = 1;
+            firstPanelShown = false;
+        }
         else
         {
             if (infoWithImage[0])

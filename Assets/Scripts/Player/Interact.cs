@@ -13,7 +13,7 @@ public class Interact : MonoBehaviour
             if (GameManager.Instance.inInfo)
             {
                 if (GameManager.Instance.infoShowed)
-                    InfoPanel.Instance.CheckTextsList();
+                    InfoPanel.Instance.ConfirmFade();
             }
             else
             {

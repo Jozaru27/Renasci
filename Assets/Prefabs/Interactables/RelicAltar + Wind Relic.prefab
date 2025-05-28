@@ -320,6 +320,7 @@ MonoBehaviour:
   relicName: 
   relicDescription: 
   relicInfo: {fileID: 11400000, guid: 6366cbecd7f3a3845ae7c94c56bc7220, type: 2}
+  relicClip: {fileID: 8300000, guid: 30344b7b80cf25b448d5f7c936d4cf94, type: 3}
 --- !u!114 &7930560961761592676
 MonoBehaviour:
   m_ObjectHideFlags: 0

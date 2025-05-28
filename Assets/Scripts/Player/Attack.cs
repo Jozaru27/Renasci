@@ -28,6 +28,10 @@ public class Attack : MonoBehaviour
     [SerializeField] float spiralOutwardDistance = 3f;
     [SerializeField] float spiralRotations = 2f;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip relicRotationClip;
+    [SerializeField] AudioClip[] relicClips; 
+
     int shots;
     public int relicSlot = 0;
     bool shotable = true;
@@ -165,6 +169,9 @@ public class Attack : MonoBehaviour
             else if (relicSlot < 0)
                 relicSlot = GameManager.Instance.currentRelicSlots;
 
+            if (GameManager.Instance.currentRelicSlots > 0)
+                UIManager.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(relicRotationClip, 1f);
+
             switch (relicSlot)
             {
                 case 0:
@@ -279,6 +286,8 @@ public class Attack : MonoBehaviour
 
     public void FireRelic()
     {
+        GetComponent<AudioSource>().PlayOneShot(relicClips[0], 2f);
+
         StartCoroutine(SpawnFireWisps());
 
         GameManager.Instance.playerCannotMove = false;
@@ -383,6 +392,8 @@ public class Attack : MonoBehaviour
 
     void IceRelic()
     {
+        GetComponent<AudioSource>().PlayOneShot(relicClips[1], 2f);
+
         GameObject iceBullet = Instantiate(iceObj, shotPoint.transform.position, Quaternion.identity);
         iceBullet.GetComponent<IceRelic>().GetDirection(transform.forward);
 
@@ -392,6 +403,8 @@ public class Attack : MonoBehaviour
 
     void WindRelic()
     {
+        GetComponent<AudioSource>().PlayOneShot(relicClips[2], 2f);
+
         GameObject windBullet = Instantiate(windObj, shotPoint.transform.position, Quaternion.identity);
         windBullet.GetComponent<WindRelic>().GetDirection(transform.forward);
 
