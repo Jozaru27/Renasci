@@ -72,6 +72,6 @@ public class PlayButtonEffect : MonoBehaviour
             yield return null;
         }
 
-        SceneLoader.Instance.LoadNextScene();
+        SceneLoader.Instance.LoadNextSceneAsync();
     }
 }

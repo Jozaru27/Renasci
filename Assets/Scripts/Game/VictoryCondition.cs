@@ -43,6 +43,17 @@ public class VictoryCondition : MonoBehaviour
             yield return null;
         }
 
-        UIManager.Instance.EnableVictoryMenu();
+        float timeElapsed = 0f;
+
+        while (fadeImage.color != Color.black)
+        {
+            timeElapsed += Time.deltaTime;
+
+            fadeImage.color = Color.Lerp(Color.white, Color.black, timeElapsed * 0.5f);
+
+            yield return null;
+        }
+
+        SceneLoader.Instance.LoadNextSceneAsync();
     }
 }
