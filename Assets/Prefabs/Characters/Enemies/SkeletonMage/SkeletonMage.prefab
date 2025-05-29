@@ -35679,7 +35679,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   agent: {fileID: 0}
   anim: {fileID: 0}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 5791921370036845678}
   SkeletonMageTakeDamage: {fileID: 8300000, guid: 8e23fc8ef38c4c74790f12da0768be97,
     type: 3}
   SkeletonMageDeath: {fileID: 8300000, guid: 414a659fd947e854191dc279ec015634, type: 3}

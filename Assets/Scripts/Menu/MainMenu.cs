@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
     {
         GamepadMenuSupport.Instance.inMenu = true;
         GamepadMenuSupport.Instance.lastSelectedObject = playButton.gameObject;
+
+        Time.timeScale = 1f;
     }
 
     public void Settings()

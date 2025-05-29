@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class FirstInfo : MonoBehaviour
 {
+    [SerializeField] PlayerInput input;
+
     [SerializeField] string[] textNames;
     [TextArea(4, 6)][SerializeField] string[] info;
 
@@ -48,9 +51,27 @@ public class FirstInfo : MonoBehaviour
 
         GameManager.Instance.playerCannotMove = false;
 
-        for (int i = 0; i < info.Length; i++)
-        {
-            InfoPanel.Instance.AddText(textNames[i], info[i], 1f);
-        }
+        InfoPanel.Instance.AddText(textNames[0], info[0], 1f);
+        InfoPanel.Instance.AddText(textNames[1], info[1], 1f);
+    }
+
+    public void ChangeFirstSentenceName(string newName)
+    {
+        textNames[0] = newName;
+    }
+
+    public void ChangeFirstSentenceDescription(string newDesc)
+    {
+        info[0] = newDesc;
+    }
+
+    public void ChangeSecondSentenceName(string newName)
+    {
+        textNames[1] = newName;
+    }
+
+    public void ChangeSecondSentenceDescription(string newDesc)
+    {
+        info[1] = newDesc;
     }
 }

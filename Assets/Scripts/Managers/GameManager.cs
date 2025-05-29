@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public bool gamePausable;
     public GameObject[] enemies;
 
+    public Sprite keyboardControls;
+    public Sprite gamepadControls;
+
     public enum Languajes
     {
         ENGLISH,

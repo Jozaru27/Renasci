@@ -11,7 +11,7 @@ public class Altar : MonoBehaviour, IInteractable
 
     [Header("Active Relic Info")]
     public string infoName;
-    public string infoDescription;
+    [TextArea(4,6)] public string infoDescription;
 
     [SerializeField] GameObject relicObj;
     [SerializeField] RelicsInventoryScriptableObject relicInfo;

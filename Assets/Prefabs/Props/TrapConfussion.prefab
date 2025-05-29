@@ -5383,5 +5383,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411b9a4d21acdb145851a3b140c1171e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textNames:
+  - "Est\xE1s Confundido"
   sentences:
-  - Prueba_01
+  - "Un rayo punzante hace que te invadan cientos de memorias de recuerdos pasados
+    y caminos por recorrer, mare\xE1ndote y haci\xE9ndote perder el control\r\n\r\nInvierte
+    los controles del jugador mientras dure el efecto del estado alterado."
