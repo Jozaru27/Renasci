@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class FirstInfo : MonoBehaviour
 {
+    [SerializeField] string[] textNames;
     [TextArea(4, 6)][SerializeField] string[] info;
 
     [SerializeField] Sprite[] infoImages;
@@ -47,9 +48,9 @@ public class FirstInfo : MonoBehaviour
 
         GameManager.Instance.playerCannotMove = false;
 
-        foreach (string currentInfo in info)
+        for (int i = 0; i < info.Length; i++)
         {
-            InfoPanel.Instance.AddText(string.Empty, currentInfo, 1f);
+            InfoPanel.Instance.AddText(textNames[i], info[i], 1f);
         }
     }
 }
