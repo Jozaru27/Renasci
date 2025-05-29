@@ -62,6 +62,17 @@ public class SceneLoader : MonoBehaviour
         GoToLoadingScene();
     }
 
+    public void LoadSpecificScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadSpecificSceneAsync(int sceneIndex)
+    {
+        sceneToLoad = sceneIndex;
+        GoToLoadingScene();
+    }
+
     void GoToLoadingScene()
     {
         SceneManager.LoadScene(3);

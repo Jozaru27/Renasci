@@ -22,13 +22,19 @@ public class VictoryCondition : MonoBehaviour
     IEnumerator FinishGame()
     {
         GameManager.Instance.gameWin = true;
+        GameManager.Instance.gamePausable = false;
 
         imageColor = Color.white;
         imageColor.a = 0;
+        fadeImage.color = imageColor;
 
         Vector3 lookDirection = (targetPosition.position - playerObj.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
         playerObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        GameManager.Instance.victoryObtained = true;
+        playerObj.GetComponent<PlayerAnimation>().Run();
+
         while (fadeImage.color.a != 1)
         {
             playerObj.GetComponent<Rigidbody>().rotation = Quaternion.Slerp(playerObj.GetComponent<Rigidbody>().rotation, lookRotation, 10 * Time.deltaTime);
@@ -53,6 +59,8 @@ public class VictoryCondition : MonoBehaviour
 
             yield return null;
         }
+
+        GameManager.Instance.ResetProperties();
 
         SceneLoader.Instance.LoadNextSceneAsync();
     }

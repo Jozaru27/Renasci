@@ -319,6 +319,14 @@ MonoBehaviour:
       Dash:\n\nEvasi\xF3:"
     m_Metadata:
       m_Items: []
+  - m_Id: 5402135113850880
+    m_Localized: "Cr\xE8dits"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428052670373888
+    m_Localized: DESC VLC
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

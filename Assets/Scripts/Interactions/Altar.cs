@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class Altar : MonoBehaviour, IInteractable
 {
+    [Header("Relic Info")]
     public string relicName;
     public string relicDescription;
+
+    [Header("Active Relic Info")]
+    public string infoName;
+    public string infoDescription;
 
     [SerializeField] GameObject relicObj;
     [SerializeField] RelicsInventoryScriptableObject relicInfo;
@@ -58,6 +63,13 @@ public class Altar : MonoBehaviour, IInteractable
             GetComponent<AddRelicInventory>().PassInfoToInventory();
             //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
             InfoPanel.Instance.AddTextWithImage(relicName, relicDescription, relicInfo.image, 1f);
+
+            if (!GameManager.Instance.relicInfoObtained)
+            {
+                InfoPanel.Instance.AddText(infoName, infoDescription, 1f);
+                GameManager.Instance.relicInfoObtained = true;
+            }
+
             Destroy(relicObj);
             firstTime = true;
         }
@@ -71,5 +83,15 @@ public class Altar : MonoBehaviour, IInteractable
     public void ChangeDescription(string newDescription)
     {
         relicDescription = newDescription;
+    }
+
+    public void ChangeInfoName(string newName)
+    {
+        infoName = newName;
+    }
+
+    public void ChangeInfoDescription(string newDescription)
+    {
+        infoDescription = newDescription;
     }
 }

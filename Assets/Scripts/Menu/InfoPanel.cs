@@ -78,7 +78,8 @@ public class InfoPanel : MonoBehaviour
         else
             decorationLine.gameObject.SetActive(false);
 
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
+        GameManager.Instance.gamePausable = false;
         GameManager.Instance.inInfo = true;
         float timeElapsed = 0f;
 
@@ -291,6 +292,7 @@ public class InfoPanel : MonoBehaviour
             GameManager.Instance.inInfo = false;
             Time.timeScale = 1;
             firstPanelShown = false;
+            GameManager.Instance.gamePausable = true;
         }
         else
         {

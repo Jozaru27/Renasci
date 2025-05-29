@@ -291,6 +291,14 @@ MonoBehaviour:
     m_Key: stats_showcase
     m_Metadata:
       m_Items: []
+  - m_Id: 5402135113850880
+    m_Key: Credits_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428052670373888
+    m_Key: ActiveRelicDesc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

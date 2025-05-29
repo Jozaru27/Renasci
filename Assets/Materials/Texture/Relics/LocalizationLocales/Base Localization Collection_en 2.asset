@@ -402,6 +402,14 @@ MonoBehaviour:
       Evasion:'
     m_Metadata:
       m_Items: []
+  - m_Id: 5402135113850880
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428052670373888
+    m_Localized: DESC ENG
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

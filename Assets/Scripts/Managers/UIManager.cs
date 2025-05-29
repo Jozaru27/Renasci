@@ -93,11 +93,10 @@ public class UIManager : MonoBehaviour
         relicText.text = $"Relic: None";
 
         healthBarSlider.maxValue = maxHealth;
+        healthBarSlider.value = maxHealth;
 
         staminaBarSlider.maxValue = 1f;
         staminaBarSlider.value = 1f;
-
-        ChangeLife();
 
         GameManager.Instance.ResetProperties();
 
@@ -372,6 +371,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.inMenu = true;
         EventSystem.current.SetSelectedGameObject(retryButtonLose.gameObject);
         GamepadMenuSupport.Instance.lastSelectedObject = retryButtonLose.gameObject;
+        Time.timeScale = 0f;
         gameOverMenu.SetActive(true);
     }
 
@@ -387,7 +387,7 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         GameManager.Instance.ResetProperties();
-        SceneLoader.Instance.LoadCurrentScene();
+        SceneLoader.Instance.LoadCurrentSceneAsync();
     }
 
     public void EnableSettingsMenu()

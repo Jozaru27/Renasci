@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,6 +17,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button settingsButton;
     [SerializeField] Button playButton;
 
+    [SerializeField] Image fadeImg;
+    [SerializeField] Button[] menuButtons;
+
     private void Start()
     {
         GamepadMenuSupport.Instance.inMenu = true;
@@ -28,6 +33,18 @@ public class MainMenu : MonoBehaviour
         EnableVideoArea();
         EventSystem.current.SetSelectedGameObject(videoButton.gameObject);
         GamepadMenuSupport.Instance.lastSelectedObject = videoButton.gameObject;
+    }
+
+    public void Credits()
+    {
+        foreach (Button currentButton in menuButtons)
+        {
+            currentButton.interactable = false;
+        }
+
+        fadeImg.gameObject.SetActive(true);
+
+        StartCoroutine(FadeToBlack());
     }
 
     public void Exit()
@@ -53,5 +70,27 @@ public class MainMenu : MonoBehaviour
     {
         audioArea.SetActive(false);
         videoArea.SetActive(true);
+    }
+
+    IEnumerator FadeToBlack()
+    {
+        Color fadeColor = Color.black;
+        fadeColor.a = 0;
+
+        fadeImg.color = fadeColor;
+
+        float timeElapsed = 0f;
+
+        while (fadeImg.color.a < 1)
+        {
+            timeElapsed += Time.deltaTime;
+
+            fadeColor.a += 1 * 0.35f * Time.deltaTime;
+            fadeImg.color = fadeColor;
+
+            yield return null;
+        }
+
+        SceneLoader.Instance.LoadSpecificSceneAsync(2);
     }
 }

@@ -36,7 +36,6 @@ public class PlayButtonEffect : MonoBehaviour
 
         Color imageColor = fadeImg.color;
         imageColor.a = fadeImg.color.a;
-        int iterations = 0;
 
         while (fadeImg.color.a < 1)
         {
@@ -52,8 +51,6 @@ public class PlayButtonEffect : MonoBehaviour
                 imageColor.a += 1 * 0.35f * Time.deltaTime;
                 fadeImg.color = imageColor;
             }
-
-            iterations++;
 
             yield return null;
         }

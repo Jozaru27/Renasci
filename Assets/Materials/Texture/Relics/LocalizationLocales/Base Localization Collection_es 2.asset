@@ -323,6 +323,14 @@ MonoBehaviour:
       Dash:\n\nEvasi\xF3n"
     m_Metadata:
       m_Items: []
+  - m_Id: 5402135113850880
+    m_Localized: "Cr\xE9ditos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428052670373888
+    m_Localized: DESC ES
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

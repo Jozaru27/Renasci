@@ -7,15 +7,17 @@ using Unity.Mathematics;
 public class CameraBlend : MonoBehaviour
 {
     [Header("Camera Behaviour")]
-    [SerializeField] float startingDistance;
+    [SerializeField] float cameraStartingDistance;
     [SerializeField] float finalXRotation;
     [SerializeField] GameObject playerObj;
     [SerializeField] GameObject distancedObj;
     [SerializeField] GameObject blendedCam;
 
     [Header("Door Behaviour")]
+    [SerializeField] float doorStartingDistance;
     [SerializeField] GameObject[] doors;
     [SerializeField] float[] finalYRotations;
+
 
     float startingXRotation;
     float startingYRotation;
@@ -36,9 +38,9 @@ public class CameraBlend : MonoBehaviour
 
     void CameraPosition(float distance)
     {
-        if (distance <= startingDistance) 
+        if (distance <= cameraStartingDistance) 
         {
-            float t = 1 - (distance / startingDistance);
+            float t = 1 - (distance / cameraStartingDistance);
             t = Mathf.Clamp01(t);
 
             float currentX = Mathf.LerpAngle(startingXRotation, finalXRotation, t);
@@ -52,9 +54,9 @@ public class CameraBlend : MonoBehaviour
 
     void DoorRotation(float distance)
     {
-        if (distance <= startingDistance)
+        if (distance <= doorStartingDistance)
         {
-            float t = 1 - (distance / startingDistance);
+            float t = 1 - (distance / doorStartingDistance);
             t = Mathf.Clamp01(t);
 
             for(int i = 0; i < doors.Length; i++)

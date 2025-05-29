@@ -23,7 +23,7 @@ public class Dash : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && !dashing && canDash)
+        if (context.performed && !dashing && canDash && GameManager.Instance.gamePausable)
         {
             if (pMov.inputMovement.magnitude > 0)
             {

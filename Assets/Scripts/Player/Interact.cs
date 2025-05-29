@@ -15,7 +15,7 @@ public class Interact : MonoBehaviour
                 if (GameManager.Instance.infoShowed)
                     InfoPanel.Instance.ConfirmFade();
             }
-            else
+            else if (GameManager.Instance.gamePausable)
             {
                 Ray cameraRay = new Ray(transform.position, transform.forward);
 

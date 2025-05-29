@@ -78,7 +78,7 @@ public class Attack : MonoBehaviour
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !GameManager.Instance.gamePaused && !shoting && !attacking && !GameManager.Instance.inMenu)
+        if (context.started && !GameManager.Instance.gamePaused && !shoting && !attacking && !GameManager.Instance.inMenu && GameManager.Instance.gamePausable)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
@@ -96,13 +96,13 @@ public class Attack : MonoBehaviour
 
     public void DistanceAttack(InputAction.CallbackContext context)
     {
-        if (context.started && shotable && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu)
+        if (context.started && shotable && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu && GameManager.Instance.gamePausable)
             StartCoroutine(Shooting());
     }
 
     public void RelicAttack(InputAction.CallbackContext context)
     {
-        if (context.started && relicUsable && GameManager.Instance.currentRelicSlots > -1 && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu)
+        if (context.started && relicUsable && GameManager.Instance.currentRelicSlots > -1 && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu && GameManager.Instance.gamePausable)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().RelicAttack();
@@ -155,7 +155,7 @@ public class Attack : MonoBehaviour
     {
         if (UIManager.Instance.IsRotating) return;
 
-        if (context.started && GameManager.Instance.currentRelicSlots >= 0)
+        if (context.started && GameManager.Instance.currentRelicSlots >= 0 && GameManager.Instance.gamePausable)
         {
             float input = context.ReadValue<float>();
 

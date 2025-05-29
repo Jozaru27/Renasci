@@ -64,8 +64,12 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().freezeRotation = true;
         GameManager.Instance.gameOver = true;
-        UIManager.Instance.EnableGameOverMenu();
         StatsManager.Instance.life = 0;
+    }
+
+    public void OpenGameOverMenu()
+    {
+        UIManager.Instance.EnableGameOverMenu();
     }
 
     void PushCharacter(Vector3 enemyPosition, float pushForce)
