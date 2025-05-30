@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         if (!GameManager.Instance.gameOver && !GameManager.Instance.gameWin)
-            inputMovement = context.ReadValue<Vector2>();
+            inputMovement = context.ReadValue<Vector2>().normalized;
     }
 
     private void FixedUpdate()

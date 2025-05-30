@@ -13,19 +13,20 @@ public class Interact : MonoBehaviour
             if (GameManager.Instance.inInfo)
             {
                 if (GameManager.Instance.infoShowed)
-                {
-                    Time.timeScale = 1;
-                    InfoPanel.Instance.ComproveRelicsList();
-                }
+                    InfoPanel.Instance.ConfirmFade();
             }
-            else
+            else if (GameManager.Instance.gamePausable)
             {
                 Ray cameraRay = new Ray(transform.position, transform.forward);
 
                 if (Physics.Raycast(cameraRay, out RaycastHit hit, interactionDistance, interactLayer))
                 {
                     if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+                    {
+                        GameManager.Instance.playerCannotMove = true;
+                        GetComponent<PlayerAnimation>().Interact();
                         interactObj.Interact();
+                    }
                 }
             }
         }

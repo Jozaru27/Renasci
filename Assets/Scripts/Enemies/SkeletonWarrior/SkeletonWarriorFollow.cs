@@ -53,7 +53,7 @@ public class SkeletonWarriorFollow : SkeletonWarriorStates
 
         skeletonWarrior.skeletonWarriorObject.GetComponent<SkeletonWarriorAnimation>().Run();
 
-        if (distanceToPlayer <= skeletonWarrior.stats.detectionDistance - 4)
+        if (distanceToPlayer <= 1.5f)
         {
             warriorNearPlayer = true;
         }

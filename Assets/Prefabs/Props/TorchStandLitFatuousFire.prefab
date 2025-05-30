@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5817892628351664125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115862090974411029}
+  m_Layer: 0
+  m_Name: TorchStandLitFatuousFire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &115862090974411029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817892628351664125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 76.29116, y: 1.817, z: 41.583}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3796852609884112403}
+  - {fileID: 4452078451356028906}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2070598263843684663
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 115862090974411029}
+    m_Modifications:
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803216088843879029, guid: 643918b8caaab0f48be7067f024913a4,
+        type: 3}
+      propertyPath: m_Name
+      value: FireRelic
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 643918b8caaab0f48be7067f024913a4, type: 3}
+--- !u!4 &3796852609884112403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2885997517149423396, guid: 643918b8caaab0f48be7067f024913a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2070598263843684663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7561415384075616756
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 115862090974411029}
+    m_Modifications:
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00021362305
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.039
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00077056885
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804004818094347428, guid: bf9b71b15683de7468214ce2d378c9ce,
+        type: 3}
+      propertyPath: m_Name
+      value: TorchStand
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf9b71b15683de7468214ce2d378c9ce, type: 3}
+--- !u!4 &4452078451356028906 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6136012627949587998, guid: bf9b71b15683de7468214ce2d378c9ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 7561415384075616756}
+  m_PrefabAsset: {fileID: 0}

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+
 
 public class HoverEffect : MonoBehaviour
 {
     public List<GameObject> uiElementsList;
+    public List<GameObject> ignorePointerClickReset;
+    private GameObject currentUIElement;
     public Color glowColor = new Color(1f, 1f, 0.5f, 1f);
     private Dictionary<GameObject, Color> originalColors = new Dictionary<GameObject, Color>();
 
@@ -60,8 +64,15 @@ public class HoverEffect : MonoBehaviour
 
     public void OnPointerEnter(GameObject uiElement)
     {
-        Image panelImage = uiElement.GetComponentInChildren<Image>();
+        Button btn = uiElement.GetComponent<Button>();
+        if (btn != null && !btn.interactable)
+            return;
 
+        InventoryMenu inventoryMenu = FindObjectOfType<InventoryMenu>();
+        if (uiElement.name.Contains("ArrowButton_01") && !inventoryMenu.CanGoLeft()) return;
+        if (uiElement.name.Contains("ArrowButton_02") && !inventoryMenu.CanGoRight()) return;
+
+        Image panelImage = uiElement.GetComponentInChildren<Image>();
         if (panelImage != null)
         {
             soundsManager.PlayHoverSound();
@@ -71,6 +82,10 @@ public class HoverEffect : MonoBehaviour
 
     public void OnPointerExit(GameObject uiElement)
     {
+        // Button btn = uiElement.GetComponent<Button>();
+        // if (btn != null && !btn.interactable)
+        //     return;
+
         if (originalColors.ContainsKey(uiElement))
         {
             Image panelImage = uiElement.GetComponentInChildren<Image>();
@@ -79,10 +94,75 @@ public class HoverEffect : MonoBehaviour
                 panelImage.color = originalColors[uiElement]; 
             }
         }
+
+        if (currentUIElement == uiElement)
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            currentUIElement = null;
+        }
     }
+
 
     public void OnPointerClick(GameObject uiElement)
     {
-        OnPointerExit(uiElement); 
+        Button btn = uiElement.GetComponent<Button>();
+        if (btn != null && !btn.interactable)
+            return;
+
+        InventoryMenu inventoryMenu = FindObjectOfType<InventoryMenu>();
+        if (uiElement.name.Contains("ArrowButton_01") && !inventoryMenu.CanGoLeft()) return;
+        if (uiElement.name.Contains("ArrowButton_02") && !inventoryMenu.CanGoRight()) return;
+
+        OnPointerExit(uiElement);
+
+        StartCoroutine(RestoreHoverNextFrame(uiElement));
     }
+
+    private IEnumerator RestoreHoverNextFrame(GameObject uiElement)
+    {
+        yield return null;
+        
+        if (IsPointerOver(uiElement))
+        {
+            OnPointerEnter(uiElement);
+        }
+    }
+
+    private bool IsPointerOver(GameObject obj)
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject == obj || result.gameObject.transform.IsChildOf(obj.transform))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    public void ResetAllHoverEffects()
+    {
+        foreach (GameObject uiElement in uiElementsList)
+        {
+            if (originalColors.ContainsKey(uiElement))
+            {
+                Image panelImage = uiElement.GetComponentInChildren<Image>();
+                if (panelImage != null)
+                {
+                    panelImage.color = originalColors[uiElement];
+                }
+            }
+        }
+    }
+
 }

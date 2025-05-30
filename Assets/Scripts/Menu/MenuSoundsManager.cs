@@ -16,8 +16,8 @@ public class MenuSoundsManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void playClickSound(){
-        Debug.Log(click);
+    public void playClickSound()
+    {
         audioSource.PlayOneShot(click,2f);
     }
 

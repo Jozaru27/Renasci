@@ -1,23 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AddRelicInventory : MonoBehaviour
 {
+    public string relicName;
+    public string relicDescription;
+
     [SerializeField] RelicsInventoryScriptableObject relicInfo;
+    [SerializeField] AudioClip relicClip;
+
+    // public AudioClip relicPickupSound;
+    // private AudioSource audioSource;
+
+    void Start()
+    {
+        // audioSource = GetComponent<AudioSource>();
+    }
 
     public void PassInfoToInventory()
     {
-        InventoryMenu.Instance.AddToInventory(relicInfo);
+        InventoryMenu.Instance.AddToInventory(relicName, relicDescription, relicInfo);
+
+        // if (relicPickupSound != null && audioSource != null)
+        // {
+        //     audioSource.PlayOneShot(relicPickupSound, 5f);
+        // }
 
         if (relicInfo.relicType.ToString() == "Passive")
         {
+            UIManager.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(relicClip, 1.5f);
+
             switch (relicInfo.relicName)
             {
                 case "Crimson Fury":
                     if (!RelicInfoManager.Instance.crimsonFury)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.crimsonFury = true;
                     }
 
@@ -25,7 +46,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Dance Of The Shadows":
                     if (!RelicInfoManager.Instance.danceOfTheShadows)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.danceOfTheShadows = true;
                     }
 
@@ -33,7 +55,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Eye Of The Falcon":
                     if (!RelicInfoManager.Instance.eyeOfTheFalcon)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.eyeOfTheFalcon = true;
                     }
 
@@ -41,7 +64,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Hand Of The Gunner":
                     if (!RelicInfoManager.Instance.handOfTheGunner)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.handOfTheGunner = true;
                     }
 
@@ -49,7 +73,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Ilusory Track":
                     if (!RelicInfoManager.Instance.ilusoryTrack)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.ilusoryTrack = true;
                     }
 
@@ -57,7 +82,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Roar Of The Thunder":
                     if (!RelicInfoManager.Instance.roarOfTheThunder)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.roarOfTheThunder = true;
                     }
 
@@ -65,7 +91,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Sword Of The Fallen":
                     if (!RelicInfoManager.Instance.swordOfTheFallen)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.swordOfTheFallen = true;
                     }
 
@@ -74,7 +101,8 @@ public class AddRelicInventory : MonoBehaviour
 
                     if (!RelicInfoManager.Instance.titaniumHeart)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.titaniumHeart = true;
                     }
 
@@ -82,7 +110,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Tree Of Eternity":
                     if (!RelicInfoManager.Instance.treeOfEternity)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.treeOfEternity = true;
                     }
 
@@ -90,7 +119,8 @@ public class AddRelicInventory : MonoBehaviour
                 case "Wings Of The Wind":
                     if (!RelicInfoManager.Instance.wingsOfTheWind)
                     {
-                        InfoPanel.Instance.AddRelic(relicInfo, 1f);
+                        //InfoPanel.Instance.AddRelic(relicName, relicDescription, relicInfo, 1f);
+                        InfoPanel.Instance.AddTextWithImage(relicName, relicDescription + " " + relicInfo.value + relicInfo.valueQuantity, relicInfo.image, 1f);
                         RelicInfoManager.Instance.wingsOfTheWind = true;
                     }
 
@@ -100,5 +130,19 @@ public class AddRelicInventory : MonoBehaviour
             InventoryMenu.Instance.UpdateStats();
             Destroy(this.gameObject);
         }
+        else
+        {
+            UIManager.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(relicClip, 1.5f);
+        }
+    }
+
+    public void ChangeName(string newName)
+    {
+        relicName = newName;
+    }
+
+    public void ChangeDescription(string newDescription)
+    {
+        relicDescription = newDescription;
     }
 }

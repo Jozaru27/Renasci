@@ -12,6 +12,7 @@ public class PlayerSounds : MonoBehaviour
     public AudioClip attack;
     public AudioClip death;
     public AudioClip hit;
+    public AudioClip shoot;
     
     // Start is called before the first frame update
     void Start()
@@ -78,4 +79,10 @@ public class PlayerSounds : MonoBehaviour
             GetComponent<PlayerHealth>().damaged = false;
         }
     }
+
+    public void playShootSound()
+    {
+        audioSource.PlayOneShot(shoot, 5f);
+    }
+
 }

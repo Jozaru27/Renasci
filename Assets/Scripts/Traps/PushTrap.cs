@@ -7,6 +7,7 @@ public class PushTrap : MonoBehaviour
     GameObject playerObj;
 
     [SerializeField] Collider trigger;
+    [SerializeField] Transform pushPosition;
 
     public GameObject pushZone;
     public float pushForce = 25f;
@@ -16,10 +17,14 @@ public class PushTrap : MonoBehaviour
     private bool isPushing = false;
     bool playerInside;
 
+    AudioSource audioSource;
+    public AudioClip pushSound;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         playerObj = GameObject.Find("Player");
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +34,8 @@ public class PushTrap : MonoBehaviour
             isPushing = true;
             playerInside = true;
             GameManager.Instance.playerCannotMove = true;
-            animator.Play("IdlePush");
+            animator.Play("Push_PushTrap");
+            audioSource.PlayOneShot(pushSound, 5f);
         }
 
         //Debug.Log("Player collided with DetectionZone");
@@ -48,8 +54,11 @@ public class PushTrap : MonoBehaviour
     {
         if (playerInside)
         {
-            Vector3 modifiedPosition = new Vector3(transform.position.x, playerObj.transform.position.y, transform.position.z);
-            Vector3 dir = (playerObj.transform.position - modifiedPosition).normalized;
+            Vector3 frontDirection = transform.forward;
+            //Vector3 modifiedPosition = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y, pushPosition.position.z);
+            Vector3 modifiedPosition = new Vector3(frontDirection.x, playerObj.transform.position.y, frontDirection.z);
+            //Vector3 dir = (playerObj.transform.position - modifiedPosition).normalized;
+            Vector3 dir = modifiedPosition.normalized;
             playerObj.gameObject.GetComponent<Rigidbody>().AddForce(dir * pushForce, ForceMode.Impulse);
 
             StartCoroutine(MakePlayerMove());
@@ -58,9 +67,8 @@ public class PushTrap : MonoBehaviour
 
     public void PushingFalse()
     {
-        Debug.Log("B");
         isPushing = false;
-        animator.Play("PushTrackAttack");
+        animator.Play("Idle_Push");
         StartCoroutine(ResetTrigger());
     }
 

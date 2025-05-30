@@ -1,0 +1,313 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Base Localization Collection Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Base Localization Collection
+  m_TableCollectionNameGuidString: 3692496bde259a74892e9651b95e7d22
+  m_Entries:
+  - m_Id: 161350191833088
+    m_Key: relicdesc_illusorytrack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161364238557184
+    m_Key: relicdesc_swordofthefallen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161294948655104
+    m_Key: relicdesc_eyeofthefalcon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161406152237056
+    m_Key: relicdesc_treeofeternity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161274803412992
+    m_Key: relicdesc_danceoftheshadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160580620935168
+    m_Key: relicdesc_crimsonfury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160214181371904
+    m_Key: Active Relics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161434837082112
+    m_Key: relicdesc_wingsofthewind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161315110674432
+    m_Key: relicdesc_handofthegunner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161385549815808
+    m_Key: relicdesc_titaniumheart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161332231823360
+    m_Key: relicdesc_roarofthethunder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160391885643776
+    m_Key: Attack Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158830665031680
+    m_Key: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158510568333312
+    m_Key: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162640934363136
+    m_Key: Bottled Hurricane
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160402975383552
+    m_Key: Cadence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160345182068736
+    m_Key: Critical Strike Chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160302224007168
+    m_Key: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160321719132160
+    m_Key: Damage Multiplier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160421648424960
+    m_Key: Dash Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162359836303360
+    m_Key: Fatous Fire Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160446004748288
+    m_Key: Evasion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158408554471424
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162609544192000
+    m_Key: Fatuous Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158467316670464
+    m_Key: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159184848838656
+    m_Key: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160168236965888
+    m_Key: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198038477758464
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160258112512000
+    m_Key: Life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160267834908672
+    m_Key: Life Regeneration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160109395075072
+    m_Key: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160241314324480
+    m_Key: Maximum Life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160369446117376
+    m_Key: Movement Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159515913641984
+    m_Key: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203086700109824
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160197144109056
+    m_Key: Passive Relics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 201755071504384
+    m_Key: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162627797803008
+    m_Key: Permafrost Floe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129503164522496
+    m_Key: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162509761699840
+    m_Key: Wind Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162558105247744
+    m_Key: Relic Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158555514494976
+    m_Key: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160091959353344
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158355576217600
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159205598060544
+    m_Key: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160229306032128
+    m_Key: Stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162439741988864
+    m_Key: Ice Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158788315144192
+    m_Key: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203194976067584
+    m_Key: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203245790060544
+    m_Key: Game Over Message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203303176527872
+    m_Key: Renasci
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204082079752192
+    m_Key: Escaped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204549438464000
+    m_Key: Escaped Message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 205639294803968
+    m_Key: Stats Complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206707248488448
+    m_Key: Relic Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 285560641839104
+    m_Key: relic_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336444912590848
+    m_Key: relicname_illusorytrack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336482288033792
+    m_Key: relicname_swordofthefallen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336493696540672
+    m_Key: relicname_eyeofthefalcon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336506791157760
+    m_Key: relicname_treeofeternity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336519835443200
+    m_Key: relicname_danceoftheshadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336533458542592
+    m_Key: relicname_crimsonfury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336547920502784
+    m_Key: relicname_wingsofthewind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336560067207168
+    m_Key: relicname_handofthegunner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336571173724160
+    m_Key: relicname_titaniumheart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336582108274688
+    m_Key: relicname_roarofthethunder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694432306413568
+    m_Key: relic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 715017153527808
+    m_Key: relic_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 811853680566272
+    m_Key: stats_showcase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5402135113850880
+    m_Key: Credits_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428052670373888
+    m_Key: ActiveRelicDesc
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8273303057147363359
+  references:
+    version: 2
+    RefIds:
+    - rid: 8273303057147363359
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1747216414126

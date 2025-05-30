@@ -18,12 +18,12 @@ public class FreezableObjectScript : MonoBehaviour
         currentColor.a = ice_02.GetComponent<Renderer>().material.color.a;
     }
 
-    public void Freeze(GameObject freezeManager)
+    public void Freeze(Collider collision)
     {
-        StartCoroutine(StartFreezing(freezeManager));
+        StartCoroutine(StartFreezing(collision));
     }
 
-    IEnumerator StartFreezing(GameObject freezeManager)
+    IEnumerator StartFreezing(Collider waterCollision)
     {
         ice_02.SetActive(true);
 
@@ -42,9 +42,6 @@ public class FreezableObjectScript : MonoBehaviour
 
         currentMaterial = solidMaterial;
         ice_01.GetComponent<Renderer>().material = currentMaterial;
-        
-
-        if (freezeManager != null)
-            Destroy(freezeManager);
+        waterCollision.enabled = false;
     }
 }

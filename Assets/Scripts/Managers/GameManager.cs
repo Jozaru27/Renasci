@@ -14,12 +14,32 @@ public class GameManager : MonoBehaviour
     public bool onInventory;
     public bool inInfo;
     public bool infoShowed;
+    public bool inMenu;
+    public bool alreadyStarted;
+    public bool firstConfussion;
+    public bool relicInfoObtained;
+    public bool victoryObtained;
+    public bool gamePausable;
     public GameObject[] enemies;
+
+    public Sprite keyboardControls;
+    public Sprite gamepadControls;
+
+    public enum Languajes
+    {
+        ENGLISH,
+        SPANISH,
+        VALENCIAN
+    };
+
+    public Languajes currentLanguaje;
 
     public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
+        currentLanguaje = Languajes.SPANISH;
+
         if (Instance != null && Instance != this)
             Destroy(this);
         else
@@ -46,5 +66,11 @@ public class GameManager : MonoBehaviour
         onInventory = false;
         inInfo = false;
         infoShowed = false;
+        inMenu = false;
+        alreadyStarted = false;
+        firstConfussion = false;
+        relicInfoObtained = false;
+        victoryObtained = false;
+        gamePausable = false;
     }
 }

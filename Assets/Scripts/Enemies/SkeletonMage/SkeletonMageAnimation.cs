@@ -5,10 +5,12 @@ using UnityEngine;
 public class SkeletonMageAnimation : MonoBehaviour
 {
     [HideInInspector] public Animator skeletonMageAnim;
+    [SerializeField] GameObject book;
 
     void Start()
     {
         skeletonMageAnim = GetComponent<Animator>();
+        book.GetComponent<Animator>().speed = 0;
     }
 
     public void Idle()
@@ -19,6 +21,8 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
         skeletonMageAnim.SetBool("Teleport", false);
+        book.GetComponent<Animator>().Play("Book_Open");
+        book.GetComponent<Animator>().speed = 0;
     }
     public void Run()
     {
@@ -28,6 +32,8 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
         skeletonMageAnim.SetBool("Teleport", false);
+        book.GetComponent<Animator>().Play("Book_Open");
+        book.GetComponent<Animator>().speed = 0;
     }
     public void Attack()
     {
@@ -37,6 +43,7 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
         skeletonMageAnim.SetBool("Teleport", false);
+        book.GetComponent<Animator>().speed = 1;
     }
     public void SecondAttack()
     {
@@ -46,6 +53,8 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", true);
         skeletonMageAnim.SetBool("Teleport", false);
+        book.GetComponent<Animator>().Play("Book_Open");
+        book.GetComponent<Animator>().speed = 0;
     }
     public void Hit()
     {
@@ -55,7 +64,8 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Hit", true);
         skeletonMageAnim.SetBool("SecondAttack", false);
         skeletonMageAnim.SetBool("Teleport", false);
-        GetComponent<SkeletonMage>().goToIdle = true;
+        book.GetComponent<Animator>().Play("Book_Open");
+        book.GetComponent<Animator>().speed = 0;
     }
     public void Teleport()
     {
@@ -65,6 +75,8 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("Hit", false);
         skeletonMageAnim.SetBool("SecondAttack", false);
         skeletonMageAnim.SetBool("Teleport", true);
+        book.GetComponent<Animator>().Play("Book_Open");
+        book.GetComponent<Animator>().speed = 0;
     }
     public void Death()
     {
@@ -75,5 +87,13 @@ public class SkeletonMageAnimation : MonoBehaviour
         skeletonMageAnim.SetBool("SecondAttack", false);
         skeletonMageAnim.SetBool("Teleport", false);
         skeletonMageAnim.SetBool("Death", true);
+        book.GetComponent<Animator>().Play("Book_Open");
+        book.GetComponent<Animator>().speed = 0;
+    }
+
+    public void ChangeToIdleState()
+    {
+        GetComponent<SkeletonMage>().goToIdle = true;
+        GetComponent<SkeletonMage>().damaged = false;
     }
 }

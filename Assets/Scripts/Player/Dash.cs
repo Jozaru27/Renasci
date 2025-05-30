@@ -9,6 +9,7 @@ public class Dash : MonoBehaviour
     [SerializeField] float dashForce;
     [SerializeField] float dashTime;
     [SerializeField] float maxDashSpeed;
+    [SerializeField] GameObject dashDust;
 
     bool canDash = true;
     Rigidbody rb;
@@ -22,7 +23,7 @@ public class Dash : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && !dashing && canDash)
+        if (context.performed && !dashing && canDash && GameManager.Instance.gamePausable)
         {
             if (pMov.inputMovement.magnitude > 0)
             {
@@ -30,6 +31,8 @@ public class Dash : MonoBehaviour
                 StartCoroutine(Dashing());
                 GetComponent<PlayerHealth>().ChangeVencibleColor();
                 StartCoroutine(GetComponent<PlayerHealth>().InvencibleDash(dashTime));
+
+                UIManager.Instance.ResetStamina();
 
                 rb.AddForce(pMov.movement * dashForce, ForceMode.Impulse);
             }
@@ -43,6 +46,7 @@ public class Dash : MonoBehaviour
     IEnumerator Dashing()
     {
         GetComponent<PlayerAnimation>().Dash();
+        dashDust.GetComponent<ParticleSystem>().Play();
         dashing = true;
 
         yield return new WaitForSeconds(dashTime);

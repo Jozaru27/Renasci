@@ -68,20 +68,35 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: -6167517807227735908, guid: b38e8d3a057fb934a865553a69c472f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b38e8d3a057fb934a865553a69c472f2,
         type: 3}
       propertyPath: m_Name
-      value: SpikeTrap
+      value: TrapSpike
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b38e8d3a057fb934a865553a69c472f2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b38e8d3a057fb934a865553a69c472f2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250148745893228957, guid: b38e8d3a057fb934a865553a69c472f2,
         type: 3}
       propertyPath: m_TagString
       value: Trap
       objectReference: {fileID: 0}
     - target: {fileID: 7250148745893228957, guid: b38e8d3a057fb934a865553a69c472f2,
         type: 3}
-      propertyPath: m_TagString
-      value: Trap
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8562750136851336434, guid: b38e8d3a057fb934a865553a69c472f2,
         type: 3}
@@ -104,6 +119,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5850824322175613244}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b38e8d3a057fb934a865553a69c472f2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5396955340719019015}
     - targetCorrespondingSourceObject: {fileID: -6167517807227735908, guid: b38e8d3a057fb934a865553a69c472f2,
         type: 3}
       insertIndex: -1
@@ -202,3 +221,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0028476ace9413a438c00a65ae9e40c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpikeAttack: {fileID: 8300000, guid: 288fc05af0e42a44c935e7df581185bd, type: 3}
+--- !u!82 &5396955340719019015
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358626007046648117}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -6971888649239260134, guid: 2fcd719f7b366c14b93d53009a5a503b,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 288fc05af0e42a44c935e7df581185bd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.073
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 256
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -1,4 +1,8 @@
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -8,17 +12,41 @@ public class MainMenu : MonoBehaviour
     [Header("Setting Areas")]
     [SerializeField] GameObject audioArea;
     [SerializeField] GameObject videoArea;
-    
-    public void Play()
+    [Header("Buttons")]
+    [SerializeField] Button videoButton;
+    [SerializeField] Button settingsButton;
+    [SerializeField] Button playButton;
+
+    [SerializeField] Image fadeImg;
+    [SerializeField] Button[] menuButtons;
+
+    private void Start()
     {
-        SceneLoader.Instance.LoadNextScene();
+        GamepadMenuSupport.Instance.inMenu = true;
+        GamepadMenuSupport.Instance.lastSelectedObject = playButton.gameObject;
+
+        Time.timeScale = 1f;
     }
 
     public void Settings()
     {
         settingsMenu.SetActive(true);
         mainMenu.SetActive(false);
-        EnableAudioArea();
+        EnableVideoArea();
+        EventSystem.current.SetSelectedGameObject(videoButton.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = videoButton.gameObject;
+    }
+
+    public void Credits()
+    {
+        foreach (Button currentButton in menuButtons)
+        {
+            currentButton.interactable = false;
+        }
+
+        fadeImg.gameObject.SetActive(true);
+
+        StartCoroutine(FadeToBlack());
     }
 
     public void Exit()
@@ -30,6 +58,8 @@ public class MainMenu : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         mainMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(settingsButton.gameObject);
+        GamepadMenuSupport.Instance.lastSelectedObject = playButton.gameObject;
     }
 
     public void EnableAudioArea()
@@ -42,5 +72,27 @@ public class MainMenu : MonoBehaviour
     {
         audioArea.SetActive(false);
         videoArea.SetActive(true);
+    }
+
+    IEnumerator FadeToBlack()
+    {
+        Color fadeColor = Color.black;
+        fadeColor.a = 0;
+
+        fadeImg.color = fadeColor;
+
+        float timeElapsed = 0f;
+
+        while (fadeImg.color.a < 1)
+        {
+            timeElapsed += Time.deltaTime;
+
+            fadeColor.a += 1 * 0.35f * Time.deltaTime;
+            fadeImg.color = fadeColor;
+
+            yield return null;
+        }
+
+        SceneLoader.Instance.LoadSpecificSceneAsync(2);
     }
 }

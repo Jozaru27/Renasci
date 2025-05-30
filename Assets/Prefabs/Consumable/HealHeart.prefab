@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heal: 1.5
+  healClip: {fileID: 8300000, guid: abd378f76fcc3724fbf94dafa1147c85, type: 3}
 --- !u!114 &4935440811804466005
 MonoBehaviour:
   m_ObjectHideFlags: 0

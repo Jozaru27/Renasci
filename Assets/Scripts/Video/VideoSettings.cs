@@ -9,29 +9,36 @@ public class VideoSettings : MonoBehaviour
     public Toggle fullscreenToggle;
     public TMP_Dropdown resolutionDropdown;
 
-    private Resolution[] resolutions;
+    private List<Vector2Int> allowedResolutions = new List<Vector2Int>
+    {
+        new Vector2Int(1920, 1080),
+        new Vector2Int(1600, 900),
+        new Vector2Int(1366, 768),
+        new Vector2Int(1280, 720)
+    };
 
     void Start()
     {
-        // Load Full Screen Value from Player Refs
         fullscreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
 
-        // Fills Drop Down with resolution
-        resolutions = Screen.resolutions;
-
         List<string> options = new List<string>();
+        int currentResolutionIndex = 0;
 
-        foreach (var resolution in resolutions)
+        for (int i = 0; i < allowedResolutions.Count; i++)
         {
-            options.Add(resolution.width + "x" + resolution.height);
+            Vector2Int res = allowedResolutions[i];
+            string resString = res.x + "x" + res.y;
+            options.Add(resString);
+
+            if (Screen.width == res.x && Screen.height == res.y)
+            {
+                currentResolutionIndex = i;
+            }
         }
-        
+
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(options);
-
-        // Establish actual resolution
-        int currentResolutionIndex = GetCurrentResolutionIndex();
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.onValueChanged.AddListener(ChangeResolution);
@@ -39,33 +46,43 @@ public class VideoSettings : MonoBehaviour
 
     public void SetFullscreen(bool isFullscreen)
     {
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+
         if (isFullscreen)
         {
-            Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
-            PlayerPrefs.SetInt("Fullscreen", 1);
+            Screen.SetResolution(Screen.width, Screen.height, true);
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
         }
         else
         {
-            Screen.SetResolution(1280, 720, false);
-            PlayerPrefs.SetInt("Fullscreen", 0);
+            Screen.SetResolution(1920, 1080, false);
+            Screen.fullScreenMode = FullScreenMode.Windowed;
         }
-    }
 
-    private int GetCurrentResolutionIndex()
-    {
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
-            {
-                return i;
-            }
-        }
-        return 0;
+        Debug.Log("Fullscreen mode set to: " + Screen.fullScreenMode);
     }
 
     private void ChangeResolution(int index)
     {
-        Resolution selectedResolution = resolutions[index];
-        Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
+        Vector2Int selectedRes = allowedResolutions[index];
+        Screen.SetResolution(selectedRes.x, selectedRes.y, Screen.fullScreen);
+        
+        if (Screen.fullScreen)
+        {
+            Screen.SetResolution(selectedRes.x, selectedRes.y, true);
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+            StartCoroutine(RefreshFullscreen());
+        }
+        else
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+
+        Debug.Log($"Changed resolution to: {selectedRes.x}x{selectedRes.y}, fullscreen mode: {Screen.fullScreenMode}");
+    }
+
+    private IEnumerator RefreshFullscreen()
+    {
+        Screen.fullScreen = false;
+        yield return null; 
+        Screen.fullScreen = true;
     }
 }

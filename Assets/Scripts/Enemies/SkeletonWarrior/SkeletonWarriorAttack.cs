@@ -67,9 +67,6 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
             nextState = new SkeletonWarriorIdle(skeletonWarrior);
             actualPhase = EVENTS.EXIT;
         }
-        
-
-
     }
 
     public override void Exit()
@@ -85,12 +82,16 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
         
         
     }
-    public bool playerFar(){
-    if(skeletonWarrior.warriorAttackFinish==true){
-        return true;
-    }else{
-        return false;
-    }
+
+    public bool playerFar()
+    {
+        if (skeletonWarrior.warriorAttackFinish == true){
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
     }
     /*
     IEnumerator GoingToBlock()
@@ -100,7 +101,4 @@ public class SkeletonWarriorAttack : SkeletonWarriorStates
         
     }
     */
-    
-
-    
 }

@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class SkeletonWarrior : MonoBehaviour, IDamageable
 {
     public NavMeshAgent skeletonWarriorAgent;
-    public Renderer rend1, rend2, rend3;
+    public Renderer[] rends;
     public Collider attackTrigger;
     SkeletonWarriorStates FSM;
     Rigidbody rb;
@@ -34,6 +34,14 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     bool inCombat;
 
     float distanceToPlayer;
+
+    public AudioSource audioSource;
+    public AudioClip SkeletonWarriorTakeDamage;
+    public AudioClip SkeletonWarriorDeath;
+    public AudioClip SkeletonWarriorDraw;
+    public AudioClip SkeletonWarriorAttack;
+    public AudioClip SkeletonWarriorBlock;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,6 +55,8 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         skeletonWarriorAgent.speed = stats.movementSpeed;
       
         FSM = new SkeletonWarriorIdle(this);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -90,12 +100,14 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     {
         float pushedForce = stats.pushedForce;
 
-        if(isBlocking==false && !stateDamage){
+        if(isBlocking == false && !stateDamage){
             stats.life += amount;
             StartCoroutine(ChangingColor());
             damaged = true;
+            PlayTakeDamageSound();
         }
-        else{
+        else
+        {
             pushedForce *= 0.5f;
         }
         
@@ -107,6 +119,7 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
 
         if (stats.life <= 0)
         {
+            PlayDeathSound();
             stats.life = 0;
             AmbientMusicManager.Instance.ExitCombatMode();
             GetComponent<SkeletonWarriorAnimation>().Death();
@@ -129,21 +142,27 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
             rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
         }
 
+        if (isBlocking == true)
+        {
+            PlayBlockSound();
+        }
+
         //damaged = true;////
     }
 
     IEnumerator ChangingColor()
     {
-        //Placeholder
-        rend1.material.color = Color.red;
-        rend2.material.color = Color.red;
-        rend3.material.color = Color.red;
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.red;
+        }
 
         yield return new WaitForSeconds(0.125f);
 
-        rend1.material.color = Color.white;
-        rend2.material.color = Color.white;
-        rend3.material.color = Color.white;
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.white;
+        }
     }
 
     public void DestroyThisObject()
@@ -182,7 +201,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0);
         warriorAttackFinish = true;
         GetComponent<SkeletonWarriorAnimation>().Idle();
-        Debug.Log("Termina ataque");
     }
 
     public void AttackToBlock()
@@ -198,10 +216,39 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         //yield return new WaitForSeconds(1.5f);
         yield return new WaitForSeconds(0f);
         startBlock = true;
-        Debug.Log("EmpiezaBloqueo");
     }
 
     //public void EnableAmbient(){
     //    AmbientSoundManager.Instance.enableCombatMusic = false;
     //}
+
+    public void PlayTakeDamageSound()
+    {
+        if (SkeletonWarriorTakeDamage != null)
+            audioSource.PlayOneShot(SkeletonWarriorTakeDamage, 1f);
+    }
+
+    public void PlayDeathSound()
+    {
+        if (SkeletonWarriorDeath != null)
+            audioSource.PlayOneShot(SkeletonWarriorDeath, 3f);
+    }
+
+    public void PlayDrawSound()
+    {
+        if (SkeletonWarriorBlock != null)
+            audioSource.PlayOneShot(SkeletonWarriorDraw, 1f);
+    }
+
+    public void PlayAttackSound()
+    {
+        if (SkeletonWarriorAttack != null)
+            audioSource.PlayOneShot(SkeletonWarriorAttack, 1f);
+    }
+
+    public void PlayBlockSound()
+    {
+        if (SkeletonWarriorBlock != null)
+            audioSource.PlayOneShot(SkeletonWarriorBlock, 1f);
+    }
 }

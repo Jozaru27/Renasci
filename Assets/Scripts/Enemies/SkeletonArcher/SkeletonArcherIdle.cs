@@ -66,7 +66,8 @@ public class SkeletonArcherIdle : SkeletonArcherStates
     IEnumerator WaitAndPatrol()
     {
         yield return new WaitForSeconds(waitTime);
-        if (!skeletonArcher.lookingAtPlayer)
+
+        if (actualPhase == EVENTS.UPDATING && !skeletonArcher.lookingAtPlayer)
         {
             nextState = new SkeletonArcherPatrol(skeletonArcher);
             actualPhase = EVENTS.EXIT;

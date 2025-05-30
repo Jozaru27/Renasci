@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    int sceneToLoad;
+
     public static SceneLoader Instance { get; private set; }
 
     private void Awake()
@@ -23,7 +25,8 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadMainMenuAsync()
     {
-        SceneManager.LoadSceneAsync(0);
+        sceneToLoad = 0;
+        GoToLoadingScene();
     }
 
     public void LoadNextScene()
@@ -33,7 +36,8 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadNextSceneAsync()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        sceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        GoToLoadingScene();
     }
 
     public void LoadPreviousScene()
@@ -43,7 +47,8 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadPreviousSceneAsync()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
+        sceneToLoad = SceneManager.GetActiveScene().buildIndex - 1;
+        GoToLoadingScene();
     }
 
     public void LoadCurrentScene()
@@ -53,6 +58,28 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadCurrentSceneAsync()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+        GoToLoadingScene();
+    }
+
+    public void LoadSpecificScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadSpecificSceneAsync(int sceneIndex)
+    {
+        sceneToLoad = sceneIndex;
+        GoToLoadingScene();
+    }
+
+    void GoToLoadingScene()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void StartLoading()
+    {
+        SceneManager.LoadSceneAsync(sceneToLoad);
     }
 }

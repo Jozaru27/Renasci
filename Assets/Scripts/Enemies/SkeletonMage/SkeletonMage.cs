@@ -1,194 +1,153 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class SkeletonMage : MonoBehaviour, IDamageable
 {
-    public NavMeshAgent skeletonMageAgent;
-    public Renderer rend1, rend2;
-    SkeletonMageStates FSM;
-    Rigidbody rb;
+    [Header("Particles")]
+    [SerializeField] GameObject initialTpParticles;
+    [SerializeField] GameObject finalTpParticles;
+    [SerializeField] GameObject rayCollisionParticles;
+    [SerializeField] GameObject rayRecharge;
 
-    public EnemyStats stats;
-    public GameObject playerObject;
-    public GameObject skeletonMageObject;
-    public Animator skeletonMageAnimator;
-    public LayerMask playerMask;
-    public LayerMask secondAttackMask;
+    [Header("Renderers")]
+    [SerializeField] Renderer[] rends;
+    [SerializeField] LineRenderer rayRend;
 
-    //public float angularVelocityOnBlock;
-    //public bool isBlocking=false;
-    public bool lookingAtPlayer = false;
-    //public bool startBlock = false;
-    public bool mageAttackFinish = false;
-    public bool isDamageable = false;
-    public bool attacking = false;
-    public bool secondAttack = false;
+    [Header("EnemyAttack")]
+    [SerializeField] LayerMask playerMask;
+
+    [Header("Bullet Attack Management")]
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform bulletFirePoint;
+
+    [Header("Ray Attack Management")]
+    [SerializeField] Transform rayFirePoint;
+    [SerializeField] GameObject magicRay;
+    [SerializeField] LayerMask rayAttackMask;
+
+    public bool teleporting;
+    public bool attacking;
+    public bool frozen;
+    public bool damaged;
     public bool dead;
     public bool goToIdle;
-    public bool damaged;
-    public bool playerDirectionTaken;
-    public bool frozen;
+    public bool lookingAtPlayer;
 
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    public Transform secondFirePoint;
+    [HideInInspector] public GameObject playerObj;
+    [HideInInspector] public EnemyStats stats;
+    [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public Animator anim;
 
-    public bool teleporting = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
+    bool usingRay;
+    Rigidbody rb;
 
-    float distanceToPlayer;
-    bool inCombat;
+    SkeletonMageStates FSM;
 
-    [SerializeField] GameObject cylinder; //PLACEHOLDER
-    void Start()
+    bool isTeleporting = false;
+
+    public AudioSource audioSource;
+
+    public AudioClip SkeletonMageTakeDamage;
+    public AudioClip SkeletonMageDeath;
+    public AudioClip SkeletonMageAttackOrb;
+    public AudioClip SkeletonMageAttackRay;
+    public AudioClip SkeletonMageAttackRayHold;
+    public AudioClip SkeletonMageTeleport;
+    
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        playerObj = GameObject.Find("Player");
         stats = GetComponent<EnemyStats>();
-        skeletonMageAgent = GetComponent<NavMeshAgent>();
-        playerObject = GameObject.Find("Player");
-        skeletonMageObject = this.gameObject;
-        skeletonMageAnimator = skeletonMageObject.GetComponent<Animator>();
-        playerMask = LayerMask.GetMask("Player");
-
-        skeletonMageAgent.speed = stats.movementSpeed;
+        agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
+        agent.speed = stats.movementSpeed;
 
         FSM = new SkeletonMageIdle(this);
     }
 
-    void Update()
+    private void Update()
     {
-        FSM = FSM.Process();
-
-        distanceToPlayer = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
-
-        RaycastHit hit;
-        if (Physics.Raycast(skeletonMageObject.transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, playerMask))
-        {
-            lookingAtPlayer = true;
-        }
-        else
-        {
-            lookingAtPlayer = false;
-        }
+        float distanceToPlayer = Vector3.Distance(transform.position, playerObj.transform.position);
 
         NavMeshPath path = new NavMeshPath();
+        bool pathExists = false;
 
-        if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonMageAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
-        {
+        if (agent.CalculatePath(playerObj.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+            pathExists = true;
+
+        if (distanceToPlayer <= stats.detectionDistance && pathExists)
             AmbientMusicManager.Instance.EnterCombatMode();
-            inCombat = true;
-        }
-        if ((distanceToPlayer > stats.detectionDistance || (!skeletonMageAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
-        {
+        else
             AmbientMusicManager.Instance.ExitCombatMode();
-            inCombat = false;
-        }
-    }
 
-    public void TakeDamage(float amount, bool stateDamage)
-    {
-        float pushedForce = stats.pushedForce;
+        Ray visionRay = new Ray(transform.position, transform.forward);
 
-        stats.life += amount;
-        StartCoroutine(ChangingColor());
-        damaged = true;
-
-        if (stats.life <= 0)
+        if (usingRay && Physics.Raycast(visionRay, out RaycastHit magicRayHit, Mathf.Infinity, rayAttackMask))
         {
-            stats.life = 0;
-            AmbientMusicManager.Instance.ExitCombatMode();
-            GetComponent<SkeletonMageAnimation>().Death();
-            GetComponent<CapsuleCollider>().enabled = false;
-            UIManager.Instance.ChangeEnemyCount();
-            rb.velocity = Vector3.zero;
-            rb.freezeRotation = true;
-            dead = true;
-            skeletonMageAgent.isStopped = true;
-            GetComponent<LinkWithRoom>().RemoveFromRoomList();
+            float rayLenght = Vector3.Distance(magicRayHit.point, rayRend.gameObject.transform.position);
+            Vector3 finalPoint = new Vector3(0, 0, rayLenght);
+            rayRend.SetPosition(1, finalPoint);
+            rayCollisionParticles.transform.position = magicRayHit.point;
+            rayCollisionParticles.transform.position = new Vector3(rayCollisionParticles.transform.position.x, rayRend.gameObject.transform.position.y, rayCollisionParticles.transform.position.z);
         }
 
-        GetComponent<SkeletonMageAnimation>().Hit();
+        if (Physics.Raycast(visionRay, out RaycastHit visionRayHit, Mathf.Infinity, playerMask))
+            lookingAtPlayer = true;
+        else
+            lookingAtPlayer = false;
 
-        if (!stateDamage)
-        {
-            Vector3 pushDirection = transform.position - playerObject.transform.position;
-            pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
-            rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
-        }
+        FSM = FSM.Process();
     }
 
-    IEnumerator ChangingColor()
+//    if (!inCombat)
+//        {
+//            AmbientMusicManager.Instance.EnterCombatMode();
+//            inCombat = true;
+//        }
+
+    public void BulletAttack()
     {
-        rend1.material.color = Color.red;
-        rend2.material.color = Color.red;
-
-        yield return new WaitForSeconds(0.125f);
-
-        rend1.material.color = Color.white;
-        rend2.material.color = Color.white;
-    }
-
-    public void DestroyThisObject()
-    {
-        LootSpawnManager.Instance.LootProbability(transform.position);
-        Destroy(this.gameObject);
+        GameObject magicBullet = Instantiate(bulletPrefab, bulletFirePoint.position, Quaternion.identity);
+        magicBullet.GetComponent<MagicBullet>().damage = stats.mainDamage;
+        magicBullet.GetComponent<MagicBullet>().pushForce = stats.pushForce;
     }
 
     public void FinishAttack()
     {
-        mageAttackFinish = true;
+        //mageAttackFinish = true;
+
         goToIdle = true;
-        GetComponent<SkeletonMageAnimation>().Idle();
-    }
-
-    // Crea una flecha que sale dispara en direcci�n al jugador y le da�a
-    public void AttackPlayer()
-    {
-        GameObject magicBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        Rigidbody bulletRb = magicBullet.GetComponent<Rigidbody>();
-        magicBullet.GetComponent<MagicBullet>().damage = stats.mainDamage;
-        magicBullet.GetComponent<MagicBullet>().pushForce = stats.pushForce;
-
-        //if (bulletRb != null)
-        //{
-        //    Vector3 adjustedPlayerPosition = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y + 1f, playerObject.transform.position.z);
-
-        //    Vector3 direction = (adjustedPlayerPosition - firePoint.position).normalized;
-
-        //    Quaternion rotation = Quaternion.LookRotation(direction);
-        //    magicBullet.transform.rotation = rotation * Quaternion.Euler(90f, 0f, 0f);
-
-        //    bulletRb.AddForce(direction * 15f, ForceMode.Impulse);
-        //}
-
         attacking = false;
     }
 
-    public IEnumerator MakingSecondAttack()
+    public void InitiateRay()
     {
-        secondAttack = true;
+        rayRecharge.SetActive(true);
+        rayRecharge.GetComponent<ParticleSystem>().Play();
+    }
 
-        yield return new WaitForSeconds(0.5f);
-
+    public IEnumerator RayAttack()
+    {
         float timer = 0;
-        cylinder.SetActive(true);
+        magicRay.SetActive(true);
+        rayRecharge.SetActive(false);
 
-        GetComponent<SkeletonMageAnimation>().SecondAttack();
-
-        while (timer < 3.5f && !teleporting)
+        while (timer < 3.5f)
         {
             yield return new WaitUntil(() => !frozen);
 
-            Vector3 playerDirection = playerObject.transform.position - skeletonMageObject.transform.position;
+            usingRay = true;
+
+            Vector3 playerDirection = playerObj.transform.position - transform.position;
             Quaternion playerRotation = Quaternion.LookRotation(playerDirection.normalized);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, 20 * Time.deltaTime);
 
-            Ray attackRay = new Ray(secondFirePoint.transform.position, transform.forward);
-            Debug.DrawRay(secondFirePoint.transform.position, transform.forward * 100, Color.red);
+            Ray attackRay = new Ray(rayFirePoint.transform.position, transform.forward);
 
-            if (Physics.Raycast(attackRay, out RaycastHit hit, Mathf.Infinity, secondAttackMask))
+            if (Physics.Raycast(attackRay, out RaycastHit hit, Mathf.Infinity, rayAttackMask))
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                     hit.collider.gameObject.GetComponent<PlayerHealth>().ChangeHealthAmount(-stats.secondaryDamage, hit.point, stats.pushForce);
@@ -199,187 +158,264 @@ public class SkeletonMage : MonoBehaviour, IDamageable
             yield return null;
         }
 
-        secondAttack = false;
+        usingRay = false;
         attacking = false;
-        cylinder.SetActive(false);
-
-        mageAttackFinish = true;
-        goToIdle = true;
-        GetComponent<SkeletonMageAnimation>().Idle();
+        magicRay.SetActive(false);
     }
 
-    // Hace que el mago se teletransporte cuando el jugador se acerca demasiado. Busca un sitio v�lido en la sala, si lo encuentra se teletransporta
-    // public IEnumerator Teleporting(float duration)
-    // {
-    //     Debug.Log("A");
-
-    //     damaged = false;
-
-    //     yield return new WaitForSeconds(duration);
-
-    //     Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
-    //     Vector3 targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
-    //     Vector3 firstVector = dirToPlayer;
-
-    //     bool exitLoop = false;
-    //     bool successfullLoop = false;
-
-    //     NavMeshPath path = new NavMeshPath();
-
-    //     int iterations = 0;
-
-    //     NavMeshHit hit;
-
-    //     //while (!skeletonMageAgent.CalculatePath(targetPosition, path) && !exitLoop)
-    //     //{
-    //     //    Debug.Log("B");
-    //     //    //dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
-    //     //    dirToPlayer = (Quaternion.AngleAxis(10f, Vector3.up) * dirToPlayer).normalized;
-
-    //     //    targetPosition = playerObject.transform.position - (dirToPlayer * stats.detectionDistance);
-
-    //     //    iterations++;
-
-    //     //    Debug.Log(path.status);
-
-    //     //    if (NavMesh.SamplePosition(playerObject.transform.position, out hit, 10f, NavMesh.AllAreas))
-    //     //    {
-    //     //        Debug.Log("JOZARU");
-    //     //    }
-    //     //    else
-    //     //        Debug.Log("MARICON");
-
-    //     //    if (path.status == NavMeshPathStatus.PathComplete /*&& */)
-    //     //    {
-    //     //        Debug.Log("C");
-    //     //        exitLoop = true;
-    //     //        successfullLoop = true;
-    //     //    }
-    //     //    else if (iterations >= 36 || dirToPlayer == firstVector)
-    //     //    {
-    //     //        Debug.Log("D");
-    //     //        exitLoop = true;
-    //     //    }
-    //     //}
-
-    //     //if (!(skeletonMageAgent.CalculatePath(targetPosition, path) && path.status == NavMeshPathStatus.PathComplete))
-    //     //{
-    //     //    FSM = new SkeletonMageAttack(this);
-    //     //    isRepositioning = false;
-    //     //    yield break;
-    //     //}
-
-    //     skeletonMageAgent.isStopped = false;
-    //     //skeletonMageAgent.SetDestination(targetPosition);
-
-    //     if (!dead && successfullLoop)
-    //     {
-    //         Debug.Log("E");
-    //         transform.position = targetPosition;
-    //     }
-    //     //skeletonMageObject.GetComponent<SkeletonMageAnimation>().Run();
-
-    //     while (skeletonMageAgent.pathPending || skeletonMageAgent.remainingDistance > 0.5f)
-    //     {
-    //         yield return null;
-    //     }
-
-    //     float distanceToPlayer = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
-
-    //     if (distanceToPlayer >= 5f && distanceToPlayer <= stats.detectionDistance)
-    //         FSM = new SkeletonMageAttack(this);
-    //     else
-    //         yield return new WaitForSeconds(2f);
-
-    //     isRepositioning = false;
-    // }
-
-    //JOSE: ESPERA 1F INDICADO EN FOLLOW. EVITA TELETRANSPORTACIONES MULTIPLES. SEGÚN LA POSICIÓN DEL JUGADOR, BUSCA UNA DISTANCIA RANDOM ENTRE 5F Y 10F DE DISTANCIA DEL MISMO
-    //JOSE: TRAS MARCAR UNA DISTANCIA, CALCULA EL PATH. SI PUEDE LLEGAR (ES DECIR, EL NAVMESH ESTÁ CONECTADO, HACE UN WARP [TELETRANSPORTE INSTANTÁNEO]).
-    public IEnumerator Teleporting(float duration)
+    public void StopAttack()
     {
-        GetComponent<SkeletonMageAnimation>().Teleport();
+        usingRay = false;
+        attacking = false;
+        magicRay.SetActive(false);
+        goToIdle = true;
+    }
 
-        damaged = false;
+    public void UseTeleport()
+    {
+        initialTpParticles.GetComponent<ParticleSystem>().Play();
 
-        yield return new WaitForSeconds(duration);
-
-        //if (hasTeleported) yield break;
-
-        Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
         float minDistance = 5f;
         float maxDistance = 10f;
+        float randomDistance = Random.Range(minDistance, maxDistance);
+
         Vector3 targetPosition;
+        Vector3 directionToPlayer = (transform.position - playerObj.transform.position).normalized;
+        Vector3 rotatedDir = Quaternion.AngleAxis(Random.Range(0, 360f), Vector3.up) * directionToPlayer;
+
+        targetPosition = playerObj.transform.position - rotatedDir * randomDistance;
 
         NavMeshPath path = new NavMeshPath();
 
-        float randomDistance = Random.Range(minDistance, maxDistance);
-        //Vector3 rotatedDir = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f) * dirToPlayer;
-        Vector3 rotatedDir = Quaternion.AngleAxis(Random.Range(0, 360f), Vector3.up) * dirToPlayer;
-        targetPosition = playerObject.transform.position - rotatedDir * randomDistance;
-
         if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 1f, NavMesh.AllAreas))
         {
-            if (skeletonMageAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
-                skeletonMageAgent.Warp(hit.position);
+            if (agent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                agent.Warp(hit.position);
         }
 
-        float distanceToPlayerFinal = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
+        float distanceToPlayerFinal = Vector3.Distance(transform.position, playerObj.transform.position);
 
-        transform.rotation = Quaternion.LookRotation(dirToPlayer * -1);
+        transform.rotation = Quaternion.LookRotation(directionToPlayer * -1);
 
-        //if (distanceToPlayerFinal <= stats.detectionDistance)
-        //    FSM = new SkeletonMageAttack(this);
-        //else
-        //    yield return new WaitForSeconds(0.1f);
+        finalTpParticles.GetComponent<ParticleSystem>().Play();
+
+        Debug.Log("SE LE QUITA EL TELEPORT");
 
         teleporting = false;
+        goToIdle = true;
     }
 
-    // public IEnumerator Teleporting(float duration)
-    // {
-    //     damaged = false;
-    //     yield return new WaitForSeconds(duration);
+    public void TakeDamage(float amount, bool stateDamage)
+    {
+        float pushedForce = stats.pushedForce;
 
-    //     Vector3 dirToPlayer = (skeletonMageObject.transform.position - playerObject.transform.position).normalized;
-    //     float radius = stats.detectionDistance;
-    //     Vector3 targetPosition;
-    //     bool foundValidSpot = false;
+        stats.life += amount;
+        StopAllCoroutines();
+        usingRay = false;
+        attacking = false;
+        magicRay.SetActive(false);
+        StartCoroutine(ChangingColor());
+        damaged = true;
+        PlayTakeDamageSound();
 
-    //     NavMeshPath path = new NavMeshPath();
-    //     int maxAttempts = 36;
-    //     int attempts = 0;
+        if (stats.life <= 0)
+        {
+            stats.life = 0;
+            AmbientMusicManager.Instance.ExitCombatMode();
+            GetComponent<SkeletonMageAnimation>().Death();
+            GetComponent<CapsuleCollider>().enabled = false;
+            rb.velocity = Vector3.zero;
+            rb.freezeRotation = true;
+            dead = true;
+            agent.isStopped = true;
+            GetComponent<LinkWithRoom>().RemoveFromRoomList();
+        }
 
-    //     while (attempts < maxAttempts)
-    //     {
-    //         float angle = attempts * 10f;
-    //         Vector3 rotatedDir = Quaternion.Euler(0f, angle, 0f) * dirToPlayer;
-    //         targetPosition = playerObject.transform.position - rotatedDir.normalized * radius;
+        if (!teleporting)
+        {
+            GetComponent<SkeletonMageAnimation>().Hit();
 
-    //         if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 1f, NavMesh.AllAreas))
-    //         {
-    //             if (skeletonMageAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
-    //             {
-    //                 skeletonMageAgent.Warp(hit.position);
-    //                 foundValidSpot = true;
-    //                 break;
-    //             }
-    //         }
+            if (!stateDamage)
+            {
+                Vector3 pushDirection = transform.position - playerObj.transform.position;
+                pushDirection = new Vector3(pushDirection.x, 0, pushDirection.z);
+                rb.AddForce(pushDirection.normalized * pushedForce, ForceMode.VelocityChange);
+            }
+        }
+    }
 
-    //         attempts++;
-    //     }
+    IEnumerator ChangingColor()
+    {
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.red;
+        }
 
-    //     if (!foundValidSpot)
-    //         yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.125f);
 
-    //     float distanceToPlayer = Vector3.Distance(skeletonMageObject.transform.position, playerObject.transform.position);
+        foreach (Renderer rend in rends)
+        {
+            rend.material.color = Color.white;
+        }
+    }
 
-    //     if (distanceToPlayer <= stats.detectionDistance)
-    //         FSM = new SkeletonMageAttack(this);
-    //     else
-    //         yield return new WaitForSeconds(2f);
+    public void DestroyThisObject()
+    {
+        LootSpawnManager.Instance.LootProbability(transform.position);
+        Destroy(this.gameObject);
+    }
 
-    //     isRepositioning = false;
-    // }
+    //public void Teleporting()
+    //{
+    //    //if (hasTeleported) yield break;
 
+    //    //if (distanceToPlayerFinal <= stats.detectionDistance)
+    //    //    FSM = new SkeletonMageAttack(this);
+    //    //else
+    //    //    yield return new WaitForSeconds(0.1f);
+
+    //    goToIdle = true;
+    //}
+
+    //public IEnumerator MakingSecondAttack()
+    //{
+    //    while (timer < 3.5f && !teleporting)
+    //    {
+
+    //    }
+    //    secondAttack = false;
+
+    //    if (!teleporting)
+    //        goToIdle = true;
+    //    //GetComponent<SkeletonMageAnimation>().Idle();
+    //}
+
+    //public void UseTeleportAnim()
+    //{
+    //    GetComponent<SkeletonMageAnimation>().Teleport();
+    //    //StartCoroutine(Teleporting());
+    //    Debug.Log("INICIALIZANDO");
+    //    damaged = false;
+    //}
+
+
+    
+    public void TryTeleport()
+    {
+        if (isTeleporting) return;
+        StartCoroutine(TeleportCoroutine());
+    }
+
+    IEnumerator TeleportCoroutine()
+    {
+        isTeleporting = true;
+        teleporting = true;
+
+        initialTpParticles.GetComponent<ParticleSystem>().Play();
+
+        float maxWaitTime = 3f;
+        float timer = 0f;
+        Vector3 targetPosition = Vector3.zero;
+        bool foundValidPosition = false;
+
+        while (timer < maxWaitTime && !foundValidPosition)
+        {
+            float minDistance = 5f;
+            float maxDistance = 10f;
+            float randomDistance = Random.Range(minDistance, maxDistance);
+
+            Vector3 directionToPlayer = (transform.position - playerObj.transform.position).normalized;
+            Vector3 rotatedDir = Quaternion.AngleAxis(Random.Range(0, 360f), Vector3.up) * directionToPlayer;
+
+            Vector3 candidatePos = playerObj.transform.position - rotatedDir * randomDistance;
+
+            if (NavMesh.SamplePosition(candidatePos, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+            {
+                NavMeshPath path = new NavMeshPath();
+                if (agent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    targetPosition = hit.position;
+                    foundValidPosition = true;
+                }
+            }
+
+            if (!foundValidPosition)
+            {
+                timer += 0.2f;
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+
+        if (foundValidPosition)
+        {
+            agent.Warp(targetPosition);
+
+            Vector3 directionToPlayer = (transform.position - playerObj.transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(directionToPlayer * -1);
+
+            finalTpParticles.GetComponent<ParticleSystem>().Play();
+        }
+        else
+        {
+            Debug.LogWarning("NO TEPEA");
+        }
+
+        teleporting = false;
+        goToIdle = true;
+        isTeleporting = false;
+    }
+    //public LayerMask playerMask;
+
+    //public bool lookingAtPlayer = false;
+    //public bool mageAttackFinish = false;
+    //public bool isDamageable = false;
+    //public bool secondAttack = false;
+    //public bool goToIdle;
+    //public bool playerDirectionTaken;
+
+    //public bool teleporting = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
+
+    //float distanceToPlayer;
+    //bool inCombat;
+
+    //[SerializeField] LayerMask collisionLayer;
+
+    //[SerializeField] GameObject magicRay;
+    //[SerializeField] Collider rayCollision;
+
+    public void PlayTakeDamageSound()
+    {
+        if (SkeletonMageTakeDamage != null);
+            audioSource.PlayOneShot(SkeletonMageTakeDamage, 1f);
+    }
+
+    public void PlayDeathSound()
+    {
+        if (SkeletonMageDeath != null)
+            audioSource.PlayOneShot(SkeletonMageDeath, 3f);
+    }
+
+    public void PlayTeleportSound()
+    {
+        if (SkeletonMageTeleport != null)
+            audioSource.PlayOneShot(SkeletonMageTeleport, 1f);
+    }
+
+    public void PlayAttackOrb()
+    {
+        if (SkeletonMageAttackOrb != null)
+            audioSource.PlayOneShot(SkeletonMageAttackOrb, 1f);
+    }
+
+    public void PlayAttackRay()
+    {
+        if (SkeletonMageAttackRay != null)
+            audioSource.PlayOneShot(SkeletonMageAttackRay, 1f);
+    }
+
+    public void PlayAttackRayHold()
+    {
+        if (SkeletonMageAttackRayHold != null)
+            audioSource.PlayOneShot(SkeletonMageAttackRayHold, 1f);
+    }
 }

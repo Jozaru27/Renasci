@@ -5,22 +5,33 @@ using UnityEngine;
 public class DestructibleObjectScript : MonoBehaviour, IDamageable
 {
     float health = 1.25f;
+    bool damaged = false;
+
+    [SerializeField] Material dissolveMaterial;
+    [SerializeField] GameObject particles;
+
     public void TakeDamage(float amount, bool stateDamage)
     {
         health += amount;
 
-        StartCoroutine(ChangeColor());
+        if (!damaged)
+            StartCoroutine(Dissolve());
     }
 
-    IEnumerator ChangeColor()
+    IEnumerator Dissolve()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        damaged = true;
+        GetComponent<Renderer>().material = dissolveMaterial;
+        particles.SetActive(true);
+        particles.GetComponent<ParticleSystem>().Play();
 
-        yield return new WaitForSeconds(0.125f);
+        while (GetComponent<Renderer>().material.GetFloat("_CutOff_Height") > -80)
+        {
+            GetComponent<Renderer>().material.SetFloat("_CutOff_Height", GetComponent<Renderer>().material.GetFloat("_CutOff_Height") - (15f * Time.deltaTime));
 
-        GetComponent<Renderer>().material.color = Color.white;
+            yield return null;
+        }
 
-        if (health <= 0)
-            Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }

@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 public class Attack : MonoBehaviour
 {
     [Header("Distance Attack")]
-    [SerializeField] float rechargeTime;
+    [SerializeField] public float rechargeTime;
     [SerializeField] float recoilForce;
     [SerializeField] GameObject bulletPref;
     [SerializeField] Transform shotPoint;
+    [SerializeField] GameObject indicatorObj;
     [SerializeField] LayerMask rayMask;
 
     [Header("Relic Behaviour")]
@@ -27,15 +28,21 @@ public class Attack : MonoBehaviour
     [SerializeField] float spiralOutwardDistance = 3f;
     [SerializeField] float spiralRotations = 2f;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip relicRotationClip;
+    [SerializeField] AudioClip[] relicClips; 
 
     int shots;
-    int relicSlot = 0;
+    public int relicSlot = 0;
     bool shotable = true;
     bool shoting;
     bool relicUsable = true;
+    bool usingIndicator;
+    public bool attacking;
     Vector2 mousePos;
     Vector3 collidePosition;
     Rigidbody rb;
+    PlayerInput input;
 
     List<GameObject> inRangeEnemies = new List<GameObject>();
 
@@ -51,50 +58,104 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        input = GetComponent<PlayerInput>();
+    }
+
+    private void Update()
+    {
+        if (input.currentControlScheme == "Gamepad")
+        {
+            if (usingIndicator && !shoting)
+            {
+                indicatorObj.SetActive(true);
+                Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
+                indicatorObj.transform.rotation = Quaternion.LookRotation(indicatorRotation);
+            }
+            else
+                indicatorObj.SetActive(false);
+        }
     }
 
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !GameManager.Instance.gamePaused && !shoting)
+        if (context.started && !GameManager.Instance.gamePaused && !shoting && !attacking && !GameManager.Instance.inMenu && GameManager.Instance.gamePausable)
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
+            StartCoroutine(FinishAttack());
+            attacking = true;
         }
+    }
+
+    IEnumerator FinishAttack()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GetComponent<PlayerAnimation>().Idle();
     }
 
     public void DistanceAttack(InputAction.CallbackContext context)
     {
-        if (context.started && shotable && !GameManager.Instance.gamePaused)
+        if (context.started && shotable && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu && GameManager.Instance.gamePausable)
             StartCoroutine(Shooting());
     }
 
     public void RelicAttack(InputAction.CallbackContext context)
     {
-        if (context.started && relicUsable)
+        if (context.started && relicUsable && GameManager.Instance.currentRelicSlots > -1 && !GameManager.Instance.gamePaused && !GameManager.Instance.inMenu && GameManager.Instance.gamePausable)
         {
-            switch (currentRelic)
-            {
-                case Relics.Fire:
-                    StartCoroutine(FireRelic());
-                    break;
-                case Relics.Ice:
-                    IceRelic();
-                    break;
-                case Relics.Wind:
-                    WindRelic();
-                    break;
-            }
+            GameManager.Instance.playerCannotMove = true;
+            GetComponent<PlayerAnimation>().RelicAttack();
+            relicUsable = false;
+        }
+    }
+
+    public void SelectCurrentRelic()
+    {
+        switch (currentRelic)
+        {
+            case Relics.Fire:
+                FireRelic();
+                break;
+            case Relics.Ice:
+                IceRelic();
+                break;
+            case Relics.Wind:
+                WindRelic();
+                break;
         }
     }
 
     public void MousePosition(InputAction.CallbackContext context)
     {
         mousePos = context.ReadValue<Vector2>();
+
+        if (input.currentControlScheme == "Keyboard")
+            indicatorObj.SetActive(false);
+        else if (input.currentControlScheme == "Gamepad")
+        {
+            if (context.started)
+                usingIndicator = true;
+            if (context.canceled)
+                usingIndicator = false;
+
+            //if (usingIndicator && !shoting)
+            //{
+            //    indicatorObj.SetActive(true);
+            //    Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
+            //    //indicatorObj.transform.rotation = Quaternion.LookRotation(indicatorRotation);
+            //    indicatorObj.transform.rotation = Quaternion.Slerp(indicatorObj.transform.rotation, Quaternion.LookRotation(indicatorRotation), 10f * Time.deltaTime );
+            //}
+            //else
+            //    indicatorObj.SetActive(false);
+        }
     }
 
     public void ChangeRelic(InputAction.CallbackContext context)
     {
-        if (context.started && GameManager.Instance.currentRelicSlots >= 0)
+        if (UIManager.Instance.IsRotating) return;
+
+        if (context.started && GameManager.Instance.currentRelicSlots >= 0 && GameManager.Instance.gamePausable)
         {
             float input = context.ReadValue<float>();
 
@@ -108,21 +169,28 @@ public class Attack : MonoBehaviour
             else if (relicSlot < 0)
                 relicSlot = GameManager.Instance.currentRelicSlots;
 
+            if (GameManager.Instance.currentRelicSlots > 0)
+                UIManager.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(relicRotationClip, 1f);
+
             switch (relicSlot)
             {
                 case 0:
                     currentRelic = Relics.Fire;
                     UIManager.Instance.ChangeRelicInfo("Fire");
+                    UIManager.Instance.UpdateRelicRotation(relicSlot);
                     break;
                 case 1:
                     currentRelic = Relics.Ice;
                     UIManager.Instance.ChangeRelicInfo("Ice");
+                    UIManager.Instance.UpdateRelicRotation(relicSlot);
                     break;
                 case 2:
                     currentRelic = Relics.Wind;
                     UIManager.Instance.ChangeRelicInfo("Wind");
+                    UIManager.Instance.UpdateRelicRotation(relicSlot);
                     break;
             }
+
         }
     }
 
@@ -143,23 +211,43 @@ public class Attack : MonoBehaviour
     {
         shotable = false;
         shoting = true;
+        indicatorObj.SetActive(false);
         GameManager.Instance.playerCannotMove = true;
 
         shots++;
 
-        Ray screenRay = Camera.main.ScreenPointToRay(mousePos);
+        Vector3 shotDirection = Vector3.zero;
+        Quaternion targetRotation = Quaternion.identity;
 
-        if (Physics.Raycast(screenRay, out RaycastHit hit, Mathf.Infinity, rayMask))
-            collidePosition = hit.point;
+        if (input.currentControlScheme == "Keyboard")
+        {
+            Ray screenRay = Camera.main.ScreenPointToRay(mousePos);
 
-        Vector3 bulletPosition = shotPoint.position;
-        Vector3 shotPosition = new Vector3(collidePosition.x, bulletPosition.y, collidePosition.z);
-        Vector3 shotDirection = shotPosition - bulletPosition;
-        Vector3 collideInPlayerFoot = new Vector3(collidePosition.x, transform.position.y, collidePosition.z);
+            if (Physics.Raycast(screenRay, out RaycastHit hit, Mathf.Infinity, rayMask))
+                collidePosition = hit.point;
 
-        Vector3 playerShotDirection = (collideInPlayerFoot - transform.position).normalized;
+            Vector3 bulletPosition = shotPoint.position;
+            Vector3 shotPosition = new Vector3(collidePosition.x, bulletPosition.y, collidePosition.z);
+            shotDirection = shotPosition - bulletPosition;
+            Vector3 collideInPlayerFoot = new Vector3(collidePosition.x, transform.position.y, collidePosition.z);
 
-        Quaternion targetRotation = Quaternion.LookRotation(playerShotDirection);
+            Vector3 playerShotDirection = (collideInPlayerFoot - transform.position).normalized;
+
+            targetRotation = Quaternion.LookRotation(playerShotDirection);
+        }
+        else if (input.currentControlScheme == "Gamepad")
+        {
+            Vector3 inputDirection = new Vector3(mousePos.x, 0, mousePos.y);
+            shotDirection = inputDirection.normalized;
+            targetRotation = Quaternion.LookRotation(shotDirection);
+
+            if (targetRotation == Quaternion.identity)
+            {
+                Vector3 playerDirection = transform.forward;
+                shotDirection = playerDirection.normalized;
+                targetRotation = Quaternion.LookRotation(shotDirection);
+            }
+        }
 
         GetComponent<PlayerMovement>().ChangeRotation(targetRotation);
         GetComponent<PlayerAnimation>().Shoot();
@@ -174,7 +262,7 @@ public class Attack : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.125f);
+        yield return new WaitForSeconds(0.75f);
 
         GameObject bullet = Instantiate(bulletPref, shotPoint.position, targetRotation);
 
@@ -195,12 +283,10 @@ public class Attack : MonoBehaviour
     {
         rb.AddForce(transform.forward * -1 * recoilForce, ForceMode.Impulse);
     }
-    
-    IEnumerator FireRelic()
-    {
-        GameManager.Instance.playerCannotMove = true;
 
-        yield return new WaitForSeconds(1.5f);
+    public void FireRelic()
+    {
+        GetComponent<AudioSource>().PlayOneShot(relicClips[0], 2f);
 
         StartCoroutine(SpawnFireWisps());
 
@@ -216,6 +302,29 @@ public class Attack : MonoBehaviour
         StartCoroutine(RelicCoolDown());
         StartCoroutine(BurningEnemy());
     }
+
+    //IEnumerator FireRelic()
+    //{
+    //    relicUsable = false;
+
+    //    GameManager.Instance.playerCannotMove = true;
+
+    //    yield return new WaitForSeconds(1.5f);
+
+    //    StartCoroutine(SpawnFireWisps());
+
+    //    GameManager.Instance.playerCannotMove = false;
+
+    //    inRangeEnemies.Clear();
+
+    //    foreach (Collider burnableCollider in Physics.OverlapSphere(transform.position, fireDistance, burnableMask))
+    //    {
+    //        inRangeEnemies.Add(burnableCollider.gameObject);
+    //    }
+
+    //    StartCoroutine(RelicCoolDown());
+    //    StartCoroutine(BurningEnemy());
+    //}
 
     IEnumerator SpawnFireWisps()
     {
@@ -283,17 +392,23 @@ public class Attack : MonoBehaviour
 
     void IceRelic()
     {
+        GetComponent<AudioSource>().PlayOneShot(relicClips[1], 2f);
+
         GameObject iceBullet = Instantiate(iceObj, shotPoint.transform.position, Quaternion.identity);
         iceBullet.GetComponent<IceRelic>().GetDirection(transform.forward);
 
+        GameManager.Instance.playerCannotMove = false;
         StartCoroutine(RelicCoolDown());
     }
 
     void WindRelic()
     {
+        GetComponent<AudioSource>().PlayOneShot(relicClips[2], 2f);
+
         GameObject windBullet = Instantiate(windObj, shotPoint.transform.position, Quaternion.identity);
         windBullet.GetComponent<WindRelic>().GetDirection(transform.forward);
 
+        GameManager.Instance.playerCannotMove = false;
         StartCoroutine(RelicCoolDown());
     }
 
@@ -313,7 +428,10 @@ public class Attack : MonoBehaviour
     IEnumerator ShootCooldown()
     {
         if (shots < 6)
-            yield return new WaitForSeconds(1 / StatsManager.Instance.shootCadence);
+        {
+            UIManager.Instance.ActiveShootCooldown(1f / StatsManager.Instance.shootCadence);
+            yield return new WaitForSeconds(1f / StatsManager.Instance.shootCadence);
+        }
         if (shots >= 6)
         {
             yield return new WaitForSeconds(rechargeTime);
@@ -326,8 +444,7 @@ public class Attack : MonoBehaviour
 
     IEnumerator RelicCoolDown()
     {
-        relicUsable = false;
-
+        UIManager.Instance.ActiveRelicCooldown(5f);
         yield return new WaitForSeconds(5f);
 
         relicUsable = true;

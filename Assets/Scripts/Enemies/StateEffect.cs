@@ -7,6 +7,7 @@ public class StateEffect : MonoBehaviour
 {
     NavMeshAgent agent;
     EnemyStats enemyStats;
+    [SerializeField] GameObject freezeParticle;
 
     bool inIceState;
     bool inWindState;
@@ -41,6 +42,8 @@ public class StateEffect : MonoBehaviour
     IEnumerator ApplyIceState()
     {
         inIceState = true;
+        freezeParticle.SetActive(true);
+        freezeParticle.GetComponent<ParticleSystem>().Play();
 
         if (TryGetComponent<SkeletonWarrior>(out SkeletonWarrior warriorScript))
             warriorScript.frozen = true;

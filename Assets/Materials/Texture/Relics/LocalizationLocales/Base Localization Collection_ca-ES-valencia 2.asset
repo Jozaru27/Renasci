@@ -1,0 +1,336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Base Localization Collection_ca-ES-valencia 2
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: ca-ES-valencia
+  m_SharedData: {fileID: 11400000, guid: 3692496bde259a74892e9651b95e7d22, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 8477917791100338180
+  m_TableData:
+  - m_Id: 158355576217600
+    m_Localized: Ajustos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129503164522496
+    m_Localized: Jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158408554471424
+    m_Localized: Eixir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158467316670464
+    m_Localized: Pantalla Completa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158510568333312
+    m_Localized: Tornar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158555514494976
+    m_Localized: "Resoluci\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158788315144192
+    m_Localized: "V\xEDdeo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158830665031680
+    m_Localized: "\xC0udio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159184848838656
+    m_Localized: Volum General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159205598060544
+    m_Localized: EFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159515913641984
+    m_Localized: "M\xFAsica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160091959353344
+    m_Localized: Reanudar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160109395075072
+    m_Localized: "Men\xFA Principal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160168236965888
+    m_Localized: Inventari
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160197144109056
+    m_Localized: "Rel\xEDquies Passives"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160214181371904
+    m_Localized: "Rel\xEDquies Actives"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160229306032128
+    m_Localized: "Estad\xEDstiques"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160241314324480
+    m_Localized: "Vida M\xE0x."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160258112512000
+    m_Localized: Vida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160267834908672
+    m_Localized: Regen. de Vida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160302224007168
+    m_Localized: Dany
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160321719132160
+    m_Localized: Mult. de Dany
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160345182068736
+    m_Localized: "Prob. de Cr\xEDtic"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160369446117376
+    m_Localized: Velocitat de Mov.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160391885643776
+    m_Localized: Velocitat d'Atac
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160402975383552
+    m_Localized: "Cad\xE8ncia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160421648424960
+    m_Localized: "Rec\xE0rrega del Dash"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160446004748288
+    m_Localized: "Evasi\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160580620935168
+    m_Localized: "Un tros d\u2019un rub\xED encantat que crema amb el poder de la
+      destrucci\xF3\n\nMultiplicador de dany cr\xEDtic"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161274803412992
+    m_Localized: "Un collar amb l\u2019ess\xE8ncia d\u2019un antic assass\xED. Permet
+      al seu portador moure\u2019s sense ser detectat\n\nEvasi\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161294948655104
+    m_Localized: "Un xicotet cristall que dona al seu portador una visi\xF3 aguda
+      i una precisi\xF3 sobrenatural\n\nProbabilitat de cr\xEDtic"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161315110674432
+    m_Localized: "Un gallet encantat extret d\u2019una arma forjada pels d\xE9us\r\n\nCad\xE8ncia
+      de dispar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161332231823360
+    m_Localized: "Una esfera amb energia condensada d\u2019una tempesta furiosa\r\n\nVelocitat
+      d\u2019atac"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161350191833088
+    m_Localized: "Un fragment d\u2019un espill m\xEDstic que permet al portador despla\xE7ar-se
+      entre dimensions\r\n\nRec\xE0rrega del dash"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161364238557184
+    m_Localized: "Un fragment de l\u2019espasa d\u2019un guerrer llegendari que va
+      morir en combat\r\n\nDany"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161385549815808
+    m_Localized: "Un tros indestructible d\u2019una antiga armadura sagrada\r\n\nVida
+      m\xE0xima"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161406152237056
+    m_Localized: "Un brot menut d\u2019un arbre div\xED que regenera les ferides
+      de qui el porta\r\n\nRegeneraci\xF3 de vida"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161434837082112
+    m_Localized: "Una ploma encantada d\u2019una criatura celestial extremadament
+      r\xE0pida\r\n\nVelocitat de moviment"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162359836303360
+    m_Localized: "Plena l\u2019entorn de l\u2019usuari amb foc. Genera dany als enemics\n\n<size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162439741988864
+    m_Localized: "L\u2019usuari llan\xE7a un canell\xF3 de gel cap on apunta el jugador.
+      Pot congelar els enemics\n\n<size=25><color=#00ff00ff></color></size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162509761699840
+    m_Localized: 'Allibera una forta corrent que espenta els enemics en davant del
+      jugador
+
+
+      <size=25><color=#00ff00ff></color></size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162558105247744
+    m_Localized: "Info de la rel\xEDquia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162609544192000
+    m_Localized: Foc Fatu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162627797803008
+    m_Localized: "Canell\xF3 de Permagel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162640934363136
+    m_Localized: "Hurac\xE0 embotellat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198038477758464
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 201755071504384
+    m_Localized: Pausa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203194976067584
+    m_Localized: Fi de la Partida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203303176527872
+    m_Localized: RENASCI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203245790060544
+    m_Localized: "EL TEMPLE ES COBRA UN ALTRA \xC0NIMA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204082079752192
+    m_Localized: ESCAPAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204549438464000
+    m_Localized: EL CICLE ES TRENCA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 205639294803968
+    m_Localized: "Vida M\xE0x.:\n\nVida:\n\nRegen. de Vida:\n\nDany:\n\nMult. de
+      dany:\n\nProb.t de Cr\xEDtic:\n\nVel. de Moviment:\n\nVel. de Atac:\n\nCad\xE8ncia:\n\nRecarrega
+      del Dash:\n\nEvasi\xF3n:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206707248488448
+    m_Localized: Nom de la Reliquia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 285560641839104
+    m_Localized: '{name_vlc}
+
+
+      {description_vlc}
+
+
+      {effect_vlc}: {value}
+      {valueQuantity}'
+    m_Metadata:
+      m_Items:
+      - rid: 8477917791100338180
+  - m_Id: 336571173724160
+    m_Localized: Cor de Titani
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336560067207168
+    m_Localized: "M\xE0 de l\u2019Artiller"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336444912590848
+    m_Localized: "Senda Il\xB7lus\xF2ria"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336482288033792
+    m_Localized: Espasa del Caigut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336493696540672
+    m_Localized: "Ull del Falc\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336506791157760
+    m_Localized: "Arbre de l\u2019Eternitat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336519835443200
+    m_Localized: Dansa de les Ombres
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336533458542592
+    m_Localized: "F\xFAria Carmes\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336547920502784
+    m_Localized: Ales del Vent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336582108274688
+    m_Localized: Rugit del Tro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694432306413568
+    m_Localized: "Traducci\xF3n valenciana"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 715017153527808
+    m_Localized: '{name_vlc}'
+    m_Metadata:
+      m_Items:
+      - rid: 8477917791100338180
+  - m_Id: 811853680566272
+    m_Localized: "Vida m\xE0x.:\n\nVida:\n\nRegen. de Vida:\n\nDany:\n\nMult. de
+      Dany:\n\nProb. Cr\xEDtic:\n\nVel. de Mov.:\n\nVel. d'Atac:\n\nCadencia:\n\nCooldown
+      Dash:\n\nEvasi\xF3:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5402135113850880
+    m_Localized: "Cr\xE8dits"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428052670373888
+    m_Localized: DESC VLC
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8477917791100338180
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00609e44b703010000c071e74d8a0200

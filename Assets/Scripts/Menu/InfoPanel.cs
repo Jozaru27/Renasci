@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System;
 
 public class InfoPanel : MonoBehaviour
 {
@@ -12,14 +11,22 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] GameObject infoImage;
     [SerializeField] Image backgroundImage;
     [SerializeField] TMP_Text infoText;
+    [SerializeField] TMP_Text nameText;
+    [SerializeField] TMP_Text decorationLine;
+    [SerializeField] AudioClip interactSound;
 
-    float fadeTimer;
-
+    bool firstPanelShown;
     Color generalColor = Color.white;
-    Color textColor = Color.black;
+    Color textColor = Color.white;
     Color bgColor = Color.black;
+    AudioSource audioSource;
 
-    List <RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
+    //List<RelicsInventoryScriptableObject> takenRelics = new List<RelicsInventoryScriptableObject>();
+    List<string> infoTexts = new List<string>();
+    List<Sprite> infoImages = new List<Sprite>();
+    List<bool> infoWithImage = new List<bool>();
+    List<string> infoNames = new List<string>();
+    List<bool> haveName = new List<bool>();
 
     public static InfoPanel Instance { get; private set; }
 
@@ -30,6 +37,8 @@ public class InfoPanel : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         generalColor.a = 0;
         textColor.a = 0;
         bgColor.a = 0;
@@ -37,6 +46,8 @@ public class InfoPanel : MonoBehaviour
         infoImage.GetComponent<Image>().color = generalColor;
         backgroundImage.color = bgColor;
         infoText.color = textColor;
+        nameText.color = textColor;
+        decorationLine.color = textColor;
     }
 
     public void TextInfo(string text, float fadeDuration)
@@ -62,54 +73,114 @@ public class InfoPanel : MonoBehaviour
 
     IEnumerator SpawnInfo(float fadeDuration)
     {
-        Time.timeScale = 0;
+        if (haveName[0])
+            decorationLine.gameObject.SetActive(true);
+        else
+            decorationLine.gameObject.SetActive(false);
+
+        Time.timeScale = 0f;
+        GameManager.Instance.gamePausable = false;
         GameManager.Instance.inInfo = true;
         float timeElapsed = 0f;
 
-        while (timeElapsed < fadeDuration)
+        generalColor.a = 0;
+        textColor.a = 0;
+        bgColor.a = 0;
+
+        if (!firstPanelShown)
+        {
+            infoPanel.GetComponent<Image>().color = generalColor;
+            backgroundImage.color = bgColor;
+        }
+
+        infoImage.GetComponent<Image>().color = generalColor;
+        infoText.color = textColor;
+        nameText.color = textColor;
+        decorationLine.color = textColor;
+
+        while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
             timeElapsed += Time.unscaledDeltaTime;
 
             generalColor.a = Mathf.Lerp(0, 1, (timeElapsed / fadeDuration));
             textColor.a = Mathf.Lerp(0, 1, (timeElapsed / fadeDuration));
-            bgColor.a = Mathf.Lerp(0, 0.8f, (timeElapsed / fadeDuration));
+            bgColor.a = Mathf.Lerp(0, 0.9f, (timeElapsed / fadeDuration));
 
-            infoPanel.GetComponent<Image>().color = generalColor;
+            if (!firstPanelShown)
+            {
+                infoPanel.GetComponent<Image>().color = generalColor;
+                backgroundImage.color = bgColor;
+            }
+
             infoImage.GetComponent<Image>().color = generalColor;
-            backgroundImage.color = bgColor;
             infoText.color = textColor;
+            nameText.color = textColor;
+            decorationLine.color = textColor;
 
             yield return null;
         }
 
         generalColor.a = 1;
         textColor.a = 1;
-        bgColor.a = 0.8f;
+        bgColor.a = 0.9f;
 
         infoPanel.GetComponent<Image>().color = generalColor;
         infoImage.GetComponent<Image>().color = generalColor;
         backgroundImage.color = bgColor;
         infoText.color = textColor;
+        nameText.color = textColor;
+        decorationLine.color = textColor;
         GameManager.Instance.infoShowed = true;
-        takenRelics.RemoveAt(0);
+
+        //if (takenRelics.Count > 0)
+        //    takenRelics.RemoveAt(0);
+
+        if (infoTexts.Count > 0)
+        {
+            infoTexts.RemoveAt(0);
+
+            if (infoWithImage[0])
+                infoImages.RemoveAt(0);
+
+            infoWithImage.RemoveAt(0);
+            infoNames.RemoveAt(0);
+            haveName.RemoveAt(0);
+        }
     }
 
     public IEnumerator DespawnInfo(float fadeDuration)
     {
         float timeElapsed = 0f;
 
-        while (timeElapsed < fadeDuration)
+        generalColor.a = 1;
+        textColor.a = 1;
+        bgColor.a = 0.9f;
+
+        infoPanel.GetComponent<Image>().color = generalColor;
+        infoImage.GetComponent<Image>().color = generalColor;
+        backgroundImage.color = bgColor;
+        infoText.color = textColor;
+        nameText.color = textColor;
+        decorationLine.color = textColor;
+
+        while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
             timeElapsed += Time.unscaledDeltaTime;
 
             generalColor.a = Mathf.Lerp(1, 0, (timeElapsed / fadeDuration));
             textColor.a = Mathf.Lerp(1, 0, (timeElapsed / fadeDuration));
-            bgColor.a = Mathf.Lerp(0.8f, 0, (timeElapsed / fadeDuration));
+            bgColor.a = Mathf.Lerp(0.9f, 0, (timeElapsed / fadeDuration));
 
-            infoPanel.GetComponent<Image>().color = generalColor;
+            if (infoTexts.Count == 0)
+            {
+                infoPanel.GetComponent<Image>().color = generalColor;
+                backgroundImage.color = bgColor;
+            }
+
             infoImage.GetComponent<Image>().color = generalColor;
-            backgroundImage.color = bgColor;
             infoText.color = textColor;
+            nameText.color = textColor;
+            decorationLine.color = textColor;
 
             yield return null;
         }
@@ -118,35 +189,119 @@ public class InfoPanel : MonoBehaviour
         textColor.a = 0;
         bgColor.a = 0;
 
-        infoPanel.GetComponent<Image>().color = generalColor;
+        if (infoTexts.Count == 0)
+        {
+            infoPanel.GetComponent<Image>().color = generalColor;
+            backgroundImage.color = bgColor;
+        }
+        
         infoImage.GetComponent<Image>().color = generalColor;
-        backgroundImage.color = bgColor;
         infoText.color = textColor;
+        nameText.color = textColor;
+        decorationLine.color = textColor;
 
-        infoCanvas.SetActive(false);
-        GameManager.Instance.inInfo = false;
-        Time.timeScale = 1;
+        CheckList();
+
+        //if (!GameManager.Instance.alreadyStarted)
+        //    GameManager.Instance.alreadyStarted = true;
     }
 
-    public void AddRelic(RelicsInventoryScriptableObject nextRelic, float fadeTime)
+    //public void AddRelic(string relName, string relDescription, RelicsInventoryScriptableObject nextRelic, float fadeTime)
+    //{
+    //    takenRelics.Add(nextRelic);
+
+    //    if (nextRelic == takenRelics[0])
+    //    {
+    //        if (nextRelic.valueQuantity != 0)
+    //        {
+    //            nameText.text = relName;
+    //            ImageTextInfo(relDescription + " " + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
+    //        } 
+    //        else
+    //        {
+    //            nameText.text = relName;
+    //            ImageTextInfo(relDescription, nextRelic.image, fadeTime);
+    //        }
+    //    }
+    //}
+
+    public void AddText(string textName, string infoText, float fadeTime)
     {
-        takenRelics.Add(nextRelic);
-        fadeTimer = fadeTime;
+        infoTexts.Add(infoText);
+        infoWithImage.Add(false);
+        infoNames.Add(textName);
+        
+        if (textName == string.Empty)
+            haveName.Add(false);
+        else
+            haveName.Add(true);
 
-        //Debug.Log(takenRelics.Count);
-
-        if (nextRelic == takenRelics[0])
-            ImageTextInfo(nextRelic.description + "\n\n" + nextRelic.effect + nextRelic.value + nextRelic.valueQuantity, nextRelic.image, fadeTime);
+        if (infoText == infoTexts[0])
+        {
+            nameText.text = textName;
+            TextInfo(infoText, fadeTime);
+        }
     }
 
-    public void ComproveRelicsList()
+    public void AddTextWithImage(string textName, string infoText, Sprite infoImage, float fadeTime)
+    {
+        infoTexts.Add(infoText);
+        infoImages.Add(infoImage);
+        infoWithImage.Add(true);
+        infoNames.Add(textName);
+        
+        if (textName == string.Empty)
+            haveName.Add(false);
+        else
+            haveName.Add(true);
+
+        if (infoText == infoTexts[0])
+        {
+            nameText.text = textName;
+            ImageTextInfo(infoText, infoImage, fadeTime);
+        }   
+    }
+
+    public void ConfirmFade()
     {
         GameManager.Instance.infoShowed = false;
-        //Debug.Log(takenRelics.Count);
+        StartCoroutine(DespawnInfo(0.75f));
 
-        if (takenRelics.Count == 0)
-            StartCoroutine(DespawnInfo(0.75f));
+        audioSource.PlayOneShot(interactSound, 2f);
+
+        firstPanelShown = true;
+
+        //if (infoTexts.Count == 0)
+        //    StartCoroutine(DespawnInfo(0.75f));
+        //else
+        //{
+        //    if (infoWithImage[0])
+        //        ImageTextInfo(infoTexts[0], infoImages[0], 1);
+        //    else
+        //        TextInfo(infoTexts[0], 1);
+
+        //    nameText.text = infoNames[0];
+        //}
+    }
+
+    void CheckList()
+    {
+        if (infoTexts.Count == 0)
+        {
+            infoCanvas.SetActive(false);
+            GameManager.Instance.inInfo = false;
+            Time.timeScale = 1;
+            firstPanelShown = false;
+            GameManager.Instance.gamePausable = true;
+        }
         else
-            ImageTextInfo(takenRelics[0].description + "\n\n" + takenRelics[0].effect + takenRelics[0].value + takenRelics[0].valueQuantity, takenRelics[0].image, fadeTimer);
+        {
+            if (infoWithImage[0])
+                ImageTextInfo(infoTexts[0], infoImages[0], 1);
+            else
+                TextInfo(infoTexts[0], 1);
+
+            nameText.text = infoNames[0];
+        }
     }
 }

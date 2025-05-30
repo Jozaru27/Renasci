@@ -5,13 +5,14 @@ using UnityEngine;
 public class SkeletonWarriorAnimation : MonoBehaviour
 {
     public Animator SkeletonWarriorAnim;
-    // Start is called before the first frame update
+
+    [SerializeField] GameObject swordParticles;
+
     void Start()
     {
         SkeletonWarriorAnim = this.gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     public void Idle()
     {
         SkeletonWarriorAnim.SetBool("Idle", true);
@@ -19,6 +20,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", false);
         SkeletonWarriorAnim.SetBool("Block", false);
+        swordParticles.SetActive(false);
     }
     public void Run()
     {
@@ -27,6 +29,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", false);
         SkeletonWarriorAnim.SetBool("Block", false);
+        swordParticles.SetActive(false);
     }
     public void Attack()
     {
@@ -35,6 +38,8 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Attack", true);
         SkeletonWarriorAnim.SetBool("Hit", false);
         SkeletonWarriorAnim.SetBool("Block", false);
+        swordParticles.SetActive(true);
+        swordParticles.GetComponent<ParticleSystem>().Play();
     }
     public void Hit()
     {
@@ -44,6 +49,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Hit", true);
         SkeletonWarriorAnim.SetBool("Block", false);
         GetComponent<SkeletonWarrior>().goToIdle = true;
+        swordParticles.SetActive(false);
     }
     public void Block()
     {
@@ -52,6 +58,7 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Attack", false);
         SkeletonWarriorAnim.SetBool("Hit", false);
         SkeletonWarriorAnim.SetBool("Block", true);
+        swordParticles.SetActive(false);
     }
     public void Death()
     {
@@ -61,5 +68,6 @@ public class SkeletonWarriorAnimation : MonoBehaviour
         SkeletonWarriorAnim.SetBool("Hit", false);
         SkeletonWarriorAnim.SetBool("Block", false);
         SkeletonWarriorAnim.SetBool("Death", true);
+        swordParticles.SetActive(false);
     }
 }
