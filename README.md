@@ -1,6 +1,6 @@
 # Renasci
 Repositorio del Videojuego Renasci <br>
-Versión del Proyecto: 0.3.0 <br><br>
+Versión del Proyecto: 1.0.0 <br><br>
 <i>(1.X.X Para la Build Final / X.1.X Para cada Release o Actualización Grande / X.X.1 Parches y Hotfixes)</i>
 
 <br><br>
@@ -18,9 +18,52 @@ Rama NEW-Producción: Rama en la que se trabaja. <br>
 
 <br><br><br>
 
-# Actualizaciones 
+# Actualizaciones
 
-# 🖼️ Update 3 - Sights to See (Visual Update)
+# 🛠️ Actualización 4 - Pulido y Toques Finales
+
+## 🧟‍♂️ Enemigos
+- Nuevas animaciones para enemigos, incluyendo:
+  - Idle
+  - Ataque (2 para el Esqueleto Mago)
+  - Daño recibido
+  - Muerte
+  - Bloquear (Esqueleto Guerrero)
+  - Teleport (Esqueleto Mago
+
+## 🌍 Localización
+- Implementado sistema de localización multilingüe:
+  - Español
+  - Valencià
+  - Inglés
+
+## 📜 Cambios Generales
+- Revisión y pulido general de contenido previo.
+- Debugging y corrección de errores en múltiples sistemas y escenas.
+
+## 🗿 Arte y Entorno
+- Modelado y escultura del Sepulcro como hero asset principal.
+- Sistema completo de bakeo de iluminación.
+- Mejoras de postprocesado global en escena.
+
+## ✨ VFX y Audio
+- VFX extensivos aplicados a:
+  - Enemigos
+  - Reliquias
+  - Entorno y habilidades especiales
+- Sustitución de efectos de sonido antiguos.
+- Nuevos efectos de sonido añadidos en múltiples acciones, interfaces y eventos.
+
+## 🎬 UI y Escenas
+- Menú principal rediseñado con nuevo aspecto y disposición.
+- Escena de créditos añadida.
+- Créditos accesibles desde el menú y al finalizar la partida.
+
+## 🧩 Misceláneo
+- Múltiples mejoras de calidad visual, rendimiento y jugabilidad.
+- Ajustes finos en animaciones, tiempos, feedback visual y audio.
+
+# 🖼️ Actualización 3 - Visual & Arte
 
 ## 🎨 Arte y Visuales
 - Creación de texturas con Substance para:
@@ -67,7 +110,7 @@ Rama NEW-Producción: Rama en la que se trabaja. <br>
 
 <br> <br>
 
-# ⚔️ Contenido Ampliado y Sistema de Reliquias (v0.2.0)
+# ⚔️ Actualización 2 - Contenido Ampliado y Sistema de Reliquias (v0.2.0)
 
 ## 🧬 Mejoras al Personaje Principal
 - Todas las estadísticas del personaje ahora son funcionales.
@@ -129,7 +172,7 @@ Rama NEW-Producción: Rama en la que se trabaja. <br>
   - Empuje.
   - Confusión (afecta temporalmente el control del jugador).
 
-## ⚔️ Jugador & Esqueleto Guerrero (v0.1.0)
+## ⚔️ Actualización 1 - Jugador & Esqueleto Guerrero (v0.1.0)
 
 <br>
 
