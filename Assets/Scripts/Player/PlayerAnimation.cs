@@ -34,6 +34,9 @@ public class PlayerAnimation : MonoBehaviour
             revolver.SetActive(false);
             GameManager.Instance.playerCannotMove = false;
             GetComponent<Attack>().attacking = false;
+
+            if (!GetComponent<Attack>().inRelicCooldown)
+                GetComponent<Attack>().relicUsable = true;
         }
     }
 
@@ -69,6 +72,9 @@ public class PlayerAnimation : MonoBehaviour
         swordParticles.SetActive(false);
         sword.SetActive(true);
         revolver.SetActive(false);
+
+        if (!GetComponent<Attack>().inRelicCooldown)
+            GetComponent<Attack>().relicUsable = true;
     }
 
     public void Run()

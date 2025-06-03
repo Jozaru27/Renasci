@@ -36,7 +36,8 @@ public class Attack : MonoBehaviour
     public int relicSlot = 0;
     bool shotable = true;
     bool shoting;
-    bool relicUsable = true;
+    public bool relicUsable = true;
+    public bool inRelicCooldown;
     bool usingIndicator;
     public bool attacking;
     Vector2 mousePos;
@@ -82,7 +83,7 @@ public class Attack : MonoBehaviour
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
-            StartCoroutine(FinishAttack());
+            //StartCoroutine(FinishAttack());
             attacking = true;
         }
     }
@@ -444,9 +445,12 @@ public class Attack : MonoBehaviour
 
     IEnumerator RelicCoolDown()
     {
+        inRelicCooldown = true;
+
         UIManager.Instance.ActiveRelicCooldown(5f);
         yield return new WaitForSeconds(5f);
 
+        inRelicCooldown = false;
         relicUsable = true;
     }
 }

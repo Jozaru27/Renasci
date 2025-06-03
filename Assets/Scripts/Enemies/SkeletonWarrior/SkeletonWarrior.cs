@@ -31,9 +31,9 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     public bool playerDirectionTaken;
     public bool frozen;
 
-    bool inCombat;
-
     float distanceToPlayer;
+    bool enteredCombat = false;
+    bool leftCombat = true;
 
     public AudioSource audioSource;
     public AudioClip SkeletonWarriorTakeDamage;
@@ -63,7 +63,31 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
     {
         FSM = FSM.Process();
 
-        distanceToPlayer = Vector3.Distance(skeletonWarriorObject.transform.position, playerObject.transform.position);
+        distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
+
+        NavMeshPath path = new NavMeshPath();
+        bool pathExists = false;
+        
+        if (skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+            pathExists = true;
+
+        //if (distanceToPlayer <= stats.detectionDistance && pathExists)
+        //    AmbientMusicManager.Instance.EnterCombatMode();
+        //else
+        //    AmbientMusicManager.Instance.ExitCombatMode();
+
+        if (distanceToPlayer <= stats.detectionDistance && pathExists && !enteredCombat)
+        {
+            AmbientMusicManager.Instance.EnterCombatMode();
+            enteredCombat = true;
+            leftCombat = false;
+        }
+        if ((distanceToPlayer > stats.detectionDistance || !pathExists) && !leftCombat)
+        {
+            AmbientMusicManager.Instance.ExitCombatMode();
+            enteredCombat = false;
+            leftCombat = true;
+        }
 
         RaycastHit hit;
         if (Physics.Raycast(skeletonWarriorObject.transform.position,transform.TransformDirection(Vector3.forward),out hit,5,playerMask))
@@ -73,19 +97,6 @@ public class SkeletonWarrior : MonoBehaviour, IDamageable
         else
         {
             lookingAtPlayer = false;
-        }
-
-        NavMeshPath path = new NavMeshPath();
-
-        if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
-        {
-            AmbientMusicManager.Instance.EnterCombatMode();
-            inCombat = true;
-        }
-        if ((distanceToPlayer > stats.detectionDistance || (!skeletonWarriorAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
-        {
-            AmbientMusicManager.Instance.ExitCombatMode();
-            inCombat = false;
         }
     }
 

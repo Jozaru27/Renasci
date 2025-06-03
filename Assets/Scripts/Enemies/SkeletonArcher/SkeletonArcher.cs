@@ -32,7 +32,8 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     public Transform firePoint;
 
     float distanceToPlayer;
-    bool inCombat;
+    bool enteredCombat = false;
+    bool leftCombat = true;
 
     public bool isRepositioning = false;
 
@@ -61,7 +62,34 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
     {
         FSM = FSM.Process();
 
-        distanceToPlayer = Vector3.Distance(skeletonArcherObject.transform.position, playerObject.transform.position);
+        distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
+
+        NavMeshPath path = new NavMeshPath();
+        bool pathExists = false;
+
+        if (skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+            pathExists = true;
+
+        //if (distanceToPlayer <= stats.detectionDistance && pathExists)
+        //    AmbientMusicManager.Instance.EnterCombatMode();
+        //else
+        //    AmbientMusicManager.Instance.ExitCombatMode();
+
+        if (distanceToPlayer <= stats.detectionDistance && pathExists && !enteredCombat)
+        {
+            AmbientMusicManager.Instance.EnterCombatMode();
+            enteredCombat = true;
+            leftCombat = false;
+        }
+        if ((distanceToPlayer > stats.detectionDistance || !pathExists) && !leftCombat)
+        {
+            AmbientMusicManager.Instance.ExitCombatMode();
+            enteredCombat = false;
+            leftCombat = true;
+        }
+
+        if (skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+            pathExists = true;
 
         RaycastHit hit;
         if (Physics.Raycast(skeletonArcherObject.transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, playerMask))
@@ -71,19 +99,6 @@ public class SkeletonArcher : MonoBehaviour, IDamageable
         else
         {
             lookingAtPlayer = false;
-        }
-
-        NavMeshPath path = new NavMeshPath();
-
-        if (distanceToPlayer <= stats.detectionDistance && !inCombat && skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
-        {
-            AmbientMusicManager.Instance.EnterCombatMode();
-            inCombat = true;
-        }
-        if ((distanceToPlayer > stats.detectionDistance || (!skeletonArcherAgent.CalculatePath(playerObject.transform.position, path) && path.status != NavMeshPathStatus.PathComplete)) && inCombat)
-        {
-            AmbientMusicManager.Instance.ExitCombatMode();
-            inCombat = false;
         }
     }
 
