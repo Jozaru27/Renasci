@@ -1,82 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using UnityEngine.Networking;
 
+[RequireComponent(typeof(AudioSource))]
 public class EffectSoundManager : MonoBehaviour
 {
-    AudioSource audioSource;
+    [Header("Lista de efectos de sonido")]
+    [SerializeField] private List<AudioClip> effectSoundsClips = new List<AudioClip>();
 
-   public List<AudioClip> effectSoundsClips = new List<AudioClip>();
+    [Header("Tiempo entre sonidos")]
+    [SerializeField] private float delayBetweenSounds = 15f;
 
-    int effectSound;
-    int length=1;
-    int chance1;
+    [Header("Volumen del sonido")]
+    [SerializeField, Range(0f, 1f)] private float volume = 0.8f;
 
-    int prevEffectSound;
-    bool onceAct = false;
-    // Start is called before the first frame update
-    void Awake()
+    private AudioSource audioSource;
+    private int previousIndex = -1;
+
+    void Start()
     {
-        audioSource = this.gameObject.GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.spatialBlend = 1f; 
+        audioSource.playOnAwake = false;
 
-        effectSound=Random.Range(0,effectSoundsClips.Count);
-        prevEffectSound = effectSound;
-
-        audioSource.clip = effectSoundsClips[effectSound];
-        audioSource.Play();
-
-    }
-
-    private void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        chance1 = Random.Range(1, 101);
-
-        if (!audioSource.isPlaying && onceAct == false)
+        if (effectSoundsClips.Count == 0)
         {
-          
-            StartCoroutine(playEffectSound());
-
-            onceAct = true;
+            Debug.LogWarning("sfx list VACÍA");
+            return;
         }
-        /*
-         if (!audioSource.isPlaying)
-         {
-             effectSound = Random.Range(0, effectSoundsClips.Count);
-             chance1 = Random.Range(1, 101);
 
-             if (chance1 == 5)
-             {
-                 //Debug.Log("susurro susurrez");
-                 audioSource.clip = effectSoundsClips[effectSound];
-                 audioSource.Play();
-             }
-         }
-        */
+        StartCoroutine(PlayEffectSoundsLoop());
     }
 
-    IEnumerator playEffectSound()
+    IEnumerator PlayEffectSoundsLoop()
     {
-     
-        while (effectSound == prevEffectSound && chance1!=1)
+        while (true)
         {
-            chance1 = Random.Range(1, 101);
-            effectSound = Random.Range(0, effectSoundsClips.Count);
+            // Espera entre sonidos
+            yield return new WaitForSeconds(delayBetweenSounds);
+
+            // Teletransporte a la cámara principal
+            if (Camera.main != null)
+                transform.position = Camera.main.transform.position;
+
+            // Selección aleatoria sin repetir el anterior
+            int index;
+            do
+            {
+                index = Random.Range(0, effectSoundsClips.Count);
+            } while (index == previousIndex);
+
+            previousIndex = index;
+
+            // Reproducir sonido
+            audioSource.PlayOneShot(effectSoundsClips[index], volume);
+
+            // Esperar a que termine el sonido
+            yield return new WaitWhile(() => audioSource.isPlaying);
         }
-        prevEffectSound = effectSound;
-
-        audioSource.clip = effectSoundsClips[effectSound];
-        audioSource.Play();
-
-        yield return new WaitUntil(() => !audioSource.isPlaying);
-        yield return new WaitForSeconds(15f);
-        StartCoroutine(playEffectSound());
     }
-   
 }
