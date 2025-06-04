@@ -67411,6 +67411,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1466558292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1467177622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1467177624}
+  - component: {fileID: 1467177623}
+  m_Layer: 0
+  m_Name: CreditsMusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1467177623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467177622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4976c69c98592d43bdc23489d4a31bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditsMusic: {fileID: 8300000, guid: 6582a37b531517640a137de76d89fa3a, type: 3}
+  volume: 0.3
+  loop: 1
+--- !u!4 &1467177624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467177622}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2469082, y: -0.3701821, z: -56.493053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1467835906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95925,6 +95972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653154682987}
   - component: {fileID: 919132148626977490}
+  - component: {fileID: 919132148626977491}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -95953,6 +96001,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &919132148626977491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148626977489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a119b1eb3be76594c97204a028c8bffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorSound: {fileID: 8300000, guid: fabc04839b2cf954b8c0dc7927c79915, type: 3}
+  doorSound2: {fileID: 8300000, guid: ad4575cdee45a4f4bba127ca5fdefdf7, type: 3}
+  doorSoundclose: {fileID: 8300000, guid: dfc5bbe69635bcf4e86cc1ccfc46873b, type: 3}
+  volume: 0.7
 --- !u!4 &944807767560438597
 Transform:
   m_ObjectHideFlags: 0
@@ -96818,3 +96882,4 @@ SceneRoots:
   - {fileID: 1862084950}
   - {fileID: 869160896}
   - {fileID: 928621208}
+  - {fileID: 1467177624}

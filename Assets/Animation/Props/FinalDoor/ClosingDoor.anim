@@ -444,7 +444,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 50.033333
-    functionName: 
+    functionName: PlayDoorSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 55.066666
+    functionName: PlayDoorSound2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 59.333332
+    functionName: PlayDoorSoundClose
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
