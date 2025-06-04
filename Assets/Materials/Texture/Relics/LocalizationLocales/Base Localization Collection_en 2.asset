@@ -410,6 +410,110 @@ MonoBehaviour:
     m_Localized: DESC ENG
     m_Metadata:
       m_Items: []
+  - m_Id: 7687322287824896
+    m_Localized: Note Found in the Ruins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687346828697600
+    m_Localized: "I've lost count of how many times I've lived through this.\r\nAt
+      first, I thought it was a curse. Now I know it's a prison.\r\nEvery time I
+      die, I wake up again in these cold, filthy halls, with torches that seem freshly
+      lit, and the echoes of chants resonating among the piled bones.\r\n\r\nThe
+      temple seems to change, just like I do.\r\n\r\nIf you're reading this, seek
+      the relics, they will guide you to the door. But be careful, they're becoming
+      more cunning each time.\r\n\r\nI\u2026 I no longer know if I\u2019m still myself\u2026\r\n\r\n\n|
+      Press E to close the note |"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687370052558848
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687403405664256
+    m_Localized: '
+
+
+
+
+      WASD - Movement
+
+      Shift - Dash
+
+      Left Click
+      - Swing sword
+
+      Right Click - Shoot revolver where the cursor is aiming
+
+      Q
+      - Use Active Relic
+
+      E - Interact / Close Notes
+
+      Mouse Wheel -
+      Switch Active Relic
+
+      Tab - Inventory
+
+      ESC - Menu
+
+
+
+      | Press
+      E to close the note |'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687429632647168
+    m_Localized: You Are Confused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687447152254976
+    m_Localized: 'A piercing flash floods your mind with hundreds of memories from
+      the past and paths yet to walk, disorienting you and making you lose control.
+
+      
+
+      Inverts
+      the player''s controls while the status effect lasts.
+
+
+
+      | Press E to
+      close the note |'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687472628457472
+    m_Localized: A Strange Power Increases Your Strength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687498293403648
+    m_Localized: 'After interacting with the Altar, you receive a certain power contained
+      within it.
+
+      
+
+      You''ve obtained an Active Relic. Use it to carve
+      your way through hordes of enemies and obstacles alike.
+
+      
+
+      (Activate
+      it with Q. When you have several, switch between them with the mouse wheel.)
+
+
+
+      |
+      Press E to close the note |'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7692412159614976
+    m_Localized: "Developed by Paella Games\r\n\r\n\n\n\n\n\n\n\n\n\nProgramming,
+      Art, Direction, and Localization\r\n\nFrancesc Duart Baldov\xED\r\nJose Zafrilla
+      Ruiz\r\nCarlos Dom\xEDnguez Pita de la Vega\r\n\r\n\n\n\n\nMusic and Sound\r\n\nFreeSound\r\nUppbeat\r\nPixabay\r\nKenney\r\nSilent
+      Hill 2 Soundtrack \u2013 Akira Yamaoka\r\nThe Binding of Isaac: Rebirth \u2013
+      Danny Baranowsky\r\nUndertale\n\r\n\n\n\n\nAdditional Sprites\r\n\nKenney\r\nPoneti\n\n\n\n\n\n\n\n\n\n\nThanks
+      For Playing!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

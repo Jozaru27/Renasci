@@ -56868,6 +56868,7 @@ GameObject:
   - component: {fileID: 1261594194}
   - component: {fileID: 1261594193}
   - component: {fileID: 1261594196}
+  - component: {fileID: 1261594197}
   m_Layer: 5
   m_Name: CreditsText
   m_TagString: Untagged
@@ -56914,11 +56915,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Desarrollado por Paella Games\r\n\r\n\n\nProgramaci\xF3n, Arte, Direcci\xF3n
-    y Localizaci\xF3n\r\n\r\nFrancesc Duart Baldov\xED\r\nJose Zafrilla Ruiz\r\nCarlos
-    Dom\xEDnguez Pita de la Vega\r\n\r\n\nM\xFAsica y Sonido\r\n\nFreeSound\r\nUppbeat\r\nPixabay\r\nKenney\r\nSilent
-    Hill 2 Soundtrack - Akira Yamaoka\r\nThe Binding of Isaac: Rebirth - Danny Baranowsky\r\n\r\n\nSprites
-    Adicionales\r\n\nKenney\r\nPoneti"
+  m_text: "Desarrollado por Paella Games\r\n\r\n\n\n\n\n\n\n\n\n\nProgramaci\xF3n,
+    Arte, Direcci\xF3n y Localizaci\xF3n\r\n\r\nFrancesc Duart Baldov\xED\r\nJose
+    Zafrilla Ruiz\r\nCarlos Dom\xEDnguez Pita de la Vega\r\n\r\n\n\n\n\nM\xFAsica
+    y Sonido\r\n\nFreeSound\r\nUppbeat\r\nPixabay\r\nKenney\r\nSilent Hill 2 Soundtrack
+    - Akira Yamaoka\r\nThe Binding of Isaac: Rebirth - Danny Baranowsky\r\nUndertale\n\r\n\n\n\n\nSprites
+    Adicionales\r\n\nKenney\r\nPoneti\n\n\n\n\n\n\n\n\n\n\n\xA1Gracias Por Jugar!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cbce4498558074c4282b280f0bedb8e7, type: 2}
   m_sharedMaterial: {fileID: 2133854596358605176, guid: cbce4498558074c4282b280f0bedb8e7,
@@ -57017,6 +57019,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1261594197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261594191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 7692412159614976
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1261594193}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &1264066845
 PrefabInstance:
   m_ObjectHideFlags: 0

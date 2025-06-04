@@ -299,6 +299,42 @@ MonoBehaviour:
     m_Key: ActiveRelicDesc
     m_Metadata:
       m_Items: []
+  - m_Id: 7687322287824896
+    m_Key: Entry1_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687346828697600
+    m_Key: Entry1_Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687370052558848
+    m_Key: Entry2_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687403405664256
+    m_Key: Entry2_Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687429632647168
+    m_Key: Entry3_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687447152254976
+    m_Key: Entry3_Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687472628457472
+    m_Key: Entry4_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687498293403648
+    m_Key: Entry4_Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7692412159614976
+    m_Key: Credits_Text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
