@@ -24,16 +24,12 @@ public class FirstInfo : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        float timeElapsed = 0f;
-
         Color imageColor = Color.black;
         imageColor.a = 1f;
         fadeImg.color = imageColor;
 
         while (fadeImg.color.a > 0)
         {
-            timeElapsed += Time.unscaledDeltaTime;
-
             imageColor.a -= 1 * 0.35f * Time.unscaledDeltaTime;
             fadeImg.color = imageColor;
 

@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject shootCooldown;
     [SerializeField] GameObject relicCooldown;
     [SerializeField] GameObject confussionIcon;
+    [SerializeField] GameObject fade;
+    [SerializeField] GameObject gameOverFade;
 
     [Header("UI Player Info Healthbar")]
     public Slider healthBarSlider; 
@@ -371,8 +373,40 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.inMenu = true;
         EventSystem.current.SetSelectedGameObject(retryButtonLose.gameObject);
         GamepadMenuSupport.Instance.lastSelectedObject = retryButtonLose.gameObject;
+        StartCoroutine(FadingToGameOver());
+    }
+
+    IEnumerator FadingToGameOver()
+    {
         Time.timeScale = 0f;
+
+        Color fadeColor = Color.black;
+        fadeColor.a = 0f;
+        fade.GetComponent<Image>().color = fadeColor;
+
+        while (fade.GetComponent<Image>().color.a < 1)
+        {
+            fadeColor.a += 0.5f * Time.unscaledDeltaTime;
+            fade.GetComponent<Image>().color = fadeColor;
+
+            yield return null;
+        }
+
         gameOverMenu.SetActive(true);
+
+        fadeColor = Color.black;
+        fadeColor.a = 1f;
+        gameOverFade.GetComponent<Image>().color = fadeColor;
+
+        while (gameOverFade.GetComponent<Image>().color.a > 0)
+        {
+            fadeColor.a -= 0.35f * Time.unscaledDeltaTime;
+            gameOverFade.GetComponent<Image>().color = fadeColor;
+
+            yield return null;
+        }
+
+        gameOverFade.SetActive(false);
     }
 
     public void EnableVictoryMenu()
