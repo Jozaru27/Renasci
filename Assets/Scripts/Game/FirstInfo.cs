@@ -52,7 +52,7 @@ public class FirstInfo : MonoBehaviour
         GameManager.Instance.playerCannotMove = false;
 
         InfoPanel.Instance.AddText(textNames[0], info[0], 1f);
-        InfoPanel.Instance.AddText(textNames[1], info[1], 1f);
+        InfoPanel.Instance.AddTextWithImage(textNames[1], info[1], infoImages[0], 1f);
     }
 
     public void ChangeFirstSentenceName(string newName)
