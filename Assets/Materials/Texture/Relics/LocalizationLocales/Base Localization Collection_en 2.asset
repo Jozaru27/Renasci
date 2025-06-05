@@ -415,7 +415,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687346828697600
-    m_Localized: "I've lost count of how many times I've lived through this.\r\nAt
+    m_Localized: "\n\n\n\nI've lost count of how many times I've lived through this.\r\nAt
       first, I thought it was a curse. Now I know it's a prison.\r\nEvery time I
       die, I wake up again in these cold, filthy halls, with torches that seem freshly
       lit, and the echoes of chants resonating among the piled bones.\r\n\r\nThe
@@ -449,8 +449,8 @@ MonoBehaviour:
 
       E - Interact / Close Notes
 
-      Mouse Wheel -
-      Switch Active Relic
+      Mouse Wheel - Switch
+      Active Relic
 
       Tab - Inventory
 
@@ -458,8 +458,8 @@ MonoBehaviour:
 
 
 
-      | Press
-      E to close the note |'
+      | Press E to
+      close the note |'
     m_Metadata:
       m_Items: []
   - m_Id: 7687429632647168
@@ -470,7 +470,7 @@ MonoBehaviour:
     m_Localized: 'A piercing flash floods your mind with hundreds of memories from
       the past and paths yet to walk, disorienting you and making you lose control.
 
-      
+
 
       Inverts
       the player''s controls while the status effect lasts.
@@ -489,15 +489,15 @@ MonoBehaviour:
     m_Localized: 'After interacting with the Altar, you receive a certain power contained
       within it.
 
-      
 
-      You''ve obtained an Active Relic. Use it to carve
-      your way through hordes of enemies and obstacles alike.
 
-      
+      You''ve obtained an Active Relic. Use it to carve your
+      way through hordes of enemies and obstacles alike.
 
-      (Activate
-      it with Q. When you have several, switch between them with the mouse wheel.)
+
+
+      (Activate it with
+      Q. When you have several, switch between them with the mouse wheel.)
 
 
 

@@ -83,7 +83,7 @@ public class Attack : MonoBehaviour
         {
             GameManager.Instance.playerCannotMove = true;
             GetComponent<PlayerAnimation>().Attack();
-            //StartCoroutine(FinishAttack());
+            StartCoroutine(FinishAttack());
             attacking = true;
         }
     }
