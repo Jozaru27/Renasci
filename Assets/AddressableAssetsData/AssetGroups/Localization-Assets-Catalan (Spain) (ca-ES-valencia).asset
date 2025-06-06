@@ -23,6 +23,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ca-ES-valencia
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77abe76392ee0eb4d955af31660af334
+    m_Address: Keyboard_VLC
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca-ES-valencia
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ecba93c459997e4781867f0576ead25
+    m_Address: Gamepad_VLC
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca-ES-valencia
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 46339bbdb71730d4f985e8561750a6c8, type: 2}
   m_SchemaSet:

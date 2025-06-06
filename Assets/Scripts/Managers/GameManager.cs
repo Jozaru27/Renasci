@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Components;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,8 +25,8 @@ public class GameManager : MonoBehaviour
     public bool gamePausable;
     public GameObject[] enemies;
 
-    public Sprite keyboardControls;
-    public Sprite gamepadControls;
+    // public LocalizedAsset<Sprite> keyboardControlsLocalized;
+    // public LocalizedAsset<Sprite> gamepadControlsLocalized;
 
     public enum Languajes
     {

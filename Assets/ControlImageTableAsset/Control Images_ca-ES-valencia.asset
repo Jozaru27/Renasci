@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: Control Images_ca-ES-valencia
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: ca-ES-valencia
+  m_SharedData: {fileID: 11400000, guid: 4a03e1a404f8b784f99ba506a4c095a4, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 6352166912
+    m_Localized: 77abe76392ee0eb4d955af31660af334[Keyboard_VLC]
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8839389184
+    m_Localized: 0ecba93c459997e4781867f0576ead25[Gamepad_VLC]
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
