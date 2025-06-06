@@ -25,9 +25,6 @@ public class GameManager : MonoBehaviour
     public bool gamePausable;
     public GameObject[] enemies;
 
-    // public LocalizedAsset<Sprite> keyboardControlsLocalized;
-    // public LocalizedAsset<Sprite> gamepadControlsLocalized;
-
     public enum Languajes
     {
         ENGLISH,
