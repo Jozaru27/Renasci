@@ -332,15 +332,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687346828697600
-    m_Localized: "\n\n\n\nHe perdut el compte de les vegades que he viscut a\xE7\xF2.\r\nAl
+    m_Localized: "He perdut el compte de les vegades que he viscut a\xE7\xF2.\r\nAl
       principi pensava que era una maledicci\xF3. Ara s\xE9 que \xE9s una pres\xF3.\r\nCada
       volta que morc, em desperte una altra vegada en estos corredors freds i bruts,
       amb torxes que pareixen acabades d\u2019encendre, i els ecos dels c\xE0ntics
       ressonant entre els ossos apilats.\r\n\r\nEl temple pareix canviar, igual que
       jo.\r\n\r\nSi est\xE0s llegint a\xE7\xF2, busca les rel\xEDquies, elles et
       guiaran a la porta. Per\xF2 ves amb compte, cada volta s\xF3n m\xE9s astutes.\r\n\r\nJo\u2026
-      ja no s\xE9 si continue sent jo\u2026\r\n\r\n\n| Prem E per a tancar la nota
-      |"
+      ja no s\xE9 si continue sent jo\u2026\r"
     m_Metadata:
       m_Items: []
   - m_Id: 7687370052558848
@@ -348,11 +347,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687403405664256
-    m_Localized: "\n\n\n\nWASD - Moviment\r\nShift - Esprintar\r\nClic Esquerre -
-      Atacar amb l'espasa\r\nClic Dret - Disparar el rev\xF2lver on apunte el cursor\r\nQ
+    m_Localized: "WASD - Moviment\r\nShift - Esprintar\r\nClic Esquerre - Atacar
+      amb l'espasa\r\nClic Dret - Disparar el rev\xF2lver on apunte el cursor\r\nQ
       - Utilitzar Reliquia Activa\r\nE - Interactuar / Tancar Notes\r\nRoda del Ratol\xED
-      - Canviar de Reliquia Activa\r\nTabulador - Inventari\r\nESC - Men\xFA\n\n\n|
-      Prem E per a tancar la nota |"
+      - Canviar de Reliquia Activa\r\nTabulador - Inventari\r\nESC - Men\xFA"
     m_Metadata:
       m_Items: []
   - m_Id: 7687429632647168
@@ -361,9 +359,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7687447152254976
     m_Localized: "Un raig punxant t\u2019inunda la ment amb centenars de records
-      del passat i camins per rec\xF3rrer, marejant-te i fent-te perdre el control.\r\n\r\nInverteix
-      els controls del jugador mentre dure l\u2019efecte de l\u2019estat alterat.\n\n\n|
-      Prem E per a tancar la nota |"
+      del passat i camins per rec\xF3rrer, marejant-te i fent-te perdre el control.\r\n\nInverteix
+      els controls del jugador mentre dure l\u2019efecte de l\u2019estat alterat."
     m_Metadata:
       m_Items: []
   - m_Id: 7687472628457472
@@ -374,8 +371,7 @@ MonoBehaviour:
     m_Localized: "Despr\xE9s d\u2019interactuar amb l\u2019Altar, reps un cert poder
       que hi estava cont\xE9s.\r\n\r\nHas obtingut una Rellequia Activa. Utilitza-la
       per a obrir-te pas entre hordes d\u2019enemics i obstacles per igual.\r\n\r\n(Activa-la
-      amb Q. Quan en tingues diverses, canvia entre elles amb la roda del ratol\xED.)\n\n\n|
-      Prem E per a tancar la nota |"
+      amb Q. Quan en tingues diverses, canvia entre elles amb la roda del ratol\xED.)"
     m_Metadata:
       m_Items: []
   - m_Id: 7692412159614976

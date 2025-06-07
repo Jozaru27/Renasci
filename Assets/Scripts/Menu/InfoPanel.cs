@@ -15,6 +15,8 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text decorationLine;
     [SerializeField] AudioClip interactSound;
+    [SerializeField] TMP_Text[] noteTexts;
+    [SerializeField] Image[] noteImages;
 
     bool firstPanelShown;
     Color generalColor = Color.white;
@@ -110,6 +112,12 @@ public class InfoPanel : MonoBehaviour
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
+        
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
 
         while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
@@ -130,6 +138,12 @@ public class InfoPanel : MonoBehaviour
             nameText.color = textColor;
             decorationLine.color = textColor;
 
+            for (int i = 0; i < noteTexts.Length; i++)
+            {
+                noteTexts[i].color = textColor;
+                noteImages[i].color = textColor;
+            }
+
             yield return null;
         }
 
@@ -143,6 +157,13 @@ public class InfoPanel : MonoBehaviour
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
+
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
+
         GameManager.Instance.infoShowed = true;
 
         //if (takenRelics.Count > 0)
@@ -176,6 +197,12 @@ public class InfoPanel : MonoBehaviour
         nameText.color = textColor;
         decorationLine.color = textColor;
 
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
+
         while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
             timeElapsed += Time.unscaledDeltaTime;
@@ -195,6 +222,12 @@ public class InfoPanel : MonoBehaviour
             nameText.color = textColor;
             decorationLine.color = textColor;
 
+            for (int i = 0; i < noteTexts.Length; i++)
+            {
+                noteTexts[i].color = textColor;
+                noteImages[i].color = textColor;
+            }
+
             yield return null;
         }
 
@@ -212,6 +245,12 @@ public class InfoPanel : MonoBehaviour
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
+
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
 
         CheckList();
 

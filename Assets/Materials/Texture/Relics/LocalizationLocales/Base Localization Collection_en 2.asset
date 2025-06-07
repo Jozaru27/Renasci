@@ -415,14 +415,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687346828697600
-    m_Localized: "\n\n\n\nI've lost count of how many times I've lived through this.\r\nAt
+    m_Localized: "I've lost count of how many times I've lived through this.\r\nAt
       first, I thought it was a curse. Now I know it's a prison.\r\nEvery time I
       die, I wake up again in these cold, filthy halls, with torches that seem freshly
       lit, and the echoes of chants resonating among the piled bones.\r\n\r\nThe
       temple seems to change, just like I do.\r\n\r\nIf you're reading this, seek
       the relics, they will guide you to the door. But be careful, they're becoming
-      more cunning each time.\r\n\r\nI\u2026 I no longer know if I\u2019m still myself\u2026\r\n\r\n\n|
-      Press E to close the note |"
+      more cunning each time.\r\n\r\nI\u2026 I no longer know if I\u2019m still myself\u2026\r"
     m_Metadata:
       m_Items: []
   - m_Id: 7687370052558848
@@ -430,36 +429,26 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687403405664256
-    m_Localized: '
-
-
-
-
-      WASD - Movement
+    m_Localized: 'WASD - Movement
 
       Shift - Dash
 
-      Left Click
-      - Swing sword
+      Left Click - Swing sword
 
-      Right Click - Shoot revolver where the cursor is aiming
+      Right
+      Click - Shoot revolver where the cursor is aiming
 
-      Q
-      - Use Active Relic
+      Q - Use Active Relic
 
-      E - Interact / Close Notes
+      E
+      - Interact / Close Notes
 
-      Mouse Wheel - Switch
-      Active Relic
+      Mouse Wheel - Switch Active Relic
 
-      Tab - Inventory
+      Tab
+      - Inventory
 
-      ESC - Menu
-
-
-
-      | Press E to
-      close the note |'
+      ESC - Menu'
     m_Metadata:
       m_Items: []
   - m_Id: 7687429632647168
@@ -471,14 +460,8 @@ MonoBehaviour:
       the past and paths yet to walk, disorienting you and making you lose control.
 
 
-
       Inverts
-      the player''s controls while the status effect lasts.
-
-
-
-      | Press E to
-      close the note |'
+      the player''s controls while the status effect lasts.'
     m_Metadata:
       m_Items: []
   - m_Id: 7687472628457472
@@ -490,19 +473,12 @@ MonoBehaviour:
       within it.
 
 
-
-      You''ve obtained an Active Relic. Use it to carve your
-      way through hordes of enemies and obstacles alike.
-
+      You''ve obtained an Active Relic. Use it to carve your way
+      through hordes of enemies and obstacles alike.
 
 
-      (Activate it with
-      Q. When you have several, switch between them with the mouse wheel.)
-
-
-
-      |
-      Press E to close the note |'
+      (Activate it with Q.
+      When you have several, switch between them with the mouse wheel.)'
     m_Metadata:
       m_Items: []
   - m_Id: 7692412159614976

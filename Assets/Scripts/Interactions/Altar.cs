@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Altar : MonoBehaviour, IInteractable
 {
@@ -18,10 +20,70 @@ public class Altar : MonoBehaviour, IInteractable
 
     bool firstTime;
     GameObject playerObj;
+    GameObject interactUI;
+    Image interactImage;
+    TMP_Text interactText;
 
     private void Start()
     {
         playerObj = GameObject.Find("Player");
+        interactUI = GameObject.Find("--INTERACT_UI--");
+        interactImage = GameObject.Find("InteractionImage").GetComponent<Image>();
+        interactText = GameObject.Find("InteractionText").GetComponent<TMP_Text>();
+    }
+
+    public void Hold()
+    {
+        if (!firstTime)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SpawnInteractUI());
+        }
+    }
+
+    public void Unhold()
+    {
+        if (!firstTime)
+        {
+            StopAllCoroutines();
+            StartCoroutine(DespawnInteractUI());
+        }
+    }
+
+    IEnumerator SpawnInteractUI()
+    {
+        interactUI.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+
+        Color fadeColor = Color.white;
+        fadeColor.a = interactImage.color.a;
+        interactImage.color = fadeColor;
+        interactText.color = fadeColor;
+
+        while (interactImage.color.a < 1)
+        {
+            fadeColor.a += 2 * Time.unscaledDeltaTime;
+            interactImage.color = fadeColor;
+            interactText.color = fadeColor;
+
+            yield return null;
+        }
+    }
+
+    IEnumerator DespawnInteractUI()
+    {
+        Color fadeColor = Color.white;
+        fadeColor.a = interactImage.color.a;
+        interactImage.color = fadeColor;
+        interactText.color = fadeColor;
+
+        while (interactImage.color.a > 0)
+        {
+            fadeColor.a -= 2 * Time.unscaledDeltaTime;
+            interactImage.color = fadeColor;
+            interactText.color = fadeColor;
+
+            yield return null;
+        }
     }
 
     public void Interact()
@@ -72,6 +134,7 @@ public class Altar : MonoBehaviour, IInteractable
 
             Destroy(relicObj);
             firstTime = true;
+            StartCoroutine(DespawnInteractUI());
         }
     }
 

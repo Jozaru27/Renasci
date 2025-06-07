@@ -66,7 +66,7 @@ public class Attack : MonoBehaviour
     {
         if (input.currentControlScheme == "Gamepad")
         {
-            if (usingIndicator && !shoting)
+            if (usingIndicator && !shoting && GameManager.Instance.gamePausable && !GameManager.Instance.gamePaused && !GameManager.Instance.onInventory)
             {
                 indicatorObj.SetActive(true);
                 Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;

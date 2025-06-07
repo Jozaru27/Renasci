@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -74,6 +75,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button retryButtonLose;
     [SerializeField] Button firstRelic;
 
+    [Header("GameOver Buttons")]
+    [SerializeField] Button[] gameOverButtons;
+
     int enemyCount;
 
     public static UIManager Instance { get; private set; }
@@ -108,6 +112,11 @@ public class UIManager : MonoBehaviour
         }
 
         GamepadMenuSupport.Instance.lastSelectedObject = resumeButton.gameObject;
+
+        foreach (Button button in gameOverButtons)
+        {
+            button.interactable = false;
+        }
     }
 
 
@@ -407,6 +416,11 @@ public class UIManager : MonoBehaviour
         }
 
         gameOverFade.SetActive(false);
+
+        foreach (Button button in gameOverButtons)
+        {
+            button.interactable = true;
+        }
     }
 
     public void EnableVictoryMenu()
@@ -421,7 +435,7 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         GameManager.Instance.ResetProperties();
-        SceneLoader.Instance.LoadCurrentSceneAsync();
+        StartCoroutine(FadeOutToRestart());
     }
 
     public void EnableSettingsMenu()
@@ -445,7 +459,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameManager.Instance.ResetProperties();
-        SceneLoader.Instance.LoadMainMenu();
+        StartCoroutine(FadeOutToMainMenu());
     }
 
     public void EnableAudioArea()
@@ -510,5 +524,53 @@ public class UIManager : MonoBehaviour
 
         cooldownIcon.GetComponent<Image>().fillAmount = 0f;
         cooldownIcon.SetActive(false);
+    }
+
+    IEnumerator FadeOutToRestart()
+    {
+        foreach (Button button in gameOverButtons)
+        {
+            button.interactable = false;
+        }
+
+        gameOverFade.SetActive(true);
+
+        Color fadeColor = Color.black;
+        fadeColor.a = 0f;
+        gameOverFade.GetComponent<Image>().color = fadeColor;
+
+        while (gameOverFade.GetComponent<Image>().color.a < 1)
+        {
+            fadeColor.a += 0.5f * Time.unscaledDeltaTime;
+            gameOverFade.GetComponent<Image>().color = fadeColor;
+
+            yield return null;
+        }
+
+        SceneLoader.Instance.LoadCurrentSceneAsync();
+    }
+
+    IEnumerator FadeOutToMainMenu()
+    {
+        foreach (Button button in gameOverButtons)
+        {
+            button.interactable = false;
+        }
+
+        gameOverFade.SetActive(true);
+
+        Color fadeColor = Color.black;
+        fadeColor.a = 0f;
+        gameOverFade.GetComponent<Image>().color = fadeColor;
+
+        while (gameOverFade.GetComponent<Image>().color.a < 1)
+        {
+            fadeColor.a += 0.5f * Time.unscaledDeltaTime;
+            gameOverFade.GetComponent<Image>().color = fadeColor;
+
+            yield return null;
+        }
+
+        SceneLoader.Instance.LoadMainMenuAsync();
     }
 }

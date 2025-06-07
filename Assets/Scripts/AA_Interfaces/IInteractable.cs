@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
+    void Hold();
+    void Unhold();
     void Interact();
 }

@@ -6,6 +6,27 @@ public class Interact : MonoBehaviour
     [SerializeField] LayerMask interactLayer;
     [SerializeField] float interactionDistance;
 
+    IInteractable interactableInterface;
+
+    private void Update()
+    {
+        Ray cameraRay = new Ray(transform.position, transform.forward);
+
+        if (Physics.Raycast(cameraRay, out RaycastHit hit, interactionDistance, interactLayer))
+        {
+            if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+            {
+                interactableInterface = interactObj;
+                interactObj.Hold();
+            }
+        }
+        else if (interactableInterface != null)
+        {
+            interactableInterface.Unhold();
+            interactableInterface = null;
+        }
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started && !GameManager.Instance.gameOver && !GameManager.Instance.gameWin)

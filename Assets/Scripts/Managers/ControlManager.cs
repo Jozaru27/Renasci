@@ -27,6 +27,15 @@ public class ControlManager : MonoBehaviour
     [SerializeField] GameObject useRelicGamepad;
     [SerializeField] GameObject useRelicKeyboard;
 
+    [Header("Note Controls")]
+    [SerializeField] GameObject keyboardNote;
+    [SerializeField] GameObject gamepadNote;
+
+    [Header("Interact Controls")]
+    [SerializeField] Sprite interactKeyboard;
+    [SerializeField] Sprite interactGamepad;
+    [SerializeField] Image interactImage;
+
     [HideInInspector] public Sprite fullCurrentControls;
 
     public static ControlManager Instance { get; private set; }
@@ -53,12 +62,18 @@ public class ControlManager : MonoBehaviour
             fullCurrentControls = fullKeyboard;
             keyboardControlPanel.SetActive(true);
             gamepadControlPanel.SetActive(false);
+            gamepadNote.SetActive(false);
+            keyboardNote.SetActive(true);
+            interactImage.sprite = interactKeyboard;
         }
         else
         {
             fullCurrentControls = fullGamepad;
             keyboardControlPanel.SetActive(false);
             gamepadControlPanel.SetActive(true);
+            gamepadNote.SetActive(true);
+            keyboardNote.SetActive(false);
+            interactImage.sprite = interactGamepad;
         } 
 
         if (affectInfoImage)
