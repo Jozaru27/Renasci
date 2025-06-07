@@ -53,7 +53,7 @@ public class VibrationManager : MonoBehaviour
 
     IEnumerator StopRumbling(float duration)
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
         pad.ResetHaptics();
     }
