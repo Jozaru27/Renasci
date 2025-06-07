@@ -85,6 +85,8 @@ public class Attack : MonoBehaviour
             GetComponent<PlayerAnimation>().Attack();
             StartCoroutine(FinishAttack());
             attacking = true;
+
+            //VibrationManager.Instance.RumbleGamepad(1f, 1f, 10f);
         }
     }
 

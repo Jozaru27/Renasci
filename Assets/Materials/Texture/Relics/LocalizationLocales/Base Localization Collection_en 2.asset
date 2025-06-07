@@ -415,7 +415,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687346828697600
-    m_Localized: "I've lost count of how many times I've lived through this.\r\nAt
+    m_Localized: "\n\n\nI've lost count of how many times I've lived through this.\r\nAt
       first, I thought it was a curse. Now I know it's a prison.\r\nEvery time I
       die, I wake up again in these cold, filthy halls, with torches that seem freshly
       lit, and the echoes of chants resonating among the piled bones.\r\n\r\nThe
@@ -429,24 +429,28 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687403405664256
-    m_Localized: 'WASD - Movement
+    m_Localized: '
+
+
+
+      WASD - Movement
 
       Shift - Dash
 
-      Left Click - Swing sword
+      Left Click
+      - Swing sword
 
-      Right
-      Click - Shoot revolver where the cursor is aiming
+      Right Click - Shoot revolver where the cursor is aiming
 
-      Q - Use Active Relic
+      Q
+      - Use Active Relic
 
-      E
-      - Interact / Close Notes
+      E - Interact / Close Notes
 
-      Mouse Wheel - Switch Active Relic
+      Mouse Wheel - Switch
+      Active Relic
 
-      Tab
-      - Inventory
+      Tab - Inventory
 
       ESC - Menu'
     m_Metadata:
@@ -456,8 +460,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687447152254976
-    m_Localized: 'A piercing flash floods your mind with hundreds of memories from
-      the past and paths yet to walk, disorienting you and making you lose control.
+    m_Localized: '
+
+
+
+      A piercing flash floods your mind with hundreds of memories
+      from the past and paths yet to walk, disorienting you and making you lose control.
 
 
       Inverts
@@ -469,16 +477,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687498293403648
-    m_Localized: 'After interacting with the Altar, you receive a certain power contained
-      within it.
+    m_Localized: '
 
 
-      You''ve obtained an Active Relic. Use it to carve your way
-      through hordes of enemies and obstacles alike.
+
+      After interacting with the Altar, you receive a certain
+      power contained within it.
 
 
-      (Activate it with Q.
-      When you have several, switch between them with the mouse wheel.)'
+      You''ve obtained an Active Relic. Use it
+      to carve your way through hordes of enemies and obstacles alike.
+
+
+      (Activate
+      it with Q. When you have several, switch between them with the mouse wheel.)'
     m_Metadata:
       m_Items: []
   - m_Id: 7692412159614976
@@ -488,6 +500,42 @@ MonoBehaviour:
       Hill 2 Soundtrack \u2013 Akira Yamaoka\r\nThe Binding of Isaac: Rebirth \u2013
       Danny Baranowsky\r\nUndertale\n\r\n\n\n\n\nAdditional Sprites\r\n\nKenney\r\nPoneti\nArks\nFlaticon\n\n\n\n\n\n\n\n\n\n\nThanks
       For Playing!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669819377115136
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669863505387520
+    m_Localized: Shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669884946669568
+    m_Localized: Aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669907251978240
+    m_Localized: Relic Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669937065091072
+    m_Localized: Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669959978573824
+    m_Localized: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669994296369152
+    m_Localized: Change Relic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670028215705600
+    m_Localized: Interact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670053322809344
+    m_Localized: Close Note
     m_Metadata:
       m_Items: []
   references:

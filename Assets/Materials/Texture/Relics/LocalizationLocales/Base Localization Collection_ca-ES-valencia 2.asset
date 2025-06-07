@@ -332,7 +332,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687346828697600
-    m_Localized: "He perdut el compte de les vegades que he viscut a\xE7\xF2.\r\nAl
+    m_Localized: "\n\n\nHe perdut el compte de les vegades que he viscut a\xE7\xF2.\r\nAl
       principi pensava que era una maledicci\xF3. Ara s\xE9 que \xE9s una pres\xF3.\r\nCada
       volta que morc, em desperte una altra vegada en estos corredors freds i bruts,
       amb torxes que pareixen acabades d\u2019encendre, i els ecos dels c\xE0ntics
@@ -347,7 +347,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687403405664256
-    m_Localized: "WASD - Moviment\r\nShift - Esprintar\r\nClic Esquerre - Atacar
+    m_Localized: "\n\n\nWASD - Moviment\r\nShift - Esprintar\r\nClic Esquerre - Atacar
       amb l'espasa\r\nClic Dret - Disparar el rev\xF2lver on apunte el cursor\r\nQ
       - Utilitzar Reliquia Activa\r\nE - Interactuar / Tancar Notes\r\nRoda del Ratol\xED
       - Canviar de Reliquia Activa\r\nTabulador - Inventari\r\nESC - Men\xFA"
@@ -358,7 +358,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687447152254976
-    m_Localized: "Un raig punxant t\u2019inunda la ment amb centenars de records
+    m_Localized: "\n\n\nUn raig punxant t\u2019inunda la ment amb centenars de records
       del passat i camins per rec\xF3rrer, marejant-te i fent-te perdre el control.\r\n\nInverteix
       els controls del jugador mentre dure l\u2019efecte de l\u2019estat alterat."
     m_Metadata:
@@ -368,8 +368,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687498293403648
-    m_Localized: "Despr\xE9s d\u2019interactuar amb l\u2019Altar, reps un cert poder
-      que hi estava cont\xE9s.\r\n\r\nHas obtingut una Rellequia Activa. Utilitza-la
+    m_Localized: "\n\n\nDespr\xE9s d\u2019interactuar amb l\u2019Altar, reps un cert
+      poder que hi estava cont\xE9s.\r\n\r\nHas obtingut una Rellequia Activa. Utilitza-la
       per a obrir-te pas entre hordes d\u2019enemics i obstacles per igual.\r\n\r\n(Activa-la
       amb Q. Quan en tingues diverses, canvia entre elles amb la roda del ratol\xED.)"
     m_Metadata:
@@ -381,6 +381,42 @@ MonoBehaviour:
       sonora de Silent Hill 2 \u2013 Akira Yamaoka\r\nThe Binding of Isaac: Rebirth
       \u2013 Danny Baranowsky\r\nUndertale\n\r\n\n\n\n\nSprites Addicionals\r\n\nKenney\r\nPoneti
       \r\nArks\nFlaticon\n\n\n\n\n\n\n\n\n\nGr\xE0cies Per Jugar!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669819377115136
+    m_Localized: Atacar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669863505387520
+    m_Localized: Disparar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669884946669568
+    m_Localized: Apuntar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669907251978240
+    m_Localized: Atac Rellequia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669937065091072
+    m_Localized: Esprintar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669959978573824
+    m_Localized: Inventari
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669994296369152
+    m_Localized: Canviar Rellequia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670028215705600
+    m_Localized: Interactuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670053322809344
+    m_Localized: Tancar Nota
     m_Metadata:
       m_Items: []
   references:

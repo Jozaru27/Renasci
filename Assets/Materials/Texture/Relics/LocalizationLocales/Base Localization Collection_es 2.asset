@@ -336,7 +336,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687346828697600
-    m_Localized: "He perdido la cuenta de cu\xE1ntas veces he vivido esto.\r\nAl
+    m_Localized: "\n\n\nHe perdido la cuenta de cu\xE1ntas veces he vivido esto.\r\nAl
       principio cre\xED que era una maldici\xF3n. Ahora s\xE9 que es una prisi\xF3n.\r\nCada
       vez que muero, despierto de nuevo en estos fr\xEDos y sucios pasillos, con
       antorchas que parecen prendidas desde hace poco, y los ecos de los c\xE1nticos
@@ -351,7 +351,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687403405664256
-    m_Localized: "WASD - Movimiento\r\nShift - Dash\r\nClick Izquierdo - Blandir
+    m_Localized: "\n\n\nWASD - Movimiento\r\nShift - Dash\r\nClick Izquierdo - Blandir
       la espada\r\nClick Derecho - Disparar el rev\xF3lver a done est\xE9 apuntando
       el cursor\r\nQ - Utilizar Reliquia Activa\r\nE - Interactuar / Cerrar Notas\r\nRueda
       del Rat\xF3n - Cambiar de Reliquia Activa\r\nTabulador - Inventario\r\nESC
@@ -363,9 +363,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687447152254976
-    m_Localized: "Un rayo punzante hace que te invadan cientos de memorias de recuerdos
-      pasados y caminos por recorrer, mare\xE1ndote y haci\xE9ndote perder el control\r\n\r\nInvierte
-      los controles del jugador mientras dure el efecto del estado alterado."
+    m_Localized: "\n\n\nUn rayo punzante hace que te invadan cientos de memorias
+      de recuerdos pasados y caminos por recorrer, mare\xE1ndote y haci\xE9ndote
+      perder el control\r\n\r\nInvierte los controles del jugador mientras dure el
+      efecto del estado alterado."
     m_Metadata:
       m_Items: []
   - m_Id: 7687472628457472
@@ -373,8 +374,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7687498293403648
-    m_Localized: "Tras interactuar con el Altar, recibes cierto poder contenido en
-      el mismo.\r\n\r\nHas obtenido una Reliquia Activa, util\xEDzala para abrirte
+    m_Localized: "\n\n\nTras interactuar con el Altar, recibes cierto poder contenido
+      en el mismo.\r\n\r\nHas obtenido una Reliquia Activa, util\xEDzala para abrirte
       paso entre hordas de enemigos y obst\xE1culos por igual.\r\n\r\n(Act\xEDvala
       con Q, cuando tengas varias, cambia entre ellas con la rueda del rat\xF3n)"
     m_Metadata:
@@ -387,6 +388,42 @@ MonoBehaviour:
       - Akira Yamaoka\r\nThe Binding of Isaac: Rebirth - Danny Baranowsky\r\nUndertale\n\r\n\n\n\n\nSprites
       Adicionales\r\n\nKenney\r\nPoneti\nArks\nFlaticon\n\n\n\n\n\n\n\n\n\n\xA1Gracias
       Por Jugar!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669819377115136
+    m_Localized: Atacar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669863505387520
+    m_Localized: Disparar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669884946669568
+    m_Localized: Apuntar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669907251978240
+    m_Localized: Ataque Reliquia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669937065091072
+    m_Localized: Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669959978573824
+    m_Localized: Inventario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669994296369152
+    m_Localized: Cambiar Reliquia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670028215705600
+    m_Localized: Interactuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670053322809344
+    m_Localized: Cerrar Nota
     m_Metadata:
       m_Items: []
   references:

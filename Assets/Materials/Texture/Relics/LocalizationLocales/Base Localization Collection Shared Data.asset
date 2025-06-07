@@ -335,6 +335,42 @@ MonoBehaviour:
     m_Key: Credits_Text
     m_Metadata:
       m_Items: []
+  - m_Id: 8669819377115136
+    m_Key: Controls_Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669863505387520
+    m_Key: Controls_Shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669884946669568
+    m_Key: Controls_Aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669907251978240
+    m_Key: Controls_RelicAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669937065091072
+    m_Key: Controls_Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669959978573824
+    m_Key: Controls_Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8669994296369152
+    m_Key: Controls_ChangeRelic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670028215705600
+    m_Key: Controls_Interact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8670053322809344
+    m_Key: Controls_CloseNote
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
