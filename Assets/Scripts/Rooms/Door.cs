@@ -31,6 +31,7 @@ public class Door : MonoBehaviour
         foreach (GameObject collider in colliders)
         {
             collider.SetActive(true);
+            VibrationManager.Instance.RumbleGamepad(0f, 0.5f, 0.25f);
         }
     }
 

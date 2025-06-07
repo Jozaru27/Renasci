@@ -86,7 +86,6 @@ public class Attack : MonoBehaviour
             StartCoroutine(FinishAttack());
             attacking = true;
 
-            //VibrationManager.Instance.RumbleGamepad(1f, 1f, 10f);
         }
     }
 
@@ -268,6 +267,7 @@ public class Attack : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
 
         GameObject bullet = Instantiate(bulletPref, shotPoint.position, targetRotation);
+        VibrationManager.Instance.RumbleGamepad(0.25f, 0f, 0.25f);
 
         UIManager.Instance.ChangeBulletCount(6 - shots);
 
