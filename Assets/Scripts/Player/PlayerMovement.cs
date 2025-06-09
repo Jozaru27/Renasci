@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         //audioSource = this.gameObject.GetComponent<AudioSource>();
+        GameManager.Instance.ResetProperties();
 
         rb = GetComponent<Rigidbody>();
         dash = GetComponent<Dash>();

@@ -75,8 +75,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button retryButtonLose;
     [SerializeField] Button firstRelic;
 
-    [Header("GameOver Buttons")]
+    [Header("Menu Buttons")]
     [SerializeField] Button[] gameOverButtons;
+    [SerializeField] Button[] menuButtons;
 
     int enemyCount;
 
@@ -415,8 +416,6 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
-        gameOverFade.SetActive(false);
-
         foreach (Button button in gameOverButtons)
         {
             button.interactable = true;
@@ -457,7 +456,6 @@ public class UIManager : MonoBehaviour
 
     public void MainMenu()
     {
-        Time.timeScale = 1f;
         GameManager.Instance.ResetProperties();
         StartCoroutine(FadeOutToMainMenu());
     }
@@ -547,29 +545,45 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
+        Time.timeScale = 1f;
+
         SceneLoader.Instance.LoadCurrentSceneAsync();
     }
 
     IEnumerator FadeOutToMainMenu()
     {
-        foreach (Button button in gameOverButtons)
+        foreach (Button button in menuButtons)
         {
             button.interactable = false;
-        }
+        }  
 
-        gameOverFade.SetActive(true);
+        Color fadeColor_01 = Color.black;
+        Color fadeColor_02 = Color.black;
 
-        Color fadeColor = Color.black;
-        fadeColor.a = 0f;
-        gameOverFade.GetComponent<Image>().color = fadeColor;
+        fadeColor_01.a = fade.GetComponent<Image>().color.a;
+        fadeColor_02.a = gameOverFade.GetComponent<Image>().color.a;
 
-        while (gameOverFade.GetComponent<Image>().color.a < 1)
+        fade.GetComponent<Image>().color = fadeColor_01;
+        gameOverFade.GetComponent<Image>().color = fadeColor_02;
+
+        while (fade.GetComponent<Image>().color.a < 1 || gameOverFade.GetComponent<Image>().color.a < 1)
         {
-            fadeColor.a += 0.5f * Time.unscaledDeltaTime;
-            gameOverFade.GetComponent<Image>().color = fadeColor;
+            fadeColor_01.a += 0.5f * Time.unscaledDeltaTime;
+            fadeColor_02.a += 0.5f * Time.unscaledDeltaTime;
+
+            fadeColor_01.a = Mathf.Clamp01(fadeColor_01.a);
+            fadeColor_02.a = Mathf.Clamp01(fadeColor_02.a);
+
+            fade.GetComponent<Image>().color = fadeColor_01;
+            gameOverFade.GetComponent<Image>().color = fadeColor_02;
 
             yield return null;
         }
+
+        fade.GetComponent<Image>().color = fadeColor_01;
+        gameOverFade.GetComponent<Image>().color = fadeColor_02;
+
+        Time.timeScale = 1f;
 
         SceneLoader.Instance.LoadMainMenuAsync();
     }
