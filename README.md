@@ -20,6 +20,38 @@ Rama NEW-Producción: Rama en la que se trabaja. <br>
 
 # Actualizaciones
 
+---
+## Actualización 1.1.1
+
+### Mejoras y Nuevas Características
+* **Fundidos en Menús:** Se han añadido transiciones de fundido suaves a los menús para una sensación más pulida.
+* **Sistemas de Música:**
+    * Resuelto el sistema de música de combate para transiciones fluidas durante las batallas (antes no sonaba en todos los enemigos).
+    * Resuelto el sistema de música de ambiente durante el juego (no sonaba ningún sonido)
+    * Se han añadido sonidos de ambiente al menú principal y música a los créditos
+* **Decoración del Menú Principal:** El menú principal ha sido ligeramente decorado con paneles.
+* **Niebla de Exploración:** Se ha implementado un sistema de niebla que revela la zona a medida que exploras.
+* **Clarificación de Controles:**
+    * Se ha mejorado la claridad de las ventanas de entrada de teclado/ratón y de mando.
+    * Se han añadido **controles progresivos** (que aparecen al acercarse a cofres) y **controles estáticos** (ubicados en la esquina superior derecha de la pantalla) tanto para teclado/ratón como para mando.
+    * El cambio de los controles si pasas de mando a teclado y ratón, y viceversa es instantáneo.
+* **Vibración del Mando:** Se ha añadido vibración al mando al morir, recibir daño, hacer *dash* y disparar.
+* **Efectos de Sonido:**
+    * Se han añadido sonidos de puerta a los créditos y al menú principal.
+* **Mejoras Menores:**
+    * Se ha ajustado el texto de las notas introductorias del juego.
+    * Varias otras mejoras menores.
+
+### Corrección de Errores
+* **Bug de Inicio del Juego:** Se ha corregido un error que ocasionalmente impedía que el juego se iniciara.
+* **Bug de Personaje Atascado:** Se ha resuelto un problema por el cual el personaje a veces se atascaba al atacar.
+* **Correcciones Generales:** Se han implementado correcciones generales de errores en todo el juego.
+
+### Ajustes de Enemigos
+* Se han ajustado las animaciones y funcionalidades de los enemigos.
+
+---
+
 # 🛠️ Actualización 4 - Pulido y Toques Finales
 
 ## 🧟‍♂️ Enemigos
