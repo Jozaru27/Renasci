@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Components;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +24,6 @@ public class GameManager : MonoBehaviour
     public bool victoryObtained;
     public bool gamePausable;
     public GameObject[] enemies;
-
-    public Sprite keyboardControls;
-    public Sprite gamepadControls;
 
     public enum Languajes
     {

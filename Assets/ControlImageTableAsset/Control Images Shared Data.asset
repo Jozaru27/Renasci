@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Control Images Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Control Images
+  m_TableCollectionNameGuidString: 4a03e1a404f8b784f99ba506a4c095a4
+  m_Entries:
+  - m_Id: 6352166912
+    m_Key: KeyboardMouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8839389184
+    m_Key: Gamepad
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 2424915863204265991
+  m_KeyGenerator:
+    rid: 2424915863204265987
+  references:
+    version: 2
+    RefIds:
+    - rid: 2424915863204265987
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1749194612501
+    - rid: 2424915863204265991
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 6352166912
+          m_TableCodes:
+          - en
+          - es
+          - ca-ES-valencia
+        - m_KeyId: 8839389184
+          m_TableCodes:
+          - en
+          - es
+          - ca-ES-valencia
+        m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

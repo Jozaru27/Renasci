@@ -12,7 +12,6 @@ public class FirstInfo : MonoBehaviour
     [SerializeField] string[] textNames;
     [TextArea(4, 6)][SerializeField] string[] info;
 
-    [SerializeField] Sprite[] infoImages;
     [SerializeField] Image fadeImg;
 
     private void Start()
@@ -24,16 +23,12 @@ public class FirstInfo : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        float timeElapsed = 0f;
-
         Color imageColor = Color.black;
         imageColor.a = 1f;
         fadeImg.color = imageColor;
 
         while (fadeImg.color.a > 0)
         {
-            timeElapsed += Time.unscaledDeltaTime;
-
             imageColor.a -= 1 * 0.35f * Time.unscaledDeltaTime;
             fadeImg.color = imageColor;
 
@@ -52,7 +47,7 @@ public class FirstInfo : MonoBehaviour
         GameManager.Instance.playerCannotMove = false;
 
         InfoPanel.Instance.AddText(textNames[0], info[0], 1f);
-        InfoPanel.Instance.AddText(textNames[1], info[1], 1f);
+        InfoPanel.Instance.AddTextWithImage(string.Empty, string.Empty, ControlManager.Instance.fullCurrentControls, 1f);
     }
 
     public void ChangeFirstSentenceName(string newName)

@@ -36,7 +36,8 @@ public class Attack : MonoBehaviour
     public int relicSlot = 0;
     bool shotable = true;
     bool shoting;
-    bool relicUsable = true;
+    public bool relicUsable = true;
+    public bool inRelicCooldown;
     bool usingIndicator;
     public bool attacking;
     Vector2 mousePos;
@@ -65,7 +66,7 @@ public class Attack : MonoBehaviour
     {
         if (input.currentControlScheme == "Gamepad")
         {
-            if (usingIndicator && !shoting)
+            if (usingIndicator && !shoting && GameManager.Instance.gamePausable && !GameManager.Instance.gamePaused && !GameManager.Instance.onInventory)
             {
                 indicatorObj.SetActive(true);
                 Vector3 indicatorRotation = new Vector3(mousePos.x, 0, mousePos.y).normalized;
@@ -84,6 +85,7 @@ public class Attack : MonoBehaviour
             GetComponent<PlayerAnimation>().Attack();
             StartCoroutine(FinishAttack());
             attacking = true;
+
         }
     }
 
@@ -262,9 +264,10 @@ public class Attack : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.65f);
 
         GameObject bullet = Instantiate(bulletPref, shotPoint.position, targetRotation);
+        VibrationManager.Instance.RumbleGamepad(0.25f, 0f, 0.25f);
 
         UIManager.Instance.ChangeBulletCount(6 - shots);
 
@@ -444,9 +447,12 @@ public class Attack : MonoBehaviour
 
     IEnumerator RelicCoolDown()
     {
+        inRelicCooldown = true;
+
         UIManager.Instance.ActiveRelicCooldown(5f);
         yield return new WaitForSeconds(5f);
 
+        inRelicCooldown = false;
         relicUsable = true;
     }
 }

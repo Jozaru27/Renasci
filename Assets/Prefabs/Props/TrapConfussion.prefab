@@ -5203,6 +5203,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2760565866874073503}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2626b8f29581c543b7a299e0696d96f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7803564617361209738}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2626b8f29581c543b7a299e0696d96f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1614271919891376812}
   m_SourcePrefab: {fileID: 100100000, guid: c2626b8f29581c543b7a299e0696d96f, type: 3}
 --- !u!4 &3703250283823119821 stripped
 Transform:
@@ -5389,3 +5397,83 @@ MonoBehaviour:
   - "Un rayo punzante hace que te invadan cientos de memorias de recuerdos pasados
     y caminos por recorrer, mare\xE1ndote y haci\xE9ndote perder el control\r\n\r\nInvierte
     los controles del jugador mientras dure el efecto del estado alterado."
+--- !u!114 &7803564617361209738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4048531760577013623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 7687429632647168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2760565866874073503}
+        m_TargetAssemblyTypeName: FirstConfussionInteraction, Assembly-CSharp
+        m_MethodName: ChangeName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-1614271919891376812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4048531760577013623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3692496bde259a74892e9651b95e7d22
+    m_TableEntryReference:
+      m_KeyId: 7687447152254976
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2760565866874073503}
+        m_TargetAssemblyTypeName: FirstConfussionInteraction, Assembly-CSharp
+        m_MethodName: ChangeDesc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []

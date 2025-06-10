@@ -13,7 +13,7 @@ public class FirstConfussionInteraction : MonoBehaviour
         {
             foreach (string currentSentence in sentences)
             {
-                InfoPanel.Instance.AddText(string.Empty, currentSentence, 1f);
+                InfoPanel.Instance.AddText(textNames[0], currentSentence, 1f);
             }
 
             GameManager.Instance.firstConfussion = true;

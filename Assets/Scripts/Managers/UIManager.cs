@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject shootCooldown;
     [SerializeField] GameObject relicCooldown;
     [SerializeField] GameObject confussionIcon;
+    [SerializeField] GameObject fade;
+    [SerializeField] GameObject gameOverFade;
 
     [Header("UI Player Info Healthbar")]
     public Slider healthBarSlider; 
@@ -72,6 +75,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button retryButtonLose;
     [SerializeField] Button firstRelic;
 
+    [Header("Menu Buttons")]
+    [SerializeField] Button[] gameOverButtons;
+    [SerializeField] Button[] menuButtons;
+
     int enemyCount;
 
     public static UIManager Instance { get; private set; }
@@ -106,6 +113,11 @@ public class UIManager : MonoBehaviour
         }
 
         GamepadMenuSupport.Instance.lastSelectedObject = resumeButton.gameObject;
+
+        foreach (Button button in gameOverButtons)
+        {
+            button.interactable = false;
+        }
     }
 
 
@@ -371,8 +383,43 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.inMenu = true;
         EventSystem.current.SetSelectedGameObject(retryButtonLose.gameObject);
         GamepadMenuSupport.Instance.lastSelectedObject = retryButtonLose.gameObject;
+        StartCoroutine(FadingToGameOver());
+    }
+
+    IEnumerator FadingToGameOver()
+    {
         Time.timeScale = 0f;
+
+        Color fadeColor = Color.black;
+        fadeColor.a = 0f;
+        fade.GetComponent<Image>().color = fadeColor;
+
+        while (fade.GetComponent<Image>().color.a < 1)
+        {
+            fadeColor.a += 0.5f * Time.unscaledDeltaTime;
+            fade.GetComponent<Image>().color = fadeColor;
+
+            yield return null;
+        }
+
         gameOverMenu.SetActive(true);
+
+        fadeColor = Color.black;
+        fadeColor.a = 1f;
+        gameOverFade.GetComponent<Image>().color = fadeColor;
+
+        while (gameOverFade.GetComponent<Image>().color.a > 0)
+        {
+            fadeColor.a -= 0.35f * Time.unscaledDeltaTime;
+            gameOverFade.GetComponent<Image>().color = fadeColor;
+
+            yield return null;
+        }
+
+        foreach (Button button in gameOverButtons)
+        {
+            button.interactable = true;
+        }
     }
 
     public void EnableVictoryMenu()
@@ -387,7 +434,7 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         GameManager.Instance.ResetProperties();
-        SceneLoader.Instance.LoadCurrentSceneAsync();
+        StartCoroutine(FadeOutToRestart());
     }
 
     public void EnableSettingsMenu()
@@ -409,9 +456,8 @@ public class UIManager : MonoBehaviour
 
     public void MainMenu()
     {
-        Time.timeScale = 1f;
         GameManager.Instance.ResetProperties();
-        SceneLoader.Instance.LoadMainMenu();
+        StartCoroutine(FadeOutToMainMenu());
     }
 
     public void EnableAudioArea()
@@ -476,5 +522,69 @@ public class UIManager : MonoBehaviour
 
         cooldownIcon.GetComponent<Image>().fillAmount = 0f;
         cooldownIcon.SetActive(false);
+    }
+
+    IEnumerator FadeOutToRestart()
+    {
+        foreach (Button button in gameOverButtons)
+        {
+            button.interactable = false;
+        }
+
+        gameOverFade.SetActive(true);
+
+        Color fadeColor = Color.black;
+        fadeColor.a = 0f;
+        gameOverFade.GetComponent<Image>().color = fadeColor;
+
+        while (gameOverFade.GetComponent<Image>().color.a < 1)
+        {
+            fadeColor.a += 0.5f * Time.unscaledDeltaTime;
+            gameOverFade.GetComponent<Image>().color = fadeColor;
+
+            yield return null;
+        }
+
+        Time.timeScale = 1f;
+
+        SceneLoader.Instance.LoadCurrentSceneAsync();
+    }
+
+    IEnumerator FadeOutToMainMenu()
+    {
+        foreach (Button button in menuButtons)
+        {
+            button.interactable = false;
+        }  
+
+        Color fadeColor_01 = Color.black;
+        Color fadeColor_02 = Color.black;
+
+        fadeColor_01.a = fade.GetComponent<Image>().color.a;
+        fadeColor_02.a = gameOverFade.GetComponent<Image>().color.a;
+
+        fade.GetComponent<Image>().color = fadeColor_01;
+        gameOverFade.GetComponent<Image>().color = fadeColor_02;
+
+        while (fade.GetComponent<Image>().color.a < 1 || gameOverFade.GetComponent<Image>().color.a < 1)
+        {
+            fadeColor_01.a += 0.5f * Time.unscaledDeltaTime;
+            fadeColor_02.a += 0.5f * Time.unscaledDeltaTime;
+
+            fadeColor_01.a = Mathf.Clamp01(fadeColor_01.a);
+            fadeColor_02.a = Mathf.Clamp01(fadeColor_02.a);
+
+            fade.GetComponent<Image>().color = fadeColor_01;
+            gameOverFade.GetComponent<Image>().color = fadeColor_02;
+
+            yield return null;
+        }
+
+        fade.GetComponent<Image>().color = fadeColor_01;
+        gameOverFade.GetComponent<Image>().color = fadeColor_02;
+
+        Time.timeScale = 1f;
+
+        SceneLoader.Instance.LoadMainMenuAsync();
     }
 }

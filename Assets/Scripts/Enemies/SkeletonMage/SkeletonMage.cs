@@ -46,6 +46,8 @@ public class SkeletonMage : MonoBehaviour, IDamageable
     SkeletonMageStates FSM;
 
     bool isTeleporting = false;
+    bool enteredCombat = false;
+    bool leftCombat = true;
 
     public AudioSource audioSource;
 
@@ -78,10 +80,23 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         if (agent.CalculatePath(playerObj.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
             pathExists = true;
 
-        if (distanceToPlayer <= stats.detectionDistance && pathExists)
+        //if (distanceToPlayer <= stats.detectionDistance && pathExists)
+        //    AmbientMusicManager.Instance.EnterCombatMode();
+        //else
+        //    AmbientMusicManager.Instance.ExitCombatMode();
+
+        if (distanceToPlayer <= stats.detectionDistance && pathExists && !enteredCombat)
+        {
             AmbientMusicManager.Instance.EnterCombatMode();
-        else
+            enteredCombat = true;
+            leftCombat = false;
+        }
+        if ((distanceToPlayer > stats.detectionDistance || !pathExists) && !leftCombat)
+        {
             AmbientMusicManager.Instance.ExitCombatMode();
+            enteredCombat = false;
+            leftCombat = true;
+        }
 
         Ray visionRay = new Ray(transform.position, transform.forward);
 
@@ -102,12 +117,6 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         FSM = FSM.Process();
     }
 
-//    if (!inCombat)
-//        {
-//            AmbientMusicManager.Instance.EnterCombatMode();
-//            inCombat = true;
-//        }
-
     public void BulletAttack()
     {
         GameObject magicBullet = Instantiate(bulletPrefab, bulletFirePoint.position, Quaternion.identity);
@@ -117,8 +126,6 @@ public class SkeletonMage : MonoBehaviour, IDamageable
 
     public void FinishAttack()
     {
-        //mageAttackFinish = true;
-
         goToIdle = true;
         attacking = false;
     }
@@ -265,41 +272,6 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         Destroy(this.gameObject);
     }
 
-    //public void Teleporting()
-    //{
-    //    //if (hasTeleported) yield break;
-
-    //    //if (distanceToPlayerFinal <= stats.detectionDistance)
-    //    //    FSM = new SkeletonMageAttack(this);
-    //    //else
-    //    //    yield return new WaitForSeconds(0.1f);
-
-    //    goToIdle = true;
-    //}
-
-    //public IEnumerator MakingSecondAttack()
-    //{
-    //    while (timer < 3.5f && !teleporting)
-    //    {
-
-    //    }
-    //    secondAttack = false;
-
-    //    if (!teleporting)
-    //        goToIdle = true;
-    //    //GetComponent<SkeletonMageAnimation>().Idle();
-    //}
-
-    //public void UseTeleportAnim()
-    //{
-    //    GetComponent<SkeletonMageAnimation>().Teleport();
-    //    //StartCoroutine(Teleporting());
-    //    Debug.Log("INICIALIZANDO");
-    //    damaged = false;
-    //}
-
-
-    
     public void TryTeleport()
     {
         if (isTeleporting) return;
@@ -364,28 +336,10 @@ public class SkeletonMage : MonoBehaviour, IDamageable
         goToIdle = true;
         isTeleporting = false;
     }
-    //public LayerMask playerMask;
-
-    //public bool lookingAtPlayer = false;
-    //public bool mageAttackFinish = false;
-    //public bool isDamageable = false;
-    //public bool secondAttack = false;
-    //public bool goToIdle;
-    //public bool playerDirectionTaken;
-
-    //public bool teleporting = false; // JOSE: AÑADIDO BOOL DE HAS TELEPORTED
-
-    //float distanceToPlayer;
-    //bool inCombat;
-
-    //[SerializeField] LayerMask collisionLayer;
-
-    //[SerializeField] GameObject magicRay;
-    //[SerializeField] Collider rayCollision;
 
     public void PlayTakeDamageSound()
     {
-        if (SkeletonMageTakeDamage != null);
+        if (SkeletonMageTakeDamage != null)
             audioSource.PlayOneShot(SkeletonMageTakeDamage, 1f);
     }
 

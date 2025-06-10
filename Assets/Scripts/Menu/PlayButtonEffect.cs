@@ -11,11 +11,21 @@ public class PlayButtonEffect : MonoBehaviour
     [SerializeField] GameObject[] doors;
     [SerializeField] float[] finalYRotations;
 
+    [Header("Sonidos")]
+    [SerializeField] AudioClip doorSound;
+    [SerializeField] AudioClip fadeSound;
+    [SerializeField, Range(0f, 1f)] float doorVolume = 0.25f;
+    [SerializeField, Range(0f, 1f)] float fadeVolume = 0.1f;
+
+    AudioSource audioSource;
     float startingYRotation;
 
     private void Start()
     {
         startingYRotation = doors[0].transform.localEulerAngles.y;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     public void OnPlay() 
@@ -26,6 +36,8 @@ public class PlayButtonEffect : MonoBehaviour
         }
 
         fadeImg.gameObject.SetActive(true);
+
+        audioSource.PlayOneShot(doorSound, doorVolume);
 
         StartCoroutine(Fading());
     }
@@ -50,6 +62,7 @@ public class PlayButtonEffect : MonoBehaviour
             {
                 imageColor.a += 1 * 0.35f * Time.deltaTime;
                 fadeImg.color = imageColor;
+                audioSource.PlayOneShot(fadeSound, fadeVolume);
             }
 
             yield return null;

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Altar : MonoBehaviour, IInteractable
 {
@@ -18,10 +20,27 @@ public class Altar : MonoBehaviour, IInteractable
 
     bool firstTime;
     GameObject playerObj;
+    GameObject interactUI;
 
     private void Start()
     {
         playerObj = GameObject.Find("Player");
+        interactUI = GameObject.Find("--INTERACT_UI--");
+    }
+
+    public void Hold()
+    {
+        if (!firstTime)
+        {
+            interactUI.GetComponent<InteractableText>().Holding();
+            interactUI.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+        }
+    }
+
+    public void Unhold()
+    {
+        if (!firstTime)
+            interactUI.GetComponent<InteractableText>().Unholding();
     }
 
     public void Interact()
@@ -72,6 +91,7 @@ public class Altar : MonoBehaviour, IInteractable
 
             Destroy(relicObj);
             firstTime = true;
+            interactUI.GetComponent<InteractableText>().Unholding();
         }
     }
 

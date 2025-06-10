@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Localization;
 
 public class InfoPanel : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text decorationLine;
     [SerializeField] AudioClip interactSound;
+    [SerializeField] TMP_Text[] noteTexts;
+    [SerializeField] Image[] noteImages;
 
     bool firstPanelShown;
     Color generalColor = Color.white;
@@ -67,6 +70,18 @@ public class InfoPanel : MonoBehaviour
         infoImage.gameObject.GetComponent<Image>().sprite = image;
         infoText.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(255, 0, 0);
         infoText.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 650);
+
+        if (text == string.Empty)
+        {
+            infoImage.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            infoImage.GetComponent<RectTransform>().sizeDelta = new Vector2(853 * 1.5f, 480 * 1.5f);
+        }
+        else
+        {
+            infoImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-310, 0, 0);
+            infoImage.GetComponent<RectTransform>().sizeDelta = new Vector2(350, 350);
+        }
+
         infoText.text = text;
         StartCoroutine(SpawnInfo(fadeDuration));
     }
@@ -97,6 +112,12 @@ public class InfoPanel : MonoBehaviour
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
+        
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
 
         while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
@@ -117,6 +138,12 @@ public class InfoPanel : MonoBehaviour
             nameText.color = textColor;
             decorationLine.color = textColor;
 
+            for (int i = 0; i < noteTexts.Length; i++)
+            {
+                noteTexts[i].color = textColor;
+                noteImages[i].color = textColor;
+            }
+
             yield return null;
         }
 
@@ -130,6 +157,13 @@ public class InfoPanel : MonoBehaviour
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
+
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
+
         GameManager.Instance.infoShowed = true;
 
         //if (takenRelics.Count > 0)
@@ -163,6 +197,12 @@ public class InfoPanel : MonoBehaviour
         nameText.color = textColor;
         decorationLine.color = textColor;
 
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
+
         while (timeElapsed < fadeDuration && fadeDuration != 0)
         {
             timeElapsed += Time.unscaledDeltaTime;
@@ -182,6 +222,12 @@ public class InfoPanel : MonoBehaviour
             nameText.color = textColor;
             decorationLine.color = textColor;
 
+            for (int i = 0; i < noteTexts.Length; i++)
+            {
+                noteTexts[i].color = textColor;
+                noteImages[i].color = textColor;
+            }
+
             yield return null;
         }
 
@@ -199,6 +245,12 @@ public class InfoPanel : MonoBehaviour
         infoText.color = textColor;
         nameText.color = textColor;
         decorationLine.color = textColor;
+
+        for (int i = 0; i < noteTexts.Length; i++)
+        {
+            noteTexts[i].color = textColor;
+            noteImages[i].color = textColor;
+        }
 
         CheckList();
 
@@ -293,6 +345,7 @@ public class InfoPanel : MonoBehaviour
             Time.timeScale = 1;
             firstPanelShown = false;
             GameManager.Instance.gamePausable = true;
+            ControlManager.Instance.affectInfoImage = false;
         }
         else
         {

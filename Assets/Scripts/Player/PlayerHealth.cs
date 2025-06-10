@@ -34,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
                         PlayerDeath();
                     else
                     {
+                        VibrationManager.Instance.RumbleGamepad(0.5f, 0.25f, 0.5f);
                         GetComponent<PlayerAnimation>().Hit();
                         StopAllCoroutines();
 
@@ -60,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerDeath()
     {
+        VibrationManager.Instance.RumbleGamepad(0.75f, 0.5f, 2f);
         GetComponent<PlayerAnimation>().Death();
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().freezeRotation = true;
@@ -133,6 +135,8 @@ public class PlayerHealth : MonoBehaviour
     {
         invencible = true;
         dashed = true;
+
+        VibrationManager.Instance.RumbleGamepad(0.25f, 0f, 0.25f);
 
         yield return new WaitForSeconds(time);
 

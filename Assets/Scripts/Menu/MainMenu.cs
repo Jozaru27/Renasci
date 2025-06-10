@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,6 +23,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.Instance != null)
+            GameManager.Instance.ResetProperties();
+
         GamepadMenuSupport.Instance.inMenu = true;
         GamepadMenuSupport.Instance.lastSelectedObject = playButton.gameObject;
 
@@ -46,12 +50,19 @@ public class MainMenu : MonoBehaviour
 
         fadeImg.gameObject.SetActive(true);
 
-        StartCoroutine(FadeToBlack());
+        StartCoroutine(FadeToCredits());
     }
 
     public void Exit()
     {
-        Application.Quit();
+        foreach (Button currentButton in menuButtons)
+        {
+            currentButton.interactable = false;
+        }
+
+        fadeImg.gameObject.SetActive(true);
+
+        StartCoroutine(FadeToExit());
     }
 
     public void BackToMainMenu()
@@ -74,7 +85,7 @@ public class MainMenu : MonoBehaviour
         videoArea.SetActive(true);
     }
 
-    IEnumerator FadeToBlack()
+    IEnumerator FadeToCredits()
     {
         Color fadeColor = Color.black;
         fadeColor.a = 0;
@@ -94,5 +105,27 @@ public class MainMenu : MonoBehaviour
         }
 
         SceneLoader.Instance.LoadSpecificSceneAsync(2);
+    }
+
+    IEnumerator FadeToExit()
+    {
+        Color fadeColor = Color.black;
+        fadeColor.a = 0;
+
+        fadeImg.color = fadeColor;
+
+        float timeElapsed = 0f;
+
+        while (fadeImg.color.a < 1)
+        {
+            timeElapsed += Time.deltaTime;
+
+            fadeColor.a += 1 * 0.35f * Time.deltaTime;
+            fadeImg.color = fadeColor;
+
+            yield return null;
+        }
+
+        Application.Quit();
     }
 }
